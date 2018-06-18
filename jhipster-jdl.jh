@@ -1,0 +1,273 @@
+entity Configuracion {
+	calificacionMinima Integer required
+    calificacionMaxima Integer required
+    nombreAplicacion String required
+    razonSocial String required
+    cedJuridica String required
+    direccion String required
+    latitud Double
+    longitud Double
+    telefono String required
+    urlLogo String required
+}
+entity Rol {
+	fechaCreacion LocalDate required
+	nombre String required maxlength(20)
+    descripcion String required maxlength(200)
+}
+entity Permiso {
+	nombre String required maxlength(20)
+    descripcion String required maxlength(200)
+}
+entity Usuario {
+	fechaCreacion LocalDate required
+    fechaNacimiento LocalDate required
+	nombre String required minlength(5) maxlength(20)
+    apellidos String required minlength(5) maxlength(50)
+    cedula String required minlength(8) maxlength(15)
+    direccion String maxlength(200)
+    telefono String required minlength(8) maxlength(8)
+    latitud Double
+    longitud Double
+    contrasena String required minlength(8)
+    correo String required maxlength(80)
+    estaActivado Boolean required
+    nombreUsuario String required maxlength(20)
+}
+entity Contrato {
+	fechaCreacion LocalDate required
+}
+entity TipoContrato {
+	nombre String required maxlength(20)
+    descripcion String required maxlength(200)
+    costo Double required
+}
+entity Cliente {
+	
+}
+entity Administrador {
+
+}
+entity Recolector {
+	
+}
+entity CentroAcopio {
+	fechaCreacion LocalDate required
+	nombre String required maxlength(50)
+    telefono String required maxlength(8)
+    direccion String required maxlength(200)
+    latitud Double required
+    longitud Double required
+    sitioWeb String maxlength(200)
+    correo String maxlength(200)
+}
+entity Comercio {
+	fechaCreacion LocalDate required
+	cedJuridica String required minlength(10) maxlength(10)
+	razonSocial String required maxlength(50)
+	nombreComercial String required maxlength(50)
+    tipo TipoComercio
+}
+enum TipoComercio {
+	RESTAURANTE,
+    TIENDA
+}
+entity Local {
+	fechaCreacion LocalDate required
+	nombre String required maxlength(50)
+    direccion String required maxlength(200)
+    latitud Double required
+    latitude Double required
+    horario String required maxlength(20)
+    telefono String required maxlength(8)
+}
+entity FotoGrafia {
+	urlImage String required
+}
+entity Producto {
+	nombre String required maxlength(50)
+    descripcion String required maxlength(200)
+    precio Float required
+	fechaCreacion LocalDate required
+}
+entity SolicitudSuscripcion {
+	fecha LocalDate required
+    estado EstadoSolicitud
+    descripcion String required maxlength(200)
+}
+enum EstadoSolicitud {
+	ACEPATDO,
+    DENEGADO
+}
+entity Suscripcion {
+	detalle String maxlength(500)
+    fechaCreacion LocalDate required
+    estado EstadoSuscripcion
+    fechaCancelacion LocalDate
+    fechaCobro LocalDate required
+}
+entity Pedido {
+	hora String required
+}
+enum EstadoSuscripcion {
+	VIGENTE,
+    EXPIRADO
+}
+entity OrdenRecoleccion {
+	fechaCrecion LocalDate required
+    fechaSolicitud LocalDate required
+}
+entity CadenaOrdenRecoleccion {
+	estado EstadoOrdenRecoleccion
+    descripcion String required maxlength(200)
+}
+enum EstadoOrdenRecoleccion {
+	APROBADA,
+    EN_RUTA,
+	RECHAZADA,
+    FINALIZADA,
+	EN_ESPERA
+}
+entity CategoriaAlimentacion {
+	nombre String required maxlength(50)
+    descripcion String required maxlength(200)
+}
+entity Publicacion {
+	fechaCreacion LocalDate required
+	titulo String required maxlength(50)
+    texto String required maxlength(2000)
+}
+entity ComentarioPublicacion {
+	fechaCreacion LocalDate required
+	texto String required maxlength(300)
+}
+entity Evento {
+	fechaCreacion LocalDate required
+	fechaActividad LocalDate required
+	nombre String required maxlength(20)
+	direccion String required maxlength(200)
+    latitud Double required
+    longitud Double required
+	horario String required maxlength(30)
+}
+entity DiaEntrega {
+	nombre String required maxlength(20)
+}
+entity ResenaComercio {
+	fechaCreacion LocalDate required
+	calificacion Integer required
+    comentario String required maxlength(200)
+}
+entity ResenaCliente {
+	fechaCreacion LocalDate required
+	calificacion Integer required
+    comentario String required maxlength(200)
+}
+entity Patrocinador {
+	fechaCreacion LocalDate required
+	nombre String required maxlength(50)
+    cedJuridica String required maxlength(10) minlength(10)
+    correo String required maxlength(10)
+}
+entity SolicitudPatrocinio {
+	fechaCreacion LocalDate required
+    fechaCreacion LocalDate required
+	nombre String required maxlength(50)
+    cedJuridica String required maxlength(10) minlength(10)
+    correo String required maxlength(10)
+    datosAdicionales String maxlength(200)
+}
+entity Etiqueta {
+	nombre String required maxlength(20)
+    disponible Boolean required
+}
+entity Entrega {
+	fechaInicio LocalDate required
+}
+entity CadenaEntrega {
+	info String required maxlength(200)
+    fecha LocalDate required
+    estado EstadoCadena
+}
+enum EstadoCadena{
+	PREPARACION,
+    EN_CAMINO,
+    ENTREGADO
+}
+entity CobroSuscripcion {
+	fecha LocalDate required
+}
+entity Pago {
+	fecha LocalDate required
+}
+entity CobroMensualidad {
+	fecha LocalDate required
+}
+
+relationship OneToOne {
+	Comercio{usuario(nombre)} to Usuario,
+    Cliente{usuario(nombre)} to Usuario,
+    Recolector{usuario(nombre)} to Usuario,
+    Administrador{usuario(nombre)} to Usuario,
+    Usuario{foto} to FotoGrafia,
+    Usuario{userDetail} to User,
+    Local{fachada} to FotoGrafia,
+    CadenaEntrega{previo} to CadenaEntrega,
+    CadenaOrdenRecoleccion{previo} to CadenaOrdenRecoleccion,
+    CobroMensualidad{pago} to Pago,
+    CobroSuscripcion{pago} to Pago,
+    Patrocinador{solicitud} to SolicitudPatrocinio
+}
+relationship ManyToOne {
+    ResenaCliente{cliente} to Cliente,
+    Usuario{rol} to Rol,
+    Contrato{tipo} to TipoContrato,
+    CobroSuscripcion{cliente} to Cliente,
+    CobroSuscripcion{comercio} to Comercio,
+    CobroSuscripcion{suscripcion} to Suscripcion,
+    Pedido{diasEntrega(nombre)} to DiaEntrega,
+    SolicitudSuscripcion{solicitante} to Cliente,
+    SolicitudSuscripcion{comercio} to Comercio,
+    Pedido{local(nombre)} to Local,
+    CobroMensualidad{contrato} to Contrato
+}
+relationship OneToMany {
+    Comercio{resenasClientes} to ResenaCliente,
+    Comercio{resenasPropias} to ResenaComercio,
+    Comercio{productos(nombre)} to Producto,
+    Comercio{locales(nombre)} to Local,
+    Comercio{suscriptores} to Suscripcion,
+    Comercio{fotos} to FotoGrafia,
+    Cliente{resena} to ResenaComercio,
+    Cliente{suscripciones} to Suscripcion,
+    Cliente{solicitudesRecoleccion} to OrdenRecoleccion,
+    Recolector{ordenes} to OrdenRecoleccion,
+    Suscripcion{productosSolictados} to Producto,
+    Suscripcion{pedidos} to Pedido,
+    Usuario{publicaciones} to Publicacion,
+    Usuario{comentarios} to ComentarioPublicacion,
+    Publicacion{comentarios} to ComentarioPublicacion,
+    Evento{fotos} to FotoGrafia,
+    CentroAcopio{fotos} to FotoGrafia,
+    Patrocinador{fotos} to FotoGrafia,
+    Publicacion{fotos} to FotoGrafia,
+    Producto{fotos} to FotoGrafia,
+    Entrega{cadena} to CadenaEntrega,
+    Pedido{entregas} to Entrega,
+    OrdenRecoleccion{estado} to CadenaOrdenRecoleccion,
+    Comercio{contratos} to Contrato
+}
+relationship ManyToMany {
+	Rol{permisos(nombre)} to Permiso,
+    Patrocinador{eventos(nombre)} to Evento,
+    Producto{etiquetas(nombre)} to Etiqueta,
+    Comercio{etiquetas(nombre)} to Etiqueta,
+    Evento{etiquetas(nombre)} to Etiqueta,
+    Publicacion{etiquetas(nombre)} to Etiqueta,
+    Pedido{productos(nombre)} to Producto,
+    Comercio{categorias(nombre)} to CategoriaAlimentacion,
+    Producto{categoria(nombre)} to CategoriaAlimentacion
+}
+
+
+dto * with mapstruct
