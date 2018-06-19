@@ -111,6 +111,7 @@ entity Pedido {
 }
 entity LineaProducto {
 	cantidad Integer required
+    precioUnitario Float required
 }
 entity LineaEntrega {
 	cantidad Integer required
