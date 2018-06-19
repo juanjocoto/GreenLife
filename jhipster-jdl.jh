@@ -109,6 +109,12 @@ entity Suscripcion {
 entity Pedido {
 	hora String required
 }
+entity LineaProducto {
+	cantidad Integer required
+}
+entity LineaEntrega {
+	cantidad Integer required
+}
 enum EstadoSuscripcion {
 	VIGENTE,
     EXPIRADO
@@ -215,11 +221,12 @@ relationship OneToOne {
     CadenaOrdenRecoleccion{previo} to CadenaOrdenRecoleccion,
     CobroMensualidad{pago} to Pago,
     CobroSuscripcion{pago} to Pago,
-    Patrocinador{solicitud} to SolicitudPatrocinio
+    Patrocinador{solicitud} to SolicitudPatrocinio,
+    Pedido{lineas} to LineaProducto
 }
 relationship ManyToOne {
     ResenaCliente{cliente} to Cliente,
-    Usuario{rol} to Rol,
+    Usuario{rol(nombre)} to Rol,
     Contrato{tipo} to TipoContrato,
     CobroSuscripcion{cliente} to Cliente,
     CobroSuscripcion{comercio} to Comercio,
@@ -228,13 +235,15 @@ relationship ManyToOne {
     SolicitudSuscripcion{solicitante} to Cliente,
     SolicitudSuscripcion{comercio} to Comercio,
     Pedido{local(nombre)} to Local,
-    CobroMensualidad{contrato} to Contrato
+    CobroMensualidad{contrato} to Contrato,
+    LineaProducto{producto} to Producto,
+    LineaEntrega{producto} to Producto
 }
 relationship OneToMany {
     Comercio{resenasClientes} to ResenaCliente,
     Comercio{resenasPropias} to ResenaComercio,
     Comercio{productos(nombre)} to Producto,
-    Comercio{locales(nombre)} to Local,
+    Comercio{locales(nombre)} to Local{comercio(razonSocial)},
     Comercio{suscriptores} to Suscripcion,
     Comercio{fotos} to Fotografia,
     Cliente{resena} to ResenaComercio,
@@ -251,6 +260,7 @@ relationship OneToMany {
     Publicacion{fotos} to Fotografia,
     Producto{fotos} to Fotografia,
     Entrega{cadena} to CadenaEntrega,
+    Entrega{lineas} to LineaEntrega,
     Pedido{entregas} to Entrega,
     OrdenRecoleccion{estado} to CadenaOrdenRecoleccion,
     Comercio{contratos} to Contrato,
@@ -263,10 +273,8 @@ relationship ManyToMany {
     Comercio{etiquetas(nombre)} to Etiqueta,
     Evento{etiquetas(nombre)} to Etiqueta,
     Publicacion{etiquetas(nombre)} to Etiqueta,
-    Pedido{productos(nombre)} to Producto,
     Comercio{categorias(nombre)} to CategoriaAlimentacion,
-    Producto{categoria(nombre)} to CategoriaAlimentacion,
-    Entrega{productos(nombre)} to Producto
+    Producto{categoria(nombre)} to CategoriaAlimentacion
 }
 
 
