@@ -81,7 +81,7 @@ entity Local {
     horario String required maxlength(20)
     telefono String required maxlength(8)
 }
-entity FotoGrafia {
+entity Fotografia {
 	urlImage String required
 }
 entity Producto {
@@ -170,7 +170,6 @@ entity Patrocinador {
     correo String required maxlength(10)
 }
 entity SolicitudPatrocinio {
-	fechaCreacion LocalDate required
     fechaCreacion LocalDate required
 	nombre String required maxlength(50)
     cedJuridica String required maxlength(10) minlength(10)
@@ -209,9 +208,9 @@ relationship OneToOne {
     Cliente{usuario(nombre)} to Usuario,
     Recolector{usuario(nombre)} to Usuario,
     Administrador{usuario(nombre)} to Usuario,
-    Usuario{foto} to FotoGrafia,
+    Usuario{foto} to Fotografia,
     Usuario{userDetail} to User,
-    Local{fachada} to FotoGrafia,
+    Local{fachada} to Fotografia,
     CadenaEntrega{previo} to CadenaEntrega,
     CadenaOrdenRecoleccion{previo} to CadenaOrdenRecoleccion,
     CobroMensualidad{pago} to Pago,
@@ -237,25 +236,25 @@ relationship OneToMany {
     Comercio{productos(nombre)} to Producto,
     Comercio{locales(nombre)} to Local,
     Comercio{suscriptores} to Suscripcion,
-    Comercio{fotos} to FotoGrafia,
+    Comercio{fotos} to Fotografia,
     Cliente{resena} to ResenaComercio,
     Cliente{suscripciones} to Suscripcion,
     Cliente{solicitudesRecoleccion} to OrdenRecoleccion,
     Recolector{ordenes} to OrdenRecoleccion,
-    Suscripcion{productosSolictados} to Producto,
     Suscripcion{pedidos} to Pedido,
     Usuario{publicaciones} to Publicacion,
     Usuario{comentarios} to ComentarioPublicacion,
     Publicacion{comentarios} to ComentarioPublicacion,
-    Evento{fotos} to FotoGrafia,
-    CentroAcopio{fotos} to FotoGrafia,
-    Patrocinador{fotos} to FotoGrafia,
-    Publicacion{fotos} to FotoGrafia,
-    Producto{fotos} to FotoGrafia,
+    Evento{fotos} to Fotografia,
+    CentroAcopio{fotos} to Fotografia,
+    Patrocinador{fotos} to Fotografia,
+    Publicacion{fotos} to Fotografia,
+    Producto{fotos} to Fotografia,
     Entrega{cadena} to CadenaEntrega,
     Pedido{entregas} to Entrega,
     OrdenRecoleccion{estado} to CadenaOrdenRecoleccion,
-    Comercio{contratos} to Contrato
+    Comercio{contratos} to Contrato,
+    Suscripcion{historicoEntregas} to Entrega
 }
 relationship ManyToMany {
 	Rol{permisos(nombre)} to Permiso,
@@ -266,7 +265,8 @@ relationship ManyToMany {
     Publicacion{etiquetas(nombre)} to Etiqueta,
     Pedido{productos(nombre)} to Producto,
     Comercio{categorias(nombre)} to CategoriaAlimentacion,
-    Producto{categoria(nombre)} to CategoriaAlimentacion
+    Producto{categoria(nombre)} to CategoriaAlimentacion,
+    Entrega{productos(nombre)} to Producto
 }
 
 
