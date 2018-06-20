@@ -3,7 +3,7 @@ import './vendor.ts';
 import { NgModule, Injector } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
-import { Ng2Webstorage, LocalStorageService, SessionStorageService  } from 'ngx-webstorage';
+import { Ng2Webstorage, LocalStorageService, SessionStorageService } from 'ngx-webstorage';
 import { JhiEventManager } from 'ng-jhipster';
 
 import { AuthInterceptor } from './blocks/interceptor/auth.interceptor';
@@ -11,12 +11,13 @@ import { AuthExpiredInterceptor } from './blocks/interceptor/auth-expired.interc
 import { ErrorHandlerInterceptor } from './blocks/interceptor/errorhandler.interceptor';
 import { NotificationInterceptor } from './blocks/interceptor/notification.interceptor';
 import { GreenlifeSharedModule, UserRouteAccessService } from './shared';
-import { GreenlifeAppRoutingModule} from './app-routing.module';
+import { GreenlifeAppRoutingModule } from './app-routing.module';
 import { GreenlifeHomeModule } from './home/home.module';
 import { GreenlifeAdminModule } from './admin/admin.module';
 import { GreenlifeAccountModule } from './account/account.module';
 import { GreenlifeEntityModule } from './entities/entity.module';
 import { PaginationConfig } from './blocks/config/uib-pagination.config';
+import { GreenLifeModule } from './green-life/green-life.module';
 // jhipster-needle-angular-add-module-import JHipster will add new module here
 import {
     JhiMainComponent,
@@ -31,12 +32,13 @@ import {
     imports: [
         BrowserModule,
         GreenlifeAppRoutingModule,
-        Ng2Webstorage.forRoot({ prefix: 'jhi', separator: '-'}),
+        Ng2Webstorage.forRoot({ prefix: 'jhi', separator: '-' }),
         GreenlifeSharedModule,
         GreenlifeHomeModule,
         GreenlifeAdminModule,
         GreenlifeAccountModule,
         GreenlifeEntityModule,
+        GreenLifeModule
         // jhipster-needle-angular-add-module JHipster will add new module here
     ],
     declarations: [
@@ -84,6 +86,6 @@ import {
             ]
         }
     ],
-    bootstrap: [ JhiMainComponent ]
+    bootstrap: [JhiMainComponent]
 })
-export class GreenlifeAppModule {}
+export class GreenlifeAppModule { }
