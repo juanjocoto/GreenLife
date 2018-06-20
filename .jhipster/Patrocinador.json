@@ -1,0 +1,71 @@
+{
+    "fluentMethods": true,
+    "relationships": [
+        {
+            "relationshipType": "one-to-one",
+            "relationshipName": "solicitud",
+            "otherEntityName": "solicitudPatrocinio",
+            "otherEntityField": "id",
+            "ownerSide": true,
+            "otherEntityRelationshipName": "patrocinador"
+        },
+        {
+            "relationshipType": "one-to-many",
+            "relationshipName": "fotos",
+            "otherEntityName": "fotografia",
+            "otherEntityRelationshipName": "patrocinador"
+        },
+        {
+            "relationshipType": "many-to-many",
+            "otherEntityRelationshipName": "",
+            "relationshipName": "eventos",
+            "otherEntityName": "evento",
+            "otherEntityField": "nombre",
+            "ownerSide": true
+        }
+    ],
+    "fields": [
+        {
+            "fieldName": "fechaCreacion",
+            "fieldType": "LocalDate",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "nombre",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "required",
+                "maxlength"
+            ],
+            "fieldValidateRulesMaxlength": 50
+        },
+        {
+            "fieldName": "cedJuridica",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "required",
+                "maxlength",
+                "minlength"
+            ],
+            "fieldValidateRulesMaxlength": 10,
+            "fieldValidateRulesMinlength": 10
+        },
+        {
+            "fieldName": "correo",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "required",
+                "maxlength"
+            ],
+            "fieldValidateRulesMaxlength": 10
+        }
+    ],
+    "changelogDate": "20180620020752",
+    "entityTableName": "patrocinador",
+    "dto": "mapstruct",
+    "pagination": "no",
+    "service": "no",
+    "jpaMetamodelFiltering": false
+}

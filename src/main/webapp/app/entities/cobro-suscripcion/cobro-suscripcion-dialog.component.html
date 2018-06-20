@@ -1,0 +1,69 @@
+<form name="editForm" role="form" novalidate (ngSubmit)="save()" #editForm="ngForm">
+
+    <div class="modal-header">
+        <h4 class="modal-title" id="myCobroSuscripcionLabel">Create or edit a Cobro Suscripcion</h4>
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true"
+                (click)="clear()">&times;</button>
+    </div>
+    <div class="modal-body">
+        <jhi-alert-error></jhi-alert-error>
+        <div class="form-group" [hidden]="!cobroSuscripcion.id">
+            <label for="id">ID</label>
+            <input type="text" class="form-control" id="id" name="id"
+                   [(ngModel)]="cobroSuscripcion.id" readonly />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" for="field_fecha">Fecha</label>
+            <div class="input-group">
+                <input id="field_fecha" type="text" class="form-control" name="fecha" ngbDatepicker  #fechaDp="ngbDatepicker" [(ngModel)]="cobroSuscripcion.fecha"
+                required/>
+                <span class="input-group-append">
+                    <button type="button" class="btn btn-secondary" (click)="fechaDp.toggle()"><i class="fa fa-calendar"></i></button>
+                </span>
+            </div>
+            <div [hidden]="!(editForm.controls.fecha?.dirty && editForm.controls.fecha?.invalid)">
+                <small class="form-text text-danger"
+                   [hidden]="!editForm.controls.fecha?.errors?.required">
+                   This field is required.
+                </small>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="form-control-label" for="field_pago">Pago</label>
+            <select class="form-control" id="field_pago" name="pago" [(ngModel)]="cobroSuscripcion.pagoId">
+                <option [ngValue]="null"></option>
+                <option [ngValue]="pagoOption.id" *ngFor="let pagoOption of pagos; trackBy: trackPagoById">{{pagoOption.id}}</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" for="field_cliente">Cliente</label>
+            <select class="form-control" id="field_cliente" name="cliente" [(ngModel)]="cobroSuscripcion.clienteId" >
+                <option [ngValue]="null"></option>
+                <option [ngValue]="clienteOption.id" *ngFor="let clienteOption of clientes; trackBy: trackClienteById">{{clienteOption.id}}</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" for="field_comercio">Comercio</label>
+            <select class="form-control" id="field_comercio" name="comercio" [(ngModel)]="cobroSuscripcion.comercioId" >
+                <option [ngValue]="null"></option>
+                <option [ngValue]="comercioOption.id" *ngFor="let comercioOption of comercios; trackBy: trackComercioById">{{comercioOption.id}}</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" for="field_suscripcion">Suscripcion</label>
+            <select class="form-control" id="field_suscripcion" name="suscripcion" [(ngModel)]="cobroSuscripcion.suscripcionId" >
+                <option [ngValue]="null"></option>
+                <option [ngValue]="suscripcionOption.id" *ngFor="let suscripcionOption of suscripcions; trackBy: trackSuscripcionById">{{suscripcionOption.id}}</option>
+            </select>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal" (click)="clear()">
+            <span class="fa fa-ban"></span>&nbsp;<span>Cancel</span>
+        </button>
+        <button type="submit" [disabled]="editForm.form.invalid || isSaving" class="btn btn-primary">
+            <span class="fa fa-save"></span>&nbsp;<span>Save</span>
+        </button>
+    </div>
+</form>

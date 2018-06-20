@@ -1,0 +1,52 @@
+{
+    "fluentMethods": true,
+    "relationships": [
+        {
+            "relationshipName": "suscripcion",
+            "otherEntityName": "suscripcion",
+            "relationshipType": "many-to-one",
+            "otherEntityField": "id"
+        },
+        {
+            "relationshipType": "one-to-one",
+            "relationshipName": "lineas",
+            "otherEntityName": "lineaProducto",
+            "otherEntityField": "id",
+            "ownerSide": true,
+            "otherEntityRelationshipName": "pedido"
+        },
+        {
+            "relationshipType": "one-to-many",
+            "relationshipName": "entregas",
+            "otherEntityName": "entrega",
+            "otherEntityRelationshipName": "pedido"
+        },
+        {
+            "relationshipType": "many-to-one",
+            "relationshipName": "diasEntrega",
+            "otherEntityName": "diaEntrega",
+            "otherEntityField": "nombre"
+        },
+        {
+            "relationshipType": "many-to-one",
+            "relationshipName": "local",
+            "otherEntityName": "local",
+            "otherEntityField": "nombre"
+        }
+    ],
+    "fields": [
+        {
+            "fieldName": "hora",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "required"
+            ]
+        }
+    ],
+    "changelogDate": "20180620020740",
+    "entityTableName": "pedido",
+    "dto": "mapstruct",
+    "pagination": "no",
+    "service": "no",
+    "jpaMetamodelFiltering": false
+}

@@ -1,0 +1,54 @@
+
+<div *ngIf="suscripcion">
+    <h2><span>Suscripcion</span> {{suscripcion.id}}</h2>
+    <hr>
+    <jhi-alert-error></jhi-alert-error>
+    <dl class="row-md jh-entity-details">
+        <dt><span>Detalle</span></dt>
+        <dd>
+            <span>{{suscripcion.detalle}}</span>
+        </dd>
+        <dt><span>Fecha Creacion</span></dt>
+        <dd>
+            <span>{{suscripcion.fechaCreacion | date:'mediumDate'}}</span>
+        </dd>
+        <dt><span>Estado</span></dt>
+        <dd>
+            <span>{{suscripcion.estado}}</span>
+        </dd>
+        <dt><span>Fecha Cancelacion</span></dt>
+        <dd>
+            <span>{{suscripcion.fechaCancelacion | date:'mediumDate'}}</span>
+        </dd>
+        <dt><span>Fecha Cobro</span></dt>
+        <dd>
+            <span>{{suscripcion.fechaCobro | date:'mediumDate'}}</span>
+        </dd>
+        <dt><span>Cliente</span></dt>
+        <dd>
+            <div *ngIf="suscripcion.clienteId">
+                <a [routerLink]="['/cliente', suscripcion.clienteId]">{{suscripcion.clienteId}}</a>
+            </div>
+        </dd>
+        <dt><span>Comercio</span></dt>
+        <dd>
+            <div *ngIf="suscripcion.comercioId">
+                <a [routerLink]="['/comercio', suscripcion.comercioId]">{{suscripcion.comercioId}}</a>
+            </div>
+        </dd>
+    </dl>
+
+    <button type="submit"
+            (click)="previousState()"
+            class="btn btn-info">
+        <span class="fa fa-arrow-left"></span>&nbsp;<span> Back</span>
+    </button>
+
+    <button type="button"
+            [routerLink]="['/', { outlets: { popup: 'suscripcion/'+ suscripcion.id + '/edit'} }]"
+            replaceUrl="true"
+            queryParamsHandling="merge"
+            class="btn btn-primary">
+        <span class="fa fa-pencil"></span>&nbsp;<span> Edit</span>
+    </button>
+</div>

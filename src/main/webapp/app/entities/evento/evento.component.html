@@ -1,0 +1,89 @@
+<div>
+    <h2>
+        <span>Eventos</span>
+        <button class="btn btn-primary float-right jh-create-entity create-evento" [routerLink]="['/', { outlets: { popup: ['evento-new'] } }]">
+            <span class="fa fa-plus"></span>
+            <span class="hidden-sm-down" >
+            Create new Evento
+            </span>
+        </button>
+    </h2>
+    <jhi-alert></jhi-alert>
+    <div class="row">
+        <div class="col-sm-12">
+            <form name="searchForm" class="form-inline">
+                <div class="input-group w-100 mt-3">
+                    <input type="text" class="form-control" [(ngModel)]="currentSearch" id="currentSearch" name="currentSearch" placeholder="Query">
+                    <button class="input-group-append btn btn-info" (click)="search(currentSearch)">
+                        <span class="fa fa-search"></span>
+                    </button>
+                    <button class="input-group-append btn btn-danger" (click)="clear()" *ngIf="currentSearch">
+                        <span class="fa fa-trash-o"></span>
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+    <br/>
+    <div class="table-responsive" *ngIf="eventos">
+        <table class="table table-striped">
+            <thead>
+            <tr>
+            <th><span>ID</span></th>
+            <th><span>Fecha Creacion</span></th>
+            <th><span>Fecha Actividad</span></th>
+            <th><span>Nombre</span></th>
+            <th><span>Direccion</span></th>
+            <th><span>Latitud</span></th>
+            <th><span>Longitud</span></th>
+            <th><span>Horario</span></th>
+            <th><span>Etiquetas</span></th>
+            <th></th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr *ngFor="let evento of eventos ;trackBy: trackId">
+                <td><a [routerLink]="['../evento', evento.id ]">{{evento.id}}</a></td>
+                <td>{{evento.fechaCreacion | date:'mediumDate'}}</td>
+                <td>{{evento.fechaActividad | date:'mediumDate'}}</td>
+                <td>{{evento.nombre}}</td>
+                <td>{{evento.direccion}}</td>
+                <td>{{evento.latitud}}</td>
+                <td>{{evento.longitud}}</td>
+                <td>{{evento.horario}}</td>
+                <td>
+                    <span *ngFor="let etiquetas of evento.etiquetas; let last = last">
+                            <a class="form-control-static" [routerLink]="['../etiqueta', etiquetas?.id ]">{{etiquetas.nombre}}</a>{{last ? '' : ', '}}
+                        </span>
+                </td>
+                <td class="text-right">
+                    <div class="btn-group flex-btn-group-container">
+                        <button type="submit"
+                                [routerLink]="['../evento', evento.id ]"
+                                class="btn btn-info btn-sm">
+                            <span class="fa fa-eye"></span>
+                            <span class="d-none d-md-inline">View</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/', { outlets: { popup: 'evento/'+ evento.id + '/edit'} }]"
+                                replaceUrl="true"
+                                queryParamsHandling="merge"
+                                class="btn btn-primary btn-sm">
+                            <span class="fa fa-pencil"></span>
+                            <span class="d-none d-md-inline">Edit</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/', { outlets: { popup: 'evento/'+ evento.id + '/delete'} }]"
+                                replaceUrl="true"
+                                queryParamsHandling="merge"
+                                class="btn btn-danger btn-sm">
+                            <span class="fa fa-remove"></span>
+                            <span class="d-none d-md-inline">Delete</span>
+                        </button>
+                    </div>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

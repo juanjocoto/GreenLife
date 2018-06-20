@@ -1,0 +1,46 @@
+
+<div *ngIf="cadenaEntrega">
+    <h2><span>Cadena Entrega</span> {{cadenaEntrega.id}}</h2>
+    <hr>
+    <jhi-alert-error></jhi-alert-error>
+    <dl class="row-md jh-entity-details">
+        <dt><span>Info</span></dt>
+        <dd>
+            <span>{{cadenaEntrega.info}}</span>
+        </dd>
+        <dt><span>Fecha</span></dt>
+        <dd>
+            <span>{{cadenaEntrega.fecha | date:'mediumDate'}}</span>
+        </dd>
+        <dt><span>Estado</span></dt>
+        <dd>
+            <span>{{cadenaEntrega.estado}}</span>
+        </dd>
+        <dt><span>Entrega</span></dt>
+        <dd>
+            <div *ngIf="cadenaEntrega.entregaId">
+                <a [routerLink]="['/entrega', cadenaEntrega.entregaId]">{{cadenaEntrega.entregaId}}</a>
+            </div>
+        </dd>
+        <dt><span>Previo</span></dt>
+        <dd>
+            <div *ngIf="cadenaEntrega.previoId">
+                <a [routerLink]="['/cadena-entrega', cadenaEntrega.previoId]">{{cadenaEntrega.previoId}}</a>
+            </div>
+        </dd>
+    </dl>
+
+    <button type="submit"
+            (click)="previousState()"
+            class="btn btn-info">
+        <span class="fa fa-arrow-left"></span>&nbsp;<span> Back</span>
+    </button>
+
+    <button type="button"
+            [routerLink]="['/', { outlets: { popup: 'cadena-entrega/'+ cadenaEntrega.id + '/edit'} }]"
+            replaceUrl="true"
+            queryParamsHandling="merge"
+            class="btn btn-primary">
+        <span class="fa fa-pencil"></span>&nbsp;<span> Edit</span>
+    </button>
+</div>

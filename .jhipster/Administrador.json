@@ -1,0 +1,20 @@
+{
+    "fluentMethods": true,
+    "relationships": [
+        {
+            "relationshipType": "one-to-one",
+            "relationshipName": "usuario",
+            "otherEntityName": "usuario",
+            "otherEntityField": "nombre",
+            "ownerSide": true,
+            "otherEntityRelationshipName": "administrador"
+        }
+    ],
+    "fields": [],
+    "changelogDate": "20180620020731",
+    "entityTableName": "administrador",
+    "dto": "mapstruct",
+    "pagination": "no",
+    "service": "no",
+    "jpaMetamodelFiltering": false
+}

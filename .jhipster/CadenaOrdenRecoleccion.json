@@ -1,0 +1,41 @@
+{
+    "fluentMethods": true,
+    "relationships": [
+        {
+            "relationshipName": "ordenRecoleccion",
+            "otherEntityName": "ordenRecoleccion",
+            "relationshipType": "many-to-one",
+            "otherEntityField": "id"
+        },
+        {
+            "relationshipType": "one-to-one",
+            "relationshipName": "previo",
+            "otherEntityName": "cadenaOrdenRecoleccion",
+            "otherEntityField": "id",
+            "ownerSide": true,
+            "otherEntityRelationshipName": "cadenaOrdenRecoleccion"
+        }
+    ],
+    "fields": [
+        {
+            "fieldName": "estado",
+            "fieldType": "EstadoOrdenRecoleccion",
+            "fieldValues": "APROBADA,EN_RUTA,RECHAZADA,FINALIZADA,EN_ESPERA"
+        },
+        {
+            "fieldName": "descripcion",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "required",
+                "maxlength"
+            ],
+            "fieldValidateRulesMaxlength": 200
+        }
+    ],
+    "changelogDate": "20180620020744",
+    "entityTableName": "cadena_orden_recoleccion",
+    "dto": "mapstruct",
+    "pagination": "no",
+    "service": "no",
+    "jpaMetamodelFiltering": false
+}

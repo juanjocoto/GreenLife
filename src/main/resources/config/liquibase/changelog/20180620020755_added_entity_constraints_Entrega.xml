@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.5.xsd">
+    <!--
+        Added the constraints for entity Entrega.
+    -->
+    <changeSet id="20180620020755-2" author="jhipster">
+        
+        <addForeignKeyConstraint baseColumnNames="suscripcion_id"
+                                 baseTableName="entrega"
+                                 constraintName="fk_entrega_suscripcion_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="suscripcion"/>
+
+        <addForeignKeyConstraint baseColumnNames="pedido_id"
+                                 baseTableName="entrega"
+                                 constraintName="fk_entrega_pedido_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="pedido"/>
+
+    </changeSet>
+</databaseChangeLog>

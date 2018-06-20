@@ -1,0 +1,99 @@
+<form name="editForm" role="form" novalidate (ngSubmit)="save()" #editForm="ngForm">
+
+    <div class="modal-header">
+        <h4 class="modal-title" id="mySuscripcionLabel">Create or edit a Suscripcion</h4>
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true"
+                (click)="clear()">&times;</button>
+    </div>
+    <div class="modal-body">
+        <jhi-alert-error></jhi-alert-error>
+        <div class="form-group" [hidden]="!suscripcion.id">
+            <label for="id">ID</label>
+            <input type="text" class="form-control" id="id" name="id"
+                   [(ngModel)]="suscripcion.id" readonly />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" for="field_detalle">Detalle</label>
+            <input type="text" class="form-control" name="detalle" id="field_detalle"
+                [(ngModel)]="suscripcion.detalle" maxlength="500"/>
+            <div [hidden]="!(editForm.controls.detalle?.dirty && editForm.controls.detalle?.invalid)">
+                <small class="form-text text-danger"
+                   [hidden]="!editForm.controls.detalle?.errors?.maxlength">
+                   This field cannot be longer than 500 characters.
+                </small>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" for="field_fechaCreacion">Fecha Creacion</label>
+            <div class="input-group">
+                <input id="field_fechaCreacion" type="text" class="form-control" name="fechaCreacion" ngbDatepicker  #fechaCreacionDp="ngbDatepicker" [(ngModel)]="suscripcion.fechaCreacion"
+                required/>
+                <span class="input-group-append">
+                    <button type="button" class="btn btn-secondary" (click)="fechaCreacionDp.toggle()"><i class="fa fa-calendar"></i></button>
+                </span>
+            </div>
+            <div [hidden]="!(editForm.controls.fechaCreacion?.dirty && editForm.controls.fechaCreacion?.invalid)">
+                <small class="form-text text-danger"
+                   [hidden]="!editForm.controls.fechaCreacion?.errors?.required">
+                   This field is required.
+                </small>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" for="field_estado">Estado</label>
+            <select class="form-control" name="estado" [(ngModel)]="suscripcion.estado" id="field_estado" >
+                <option value="VIGENTE">VIGENTE</option>
+                <option value="EXPIRADO">EXPIRADO</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" for="field_fechaCancelacion">Fecha Cancelacion</label>
+            <div class="input-group">
+                <input id="field_fechaCancelacion" type="text" class="form-control" name="fechaCancelacion" ngbDatepicker  #fechaCancelacionDp="ngbDatepicker" [(ngModel)]="suscripcion.fechaCancelacion"
+                />
+                <span class="input-group-append">
+                    <button type="button" class="btn btn-secondary" (click)="fechaCancelacionDp.toggle()"><i class="fa fa-calendar"></i></button>
+                </span>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" for="field_fechaCobro">Fecha Cobro</label>
+            <div class="input-group">
+                <input id="field_fechaCobro" type="text" class="form-control" name="fechaCobro" ngbDatepicker  #fechaCobroDp="ngbDatepicker" [(ngModel)]="suscripcion.fechaCobro"
+                required/>
+                <span class="input-group-append">
+                    <button type="button" class="btn btn-secondary" (click)="fechaCobroDp.toggle()"><i class="fa fa-calendar"></i></button>
+                </span>
+            </div>
+            <div [hidden]="!(editForm.controls.fechaCobro?.dirty && editForm.controls.fechaCobro?.invalid)">
+                <small class="form-text text-danger"
+                   [hidden]="!editForm.controls.fechaCobro?.errors?.required">
+                   This field is required.
+                </small>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="form-control-label" for="field_cliente">Cliente</label>
+            <select class="form-control" id="field_cliente" name="cliente" [(ngModel)]="suscripcion.clienteId" >
+                <option [ngValue]="null"></option>
+                <option [ngValue]="clienteOption.id" *ngFor="let clienteOption of clientes; trackBy: trackClienteById">{{clienteOption.id}}</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" for="field_comercio">Comercio</label>
+            <select class="form-control" id="field_comercio" name="comercio" [(ngModel)]="suscripcion.comercioId" >
+                <option [ngValue]="null"></option>
+                <option [ngValue]="comercioOption.id" *ngFor="let comercioOption of comercios; trackBy: trackComercioById">{{comercioOption.id}}</option>
+            </select>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal" (click)="clear()">
+            <span class="fa fa-ban"></span>&nbsp;<span>Cancel</span>
+        </button>
+        <button type="submit" [disabled]="editForm.form.invalid || isSaving" class="btn btn-primary">
+            <span class="fa fa-save"></span>&nbsp;<span>Save</span>
+        </button>
+    </div>
+</form>

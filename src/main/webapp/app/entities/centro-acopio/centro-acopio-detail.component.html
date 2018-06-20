@@ -1,0 +1,54 @@
+
+<div *ngIf="centroAcopio">
+    <h2><span>Centro Acopio</span> {{centroAcopio.id}}</h2>
+    <hr>
+    <jhi-alert-error></jhi-alert-error>
+    <dl class="row-md jh-entity-details">
+        <dt><span>Fecha Creacion</span></dt>
+        <dd>
+            <span>{{centroAcopio.fechaCreacion | date:'mediumDate'}}</span>
+        </dd>
+        <dt><span>Nombre</span></dt>
+        <dd>
+            <span>{{centroAcopio.nombre}}</span>
+        </dd>
+        <dt><span>Telefono</span></dt>
+        <dd>
+            <span>{{centroAcopio.telefono}}</span>
+        </dd>
+        <dt><span>Direccion</span></dt>
+        <dd>
+            <span>{{centroAcopio.direccion}}</span>
+        </dd>
+        <dt><span>Latitud</span></dt>
+        <dd>
+            <span>{{centroAcopio.latitud}}</span>
+        </dd>
+        <dt><span>Longitud</span></dt>
+        <dd>
+            <span>{{centroAcopio.longitud}}</span>
+        </dd>
+        <dt><span>Sitio Web</span></dt>
+        <dd>
+            <span>{{centroAcopio.sitioWeb}}</span>
+        </dd>
+        <dt><span>Correo</span></dt>
+        <dd>
+            <span>{{centroAcopio.correo}}</span>
+        </dd>
+    </dl>
+
+    <button type="submit"
+            (click)="previousState()"
+            class="btn btn-info">
+        <span class="fa fa-arrow-left"></span>&nbsp;<span> Back</span>
+    </button>
+
+    <button type="button"
+            [routerLink]="['/', { outlets: { popup: 'centro-acopio/'+ centroAcopio.id + '/edit'} }]"
+            replaceUrl="true"
+            queryParamsHandling="merge"
+            class="btn btn-primary">
+        <span class="fa fa-pencil"></span>&nbsp;<span> Edit</span>
+    </button>
+</div>

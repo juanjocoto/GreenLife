@@ -1,0 +1,30 @@
+
+<div *ngIf="categoriaAlimentacion">
+    <h2><span>Categoria Alimentacion</span> {{categoriaAlimentacion.id}}</h2>
+    <hr>
+    <jhi-alert-error></jhi-alert-error>
+    <dl class="row-md jh-entity-details">
+        <dt><span>Nombre</span></dt>
+        <dd>
+            <span>{{categoriaAlimentacion.nombre}}</span>
+        </dd>
+        <dt><span>Descripcion</span></dt>
+        <dd>
+            <span>{{categoriaAlimentacion.descripcion}}</span>
+        </dd>
+    </dl>
+
+    <button type="submit"
+            (click)="previousState()"
+            class="btn btn-info">
+        <span class="fa fa-arrow-left"></span>&nbsp;<span> Back</span>
+    </button>
+
+    <button type="button"
+            [routerLink]="['/', { outlets: { popup: 'categoria-alimentacion/'+ categoriaAlimentacion.id + '/edit'} }]"
+            replaceUrl="true"
+            queryParamsHandling="merge"
+            class="btn btn-primary">
+        <span class="fa fa-pencil"></span>&nbsp;<span> Edit</span>
+    </button>
+</div>

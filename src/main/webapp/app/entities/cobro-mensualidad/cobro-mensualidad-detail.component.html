@@ -1,0 +1,38 @@
+
+<div *ngIf="cobroMensualidad">
+    <h2><span>Cobro Mensualidad</span> {{cobroMensualidad.id}}</h2>
+    <hr>
+    <jhi-alert-error></jhi-alert-error>
+    <dl class="row-md jh-entity-details">
+        <dt><span>Fecha</span></dt>
+        <dd>
+            <span>{{cobroMensualidad.fecha | date:'mediumDate'}}</span>
+        </dd>
+        <dt><span>Pago</span></dt>
+        <dd>
+            <div *ngIf="cobroMensualidad.pagoId">
+                <a [routerLink]="['/pago', cobroMensualidad.pagoId]">{{cobroMensualidad.pagoId}}</a>
+            </div>
+        </dd>
+        <dt><span>Contrato</span></dt>
+        <dd>
+            <div *ngIf="cobroMensualidad.contratoId">
+                <a [routerLink]="['/contrato', cobroMensualidad.contratoId]">{{cobroMensualidad.contratoId}}</a>
+            </div>
+        </dd>
+    </dl>
+
+    <button type="submit"
+            (click)="previousState()"
+            class="btn btn-info">
+        <span class="fa fa-arrow-left"></span>&nbsp;<span> Back</span>
+    </button>
+
+    <button type="button"
+            [routerLink]="['/', { outlets: { popup: 'cobro-mensualidad/'+ cobroMensualidad.id + '/edit'} }]"
+            replaceUrl="true"
+            queryParamsHandling="merge"
+            class="btn btn-primary">
+        <span class="fa fa-pencil"></span>&nbsp;<span> Edit</span>
+    </button>
+</div>

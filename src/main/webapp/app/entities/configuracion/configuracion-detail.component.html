@@ -1,0 +1,62 @@
+
+<div *ngIf="configuracion">
+    <h2><span>Configuracion</span> {{configuracion.id}}</h2>
+    <hr>
+    <jhi-alert-error></jhi-alert-error>
+    <dl class="row-md jh-entity-details">
+        <dt><span>Calificacion Minima</span></dt>
+        <dd>
+            <span>{{configuracion.calificacionMinima}}</span>
+        </dd>
+        <dt><span>Calificacion Maxima</span></dt>
+        <dd>
+            <span>{{configuracion.calificacionMaxima}}</span>
+        </dd>
+        <dt><span>Nombre Aplicacion</span></dt>
+        <dd>
+            <span>{{configuracion.nombreAplicacion}}</span>
+        </dd>
+        <dt><span>Razon Social</span></dt>
+        <dd>
+            <span>{{configuracion.razonSocial}}</span>
+        </dd>
+        <dt><span>Ced Juridica</span></dt>
+        <dd>
+            <span>{{configuracion.cedJuridica}}</span>
+        </dd>
+        <dt><span>Direccion</span></dt>
+        <dd>
+            <span>{{configuracion.direccion}}</span>
+        </dd>
+        <dt><span>Latitud</span></dt>
+        <dd>
+            <span>{{configuracion.latitud}}</span>
+        </dd>
+        <dt><span>Longitud</span></dt>
+        <dd>
+            <span>{{configuracion.longitud}}</span>
+        </dd>
+        <dt><span>Telefono</span></dt>
+        <dd>
+            <span>{{configuracion.telefono}}</span>
+        </dd>
+        <dt><span>Url Logo</span></dt>
+        <dd>
+            <span>{{configuracion.urlLogo}}</span>
+        </dd>
+    </dl>
+
+    <button type="submit"
+            (click)="previousState()"
+            class="btn btn-info">
+        <span class="fa fa-arrow-left"></span>&nbsp;<span> Back</span>
+    </button>
+
+    <button type="button"
+            [routerLink]="['/', { outlets: { popup: 'configuracion/'+ configuracion.id + '/edit'} }]"
+            replaceUrl="true"
+            queryParamsHandling="merge"
+            class="btn btn-primary">
+        <span class="fa fa-pencil"></span>&nbsp;<span> Edit</span>
+    </button>
+</div>

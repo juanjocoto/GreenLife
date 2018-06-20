@@ -1,0 +1,131 @@
+<form name="editForm" role="form" novalidate (ngSubmit)="save()" #editForm="ngForm">
+
+    <div class="modal-header">
+        <h4 class="modal-title" id="myConfiguracionLabel">Create or edit a Configuracion</h4>
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true"
+                (click)="clear()">&times;</button>
+    </div>
+    <div class="modal-body">
+        <jhi-alert-error></jhi-alert-error>
+        <div class="form-group" [hidden]="!configuracion.id">
+            <label for="id">ID</label>
+            <input type="text" class="form-control" id="id" name="id"
+                   [(ngModel)]="configuracion.id" readonly />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" for="field_calificacionMinima">Calificacion Minima</label>
+            <input type="number" class="form-control" name="calificacionMinima" id="field_calificacionMinima"
+                [(ngModel)]="configuracion.calificacionMinima" required/>
+            <div [hidden]="!(editForm.controls.calificacionMinima?.dirty && editForm.controls.calificacionMinima?.invalid)">
+                <small class="form-text text-danger"
+                   [hidden]="!editForm.controls.calificacionMinima?.errors?.required">
+                   This field is required.
+                </small>
+                <small class="form-text text-danger"
+                    [hidden]="!editForm.controls.calificacionMinima?.errors?.number">
+                    This field should be a number.
+                </small>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" for="field_calificacionMaxima">Calificacion Maxima</label>
+            <input type="number" class="form-control" name="calificacionMaxima" id="field_calificacionMaxima"
+                [(ngModel)]="configuracion.calificacionMaxima" required/>
+            <div [hidden]="!(editForm.controls.calificacionMaxima?.dirty && editForm.controls.calificacionMaxima?.invalid)">
+                <small class="form-text text-danger"
+                   [hidden]="!editForm.controls.calificacionMaxima?.errors?.required">
+                   This field is required.
+                </small>
+                <small class="form-text text-danger"
+                    [hidden]="!editForm.controls.calificacionMaxima?.errors?.number">
+                    This field should be a number.
+                </small>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" for="field_nombreAplicacion">Nombre Aplicacion</label>
+            <input type="text" class="form-control" name="nombreAplicacion" id="field_nombreAplicacion"
+                [(ngModel)]="configuracion.nombreAplicacion" required/>
+            <div [hidden]="!(editForm.controls.nombreAplicacion?.dirty && editForm.controls.nombreAplicacion?.invalid)">
+                <small class="form-text text-danger"
+                   [hidden]="!editForm.controls.nombreAplicacion?.errors?.required">
+                   This field is required.
+                </small>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" for="field_razonSocial">Razon Social</label>
+            <input type="text" class="form-control" name="razonSocial" id="field_razonSocial"
+                [(ngModel)]="configuracion.razonSocial" required/>
+            <div [hidden]="!(editForm.controls.razonSocial?.dirty && editForm.controls.razonSocial?.invalid)">
+                <small class="form-text text-danger"
+                   [hidden]="!editForm.controls.razonSocial?.errors?.required">
+                   This field is required.
+                </small>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" for="field_cedJuridica">Ced Juridica</label>
+            <input type="text" class="form-control" name="cedJuridica" id="field_cedJuridica"
+                [(ngModel)]="configuracion.cedJuridica" required/>
+            <div [hidden]="!(editForm.controls.cedJuridica?.dirty && editForm.controls.cedJuridica?.invalid)">
+                <small class="form-text text-danger"
+                   [hidden]="!editForm.controls.cedJuridica?.errors?.required">
+                   This field is required.
+                </small>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" for="field_direccion">Direccion</label>
+            <input type="text" class="form-control" name="direccion" id="field_direccion"
+                [(ngModel)]="configuracion.direccion" required/>
+            <div [hidden]="!(editForm.controls.direccion?.dirty && editForm.controls.direccion?.invalid)">
+                <small class="form-text text-danger"
+                   [hidden]="!editForm.controls.direccion?.errors?.required">
+                   This field is required.
+                </small>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" for="field_latitud">Latitud</label>
+            <input type="number" class="form-control" name="latitud" id="field_latitud"
+                [(ngModel)]="configuracion.latitud" />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" for="field_longitud">Longitud</label>
+            <input type="number" class="form-control" name="longitud" id="field_longitud"
+                [(ngModel)]="configuracion.longitud" />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" for="field_telefono">Telefono</label>
+            <input type="text" class="form-control" name="telefono" id="field_telefono"
+                [(ngModel)]="configuracion.telefono" required/>
+            <div [hidden]="!(editForm.controls.telefono?.dirty && editForm.controls.telefono?.invalid)">
+                <small class="form-text text-danger"
+                   [hidden]="!editForm.controls.telefono?.errors?.required">
+                   This field is required.
+                </small>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" for="field_urlLogo">Url Logo</label>
+            <input type="text" class="form-control" name="urlLogo" id="field_urlLogo"
+                [(ngModel)]="configuracion.urlLogo" required/>
+            <div [hidden]="!(editForm.controls.urlLogo?.dirty && editForm.controls.urlLogo?.invalid)">
+                <small class="form-text text-danger"
+                   [hidden]="!editForm.controls.urlLogo?.errors?.required">
+                   This field is required.
+                </small>
+            </div>
+        </div>
+
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal" (click)="clear()">
+            <span class="fa fa-ban"></span>&nbsp;<span>Cancel</span>
+        </button>
+        <button type="submit" [disabled]="editForm.form.invalid || isSaving" class="btn btn-primary">
+            <span class="fa fa-save"></span>&nbsp;<span>Save</span>
+        </button>
+    </div>
+</form>

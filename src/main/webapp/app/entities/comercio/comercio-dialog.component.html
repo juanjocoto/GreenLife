@@ -1,0 +1,116 @@
+<form name="editForm" role="form" novalidate (ngSubmit)="save()" #editForm="ngForm">
+
+    <div class="modal-header">
+        <h4 class="modal-title" id="myComercioLabel">Create or edit a Comercio</h4>
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true"
+                (click)="clear()">&times;</button>
+    </div>
+    <div class="modal-body">
+        <jhi-alert-error></jhi-alert-error>
+        <div class="form-group" [hidden]="!comercio.id">
+            <label for="id">ID</label>
+            <input type="text" class="form-control" id="id" name="id"
+                   [(ngModel)]="comercio.id" readonly />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" for="field_fechaCreacion">Fecha Creacion</label>
+            <div class="input-group">
+                <input id="field_fechaCreacion" type="text" class="form-control" name="fechaCreacion" ngbDatepicker  #fechaCreacionDp="ngbDatepicker" [(ngModel)]="comercio.fechaCreacion"
+                required/>
+                <span class="input-group-append">
+                    <button type="button" class="btn btn-secondary" (click)="fechaCreacionDp.toggle()"><i class="fa fa-calendar"></i></button>
+                </span>
+            </div>
+            <div [hidden]="!(editForm.controls.fechaCreacion?.dirty && editForm.controls.fechaCreacion?.invalid)">
+                <small class="form-text text-danger"
+                   [hidden]="!editForm.controls.fechaCreacion?.errors?.required">
+                   This field is required.
+                </small>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" for="field_cedJuridica">Ced Juridica</label>
+            <input type="text" class="form-control" name="cedJuridica" id="field_cedJuridica"
+                [(ngModel)]="comercio.cedJuridica" required minlength="10" maxlength="10"/>
+            <div [hidden]="!(editForm.controls.cedJuridica?.dirty && editForm.controls.cedJuridica?.invalid)">
+                <small class="form-text text-danger"
+                   [hidden]="!editForm.controls.cedJuridica?.errors?.required">
+                   This field is required.
+                </small>
+                <small class="form-text text-danger"
+                   [hidden]="!editForm.controls.cedJuridica?.errors?.minlength">
+                   This field is required to be at least 10 characters.
+                </small>
+                <small class="form-text text-danger"
+                   [hidden]="!editForm.controls.cedJuridica?.errors?.maxlength">
+                   This field cannot be longer than 10 characters.
+                </small>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" for="field_razonSocial">Razon Social</label>
+            <input type="text" class="form-control" name="razonSocial" id="field_razonSocial"
+                [(ngModel)]="comercio.razonSocial" required maxlength="50"/>
+            <div [hidden]="!(editForm.controls.razonSocial?.dirty && editForm.controls.razonSocial?.invalid)">
+                <small class="form-text text-danger"
+                   [hidden]="!editForm.controls.razonSocial?.errors?.required">
+                   This field is required.
+                </small>
+                <small class="form-text text-danger"
+                   [hidden]="!editForm.controls.razonSocial?.errors?.maxlength">
+                   This field cannot be longer than 50 characters.
+                </small>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" for="field_nombreComercial">Nombre Comercial</label>
+            <input type="text" class="form-control" name="nombreComercial" id="field_nombreComercial"
+                [(ngModel)]="comercio.nombreComercial" required maxlength="50"/>
+            <div [hidden]="!(editForm.controls.nombreComercial?.dirty && editForm.controls.nombreComercial?.invalid)">
+                <small class="form-text text-danger"
+                   [hidden]="!editForm.controls.nombreComercial?.errors?.required">
+                   This field is required.
+                </small>
+                <small class="form-text text-danger"
+                   [hidden]="!editForm.controls.nombreComercial?.errors?.maxlength">
+                   This field cannot be longer than 50 characters.
+                </small>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" for="field_tipo">Tipo</label>
+            <select class="form-control" name="tipo" [(ngModel)]="comercio.tipo" id="field_tipo" >
+                <option value="RESTAURANTE">RESTAURANTE</option>
+                <option value="TIENDA">TIENDA</option>
+            </select>
+        </div>
+
+        <div class="form-group">
+            <label class="form-control-label" for="field_usuario">Usuario</label>
+            <select class="form-control" id="field_usuario" name="usuario" [(ngModel)]="comercio.usuarioId">
+                <option [ngValue]="null"></option>
+                <option [ngValue]="usuarioOption.id" *ngFor="let usuarioOption of usuarios; trackBy: trackUsuarioById">{{usuarioOption.nombre}}</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label for="field_etiquetas">Etiquetas</label>
+            <select class="form-control" id="field_etiquetas" multiple name="etiquetas" [(ngModel)]="comercio.etiquetas">
+                <option [ngValue]="getSelected(comercio.etiquetas, etiquetaOption)" *ngFor="let etiquetaOption of etiquetas; trackBy: trackEtiquetaById">{{etiquetaOption.nombre}}</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label for="field_categorias">Categorias</label>
+            <select class="form-control" id="field_categorias" multiple name="categorias" [(ngModel)]="comercio.categorias">
+                <option [ngValue]="getSelected(comercio.categorias, categoriaAlimentacionOption)" *ngFor="let categoriaAlimentacionOption of categoriaalimentacions; trackBy: trackCategoriaAlimentacionById">{{categoriaAlimentacionOption.nombre}}</option>
+            </select>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal" (click)="clear()">
+            <span class="fa fa-ban"></span>&nbsp;<span>Cancel</span>
+        </button>
+        <button type="submit" [disabled]="editForm.form.invalid || isSaving" class="btn btn-primary">
+            <span class="fa fa-save"></span>&nbsp;<span>Save</span>
+        </button>
+    </div>
+</form>

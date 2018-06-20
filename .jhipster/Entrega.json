@@ -1,0 +1,44 @@
+{
+    "fluentMethods": true,
+    "relationships": [
+        {
+            "relationshipName": "suscripcion",
+            "otherEntityName": "suscripcion",
+            "relationshipType": "many-to-one",
+            "otherEntityField": "id"
+        },
+        {
+            "relationshipName": "pedido",
+            "otherEntityName": "pedido",
+            "relationshipType": "many-to-one",
+            "otherEntityField": "id"
+        },
+        {
+            "relationshipType": "one-to-many",
+            "relationshipName": "cadena",
+            "otherEntityName": "cadenaEntrega",
+            "otherEntityRelationshipName": "entrega"
+        },
+        {
+            "relationshipType": "one-to-many",
+            "relationshipName": "lineas",
+            "otherEntityName": "lineaEntrega",
+            "otherEntityRelationshipName": "entrega"
+        }
+    ],
+    "fields": [
+        {
+            "fieldName": "fechaInicio",
+            "fieldType": "LocalDate",
+            "fieldValidateRules": [
+                "required"
+            ]
+        }
+    ],
+    "changelogDate": "20180620020755",
+    "entityTableName": "entrega",
+    "dto": "mapstruct",
+    "pagination": "no",
+    "service": "no",
+    "jpaMetamodelFiltering": false
+}

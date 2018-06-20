@@ -1,0 +1,38 @@
+{
+    "fluentMethods": true,
+    "relationships": [
+        {
+            "relationshipType": "one-to-one",
+            "relationshipName": "usuario",
+            "otherEntityName": "usuario",
+            "otherEntityField": "nombre",
+            "ownerSide": true,
+            "otherEntityRelationshipName": "cliente"
+        },
+        {
+            "relationshipType": "one-to-many",
+            "relationshipName": "resena",
+            "otherEntityName": "resenaComercio",
+            "otherEntityRelationshipName": "cliente"
+        },
+        {
+            "relationshipType": "one-to-many",
+            "relationshipName": "suscripciones",
+            "otherEntityName": "suscripcion",
+            "otherEntityRelationshipName": "cliente"
+        },
+        {
+            "relationshipType": "one-to-many",
+            "relationshipName": "solicitudesRecoleccion",
+            "otherEntityName": "ordenRecoleccion",
+            "otherEntityRelationshipName": "cliente"
+        }
+    ],
+    "fields": [],
+    "changelogDate": "20180620020730",
+    "entityTableName": "cliente",
+    "dto": "mapstruct",
+    "pagination": "no",
+    "service": "no",
+    "jpaMetamodelFiltering": false
+}

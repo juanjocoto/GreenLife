@@ -1,0 +1,56 @@
+
+<div *ngIf="evento">
+    <h2><span>Evento</span> {{evento.id}}</h2>
+    <hr>
+    <jhi-alert-error></jhi-alert-error>
+    <dl class="row-md jh-entity-details">
+        <dt><span>Fecha Creacion</span></dt>
+        <dd>
+            <span>{{evento.fechaCreacion | date:'mediumDate'}}</span>
+        </dd>
+        <dt><span>Fecha Actividad</span></dt>
+        <dd>
+            <span>{{evento.fechaActividad | date:'mediumDate'}}</span>
+        </dd>
+        <dt><span>Nombre</span></dt>
+        <dd>
+            <span>{{evento.nombre}}</span>
+        </dd>
+        <dt><span>Direccion</span></dt>
+        <dd>
+            <span>{{evento.direccion}}</span>
+        </dd>
+        <dt><span>Latitud</span></dt>
+        <dd>
+            <span>{{evento.latitud}}</span>
+        </dd>
+        <dt><span>Longitud</span></dt>
+        <dd>
+            <span>{{evento.longitud}}</span>
+        </dd>
+        <dt><span>Horario</span></dt>
+        <dd>
+            <span>{{evento.horario}}</span>
+        </dd>
+        <dt><span>Etiquetas</span></dt>
+        <dd>
+            <span *ngFor="let etiquetas of evento.etiquetas; let last = last">
+                <a [routerLink]="['/etiqueta', etiquetas?.id ]">{{etiquetas.nombre}}</a>{{last ? '' : ', '}}
+            </span>
+        </dd>
+    </dl>
+
+    <button type="submit"
+            (click)="previousState()"
+            class="btn btn-info">
+        <span class="fa fa-arrow-left"></span>&nbsp;<span> Back</span>
+    </button>
+
+    <button type="button"
+            [routerLink]="['/', { outlets: { popup: 'evento/'+ evento.id + '/edit'} }]"
+            replaceUrl="true"
+            queryParamsHandling="merge"
+            class="btn btn-primary">
+        <span class="fa fa-pencil"></span>&nbsp;<span> Edit</span>
+    </button>
+</div>

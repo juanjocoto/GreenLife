@@ -1,0 +1,48 @@
+{
+    "fluentMethods": true,
+    "relationships": [
+        {
+            "relationshipName": "entrega",
+            "otherEntityName": "entrega",
+            "relationshipType": "many-to-one",
+            "otherEntityField": "id"
+        },
+        {
+            "relationshipType": "one-to-one",
+            "relationshipName": "previo",
+            "otherEntityName": "cadenaEntrega",
+            "otherEntityField": "id",
+            "ownerSide": true,
+            "otherEntityRelationshipName": "cadenaEntrega"
+        }
+    ],
+    "fields": [
+        {
+            "fieldName": "info",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "required",
+                "maxlength"
+            ],
+            "fieldValidateRulesMaxlength": 200
+        },
+        {
+            "fieldName": "fecha",
+            "fieldType": "LocalDate",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "estado",
+            "fieldType": "EstadoCadena",
+            "fieldValues": "PREPARACION,EN_CAMINO,ENTREGADO"
+        }
+    ],
+    "changelogDate": "20180620020756",
+    "entityTableName": "cadena_entrega",
+    "dto": "mapstruct",
+    "pagination": "no",
+    "service": "no",
+    "jpaMetamodelFiltering": false
+}

@@ -1,0 +1,62 @@
+
+<div *ngIf="local">
+    <h2><span>Local</span> {{local.id}}</h2>
+    <hr>
+    <jhi-alert-error></jhi-alert-error>
+    <dl class="row-md jh-entity-details">
+        <dt><span>Fecha Creacion</span></dt>
+        <dd>
+            <span>{{local.fechaCreacion | date:'mediumDate'}}</span>
+        </dd>
+        <dt><span>Nombre</span></dt>
+        <dd>
+            <span>{{local.nombre}}</span>
+        </dd>
+        <dt><span>Direccion</span></dt>
+        <dd>
+            <span>{{local.direccion}}</span>
+        </dd>
+        <dt><span>Latitud</span></dt>
+        <dd>
+            <span>{{local.latitud}}</span>
+        </dd>
+        <dt><span>Latitude</span></dt>
+        <dd>
+            <span>{{local.latitude}}</span>
+        </dd>
+        <dt><span>Horario</span></dt>
+        <dd>
+            <span>{{local.horario}}</span>
+        </dd>
+        <dt><span>Telefono</span></dt>
+        <dd>
+            <span>{{local.telefono}}</span>
+        </dd>
+        <dt><span>Fachada</span></dt>
+        <dd>
+            <div *ngIf="local.fachadaId">
+                <a [routerLink]="['/fotografia', local.fachadaId]">{{local.fachadaId}}</a>
+            </div>
+        </dd>
+        <dt><span>Comercio</span></dt>
+        <dd>
+            <div *ngIf="local.comercioId">
+                <a [routerLink]="['/comercio', local.comercioId]">{{local.comercioRazonSocial}}</a>
+            </div>
+        </dd>
+    </dl>
+
+    <button type="submit"
+            (click)="previousState()"
+            class="btn btn-info">
+        <span class="fa fa-arrow-left"></span>&nbsp;<span> Back</span>
+    </button>
+
+    <button type="button"
+            [routerLink]="['/', { outlets: { popup: 'local/'+ local.id + '/edit'} }]"
+            replaceUrl="true"
+            queryParamsHandling="merge"
+            class="btn btn-primary">
+        <span class="fa fa-pencil"></span>&nbsp;<span> Edit</span>
+    </button>
+</div>

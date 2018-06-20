@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.5.xsd">
+    <!--
+        Added the constraints for entity CadenaOrdenRecoleccion.
+    -->
+    <changeSet id="20180620020744-2" author="jhipster">
+        
+        <addForeignKeyConstraint baseColumnNames="orden_recoleccion_id"
+                                 baseTableName="cadena_orden_recoleccion"
+                                 constraintName="fk_cadena_orden_recoleccion_orden_recoleccion_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="orden_recoleccion"/>
+
+        <addForeignKeyConstraint baseColumnNames="previo_id"
+                                 baseTableName="cadena_orden_recoleccion"
+                                 constraintName="fk_cadena_orden_recoleccion_previo_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="cadena_orden_recoleccion"/>
+
+    </changeSet>
+</databaseChangeLog>

@@ -1,0 +1,64 @@
+<form name="editForm" role="form" novalidate (ngSubmit)="save()" #editForm="ngForm">
+
+    <div class="modal-header">
+        <h4 class="modal-title" id="myCadenaOrdenRecoleccionLabel">Create or edit a Cadena Orden Recoleccion</h4>
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true"
+                (click)="clear()">&times;</button>
+    </div>
+    <div class="modal-body">
+        <jhi-alert-error></jhi-alert-error>
+        <div class="form-group" [hidden]="!cadenaOrdenRecoleccion.id">
+            <label for="id">ID</label>
+            <input type="text" class="form-control" id="id" name="id"
+                   [(ngModel)]="cadenaOrdenRecoleccion.id" readonly />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" for="field_estado">Estado</label>
+            <select class="form-control" name="estado" [(ngModel)]="cadenaOrdenRecoleccion.estado" id="field_estado" >
+                <option value="APROBADA">APROBADA</option>
+                <option value="EN_RUTA">EN_RUTA</option>
+                <option value="RECHAZADA">RECHAZADA</option>
+                <option value="FINALIZADA">FINALIZADA</option>
+                <option value="EN_ESPERA">EN_ESPERA</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" for="field_descripcion">Descripcion</label>
+            <input type="text" class="form-control" name="descripcion" id="field_descripcion"
+                [(ngModel)]="cadenaOrdenRecoleccion.descripcion" required maxlength="200"/>
+            <div [hidden]="!(editForm.controls.descripcion?.dirty && editForm.controls.descripcion?.invalid)">
+                <small class="form-text text-danger"
+                   [hidden]="!editForm.controls.descripcion?.errors?.required">
+                   This field is required.
+                </small>
+                <small class="form-text text-danger"
+                   [hidden]="!editForm.controls.descripcion?.errors?.maxlength">
+                   This field cannot be longer than 200 characters.
+                </small>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="form-control-label" for="field_ordenRecoleccion">Orden Recoleccion</label>
+            <select class="form-control" id="field_ordenRecoleccion" name="ordenRecoleccion" [(ngModel)]="cadenaOrdenRecoleccion.ordenRecoleccionId" >
+                <option [ngValue]="null"></option>
+                <option [ngValue]="ordenRecoleccionOption.id" *ngFor="let ordenRecoleccionOption of ordenrecoleccions; trackBy: trackOrdenRecoleccionById">{{ordenRecoleccionOption.id}}</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" for="field_previo">Previo</label>
+            <select class="form-control" id="field_previo" name="previo" [(ngModel)]="cadenaOrdenRecoleccion.previoId">
+                <option [ngValue]="null"></option>
+                <option [ngValue]="cadenaOrdenRecoleccionOption.id" *ngFor="let cadenaOrdenRecoleccionOption of previos; trackBy: trackCadenaOrdenRecoleccionById">{{cadenaOrdenRecoleccionOption.id}}</option>
+            </select>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal" (click)="clear()">
+            <span class="fa fa-ban"></span>&nbsp;<span>Cancel</span>
+        </button>
+        <button type="submit" [disabled]="editForm.form.invalid || isSaving" class="btn btn-primary">
+            <span class="fa fa-save"></span>&nbsp;<span>Save</span>
+        </button>
+    </div>
+</form>

@@ -1,0 +1,60 @@
+
+<div *ngIf="comercio">
+    <h2><span>Comercio</span> {{comercio.id}}</h2>
+    <hr>
+    <jhi-alert-error></jhi-alert-error>
+    <dl class="row-md jh-entity-details">
+        <dt><span>Fecha Creacion</span></dt>
+        <dd>
+            <span>{{comercio.fechaCreacion | date:'mediumDate'}}</span>
+        </dd>
+        <dt><span>Ced Juridica</span></dt>
+        <dd>
+            <span>{{comercio.cedJuridica}}</span>
+        </dd>
+        <dt><span>Razon Social</span></dt>
+        <dd>
+            <span>{{comercio.razonSocial}}</span>
+        </dd>
+        <dt><span>Nombre Comercial</span></dt>
+        <dd>
+            <span>{{comercio.nombreComercial}}</span>
+        </dd>
+        <dt><span>Tipo</span></dt>
+        <dd>
+            <span>{{comercio.tipo}}</span>
+        </dd>
+        <dt><span>Usuario</span></dt>
+        <dd>
+            <div *ngIf="comercio.usuarioId">
+                <a [routerLink]="['/usuario', comercio.usuarioId]">{{comercio.usuarioNombre}}</a>
+            </div>
+        </dd>
+        <dt><span>Etiquetas</span></dt>
+        <dd>
+            <span *ngFor="let etiquetas of comercio.etiquetas; let last = last">
+                <a [routerLink]="['/etiqueta', etiquetas?.id ]">{{etiquetas.nombre}}</a>{{last ? '' : ', '}}
+            </span>
+        </dd>
+        <dt><span>Categorias</span></dt>
+        <dd>
+            <span *ngFor="let categorias of comercio.categorias; let last = last">
+                <a [routerLink]="['/categoria-alimentacion', categorias?.id ]">{{categorias.nombre}}</a>{{last ? '' : ', '}}
+            </span>
+        </dd>
+    </dl>
+
+    <button type="submit"
+            (click)="previousState()"
+            class="btn btn-info">
+        <span class="fa fa-arrow-left"></span>&nbsp;<span> Back</span>
+    </button>
+
+    <button type="button"
+            [routerLink]="['/', { outlets: { popup: 'comercio/'+ comercio.id + '/edit'} }]"
+            replaceUrl="true"
+            queryParamsHandling="merge"
+            class="btn btn-primary">
+        <span class="fa fa-pencil"></span>&nbsp;<span> Edit</span>
+    </button>
+</div>
