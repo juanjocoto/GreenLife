@@ -1,0 +1,87 @@
+<div>
+    <h2>
+        <span>Resena Comercios</span>
+        <button class="btn btn-primary float-right jh-create-entity create-resena-comercio" [routerLink]="['/', { outlets: { popup: ['resena-comercio-new'] } }]">
+            <span class="fa fa-plus"></span>
+            <span class="hidden-sm-down" >
+            Create new Resena Comercio
+            </span>
+        </button>
+    </h2>
+    <jhi-alert></jhi-alert>
+    <div class="row">
+        <div class="col-sm-12">
+            <form name="searchForm" class="form-inline">
+                <div class="input-group w-100 mt-3">
+                    <input type="text" class="form-control" [(ngModel)]="currentSearch" id="currentSearch" name="currentSearch" placeholder="Query">
+                    <button class="input-group-append btn btn-info" (click)="search(currentSearch)">
+                        <span class="fa fa-search"></span>
+                    </button>
+                    <button class="input-group-append btn btn-danger" (click)="clear()" *ngIf="currentSearch">
+                        <span class="fa fa-trash-o"></span>
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+    <br/>
+    <div class="table-responsive" *ngIf="resenaComercios">
+        <table class="table table-striped">
+            <thead>
+            <tr>
+            <th><span>ID</span></th>
+            <th><span>Fecha Creacion</span></th>
+            <th><span>Calificacion</span></th>
+            <th><span>Comentario</span></th>
+            <th><span>Cliente</span></th>
+            <th><span>Comercio</span></th>
+            <th></th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr *ngFor="let resenaComercio of resenaComercios ;trackBy: trackId">
+                <td><a [routerLink]="['../resena-comercio', resenaComercio.id ]">{{resenaComercio.id}}</a></td>
+                <td>{{resenaComercio.fechaCreacion | date:'mediumDate'}}</td>
+                <td>{{resenaComercio.calificacion}}</td>
+                <td>{{resenaComercio.comentario}}</td>
+                <td>
+                    <div *ngIf="resenaComercio.clienteId">
+                        <a [routerLink]="['../cliente', resenaComercio.clienteId  ]" >{{resenaComercio.clienteId}}</a>
+                    </div>
+                </td>
+                <td>
+                    <div *ngIf="resenaComercio.comercioId">
+                        <a [routerLink]="['../comercio', resenaComercio.comercioId  ]" >{{resenaComercio.comercioId}}</a>
+                    </div>
+                </td>
+                <td class="text-right">
+                    <div class="btn-group flex-btn-group-container">
+                        <button type="submit"
+                                [routerLink]="['../resena-comercio', resenaComercio.id ]"
+                                class="btn btn-info btn-sm">
+                            <span class="fa fa-eye"></span>
+                            <span class="d-none d-md-inline">View</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/', { outlets: { popup: 'resena-comercio/'+ resenaComercio.id + '/edit'} }]"
+                                replaceUrl="true"
+                                queryParamsHandling="merge"
+                                class="btn btn-primary btn-sm">
+                            <span class="fa fa-pencil"></span>
+                            <span class="d-none d-md-inline">Edit</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/', { outlets: { popup: 'resena-comercio/'+ resenaComercio.id + '/delete'} }]"
+                                replaceUrl="true"
+                                queryParamsHandling="merge"
+                                class="btn btn-danger btn-sm">
+                            <span class="fa fa-remove"></span>
+                            <span class="d-none d-md-inline">Delete</span>
+                        </button>
+                    </div>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

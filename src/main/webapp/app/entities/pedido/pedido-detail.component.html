@@ -1,0 +1,50 @@
+
+<div *ngIf="pedido">
+    <h2><span>Pedido</span> {{pedido.id}}</h2>
+    <hr>
+    <jhi-alert-error></jhi-alert-error>
+    <dl class="row-md jh-entity-details">
+        <dt><span>Hora</span></dt>
+        <dd>
+            <span>{{pedido.hora}}</span>
+        </dd>
+        <dt><span>Suscripcion</span></dt>
+        <dd>
+            <div *ngIf="pedido.suscripcionId">
+                <a [routerLink]="['/suscripcion', pedido.suscripcionId]">{{pedido.suscripcionId}}</a>
+            </div>
+        </dd>
+        <dt><span>Lineas</span></dt>
+        <dd>
+            <div *ngIf="pedido.lineasId">
+                <a [routerLink]="['/linea-producto', pedido.lineasId]">{{pedido.lineasId}}</a>
+            </div>
+        </dd>
+        <dt><span>Dias Entrega</span></dt>
+        <dd>
+            <div *ngIf="pedido.diasEntregaId">
+                <a [routerLink]="['/dia-entrega', pedido.diasEntregaId]">{{pedido.diasEntregaNombre}}</a>
+            </div>
+        </dd>
+        <dt><span>Local</span></dt>
+        <dd>
+            <div *ngIf="pedido.localId">
+                <a [routerLink]="['/local', pedido.localId]">{{pedido.localNombre}}</a>
+            </div>
+        </dd>
+    </dl>
+
+    <button type="submit"
+            (click)="previousState()"
+            class="btn btn-info">
+        <span class="fa fa-arrow-left"></span>&nbsp;<span> Back</span>
+    </button>
+
+    <button type="button"
+            [routerLink]="['/', { outlets: { popup: 'pedido/'+ pedido.id + '/edit'} }]"
+            replaceUrl="true"
+            queryParamsHandling="merge"
+            class="btn btn-primary">
+        <span class="fa fa-pencil"></span>&nbsp;<span> Edit</span>
+    </button>
+</div>

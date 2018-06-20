@@ -1,0 +1,42 @@
+
+<div *ngIf="cadenaOrdenRecoleccion">
+    <h2><span>Cadena Orden Recoleccion</span> {{cadenaOrdenRecoleccion.id}}</h2>
+    <hr>
+    <jhi-alert-error></jhi-alert-error>
+    <dl class="row-md jh-entity-details">
+        <dt><span>Estado</span></dt>
+        <dd>
+            <span>{{cadenaOrdenRecoleccion.estado}}</span>
+        </dd>
+        <dt><span>Descripcion</span></dt>
+        <dd>
+            <span>{{cadenaOrdenRecoleccion.descripcion}}</span>
+        </dd>
+        <dt><span>Orden Recoleccion</span></dt>
+        <dd>
+            <div *ngIf="cadenaOrdenRecoleccion.ordenRecoleccionId">
+                <a [routerLink]="['/orden-recoleccion', cadenaOrdenRecoleccion.ordenRecoleccionId]">{{cadenaOrdenRecoleccion.ordenRecoleccionId}}</a>
+            </div>
+        </dd>
+        <dt><span>Previo</span></dt>
+        <dd>
+            <div *ngIf="cadenaOrdenRecoleccion.previoId">
+                <a [routerLink]="['/cadena-orden-recoleccion', cadenaOrdenRecoleccion.previoId]">{{cadenaOrdenRecoleccion.previoId}}</a>
+            </div>
+        </dd>
+    </dl>
+
+    <button type="submit"
+            (click)="previousState()"
+            class="btn btn-info">
+        <span class="fa fa-arrow-left"></span>&nbsp;<span> Back</span>
+    </button>
+
+    <button type="button"
+            [routerLink]="['/', { outlets: { popup: 'cadena-orden-recoleccion/'+ cadenaOrdenRecoleccion.id + '/edit'} }]"
+            replaceUrl="true"
+            queryParamsHandling="merge"
+            class="btn btn-primary">
+        <span class="fa fa-pencil"></span>&nbsp;<span> Edit</span>
+    </button>
+</div>

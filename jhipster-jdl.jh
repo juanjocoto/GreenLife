@@ -81,7 +81,7 @@ entity Local {
     horario String required maxlength(20)
     telefono String required maxlength(8)
 }
-entity FotoGrafia {
+entity Fotografia {
 	urlImage String required
 }
 entity Producto {
@@ -108,6 +108,13 @@ entity Suscripcion {
 }
 entity Pedido {
 	hora String required
+}
+entity LineaProducto {
+	cantidad Integer required
+    precioUnitario Float required
+}
+entity LineaEntrega {
+	cantidad Integer required
 }
 enum EstadoSuscripcion {
 	VIGENTE,
@@ -170,7 +177,6 @@ entity Patrocinador {
     correo String required maxlength(10)
 }
 entity SolicitudPatrocinio {
-	fechaCreacion LocalDate required
     fechaCreacion LocalDate required
 	nombre String required maxlength(50)
     cedJuridica String required maxlength(10) minlength(10)
@@ -209,18 +215,19 @@ relationship OneToOne {
     Cliente{usuario(nombre)} to Usuario,
     Recolector{usuario(nombre)} to Usuario,
     Administrador{usuario(nombre)} to Usuario,
-    Usuario{foto} to FotoGrafia,
+    Usuario{foto} to Fotografia,
     Usuario{userDetail} to User,
-    Local{fachada} to FotoGrafia,
+    Local{fachada} to Fotografia,
     CadenaEntrega{previo} to CadenaEntrega,
     CadenaOrdenRecoleccion{previo} to CadenaOrdenRecoleccion,
     CobroMensualidad{pago} to Pago,
     CobroSuscripcion{pago} to Pago,
-    Patrocinador{solicitud} to SolicitudPatrocinio
+    Patrocinador{solicitud} to SolicitudPatrocinio,
+    Pedido{lineas} to LineaProducto
 }
 relationship ManyToOne {
     ResenaCliente{cliente} to Cliente,
-    Usuario{rol} to Rol,
+    Usuario{rol(nombre)} to Rol,
     Contrato{tipo} to TipoContrato,
     CobroSuscripcion{cliente} to Cliente,
     CobroSuscripcion{comercio} to Comercio,
@@ -229,33 +236,36 @@ relationship ManyToOne {
     SolicitudSuscripcion{solicitante} to Cliente,
     SolicitudSuscripcion{comercio} to Comercio,
     Pedido{local(nombre)} to Local,
-    CobroMensualidad{contrato} to Contrato
+    CobroMensualidad{contrato} to Contrato,
+    LineaProducto{producto} to Producto,
+    LineaEntrega{producto} to Producto
 }
 relationship OneToMany {
     Comercio{resenasClientes} to ResenaCliente,
     Comercio{resenasPropias} to ResenaComercio,
     Comercio{productos(nombre)} to Producto,
-    Comercio{locales(nombre)} to Local,
+    Comercio{locales(nombre)} to Local{comercio(razonSocial)},
     Comercio{suscriptores} to Suscripcion,
-    Comercio{fotos} to FotoGrafia,
+    Comercio{fotos} to Fotografia,
     Cliente{resena} to ResenaComercio,
     Cliente{suscripciones} to Suscripcion,
     Cliente{solicitudesRecoleccion} to OrdenRecoleccion,
     Recolector{ordenes} to OrdenRecoleccion,
-    Suscripcion{productosSolictados} to Producto,
     Suscripcion{pedidos} to Pedido,
     Usuario{publicaciones} to Publicacion,
     Usuario{comentarios} to ComentarioPublicacion,
     Publicacion{comentarios} to ComentarioPublicacion,
-    Evento{fotos} to FotoGrafia,
-    CentroAcopio{fotos} to FotoGrafia,
-    Patrocinador{fotos} to FotoGrafia,
-    Publicacion{fotos} to FotoGrafia,
-    Producto{fotos} to FotoGrafia,
+    Evento{fotos} to Fotografia,
+    CentroAcopio{fotos} to Fotografia,
+    Patrocinador{fotos} to Fotografia,
+    Publicacion{fotos} to Fotografia,
+    Producto{fotos} to Fotografia,
     Entrega{cadena} to CadenaEntrega,
+    Entrega{lineas} to LineaEntrega,
     Pedido{entregas} to Entrega,
     OrdenRecoleccion{estado} to CadenaOrdenRecoleccion,
-    Comercio{contratos} to Contrato
+    Comercio{contratos} to Contrato,
+    Suscripcion{historicoEntregas} to Entrega
 }
 relationship ManyToMany {
 	Rol{permisos(nombre)} to Permiso,
@@ -264,7 +274,6 @@ relationship ManyToMany {
     Comercio{etiquetas(nombre)} to Etiqueta,
     Evento{etiquetas(nombre)} to Etiqueta,
     Publicacion{etiquetas(nombre)} to Etiqueta,
-    Pedido{productos(nombre)} to Producto,
     Comercio{categorias(nombre)} to CategoriaAlimentacion,
     Producto{categoria(nombre)} to CategoriaAlimentacion
 }

@@ -1,0 +1,83 @@
+<div>
+    <h2>
+        <span>Linea Entregas</span>
+        <button class="btn btn-primary float-right jh-create-entity create-linea-entrega" [routerLink]="['/', { outlets: { popup: ['linea-entrega-new'] } }]">
+            <span class="fa fa-plus"></span>
+            <span class="hidden-sm-down" >
+            Create new Linea Entrega
+            </span>
+        </button>
+    </h2>
+    <jhi-alert></jhi-alert>
+    <div class="row">
+        <div class="col-sm-12">
+            <form name="searchForm" class="form-inline">
+                <div class="input-group w-100 mt-3">
+                    <input type="text" class="form-control" [(ngModel)]="currentSearch" id="currentSearch" name="currentSearch" placeholder="Query">
+                    <button class="input-group-append btn btn-info" (click)="search(currentSearch)">
+                        <span class="fa fa-search"></span>
+                    </button>
+                    <button class="input-group-append btn btn-danger" (click)="clear()" *ngIf="currentSearch">
+                        <span class="fa fa-trash-o"></span>
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+    <br/>
+    <div class="table-responsive" *ngIf="lineaEntregas">
+        <table class="table table-striped">
+            <thead>
+            <tr>
+            <th><span>ID</span></th>
+            <th><span>Cantidad</span></th>
+            <th><span>Producto</span></th>
+            <th><span>Entrega</span></th>
+            <th></th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr *ngFor="let lineaEntrega of lineaEntregas ;trackBy: trackId">
+                <td><a [routerLink]="['../linea-entrega', lineaEntrega.id ]">{{lineaEntrega.id}}</a></td>
+                <td>{{lineaEntrega.cantidad}}</td>
+                <td>
+                    <div *ngIf="lineaEntrega.productoId">
+                        <a [routerLink]="['../producto', lineaEntrega.productoId  ]" >{{lineaEntrega.productoId}}</a>
+                    </div>
+                </td>
+                <td>
+                    <div *ngIf="lineaEntrega.entregaId">
+                        <a [routerLink]="['../entrega', lineaEntrega.entregaId  ]" >{{lineaEntrega.entregaId}}</a>
+                    </div>
+                </td>
+                <td class="text-right">
+                    <div class="btn-group flex-btn-group-container">
+                        <button type="submit"
+                                [routerLink]="['../linea-entrega', lineaEntrega.id ]"
+                                class="btn btn-info btn-sm">
+                            <span class="fa fa-eye"></span>
+                            <span class="d-none d-md-inline">View</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/', { outlets: { popup: 'linea-entrega/'+ lineaEntrega.id + '/edit'} }]"
+                                replaceUrl="true"
+                                queryParamsHandling="merge"
+                                class="btn btn-primary btn-sm">
+                            <span class="fa fa-pencil"></span>
+                            <span class="d-none d-md-inline">Edit</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/', { outlets: { popup: 'linea-entrega/'+ lineaEntrega.id + '/delete'} }]"
+                                replaceUrl="true"
+                                queryParamsHandling="merge"
+                                class="btn btn-danger btn-sm">
+                            <span class="fa fa-remove"></span>
+                            <span class="d-none d-md-inline">Delete</span>
+                        </button>
+                    </div>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

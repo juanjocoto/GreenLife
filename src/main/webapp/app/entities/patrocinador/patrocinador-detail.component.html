@@ -1,0 +1,50 @@
+
+<div *ngIf="patrocinador">
+    <h2><span>Patrocinador</span> {{patrocinador.id}}</h2>
+    <hr>
+    <jhi-alert-error></jhi-alert-error>
+    <dl class="row-md jh-entity-details">
+        <dt><span>Fecha Creacion</span></dt>
+        <dd>
+            <span>{{patrocinador.fechaCreacion | date:'mediumDate'}}</span>
+        </dd>
+        <dt><span>Nombre</span></dt>
+        <dd>
+            <span>{{patrocinador.nombre}}</span>
+        </dd>
+        <dt><span>Ced Juridica</span></dt>
+        <dd>
+            <span>{{patrocinador.cedJuridica}}</span>
+        </dd>
+        <dt><span>Correo</span></dt>
+        <dd>
+            <span>{{patrocinador.correo}}</span>
+        </dd>
+        <dt><span>Solicitud</span></dt>
+        <dd>
+            <div *ngIf="patrocinador.solicitudId">
+                <a [routerLink]="['/solicitud-patrocinio', patrocinador.solicitudId]">{{patrocinador.solicitudId}}</a>
+            </div>
+        </dd>
+        <dt><span>Eventos</span></dt>
+        <dd>
+            <span *ngFor="let eventos of patrocinador.eventos; let last = last">
+                <a [routerLink]="['/evento', eventos?.id ]">{{eventos.nombre}}</a>{{last ? '' : ', '}}
+            </span>
+        </dd>
+    </dl>
+
+    <button type="submit"
+            (click)="previousState()"
+            class="btn btn-info">
+        <span class="fa fa-arrow-left"></span>&nbsp;<span> Back</span>
+    </button>
+
+    <button type="button"
+            [routerLink]="['/', { outlets: { popup: 'patrocinador/'+ patrocinador.id + '/edit'} }]"
+            replaceUrl="true"
+            queryParamsHandling="merge"
+            class="btn btn-primary">
+        <span class="fa fa-pencil"></span>&nbsp;<span> Edit</span>
+    </button>
+</div>

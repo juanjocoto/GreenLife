@@ -1,0 +1,64 @@
+<form name="editForm" role="form" novalidate (ngSubmit)="save()" #editForm="ngForm">
+
+    <div class="modal-header">
+        <h4 class="modal-title" id="myPedidoLabel">Create or edit a Pedido</h4>
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true"
+                (click)="clear()">&times;</button>
+    </div>
+    <div class="modal-body">
+        <jhi-alert-error></jhi-alert-error>
+        <div class="form-group" [hidden]="!pedido.id">
+            <label for="id">ID</label>
+            <input type="text" class="form-control" id="id" name="id"
+                   [(ngModel)]="pedido.id" readonly />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" for="field_hora">Hora</label>
+            <input type="text" class="form-control" name="hora" id="field_hora"
+                [(ngModel)]="pedido.hora" required/>
+            <div [hidden]="!(editForm.controls.hora?.dirty && editForm.controls.hora?.invalid)">
+                <small class="form-text text-danger"
+                   [hidden]="!editForm.controls.hora?.errors?.required">
+                   This field is required.
+                </small>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="form-control-label" for="field_suscripcion">Suscripcion</label>
+            <select class="form-control" id="field_suscripcion" name="suscripcion" [(ngModel)]="pedido.suscripcionId" >
+                <option [ngValue]="null"></option>
+                <option [ngValue]="suscripcionOption.id" *ngFor="let suscripcionOption of suscripcions; trackBy: trackSuscripcionById">{{suscripcionOption.id}}</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" for="field_lineas">Lineas</label>
+            <select class="form-control" id="field_lineas" name="lineas" [(ngModel)]="pedido.lineasId">
+                <option [ngValue]="null"></option>
+                <option [ngValue]="lineaProductoOption.id" *ngFor="let lineaProductoOption of lineas; trackBy: trackLineaProductoById">{{lineaProductoOption.id}}</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" for="field_diasEntrega">Dias Entrega</label>
+            <select class="form-control" id="field_diasEntrega" name="diasEntrega" [(ngModel)]="pedido.diasEntregaId" >
+                <option [ngValue]="null"></option>
+                <option [ngValue]="diaEntregaOption.id" *ngFor="let diaEntregaOption of diaentregas; trackBy: trackDiaEntregaById">{{diaEntregaOption.nombre}}</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" for="field_local">Local</label>
+            <select class="form-control" id="field_local" name="local" [(ngModel)]="pedido.localId" >
+                <option [ngValue]="null"></option>
+                <option [ngValue]="localOption.id" *ngFor="let localOption of locals; trackBy: trackLocalById">{{localOption.nombre}}</option>
+            </select>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal" (click)="clear()">
+            <span class="fa fa-ban"></span>&nbsp;<span>Cancel</span>
+        </button>
+        <button type="submit" [disabled]="editForm.form.invalid || isSaving" class="btn btn-primary">
+            <span class="fa fa-save"></span>&nbsp;<span>Save</span>
+        </button>
+    </div>
+</form>

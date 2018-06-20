@@ -1,0 +1,46 @@
+
+<div *ngIf="publicacion">
+    <h2><span>Publicacion</span> {{publicacion.id}}</h2>
+    <hr>
+    <jhi-alert-error></jhi-alert-error>
+    <dl class="row-md jh-entity-details">
+        <dt><span>Fecha Creacion</span></dt>
+        <dd>
+            <span>{{publicacion.fechaCreacion | date:'mediumDate'}}</span>
+        </dd>
+        <dt><span>Titulo</span></dt>
+        <dd>
+            <span>{{publicacion.titulo}}</span>
+        </dd>
+        <dt><span>Texto</span></dt>
+        <dd>
+            <span>{{publicacion.texto}}</span>
+        </dd>
+        <dt><span>Usuario</span></dt>
+        <dd>
+            <div *ngIf="publicacion.usuarioId">
+                <a [routerLink]="['/usuario', publicacion.usuarioId]">{{publicacion.usuarioId}}</a>
+            </div>
+        </dd>
+        <dt><span>Etiquetas</span></dt>
+        <dd>
+            <span *ngFor="let etiquetas of publicacion.etiquetas; let last = last">
+                <a [routerLink]="['/etiqueta', etiquetas?.id ]">{{etiquetas.nombre}}</a>{{last ? '' : ', '}}
+            </span>
+        </dd>
+    </dl>
+
+    <button type="submit"
+            (click)="previousState()"
+            class="btn btn-info">
+        <span class="fa fa-arrow-left"></span>&nbsp;<span> Back</span>
+    </button>
+
+    <button type="button"
+            [routerLink]="['/', { outlets: { popup: 'publicacion/'+ publicacion.id + '/edit'} }]"
+            replaceUrl="true"
+            queryParamsHandling="merge"
+            class="btn btn-primary">
+        <span class="fa fa-pencil"></span>&nbsp;<span> Edit</span>
+    </button>
+</div>

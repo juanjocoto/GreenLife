@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.5.xsd">
+    <!--
+        Added the constraints for entity Local.
+    -->
+    <changeSet id="20180620020735-2" author="jhipster">
+        
+        <addForeignKeyConstraint baseColumnNames="fachada_id"
+                                 baseTableName="local"
+                                 constraintName="fk_local_fachada_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="fotografia"/>
+
+        <addForeignKeyConstraint baseColumnNames="comercio_id"
+                                 baseTableName="local"
+                                 constraintName="fk_local_comercio_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="comercio"/>
+
+    </changeSet>
+</databaseChangeLog>

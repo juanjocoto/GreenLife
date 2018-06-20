@@ -1,0 +1,42 @@
+
+<div *ngIf="ordenRecoleccion">
+    <h2><span>Orden Recoleccion</span> {{ordenRecoleccion.id}}</h2>
+    <hr>
+    <jhi-alert-error></jhi-alert-error>
+    <dl class="row-md jh-entity-details">
+        <dt><span>Fecha Crecion</span></dt>
+        <dd>
+            <span>{{ordenRecoleccion.fechaCrecion | date:'mediumDate'}}</span>
+        </dd>
+        <dt><span>Fecha Solicitud</span></dt>
+        <dd>
+            <span>{{ordenRecoleccion.fechaSolicitud | date:'mediumDate'}}</span>
+        </dd>
+        <dt><span>Cliente</span></dt>
+        <dd>
+            <div *ngIf="ordenRecoleccion.clienteId">
+                <a [routerLink]="['/cliente', ordenRecoleccion.clienteId]">{{ordenRecoleccion.clienteId}}</a>
+            </div>
+        </dd>
+        <dt><span>Recolector</span></dt>
+        <dd>
+            <div *ngIf="ordenRecoleccion.recolectorId">
+                <a [routerLink]="['/recolector', ordenRecoleccion.recolectorId]">{{ordenRecoleccion.recolectorId}}</a>
+            </div>
+        </dd>
+    </dl>
+
+    <button type="submit"
+            (click)="previousState()"
+            class="btn btn-info">
+        <span class="fa fa-arrow-left"></span>&nbsp;<span> Back</span>
+    </button>
+
+    <button type="button"
+            [routerLink]="['/', { outlets: { popup: 'orden-recoleccion/'+ ordenRecoleccion.id + '/edit'} }]"
+            replaceUrl="true"
+            queryParamsHandling="merge"
+            class="btn btn-primary">
+        <span class="fa fa-pencil"></span>&nbsp;<span> Edit</span>
+    </button>
+</div>

@@ -1,0 +1,120 @@
+{
+    "fluentMethods": true,
+    "relationships": [
+        {
+            "relationshipType": "one-to-one",
+            "relationshipName": "usuario",
+            "otherEntityName": "usuario",
+            "otherEntityField": "nombre",
+            "ownerSide": true,
+            "otherEntityRelationshipName": "comercio"
+        },
+        {
+            "relationshipType": "one-to-many",
+            "relationshipName": "resenasClientes",
+            "otherEntityName": "resenaCliente",
+            "otherEntityRelationshipName": "comercio"
+        },
+        {
+            "relationshipType": "one-to-many",
+            "relationshipName": "resenasPropias",
+            "otherEntityName": "resenaComercio",
+            "otherEntityRelationshipName": "comercio"
+        },
+        {
+            "relationshipType": "one-to-many",
+            "relationshipName": "productos",
+            "otherEntityName": "producto",
+            "otherEntityRelationshipName": "comercio"
+        },
+        {
+            "relationshipType": "one-to-many",
+            "relationshipName": "locales",
+            "otherEntityName": "local",
+            "otherEntityRelationshipName": "comercio"
+        },
+        {
+            "relationshipType": "one-to-many",
+            "relationshipName": "suscriptores",
+            "otherEntityName": "suscripcion",
+            "otherEntityRelationshipName": "comercio"
+        },
+        {
+            "relationshipType": "one-to-many",
+            "relationshipName": "fotos",
+            "otherEntityName": "fotografia",
+            "otherEntityRelationshipName": "comercio"
+        },
+        {
+            "relationshipType": "one-to-many",
+            "relationshipName": "contratos",
+            "otherEntityName": "contrato",
+            "otherEntityRelationshipName": "comercio"
+        },
+        {
+            "relationshipType": "many-to-many",
+            "otherEntityRelationshipName": "",
+            "relationshipName": "etiquetas",
+            "otherEntityName": "etiqueta",
+            "otherEntityField": "nombre",
+            "ownerSide": true
+        },
+        {
+            "relationshipType": "many-to-many",
+            "otherEntityRelationshipName": "",
+            "relationshipName": "categorias",
+            "otherEntityName": "categoriaAlimentacion",
+            "otherEntityField": "nombre",
+            "ownerSide": true
+        }
+    ],
+    "fields": [
+        {
+            "fieldName": "fechaCreacion",
+            "fieldType": "LocalDate",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "cedJuridica",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "required",
+                "minlength",
+                "maxlength"
+            ],
+            "fieldValidateRulesMinlength": 10,
+            "fieldValidateRulesMaxlength": 10
+        },
+        {
+            "fieldName": "razonSocial",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "required",
+                "maxlength"
+            ],
+            "fieldValidateRulesMaxlength": 50
+        },
+        {
+            "fieldName": "nombreComercial",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "required",
+                "maxlength"
+            ],
+            "fieldValidateRulesMaxlength": 50
+        },
+        {
+            "fieldName": "tipo",
+            "fieldType": "TipoComercio",
+            "fieldValues": "RESTAURANTE,TIENDA"
+        }
+    ],
+    "changelogDate": "20180620020734",
+    "entityTableName": "comercio",
+    "dto": "mapstruct",
+    "pagination": "no",
+    "service": "no",
+    "jpaMetamodelFiltering": false
+}

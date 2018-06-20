@@ -1,0 +1,46 @@
+
+<div *ngIf="resenaComercio">
+    <h2><span>Resena Comercio</span> {{resenaComercio.id}}</h2>
+    <hr>
+    <jhi-alert-error></jhi-alert-error>
+    <dl class="row-md jh-entity-details">
+        <dt><span>Fecha Creacion</span></dt>
+        <dd>
+            <span>{{resenaComercio.fechaCreacion | date:'mediumDate'}}</span>
+        </dd>
+        <dt><span>Calificacion</span></dt>
+        <dd>
+            <span>{{resenaComercio.calificacion}}</span>
+        </dd>
+        <dt><span>Comentario</span></dt>
+        <dd>
+            <span>{{resenaComercio.comentario}}</span>
+        </dd>
+        <dt><span>Cliente</span></dt>
+        <dd>
+            <div *ngIf="resenaComercio.clienteId">
+                <a [routerLink]="['/cliente', resenaComercio.clienteId]">{{resenaComercio.clienteId}}</a>
+            </div>
+        </dd>
+        <dt><span>Comercio</span></dt>
+        <dd>
+            <div *ngIf="resenaComercio.comercioId">
+                <a [routerLink]="['/comercio', resenaComercio.comercioId]">{{resenaComercio.comercioId}}</a>
+            </div>
+        </dd>
+    </dl>
+
+    <button type="submit"
+            (click)="previousState()"
+            class="btn btn-info">
+        <span class="fa fa-arrow-left"></span>&nbsp;<span> Back</span>
+    </button>
+
+    <button type="button"
+            [routerLink]="['/', { outlets: { popup: 'resena-comercio/'+ resenaComercio.id + '/edit'} }]"
+            replaceUrl="true"
+            queryParamsHandling="merge"
+            class="btn btn-primary">
+        <span class="fa fa-pencil"></span>&nbsp;<span> Edit</span>
+    </button>
+</div>

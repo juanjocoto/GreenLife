@@ -1,0 +1,90 @@
+
+<div *ngIf="usuario">
+    <h2><span>Usuario</span> {{usuario.id}}</h2>
+    <hr>
+    <jhi-alert-error></jhi-alert-error>
+    <dl class="row-md jh-entity-details">
+        <dt><span>Fecha Creacion</span></dt>
+        <dd>
+            <span>{{usuario.fechaCreacion | date:'mediumDate'}}</span>
+        </dd>
+        <dt><span>Fecha Nacimiento</span></dt>
+        <dd>
+            <span>{{usuario.fechaNacimiento | date:'mediumDate'}}</span>
+        </dd>
+        <dt><span>Nombre</span></dt>
+        <dd>
+            <span>{{usuario.nombre}}</span>
+        </dd>
+        <dt><span>Apellidos</span></dt>
+        <dd>
+            <span>{{usuario.apellidos}}</span>
+        </dd>
+        <dt><span>Cedula</span></dt>
+        <dd>
+            <span>{{usuario.cedula}}</span>
+        </dd>
+        <dt><span>Direccion</span></dt>
+        <dd>
+            <span>{{usuario.direccion}}</span>
+        </dd>
+        <dt><span>Telefono</span></dt>
+        <dd>
+            <span>{{usuario.telefono}}</span>
+        </dd>
+        <dt><span>Latitud</span></dt>
+        <dd>
+            <span>{{usuario.latitud}}</span>
+        </dd>
+        <dt><span>Longitud</span></dt>
+        <dd>
+            <span>{{usuario.longitud}}</span>
+        </dd>
+        <dt><span>Contrasena</span></dt>
+        <dd>
+            <span>{{usuario.contrasena}}</span>
+        </dd>
+        <dt><span>Correo</span></dt>
+        <dd>
+            <span>{{usuario.correo}}</span>
+        </dd>
+        <dt><span>Esta Activado</span></dt>
+        <dd>
+            <span>{{usuario.estaActivado}}</span>
+        </dd>
+        <dt><span>Nombre Usuario</span></dt>
+        <dd>
+            <span>{{usuario.nombreUsuario}}</span>
+        </dd>
+        <dt><span>Foto</span></dt>
+        <dd>
+            <div *ngIf="usuario.fotoId">
+                <a [routerLink]="['/fotografia', usuario.fotoId]">{{usuario.fotoId}}</a>
+            </div>
+        </dd>
+        <dt><span>User Detail</span></dt>
+        <dd>
+            {{usuario.userDetailId}}
+        </dd>
+        <dt><span>Rol</span></dt>
+        <dd>
+            <div *ngIf="usuario.rolId">
+                <a [routerLink]="['/rol', usuario.rolId]">{{usuario.rolNombre}}</a>
+            </div>
+        </dd>
+    </dl>
+
+    <button type="submit"
+            (click)="previousState()"
+            class="btn btn-info">
+        <span class="fa fa-arrow-left"></span>&nbsp;<span> Back</span>
+    </button>
+
+    <button type="button"
+            [routerLink]="['/', { outlets: { popup: 'usuario/'+ usuario.id + '/edit'} }]"
+            replaceUrl="true"
+            queryParamsHandling="merge"
+            class="btn btn-primary">
+        <span class="fa fa-pencil"></span>&nbsp;<span> Edit</span>
+    </button>
+</div>

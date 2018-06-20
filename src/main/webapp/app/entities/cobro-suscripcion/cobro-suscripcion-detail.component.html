@@ -1,0 +1,50 @@
+
+<div *ngIf="cobroSuscripcion">
+    <h2><span>Cobro Suscripcion</span> {{cobroSuscripcion.id}}</h2>
+    <hr>
+    <jhi-alert-error></jhi-alert-error>
+    <dl class="row-md jh-entity-details">
+        <dt><span>Fecha</span></dt>
+        <dd>
+            <span>{{cobroSuscripcion.fecha | date:'mediumDate'}}</span>
+        </dd>
+        <dt><span>Pago</span></dt>
+        <dd>
+            <div *ngIf="cobroSuscripcion.pagoId">
+                <a [routerLink]="['/pago', cobroSuscripcion.pagoId]">{{cobroSuscripcion.pagoId}}</a>
+            </div>
+        </dd>
+        <dt><span>Cliente</span></dt>
+        <dd>
+            <div *ngIf="cobroSuscripcion.clienteId">
+                <a [routerLink]="['/cliente', cobroSuscripcion.clienteId]">{{cobroSuscripcion.clienteId}}</a>
+            </div>
+        </dd>
+        <dt><span>Comercio</span></dt>
+        <dd>
+            <div *ngIf="cobroSuscripcion.comercioId">
+                <a [routerLink]="['/comercio', cobroSuscripcion.comercioId]">{{cobroSuscripcion.comercioId}}</a>
+            </div>
+        </dd>
+        <dt><span>Suscripcion</span></dt>
+        <dd>
+            <div *ngIf="cobroSuscripcion.suscripcionId">
+                <a [routerLink]="['/suscripcion', cobroSuscripcion.suscripcionId]">{{cobroSuscripcion.suscripcionId}}</a>
+            </div>
+        </dd>
+    </dl>
+
+    <button type="submit"
+            (click)="previousState()"
+            class="btn btn-info">
+        <span class="fa fa-arrow-left"></span>&nbsp;<span> Back</span>
+    </button>
+
+    <button type="button"
+            [routerLink]="['/', { outlets: { popup: 'cobro-suscripcion/'+ cobroSuscripcion.id + '/edit'} }]"
+            replaceUrl="true"
+            queryParamsHandling="merge"
+            class="btn btn-primary">
+        <span class="fa fa-pencil"></span>&nbsp;<span> Edit</span>
+    </button>
+</div>

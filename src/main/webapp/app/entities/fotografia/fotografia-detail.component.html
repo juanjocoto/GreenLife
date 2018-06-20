@@ -1,0 +1,62 @@
+
+<div *ngIf="fotografia">
+    <h2><span>Fotografia</span> {{fotografia.id}}</h2>
+    <hr>
+    <jhi-alert-error></jhi-alert-error>
+    <dl class="row-md jh-entity-details">
+        <dt><span>Url Image</span></dt>
+        <dd>
+            <span>{{fotografia.urlImage}}</span>
+        </dd>
+        <dt><span>Centro Acopio</span></dt>
+        <dd>
+            <div *ngIf="fotografia.centroAcopioId">
+                <a [routerLink]="['/centro-acopio', fotografia.centroAcopioId]">{{fotografia.centroAcopioId}}</a>
+            </div>
+        </dd>
+        <dt><span>Comercio</span></dt>
+        <dd>
+            <div *ngIf="fotografia.comercioId">
+                <a [routerLink]="['/comercio', fotografia.comercioId]">{{fotografia.comercioId}}</a>
+            </div>
+        </dd>
+        <dt><span>Producto</span></dt>
+        <dd>
+            <div *ngIf="fotografia.productoId">
+                <a [routerLink]="['/producto', fotografia.productoId]">{{fotografia.productoId}}</a>
+            </div>
+        </dd>
+        <dt><span>Publicacion</span></dt>
+        <dd>
+            <div *ngIf="fotografia.publicacionId">
+                <a [routerLink]="['/publicacion', fotografia.publicacionId]">{{fotografia.publicacionId}}</a>
+            </div>
+        </dd>
+        <dt><span>Evento</span></dt>
+        <dd>
+            <div *ngIf="fotografia.eventoId">
+                <a [routerLink]="['/evento', fotografia.eventoId]">{{fotografia.eventoId}}</a>
+            </div>
+        </dd>
+        <dt><span>Patrocinador</span></dt>
+        <dd>
+            <div *ngIf="fotografia.patrocinadorId">
+                <a [routerLink]="['/patrocinador', fotografia.patrocinadorId]">{{fotografia.patrocinadorId}}</a>
+            </div>
+        </dd>
+    </dl>
+
+    <button type="submit"
+            (click)="previousState()"
+            class="btn btn-info">
+        <span class="fa fa-arrow-left"></span>&nbsp;<span> Back</span>
+    </button>
+
+    <button type="button"
+            [routerLink]="['/', { outlets: { popup: 'fotografia/'+ fotografia.id + '/edit'} }]"
+            replaceUrl="true"
+            queryParamsHandling="merge"
+            class="btn btn-primary">
+        <span class="fa fa-pencil"></span>&nbsp;<span> Edit</span>
+    </button>
+</div>

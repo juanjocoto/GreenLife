@@ -1,0 +1,89 @@
+<div>
+    <h2>
+        <span>Patrocinadors</span>
+        <button class="btn btn-primary float-right jh-create-entity create-patrocinador" [routerLink]="['/', { outlets: { popup: ['patrocinador-new'] } }]">
+            <span class="fa fa-plus"></span>
+            <span class="hidden-sm-down" >
+            Create new Patrocinador
+            </span>
+        </button>
+    </h2>
+    <jhi-alert></jhi-alert>
+    <div class="row">
+        <div class="col-sm-12">
+            <form name="searchForm" class="form-inline">
+                <div class="input-group w-100 mt-3">
+                    <input type="text" class="form-control" [(ngModel)]="currentSearch" id="currentSearch" name="currentSearch" placeholder="Query">
+                    <button class="input-group-append btn btn-info" (click)="search(currentSearch)">
+                        <span class="fa fa-search"></span>
+                    </button>
+                    <button class="input-group-append btn btn-danger" (click)="clear()" *ngIf="currentSearch">
+                        <span class="fa fa-trash-o"></span>
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+    <br/>
+    <div class="table-responsive" *ngIf="patrocinadors">
+        <table class="table table-striped">
+            <thead>
+            <tr>
+            <th><span>ID</span></th>
+            <th><span>Fecha Creacion</span></th>
+            <th><span>Nombre</span></th>
+            <th><span>Ced Juridica</span></th>
+            <th><span>Correo</span></th>
+            <th><span>Solicitud</span></th>
+            <th><span>Eventos</span></th>
+            <th></th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr *ngFor="let patrocinador of patrocinadors ;trackBy: trackId">
+                <td><a [routerLink]="['../patrocinador', patrocinador.id ]">{{patrocinador.id}}</a></td>
+                <td>{{patrocinador.fechaCreacion | date:'mediumDate'}}</td>
+                <td>{{patrocinador.nombre}}</td>
+                <td>{{patrocinador.cedJuridica}}</td>
+                <td>{{patrocinador.correo}}</td>
+                <td>
+                    <div *ngIf="patrocinador.solicitudId">
+                        <a [routerLink]="['../solicitud-patrocinio', patrocinador.solicitudId  ]" >{{patrocinador.solicitudId}}</a>
+                    </div>
+                </td>
+                <td>
+                    <span *ngFor="let eventos of patrocinador.eventos; let last = last">
+                            <a class="form-control-static" [routerLink]="['../evento', eventos?.id ]">{{eventos.nombre}}</a>{{last ? '' : ', '}}
+                        </span>
+                </td>
+                <td class="text-right">
+                    <div class="btn-group flex-btn-group-container">
+                        <button type="submit"
+                                [routerLink]="['../patrocinador', patrocinador.id ]"
+                                class="btn btn-info btn-sm">
+                            <span class="fa fa-eye"></span>
+                            <span class="d-none d-md-inline">View</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/', { outlets: { popup: 'patrocinador/'+ patrocinador.id + '/edit'} }]"
+                                replaceUrl="true"
+                                queryParamsHandling="merge"
+                                class="btn btn-primary btn-sm">
+                            <span class="fa fa-pencil"></span>
+                            <span class="d-none d-md-inline">Edit</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/', { outlets: { popup: 'patrocinador/'+ patrocinador.id + '/delete'} }]"
+                                replaceUrl="true"
+                                queryParamsHandling="merge"
+                                class="btn btn-danger btn-sm">
+                            <span class="fa fa-remove"></span>
+                            <span class="d-none d-md-inline">Delete</span>
+                        </button>
+                    </div>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

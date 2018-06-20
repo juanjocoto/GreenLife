@@ -1,0 +1,38 @@
+
+<div *ngIf="entrega">
+    <h2><span>Entrega</span> {{entrega.id}}</h2>
+    <hr>
+    <jhi-alert-error></jhi-alert-error>
+    <dl class="row-md jh-entity-details">
+        <dt><span>Fecha Inicio</span></dt>
+        <dd>
+            <span>{{entrega.fechaInicio | date:'mediumDate'}}</span>
+        </dd>
+        <dt><span>Suscripcion</span></dt>
+        <dd>
+            <div *ngIf="entrega.suscripcionId">
+                <a [routerLink]="['/suscripcion', entrega.suscripcionId]">{{entrega.suscripcionId}}</a>
+            </div>
+        </dd>
+        <dt><span>Pedido</span></dt>
+        <dd>
+            <div *ngIf="entrega.pedidoId">
+                <a [routerLink]="['/pedido', entrega.pedidoId]">{{entrega.pedidoId}}</a>
+            </div>
+        </dd>
+    </dl>
+
+    <button type="submit"
+            (click)="previousState()"
+            class="btn btn-info">
+        <span class="fa fa-arrow-left"></span>&nbsp;<span> Back</span>
+    </button>
+
+    <button type="button"
+            [routerLink]="['/', { outlets: { popup: 'entrega/'+ entrega.id + '/edit'} }]"
+            replaceUrl="true"
+            queryParamsHandling="merge"
+            class="btn btn-primary">
+        <span class="fa fa-pencil"></span>&nbsp;<span> Edit</span>
+    </button>
+</div>

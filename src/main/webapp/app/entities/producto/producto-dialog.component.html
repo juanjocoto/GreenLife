@@ -1,0 +1,105 @@
+<form name="editForm" role="form" novalidate (ngSubmit)="save()" #editForm="ngForm">
+
+    <div class="modal-header">
+        <h4 class="modal-title" id="myProductoLabel">Create or edit a Producto</h4>
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true"
+                (click)="clear()">&times;</button>
+    </div>
+    <div class="modal-body">
+        <jhi-alert-error></jhi-alert-error>
+        <div class="form-group" [hidden]="!producto.id">
+            <label for="id">ID</label>
+            <input type="text" class="form-control" id="id" name="id"
+                   [(ngModel)]="producto.id" readonly />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" for="field_nombre">Nombre</label>
+            <input type="text" class="form-control" name="nombre" id="field_nombre"
+                [(ngModel)]="producto.nombre" required maxlength="50"/>
+            <div [hidden]="!(editForm.controls.nombre?.dirty && editForm.controls.nombre?.invalid)">
+                <small class="form-text text-danger"
+                   [hidden]="!editForm.controls.nombre?.errors?.required">
+                   This field is required.
+                </small>
+                <small class="form-text text-danger"
+                   [hidden]="!editForm.controls.nombre?.errors?.maxlength">
+                   This field cannot be longer than 50 characters.
+                </small>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" for="field_descripcion">Descripcion</label>
+            <input type="text" class="form-control" name="descripcion" id="field_descripcion"
+                [(ngModel)]="producto.descripcion" required maxlength="200"/>
+            <div [hidden]="!(editForm.controls.descripcion?.dirty && editForm.controls.descripcion?.invalid)">
+                <small class="form-text text-danger"
+                   [hidden]="!editForm.controls.descripcion?.errors?.required">
+                   This field is required.
+                </small>
+                <small class="form-text text-danger"
+                   [hidden]="!editForm.controls.descripcion?.errors?.maxlength">
+                   This field cannot be longer than 200 characters.
+                </small>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" for="field_precio">Precio</label>
+            <input type="number" class="form-control" name="precio" id="field_precio"
+                [(ngModel)]="producto.precio" required/>
+            <div [hidden]="!(editForm.controls.precio?.dirty && editForm.controls.precio?.invalid)">
+                <small class="form-text text-danger"
+                   [hidden]="!editForm.controls.precio?.errors?.required">
+                   This field is required.
+                </small>
+                <small class="form-text text-danger"
+                    [hidden]="!editForm.controls.precio?.errors?.number">
+                    This field should be a number.
+                </small>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" for="field_fechaCreacion">Fecha Creacion</label>
+            <div class="input-group">
+                <input id="field_fechaCreacion" type="text" class="form-control" name="fechaCreacion" ngbDatepicker  #fechaCreacionDp="ngbDatepicker" [(ngModel)]="producto.fechaCreacion"
+                required/>
+                <span class="input-group-append">
+                    <button type="button" class="btn btn-secondary" (click)="fechaCreacionDp.toggle()"><i class="fa fa-calendar"></i></button>
+                </span>
+            </div>
+            <div [hidden]="!(editForm.controls.fechaCreacion?.dirty && editForm.controls.fechaCreacion?.invalid)">
+                <small class="form-text text-danger"
+                   [hidden]="!editForm.controls.fechaCreacion?.errors?.required">
+                   This field is required.
+                </small>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="form-control-label" for="field_comercio">Comercio</label>
+            <select class="form-control" id="field_comercio" name="comercio" [(ngModel)]="producto.comercioId" >
+                <option [ngValue]="null"></option>
+                <option [ngValue]="comercioOption.id" *ngFor="let comercioOption of comercios; trackBy: trackComercioById">{{comercioOption.id}}</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label for="field_etiquetas">Etiquetas</label>
+            <select class="form-control" id="field_etiquetas" multiple name="etiquetas" [(ngModel)]="producto.etiquetas">
+                <option [ngValue]="getSelected(producto.etiquetas, etiquetaOption)" *ngFor="let etiquetaOption of etiquetas; trackBy: trackEtiquetaById">{{etiquetaOption.nombre}}</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label for="field_categoria">Categoria</label>
+            <select class="form-control" id="field_categoria" multiple name="categoria" [(ngModel)]="producto.categorias">
+                <option [ngValue]="getSelected(producto.categorias, categoriaAlimentacionOption)" *ngFor="let categoriaAlimentacionOption of categoriaalimentacions; trackBy: trackCategoriaAlimentacionById">{{categoriaAlimentacionOption.nombre}}</option>
+            </select>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal" (click)="clear()">
+            <span class="fa fa-ban"></span>&nbsp;<span>Cancel</span>
+        </button>
+        <button type="submit" [disabled]="editForm.form.invalid || isSaving" class="btn btn-primary">
+            <span class="fa fa-save"></span>&nbsp;<span>Save</span>
+        </button>
+    </div>
+</form>

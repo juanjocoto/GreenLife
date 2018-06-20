@@ -1,0 +1,68 @@
+{
+    "fluentMethods": true,
+    "relationships": [
+        {
+            "relationshipName": "cliente",
+            "otherEntityName": "cliente",
+            "relationshipType": "many-to-one",
+            "otherEntityField": "id"
+        },
+        {
+            "relationshipName": "comercio",
+            "otherEntityName": "comercio",
+            "relationshipType": "many-to-one",
+            "otherEntityField": "id"
+        },
+        {
+            "relationshipType": "one-to-many",
+            "relationshipName": "pedidos",
+            "otherEntityName": "pedido",
+            "otherEntityRelationshipName": "suscripcion"
+        },
+        {
+            "relationshipType": "one-to-many",
+            "relationshipName": "historicoEntregas",
+            "otherEntityName": "entrega",
+            "otherEntityRelationshipName": "suscripcion"
+        }
+    ],
+    "fields": [
+        {
+            "fieldName": "detalle",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "maxlength"
+            ],
+            "fieldValidateRulesMaxlength": 500
+        },
+        {
+            "fieldName": "fechaCreacion",
+            "fieldType": "LocalDate",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "estado",
+            "fieldType": "EstadoSuscripcion",
+            "fieldValues": "VIGENTE,EXPIRADO"
+        },
+        {
+            "fieldName": "fechaCancelacion",
+            "fieldType": "LocalDate"
+        },
+        {
+            "fieldName": "fechaCobro",
+            "fieldType": "LocalDate",
+            "fieldValidateRules": [
+                "required"
+            ]
+        }
+    ],
+    "changelogDate": "20180620020739",
+    "entityTableName": "suscripcion",
+    "dto": "mapstruct",
+    "pagination": "no",
+    "service": "no",
+    "jpaMetamodelFiltering": false
+}

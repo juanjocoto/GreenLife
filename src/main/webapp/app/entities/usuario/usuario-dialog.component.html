@@ -1,0 +1,231 @@
+<form name="editForm" role="form" novalidate (ngSubmit)="save()" #editForm="ngForm">
+
+    <div class="modal-header">
+        <h4 class="modal-title" id="myUsuarioLabel">Create or edit a Usuario</h4>
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true"
+                (click)="clear()">&times;</button>
+    </div>
+    <div class="modal-body">
+        <jhi-alert-error></jhi-alert-error>
+        <div class="form-group" [hidden]="!usuario.id">
+            <label for="id">ID</label>
+            <input type="text" class="form-control" id="id" name="id"
+                   [(ngModel)]="usuario.id" readonly />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" for="field_fechaCreacion">Fecha Creacion</label>
+            <div class="input-group">
+                <input id="field_fechaCreacion" type="text" class="form-control" name="fechaCreacion" ngbDatepicker  #fechaCreacionDp="ngbDatepicker" [(ngModel)]="usuario.fechaCreacion"
+                required/>
+                <span class="input-group-append">
+                    <button type="button" class="btn btn-secondary" (click)="fechaCreacionDp.toggle()"><i class="fa fa-calendar"></i></button>
+                </span>
+            </div>
+            <div [hidden]="!(editForm.controls.fechaCreacion?.dirty && editForm.controls.fechaCreacion?.invalid)">
+                <small class="form-text text-danger"
+                   [hidden]="!editForm.controls.fechaCreacion?.errors?.required">
+                   This field is required.
+                </small>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" for="field_fechaNacimiento">Fecha Nacimiento</label>
+            <div class="input-group">
+                <input id="field_fechaNacimiento" type="text" class="form-control" name="fechaNacimiento" ngbDatepicker  #fechaNacimientoDp="ngbDatepicker" [(ngModel)]="usuario.fechaNacimiento"
+                required/>
+                <span class="input-group-append">
+                    <button type="button" class="btn btn-secondary" (click)="fechaNacimientoDp.toggle()"><i class="fa fa-calendar"></i></button>
+                </span>
+            </div>
+            <div [hidden]="!(editForm.controls.fechaNacimiento?.dirty && editForm.controls.fechaNacimiento?.invalid)">
+                <small class="form-text text-danger"
+                   [hidden]="!editForm.controls.fechaNacimiento?.errors?.required">
+                   This field is required.
+                </small>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" for="field_nombre">Nombre</label>
+            <input type="text" class="form-control" name="nombre" id="field_nombre"
+                [(ngModel)]="usuario.nombre" required minlength="5" maxlength="20"/>
+            <div [hidden]="!(editForm.controls.nombre?.dirty && editForm.controls.nombre?.invalid)">
+                <small class="form-text text-danger"
+                   [hidden]="!editForm.controls.nombre?.errors?.required">
+                   This field is required.
+                </small>
+                <small class="form-text text-danger"
+                   [hidden]="!editForm.controls.nombre?.errors?.minlength">
+                   This field is required to be at least 5 characters.
+                </small>
+                <small class="form-text text-danger"
+                   [hidden]="!editForm.controls.nombre?.errors?.maxlength">
+                   This field cannot be longer than 20 characters.
+                </small>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" for="field_apellidos">Apellidos</label>
+            <input type="text" class="form-control" name="apellidos" id="field_apellidos"
+                [(ngModel)]="usuario.apellidos" required minlength="5" maxlength="50"/>
+            <div [hidden]="!(editForm.controls.apellidos?.dirty && editForm.controls.apellidos?.invalid)">
+                <small class="form-text text-danger"
+                   [hidden]="!editForm.controls.apellidos?.errors?.required">
+                   This field is required.
+                </small>
+                <small class="form-text text-danger"
+                   [hidden]="!editForm.controls.apellidos?.errors?.minlength">
+                   This field is required to be at least 5 characters.
+                </small>
+                <small class="form-text text-danger"
+                   [hidden]="!editForm.controls.apellidos?.errors?.maxlength">
+                   This field cannot be longer than 50 characters.
+                </small>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" for="field_cedula">Cedula</label>
+            <input type="text" class="form-control" name="cedula" id="field_cedula"
+                [(ngModel)]="usuario.cedula" required minlength="8" maxlength="15"/>
+            <div [hidden]="!(editForm.controls.cedula?.dirty && editForm.controls.cedula?.invalid)">
+                <small class="form-text text-danger"
+                   [hidden]="!editForm.controls.cedula?.errors?.required">
+                   This field is required.
+                </small>
+                <small class="form-text text-danger"
+                   [hidden]="!editForm.controls.cedula?.errors?.minlength">
+                   This field is required to be at least 8 characters.
+                </small>
+                <small class="form-text text-danger"
+                   [hidden]="!editForm.controls.cedula?.errors?.maxlength">
+                   This field cannot be longer than 15 characters.
+                </small>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" for="field_direccion">Direccion</label>
+            <input type="text" class="form-control" name="direccion" id="field_direccion"
+                [(ngModel)]="usuario.direccion" maxlength="200"/>
+            <div [hidden]="!(editForm.controls.direccion?.dirty && editForm.controls.direccion?.invalid)">
+                <small class="form-text text-danger"
+                   [hidden]="!editForm.controls.direccion?.errors?.maxlength">
+                   This field cannot be longer than 200 characters.
+                </small>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" for="field_telefono">Telefono</label>
+            <input type="text" class="form-control" name="telefono" id="field_telefono"
+                [(ngModel)]="usuario.telefono" required minlength="8" maxlength="8"/>
+            <div [hidden]="!(editForm.controls.telefono?.dirty && editForm.controls.telefono?.invalid)">
+                <small class="form-text text-danger"
+                   [hidden]="!editForm.controls.telefono?.errors?.required">
+                   This field is required.
+                </small>
+                <small class="form-text text-danger"
+                   [hidden]="!editForm.controls.telefono?.errors?.minlength">
+                   This field is required to be at least 8 characters.
+                </small>
+                <small class="form-text text-danger"
+                   [hidden]="!editForm.controls.telefono?.errors?.maxlength">
+                   This field cannot be longer than 8 characters.
+                </small>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" for="field_latitud">Latitud</label>
+            <input type="number" class="form-control" name="latitud" id="field_latitud"
+                [(ngModel)]="usuario.latitud" />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" for="field_longitud">Longitud</label>
+            <input type="number" class="form-control" name="longitud" id="field_longitud"
+                [(ngModel)]="usuario.longitud" />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" for="field_contrasena">Contrasena</label>
+            <input type="text" class="form-control" name="contrasena" id="field_contrasena"
+                [(ngModel)]="usuario.contrasena" required minlength="8"/>
+            <div [hidden]="!(editForm.controls.contrasena?.dirty && editForm.controls.contrasena?.invalid)">
+                <small class="form-text text-danger"
+                   [hidden]="!editForm.controls.contrasena?.errors?.required">
+                   This field is required.
+                </small>
+                <small class="form-text text-danger"
+                   [hidden]="!editForm.controls.contrasena?.errors?.minlength">
+                   This field is required to be at least 8 characters.
+                </small>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" for="field_correo">Correo</label>
+            <input type="text" class="form-control" name="correo" id="field_correo"
+                [(ngModel)]="usuario.correo" required maxlength="80"/>
+            <div [hidden]="!(editForm.controls.correo?.dirty && editForm.controls.correo?.invalid)">
+                <small class="form-text text-danger"
+                   [hidden]="!editForm.controls.correo?.errors?.required">
+                   This field is required.
+                </small>
+                <small class="form-text text-danger"
+                   [hidden]="!editForm.controls.correo?.errors?.maxlength">
+                   This field cannot be longer than 80 characters.
+                </small>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" for="field_estaActivado">Esta Activado</label>
+            <input type="checkbox" class="form-control" name="estaActivado" id="field_estaActivado"
+                [(ngModel)]="usuario.estaActivado" />
+            <div [hidden]="!(editForm.controls.estaActivado?.dirty && editForm.controls.estaActivado?.invalid)">
+                <small class="form-text text-danger"
+                   [hidden]="!editForm.controls.estaActivado?.errors?.required">
+                   This field is required.
+                </small>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" for="field_nombreUsuario">Nombre Usuario</label>
+            <input type="text" class="form-control" name="nombreUsuario" id="field_nombreUsuario"
+                [(ngModel)]="usuario.nombreUsuario" required maxlength="20"/>
+            <div [hidden]="!(editForm.controls.nombreUsuario?.dirty && editForm.controls.nombreUsuario?.invalid)">
+                <small class="form-text text-danger"
+                   [hidden]="!editForm.controls.nombreUsuario?.errors?.required">
+                   This field is required.
+                </small>
+                <small class="form-text text-danger"
+                   [hidden]="!editForm.controls.nombreUsuario?.errors?.maxlength">
+                   This field cannot be longer than 20 characters.
+                </small>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="form-control-label" for="field_foto">Foto</label>
+            <select class="form-control" id="field_foto" name="foto" [(ngModel)]="usuario.fotoId">
+                <option [ngValue]="null"></option>
+                <option [ngValue]="fotografiaOption.id" *ngFor="let fotografiaOption of fotos; trackBy: trackFotografiaById">{{fotografiaOption.id}}</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" for="field_userDetail">User Detail</label>
+            <select class="form-control" id="field_userDetail" name="userDetail" [(ngModel)]="usuario.userDetailId" >
+                <option [ngValue]="null"></option>
+                <option [ngValue]="userOption.id" *ngFor="let userOption of users; trackBy: trackUserById">{{userOption.id}}</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" for="field_rol">Rol</label>
+            <select class="form-control" id="field_rol" name="rol" [(ngModel)]="usuario.rolId" >
+                <option [ngValue]="null"></option>
+                <option [ngValue]="rolOption.id" *ngFor="let rolOption of rols; trackBy: trackRolById">{{rolOption.nombre}}</option>
+            </select>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal" (click)="clear()">
+            <span class="fa fa-ban"></span>&nbsp;<span>Cancel</span>
+        </button>
+        <button type="submit" [disabled]="editForm.form.invalid || isSaving" class="btn btn-primary">
+            <span class="fa fa-save"></span>&nbsp;<span>Save</span>
+        </button>
+    </div>
+</form>
