@@ -3,7 +3,9 @@ import { Component, OnInit } from '@angular/core';
 @Component({
   selector: 'jhi-footer-greenlife',
   templateUrl: './footer-greenlife.component.html',
-  styles: []
+  styleUrls: [
+      'footer-greenlife.scss'
+  ]
 })
 export class FooterGreenlifeComponent implements OnInit {
 
