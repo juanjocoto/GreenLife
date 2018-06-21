@@ -1,14 +1,24 @@
 import { NgModule } from '@angular/core';
+import { BrowserModule } from '@angular/platform-browser';
 import { CommonModule } from '@angular/common';
 import { LandingComponent } from './landing/landing.component';
 import { NavbarGreenlifeComponent } from './layout/navbar-greenlife/navbar-greenlife.component';
 import { FooterGreenlifeComponent } from './layout/footer-greenlife/footer-greenlife.component';
-import { MatGridListModule } from '@angular/material/grid-list';
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import { MatMenuModule, MatButtonModule, MatButtonToggleModule, MatToolbarModule, MatCardModule, MatGridListModule, MatListModule } from '@angular/material';
 
 @NgModule({
   imports: [
     CommonModule,
-    MatGridListModule
+    BrowserModule,
+    BrowserAnimationsModule,
+    MatMenuModule,
+    MatButtonModule,
+    MatButtonToggleModule,
+    MatToolbarModule,
+    MatCardModule,
+    MatGridListModule,
+    MatListModule
   ],
   declarations: [LandingComponent, NavbarGreenlifeComponent, FooterGreenlifeComponent]
 })

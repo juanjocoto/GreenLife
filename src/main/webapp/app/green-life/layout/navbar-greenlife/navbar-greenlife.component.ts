@@ -3,7 +3,9 @@ import { Component, OnInit } from '@angular/core';
 @Component({
   selector: 'jhi-navbar-greenlife',
   templateUrl: './navbar-greenlife.component.html',
-  styles: []
+    styleUrls: [
+        'navbar-greenlife.scss'
+    ]
 })
 export class NavbarGreenlifeComponent implements OnInit {
 

@@ -1,3 +1,42 @@
-<p>
-  navbar-greenlife works!
-</p>
+<!--Navbar por defecto de Green Life para usuarios sin una sesion iniciada-->
+<mat-toolbar class="navbarGreenlife mat-elevation-z1 mat-small" >
+    <mat-toolbar-row>
+        <!--Logo del navbar-->
+        <a class="navbarLogo logo" routerLink="/">
+            <span class="logoImg"></span>
+        </a>
+        <span class="navbarEspaciador"></span>
+        <!--Opcion Alimentacion del menu-->
+        <button mat-button class="btnMenu" [matMenuTriggerFor]="menuAlimentacion"><span class="mat-h3">Alimentación</span></button>
+        <mat-menu #menuAlimentacion="matMenu">
+            <button mat-menu-item class="btnMenu">Vegetarianismo</button>
+            <button mat-menu-item class="btnMenu">Veganismo</button>
+            <button mat-menu-item class="btnMenu">Frugivorismo</button>
+            <button mat-menu-item class="btnMenu">Intolerancia a la lactosa</button>
+            <button mat-menu-item class="btnMenu">Diabetes</button>
+            <button mat-menu-item class="btnMenu">Celiaquía</button>
+        </mat-menu>
+        <!--Opcion Suscripciones del menu-->
+        <button mat-button class="btnMenu" [matMenuTriggerFor]="menuSuscripcion"><span class="mat-h3">Suscripciones</span></button>
+        <mat-menu #menuSuscripcion="matMenu">
+            <button mat-menu-item class="btnMenu">Comercios</button>
+            <button mat-menu-item class="btnMenu">Pedidos</button>
+        </mat-menu>
+        <!--Opcion Social del menu-->
+        <button mat-button class="btnMenu" [matMenuTriggerFor]="menuEventos"><span class="mat-h3">Social</span></button>
+        <mat-menu #menuEventos="matMenu">
+            <button mat-menu-item class="btnMenu">Eventos</button>
+            <button mat-menu-item class="btnMenu">Blogs</button>
+        </mat-menu>
+        <!--Opcion Reciclaje del menu-->
+        <button mat-button class="btnMenu" [matMenuTriggerFor]="menuReciclaje"><span class="mat-h3">Reciclaje</span></button>
+        <mat-menu #menuReciclaje="matMenu">
+            <button mat-menu-item class="btnMenu">Acerca del reciclaje</button>
+            <button mat-menu-item class="btnMenu">Servicio de Recolección</button>
+        </mat-menu>
+        <span class="navbarEspaciador"></span>
+        <!--Botones de registro y inicio de sesion-->
+        <button mat-flat-button class="btnRegistrarse"><span class="mat-h4">Registrarse</span></button>
+        <button mat-flat-button class="btnSesion"><span class="mat-h4">Iniciar Sesión</span></button>
+    </mat-toolbar-row>
+</mat-toolbar>

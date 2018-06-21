@@ -1,0 +1,37 @@
+// Estilos navbar Green Life
+.navbarGreenlife {
+    background-color: white;
+    display: flex;
+}
+.navbarEspaciador {
+    flex: 1 1 auto;
+}
+.btnMenu {
+    color: #46B97E;
+}
+.btnRegistrarse {
+    color: white !important;
+    background-color: #38CAE0 !important;
+    border: #38CAE0 solid 1px !important;
+    margin: 0 10px 0 10px;
+}
+.btnSesion {
+    color: #38CAE0 !important;
+    background-color: white !important;
+    border: #38CAE0 solid 1px !important;
+    margin: 0 10px 0 10px;
+}
+// Estilos del logo
+.navbarLogo {
+    &.logo {
+        //padding: 5px 15px;
+        .logoImg {
+            height: 40px;
+            width: 180px;
+            display: inline-block;
+            vertical-align: middle;
+            background: url("../../../../content/images/GreenLifeLogo.png") no-repeat center center;
+            background-size: contain;
+        }
+    }
+}
