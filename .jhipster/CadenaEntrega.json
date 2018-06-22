@@ -39,7 +39,7 @@
             "fieldValues": "PREPARACION,EN_CAMINO,ENTREGADO"
         }
     ],
-    "changelogDate": "20180620020756",
+    "changelogDate": "20180622042409",
     "entityTableName": "cadena_entrega",
     "dto": "mapstruct",
     "pagination": "no",

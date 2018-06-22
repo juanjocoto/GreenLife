@@ -8,14 +8,14 @@ import org.mapstruct.*;
 /**
  * Mapper for the entity ResenaComercio and its DTO ResenaComercioDTO.
  */
-@Mapper(componentModel = "spring", uses = {ClienteMapper.class, ComercioMapper.class})
+@Mapper(componentModel = "spring", uses = {UsuarioMapper.class, ComercioMapper.class})
 public interface ResenaComercioMapper extends EntityMapper<ResenaComercioDTO, ResenaComercio> {
 
-    @Mapping(source = "cliente.id", target = "clienteId")
+    @Mapping(source = "usuario.id", target = "usuarioId")
     @Mapping(source = "comercio.id", target = "comercioId")
     ResenaComercioDTO toDto(ResenaComercio resenaComercio);
 
-    @Mapping(source = "clienteId", target = "cliente")
+    @Mapping(source = "usuarioId", target = "usuario")
     @Mapping(source = "comercioId", target = "comercio")
     ResenaComercio toEntity(ResenaComercioDTO resenaComercioDTO);
 

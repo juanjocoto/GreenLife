@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.5.xsd">
+    <!--
+        Added the constraints for entity Fotografia.
+    -->
+    <changeSet id="20180622042351-2" author="jhipster">
+        
+        <addForeignKeyConstraint baseColumnNames="centro_acopio_id"
+                                 baseTableName="fotografia"
+                                 constraintName="fk_fotografia_centro_acopio_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="centro_acopio"/>
+
+        <addForeignKeyConstraint baseColumnNames="comercio_id"
+                                 baseTableName="fotografia"
+                                 constraintName="fk_fotografia_comercio_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="comercio"/>
+
+        <addForeignKeyConstraint baseColumnNames="producto_id"
+                                 baseTableName="fotografia"
+                                 constraintName="fk_fotografia_producto_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="producto"/>
+
+        <addForeignKeyConstraint baseColumnNames="publicacion_id"
+                                 baseTableName="fotografia"
+                                 constraintName="fk_fotografia_publicacion_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="publicacion"/>
+
+        <addForeignKeyConstraint baseColumnNames="evento_id"
+                                 baseTableName="fotografia"
+                                 constraintName="fk_fotografia_evento_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="evento"/>
+
+        <addForeignKeyConstraint baseColumnNames="patrocinador_id"
+                                 baseTableName="fotografia"
+                                 constraintName="fk_fotografia_patrocinador_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="patrocinador"/>
+
+    </changeSet>
+</databaseChangeLog>

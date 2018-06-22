@@ -12,7 +12,7 @@
             "fieldValidateRulesMaxlength": 20
         }
     ],
-    "changelogDate": "20180620020749",
+    "changelogDate": "20180622042403",
     "entityTableName": "dia_entrega",
     "dto": "mapstruct",
     "pagination": "no",

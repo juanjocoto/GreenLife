@@ -23,7 +23,7 @@
             ]
         }
     ],
-    "changelogDate": "20180620020742",
+    "changelogDate": "20180622042356",
     "entityTableName": "linea_entrega",
     "dto": "mapstruct",
     "pagination": "no",

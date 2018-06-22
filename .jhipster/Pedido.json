@@ -43,7 +43,7 @@
             ]
         }
     ],
-    "changelogDate": "20180620020740",
+    "changelogDate": "20180622042354",
     "entityTableName": "pedido",
     "dto": "mapstruct",
     "pagination": "no",

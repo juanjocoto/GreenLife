@@ -10,29 +10,15 @@ entity Configuracion {
     telefono String required
     urlLogo String required
 }
-entity Rol {
-	fechaCreacion LocalDate required
-	nombre String required maxlength(20)
-    descripcion String required maxlength(200)
-}
-entity Permiso {
-	nombre String required maxlength(20)
-    descripcion String required maxlength(200)
-}
 entity Usuario {
 	fechaCreacion LocalDate required
     fechaNacimiento LocalDate required
-	nombre String required minlength(5) maxlength(20)
-    apellidos String required minlength(5) maxlength(50)
     cedula String required minlength(8) maxlength(15)
     direccion String maxlength(200)
     telefono String required minlength(8) maxlength(8)
+    fotoUrl String
     latitud Double
     longitud Double
-    contrasena String required minlength(8)
-    correo String required maxlength(80)
-    estaActivado Boolean required
-    nombreUsuario String required maxlength(20)
 }
 entity Contrato {
 	fechaCreacion LocalDate required
@@ -41,15 +27,6 @@ entity TipoContrato {
 	nombre String required maxlength(20)
     descripcion String required maxlength(200)
     costo Double required
-}
-entity Cliente {
-	
-}
-entity Administrador {
-
-}
-entity Recolector {
-	
 }
 entity CentroAcopio {
 	fechaCreacion LocalDate required
@@ -90,15 +67,6 @@ entity Producto {
     precio Float required
 	fechaCreacion LocalDate required
 }
-entity SolicitudSuscripcion {
-	fecha LocalDate required
-    estado EstadoSolicitud
-    descripcion String required maxlength(200)
-}
-enum EstadoSolicitud {
-	ACEPATDO,
-    DENEGADO
-}
 entity Suscripcion {
 	detalle String maxlength(500)
     fechaCreacion LocalDate required
@@ -109,16 +77,17 @@ entity Suscripcion {
 entity Pedido {
 	hora String required
 }
-entity LineaProducto {
+entity LineaProducto{
 	cantidad Integer required
-    precioUnitario Float required
 }
-entity LineaEntrega {
+entity LineaEntrega{
 	cantidad Integer required
 }
 enum EstadoSuscripcion {
 	VIGENTE,
-    EXPIRADO
+    EXPIRADO,
+    PENDIENTE,
+    RECHAZADO
 }
 entity OrdenRecoleccion {
 	fechaCrecion LocalDate required
@@ -176,13 +145,6 @@ entity Patrocinador {
     cedJuridica String required maxlength(10) minlength(10)
     correo String required maxlength(10)
 }
-entity SolicitudPatrocinio {
-    fechaCreacion LocalDate required
-	nombre String required maxlength(50)
-    cedJuridica String required maxlength(10) minlength(10)
-    correo String required maxlength(10)
-    datosAdicionales String maxlength(200)
-}
 entity Etiqueta {
 	nombre String required maxlength(20)
     disponible Boolean required
@@ -211,30 +173,22 @@ entity CobroMensualidad {
 }
 
 relationship OneToOne {
-	Comercio{usuario(nombre)} to Usuario,
-    Cliente{usuario(nombre)} to Usuario,
-    Recolector{usuario(nombre)} to Usuario,
-    Administrador{usuario(nombre)} to Usuario,
-    Usuario{foto} to Fotografia,
+    // Usuario{foto} to Fotografia,
     Usuario{userDetail} to User,
     Local{fachada} to Fotografia,
     CadenaEntrega{previo} to CadenaEntrega,
     CadenaOrdenRecoleccion{previo} to CadenaOrdenRecoleccion,
     CobroMensualidad{pago} to Pago,
     CobroSuscripcion{pago} to Pago,
-    Patrocinador{solicitud} to SolicitudPatrocinio,
     Pedido{lineas} to LineaProducto
 }
 relationship ManyToOne {
-    ResenaCliente{cliente} to Cliente,
-    Usuario{rol(nombre)} to Rol,
+    ResenaCliente{cliente} to Usuario,
     Contrato{tipo} to TipoContrato,
-    CobroSuscripcion{cliente} to Cliente,
+    CobroSuscripcion{cliente} to Usuario,
     CobroSuscripcion{comercio} to Comercio,
     CobroSuscripcion{suscripcion} to Suscripcion,
     Pedido{diasEntrega(nombre)} to DiaEntrega,
-    SolicitudSuscripcion{solicitante} to Cliente,
-    SolicitudSuscripcion{comercio} to Comercio,
     Pedido{local(nombre)} to Local,
     CobroMensualidad{contrato} to Contrato,
     LineaProducto{producto} to Producto,
@@ -247,13 +201,14 @@ relationship OneToMany {
     Comercio{locales(nombre)} to Local{comercio(razonSocial)},
     Comercio{suscriptores} to Suscripcion,
     Comercio{fotos} to Fotografia,
-    Cliente{resena} to ResenaComercio,
-    Cliente{suscripciones} to Suscripcion,
-    Cliente{solicitudesRecoleccion} to OrdenRecoleccion,
-    Recolector{ordenes} to OrdenRecoleccion,
+    Usuario{resenasComercio} to ResenaComercio,
+    Usuario{suscripciones} to Suscripcion,
+    Usuario{solicitudesRecoleccion} to OrdenRecoleccion{solicitante},
+    Usuario{ordenes} to OrdenRecoleccion{recolector},
     Suscripcion{pedidos} to Pedido,
     Usuario{publicaciones} to Publicacion,
     Usuario{comentarios} to ComentarioPublicacion,
+    Usuario{comercios(razonSocial)} to Comercio{dueno},
     Publicacion{comentarios} to ComentarioPublicacion,
     Evento{fotos} to Fotografia,
     CentroAcopio{fotos} to Fotografia,
@@ -268,7 +223,6 @@ relationship OneToMany {
     Suscripcion{historicoEntregas} to Entrega
 }
 relationship ManyToMany {
-	Rol{permisos(nombre)} to Permiso,
     Patrocinador{eventos(nombre)} to Evento,
     Producto{etiquetas(nombre)} to Etiqueta,
     Comercio{etiquetas(nombre)} to Etiqueta,

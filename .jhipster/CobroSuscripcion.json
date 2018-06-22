@@ -12,7 +12,7 @@
         {
             "relationshipType": "many-to-one",
             "relationshipName": "cliente",
-            "otherEntityName": "cliente",
+            "otherEntityName": "usuario",
             "otherEntityField": "id"
         },
         {
@@ -37,7 +37,7 @@
             ]
         }
     ],
-    "changelogDate": "20180620020757",
+    "changelogDate": "20180622042410",
     "entityTableName": "cobro_suscripcion",
     "dto": "mapstruct",
     "pagination": "no",

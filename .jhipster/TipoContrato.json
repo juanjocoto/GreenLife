@@ -28,7 +28,7 @@
             ]
         }
     ],
-    "changelogDate": "20180620020729",
+    "changelogDate": "20180622042347",
     "entityTableName": "tipo_contrato",
     "dto": "mapstruct",
     "pagination": "no",

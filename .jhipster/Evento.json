@@ -73,7 +73,7 @@
             "fieldValidateRulesMaxlength": 30
         }
     ],
-    "changelogDate": "20180620020748",
+    "changelogDate": "20180622042402",
     "entityTableName": "evento",
     "dto": "mapstruct",
     "pagination": "no",

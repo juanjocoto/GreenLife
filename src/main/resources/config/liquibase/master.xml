@@ -1,73 +1,60 @@
 <?xml version="1.0" encoding="utf-8"?>
-<databaseChangeLog
-    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
-    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.5.xsd">
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog" 
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.5.xsd">
 
     <include file="config/liquibase/changelog/00000000000000_initial_schema.xml" relativeToChangelogFile="false"/>
-    <include file="config/liquibase/changelog/20180620020724_added_entity_Configuracion.xml" relativeToChangelogFile="false"/>
-    <include file="config/liquibase/changelog/20180620020725_added_entity_Rol.xml" relativeToChangelogFile="false"/>
-    <include file="config/liquibase/changelog/20180620020726_added_entity_Permiso.xml" relativeToChangelogFile="false"/>
-    <include file="config/liquibase/changelog/20180620020727_added_entity_Usuario.xml" relativeToChangelogFile="false"/>
-    <include file="config/liquibase/changelog/20180620020728_added_entity_Contrato.xml" relativeToChangelogFile="false"/>
-    <include file="config/liquibase/changelog/20180620020729_added_entity_TipoContrato.xml" relativeToChangelogFile="false"/>
-    <include file="config/liquibase/changelog/20180620020730_added_entity_Cliente.xml" relativeToChangelogFile="false"/>
-    <include file="config/liquibase/changelog/20180620020731_added_entity_Administrador.xml" relativeToChangelogFile="false"/>
-    <include file="config/liquibase/changelog/20180620020732_added_entity_Recolector.xml" relativeToChangelogFile="false"/>
-    <include file="config/liquibase/changelog/20180620020733_added_entity_CentroAcopio.xml" relativeToChangelogFile="false"/>
-    <include file="config/liquibase/changelog/20180620020734_added_entity_Comercio.xml" relativeToChangelogFile="false"/>
-    <include file="config/liquibase/changelog/20180620020735_added_entity_Local.xml" relativeToChangelogFile="false"/>
-    <include file="config/liquibase/changelog/20180620020736_added_entity_Fotografia.xml" relativeToChangelogFile="false"/>
-    <include file="config/liquibase/changelog/20180620020737_added_entity_Producto.xml" relativeToChangelogFile="false"/>
-    <include file="config/liquibase/changelog/20180620020738_added_entity_SolicitudSuscripcion.xml" relativeToChangelogFile="false"/>
-    <include file="config/liquibase/changelog/20180620020739_added_entity_Suscripcion.xml" relativeToChangelogFile="false"/>
-    <include file="config/liquibase/changelog/20180620020740_added_entity_Pedido.xml" relativeToChangelogFile="false"/>
-    <include file="config/liquibase/changelog/20180620020741_added_entity_LineaProducto.xml" relativeToChangelogFile="false"/>
-    <include file="config/liquibase/changelog/20180620020742_added_entity_LineaEntrega.xml" relativeToChangelogFile="false"/>
-    <include file="config/liquibase/changelog/20180620020743_added_entity_OrdenRecoleccion.xml" relativeToChangelogFile="false"/>
-    <include file="config/liquibase/changelog/20180620020744_added_entity_CadenaOrdenRecoleccion.xml" relativeToChangelogFile="false"/>
-    <include file="config/liquibase/changelog/20180620020745_added_entity_CategoriaAlimentacion.xml" relativeToChangelogFile="false"/>
-    <include file="config/liquibase/changelog/20180620020746_added_entity_Publicacion.xml" relativeToChangelogFile="false"/>
-    <include file="config/liquibase/changelog/20180620020747_added_entity_ComentarioPublicacion.xml" relativeToChangelogFile="false"/>
-    <include file="config/liquibase/changelog/20180620020748_added_entity_Evento.xml" relativeToChangelogFile="false"/>
-    <include file="config/liquibase/changelog/20180620020749_added_entity_DiaEntrega.xml" relativeToChangelogFile="false"/>
-    <include file="config/liquibase/changelog/20180620020750_added_entity_ResenaComercio.xml" relativeToChangelogFile="false"/>
-    <include file="config/liquibase/changelog/20180620020751_added_entity_ResenaCliente.xml" relativeToChangelogFile="false"/>
-    <include file="config/liquibase/changelog/20180620020752_added_entity_Patrocinador.xml" relativeToChangelogFile="false"/>
-    <include file="config/liquibase/changelog/20180620020753_added_entity_SolicitudPatrocinio.xml" relativeToChangelogFile="false"/>
-    <include file="config/liquibase/changelog/20180620020754_added_entity_Etiqueta.xml" relativeToChangelogFile="false"/>
-    <include file="config/liquibase/changelog/20180620020755_added_entity_Entrega.xml" relativeToChangelogFile="false"/>
-    <include file="config/liquibase/changelog/20180620020756_added_entity_CadenaEntrega.xml" relativeToChangelogFile="false"/>
-    <include file="config/liquibase/changelog/20180620020757_added_entity_CobroSuscripcion.xml" relativeToChangelogFile="false"/>
-    <include file="config/liquibase/changelog/20180620020758_added_entity_Pago.xml" relativeToChangelogFile="false"/>
-    <include file="config/liquibase/changelog/20180620020759_added_entity_CobroMensualidad.xml" relativeToChangelogFile="false"/>
-    <!-- jhipster-needle-liquibase-add-changelog - JHipster will add liquibase changelogs here -->
-    <include file="config/liquibase/changelog/20180620020725_added_entity_constraints_Rol.xml" relativeToChangelogFile="false"/>
-    <include file="config/liquibase/changelog/20180620020727_added_entity_constraints_Usuario.xml" relativeToChangelogFile="false"/>
-    <include file="config/liquibase/changelog/20180620020728_added_entity_constraints_Contrato.xml" relativeToChangelogFile="false"/>
-    <include file="config/liquibase/changelog/20180620020730_added_entity_constraints_Cliente.xml" relativeToChangelogFile="false"/>
-    <include file="config/liquibase/changelog/20180620020731_added_entity_constraints_Administrador.xml" relativeToChangelogFile="false"/>
-    <include file="config/liquibase/changelog/20180620020732_added_entity_constraints_Recolector.xml" relativeToChangelogFile="false"/>
-    <include file="config/liquibase/changelog/20180620020734_added_entity_constraints_Comercio.xml" relativeToChangelogFile="false"/>
-    <include file="config/liquibase/changelog/20180620020735_added_entity_constraints_Local.xml" relativeToChangelogFile="false"/>
-    <include file="config/liquibase/changelog/20180620020736_added_entity_constraints_Fotografia.xml" relativeToChangelogFile="false"/>
-    <include file="config/liquibase/changelog/20180620020737_added_entity_constraints_Producto.xml" relativeToChangelogFile="false"/>
-    <include file="config/liquibase/changelog/20180620020738_added_entity_constraints_SolicitudSuscripcion.xml" relativeToChangelogFile="false"/>
-    <include file="config/liquibase/changelog/20180620020739_added_entity_constraints_Suscripcion.xml" relativeToChangelogFile="false"/>
-    <include file="config/liquibase/changelog/20180620020740_added_entity_constraints_Pedido.xml" relativeToChangelogFile="false"/>
-    <include file="config/liquibase/changelog/20180620020741_added_entity_constraints_LineaProducto.xml" relativeToChangelogFile="false"/>
-    <include file="config/liquibase/changelog/20180620020742_added_entity_constraints_LineaEntrega.xml" relativeToChangelogFile="false"/>
-    <include file="config/liquibase/changelog/20180620020743_added_entity_constraints_OrdenRecoleccion.xml" relativeToChangelogFile="false"/>
-    <include file="config/liquibase/changelog/20180620020744_added_entity_constraints_CadenaOrdenRecoleccion.xml" relativeToChangelogFile="false"/>
-    <include file="config/liquibase/changelog/20180620020746_added_entity_constraints_Publicacion.xml" relativeToChangelogFile="false"/>
-    <include file="config/liquibase/changelog/20180620020747_added_entity_constraints_ComentarioPublicacion.xml" relativeToChangelogFile="false"/>
-    <include file="config/liquibase/changelog/20180620020748_added_entity_constraints_Evento.xml" relativeToChangelogFile="false"/>
-    <include file="config/liquibase/changelog/20180620020750_added_entity_constraints_ResenaComercio.xml" relativeToChangelogFile="false"/>
-    <include file="config/liquibase/changelog/20180620020751_added_entity_constraints_ResenaCliente.xml" relativeToChangelogFile="false"/>
-    <include file="config/liquibase/changelog/20180620020752_added_entity_constraints_Patrocinador.xml" relativeToChangelogFile="false"/>
-    <include file="config/liquibase/changelog/20180620020755_added_entity_constraints_Entrega.xml" relativeToChangelogFile="false"/>
-    <include file="config/liquibase/changelog/20180620020756_added_entity_constraints_CadenaEntrega.xml" relativeToChangelogFile="false"/>
-    <include file="config/liquibase/changelog/20180620020757_added_entity_constraints_CobroSuscripcion.xml" relativeToChangelogFile="false"/>
-    <include file="config/liquibase/changelog/20180620020759_added_entity_constraints_CobroMensualidad.xml" relativeToChangelogFile="false"/>
+
+    <include file="config/liquibase/changelog/20180622042344_added_entity_Configuracion.xml" relativeToChangelogFile="false"></include>
+    <include file="config/liquibase/changelog/20180622042345_added_entity_Usuario.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20180622042346_added_entity_Contrato.xml" relativeToChangelogFile="false"></include>
+    <include file="config/liquibase/changelog/20180622042347_added_entity_TipoContrato.xml" relativeToChangelogFile="false"></include>
+    <include file="config/liquibase/changelog/20180622042348_added_entity_CentroAcopio.xml" relativeToChangelogFile="false"></include>
+    <include file="config/liquibase/changelog/20180622042349_added_entity_Comercio.xml" relativeToChangelogFile="false"></include>
+    <include file="config/liquibase/changelog/20180622042350_added_entity_Local.xml" relativeToChangelogFile="false"></include>
+    <include file="config/liquibase/changelog/20180622042351_added_entity_Fotografia.xml" relativeToChangelogFile="false"></include>
+    <include file="config/liquibase/changelog/20180622042352_added_entity_Producto.xml" relativeToChangelogFile="false"></include>
+    <include file="config/liquibase/changelog/20180622042353_added_entity_Suscripcion.xml" relativeToChangelogFile="false"></include>
+    <include file="config/liquibase/changelog/20180622042354_added_entity_Pedido.xml" relativeToChangelogFile="false"></include>
+    <include file="config/liquibase/changelog/20180622042355_added_entity_LineaProducto.xml" relativeToChangelogFile="false"></include>
+    <include file="config/liquibase/changelog/20180622042356_added_entity_LineaEntrega.xml" relativeToChangelogFile="false"></include>
+    <include file="config/liquibase/changelog/20180622042357_added_entity_OrdenRecoleccion.xml" relativeToChangelogFile="false"></include>
+    <include file="config/liquibase/changelog/20180622042358_added_entity_CadenaOrdenRecoleccion.xml" relativeToChangelogFile="false"></include>
+    <include file="config/liquibase/changelog/20180622042359_added_entity_CategoriaAlimentacion.xml" relativeToChangelogFile="false"></include>
+    <include file="config/liquibase/changelog/20180622042400_added_entity_Publicacion.xml" relativeToChangelogFile="false"></include>
+    <include file="config/liquibase/changelog/20180622042401_added_entity_ComentarioPublicacion.xml" relativeToChangelogFile="false"></include>
+    <include file="config/liquibase/changelog/20180622042402_added_entity_Evento.xml" relativeToChangelogFile="false"></include>
+    <include file="config/liquibase/changelog/20180622042403_added_entity_DiaEntrega.xml" relativeToChangelogFile="false"></include>
+    <include file="config/liquibase/changelog/20180622042404_added_entity_ResenaComercio.xml" relativeToChangelogFile="false"></include>
+    <include file="config/liquibase/changelog/20180622042405_added_entity_ResenaCliente.xml" relativeToChangelogFile="false"></include>
+    <include file="config/liquibase/changelog/20180622042406_added_entity_Patrocinador.xml" relativeToChangelogFile="false"></include>
+    <include file="config/liquibase/changelog/20180622042407_added_entity_Etiqueta.xml" relativeToChangelogFile="false"></include>
+    <include file="config/liquibase/changelog/20180622042408_added_entity_Entrega.xml" relativeToChangelogFile="false"></include>
+    <include file="config/liquibase/changelog/20180622042409_added_entity_CadenaEntrega.xml" relativeToChangelogFile="false"></include>
+    <include file="config/liquibase/changelog/20180622042410_added_entity_CobroSuscripcion.xml" relativeToChangelogFile="false"></include>
+    <include file="config/liquibase/changelog/20180622042411_added_entity_Pago.xml" relativeToChangelogFile="false"></include>
+    <include file="config/liquibase/changelog/20180622042412_added_entity_CobroMensualidad.xml" relativeToChangelogFile="false"></include>
+    <!-- jhipster-needle-liquibase-add-constraints-changelog - JHipster will add liquibase constraints changelogs here -->
+    <include file="config/liquibase/changelog/20180622042345_added_entity_constraints_Usuario.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20180622042346_added_entity_constraints_Contrato.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20180622042349_added_entity_constraints_Comercio.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20180622042350_added_entity_constraints_Local.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20180622042351_added_entity_constraints_Fotografia.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20180622042352_added_entity_constraints_Producto.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20180622042353_added_entity_constraints_Suscripcion.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20180622042354_added_entity_constraints_Pedido.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20180622042355_added_entity_constraints_LineaProducto.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20180622042356_added_entity_constraints_LineaEntrega.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20180622042357_added_entity_constraints_OrdenRecoleccion.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20180622042358_added_entity_constraints_CadenaOrdenRecoleccion.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20180622042400_added_entity_constraints_Publicacion.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20180622042401_added_entity_constraints_ComentarioPublicacion.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20180622042402_added_entity_constraints_Evento.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20180622042404_added_entity_constraints_ResenaComercio.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20180622042405_added_entity_constraints_ResenaCliente.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20180622042406_added_entity_constraints_Patrocinador.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20180622042408_added_entity_constraints_Entrega.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20180622042409_added_entity_constraints_CadenaEntrega.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20180622042410_added_entity_constraints_CobroSuscripcion.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20180622042412_added_entity_constraints_CobroMensualidad.xml" relativeToChangelogFile="false"/>
     <!-- jhipster-needle-liquibase-add-constraints-changelog - JHipster will add liquibase constraints changelogs here -->
 </databaseChangeLog>

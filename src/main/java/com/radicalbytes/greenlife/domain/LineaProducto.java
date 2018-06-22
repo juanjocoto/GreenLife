@@ -29,10 +29,6 @@ public class LineaProducto implements Serializable {
     @Column(name = "cantidad", nullable = false)
     private Integer cantidad;
 
-    @NotNull
-    @Column(name = "precio_unitario", nullable = false)
-    private Float precioUnitario;
-
     @ManyToOne
     private Producto producto;
 
@@ -56,19 +52,6 @@ public class LineaProducto implements Serializable {
 
     public void setCantidad(Integer cantidad) {
         this.cantidad = cantidad;
-    }
-
-    public Float getPrecioUnitario() {
-        return precioUnitario;
-    }
-
-    public LineaProducto precioUnitario(Float precioUnitario) {
-        this.precioUnitario = precioUnitario;
-        return this;
-    }
-
-    public void setPrecioUnitario(Float precioUnitario) {
-        this.precioUnitario = precioUnitario;
     }
 
     public Producto getProducto() {
@@ -110,7 +93,6 @@ public class LineaProducto implements Serializable {
         return "LineaProducto{" +
             "id=" + getId() +
             ", cantidad=" + getCantidad() +
-            ", precioUnitario=" + getPrecioUnitario() +
             "}";
     }
 }

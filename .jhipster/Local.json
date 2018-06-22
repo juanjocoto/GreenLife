@@ -75,7 +75,7 @@
             "fieldValidateRulesMaxlength": 8
         }
     ],
-    "changelogDate": "20180620020735",
+    "changelogDate": "20180622042350",
     "entityTableName": "local",
     "dto": "mapstruct",
     "pagination": "no",

@@ -2,8 +2,8 @@
     "fluentMethods": true,
     "relationships": [
         {
-            "relationshipName": "cliente",
-            "otherEntityName": "cliente",
+            "relationshipName": "usuario",
+            "otherEntityName": "usuario",
             "relationshipType": "many-to-one",
             "otherEntityField": "id"
         },
@@ -39,7 +39,7 @@
             "fieldValidateRulesMaxlength": 200
         }
     ],
-    "changelogDate": "20180620020750",
+    "changelogDate": "20180622042404",
     "entityTableName": "resena_comercio",
     "dto": "mapstruct",
     "pagination": "no",

@@ -15,16 +15,9 @@
             "fieldValidateRules": [
                 "required"
             ]
-        },
-        {
-            "fieldName": "precioUnitario",
-            "fieldType": "Float",
-            "fieldValidateRules": [
-                "required"
-            ]
         }
     ],
-    "changelogDate": "20180620020741",
+    "changelogDate": "20180622042355",
     "entityTableName": "linea_producto",
     "dto": "mapstruct",
     "pagination": "no",

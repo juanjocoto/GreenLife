@@ -37,16 +37,16 @@ public class OrdenRecoleccion implements Serializable {
     @Column(name = "fecha_solicitud", nullable = false)
     private LocalDate fechaSolicitud;
 
-    @ManyToOne
-    private Cliente cliente;
-
-    @ManyToOne
-    private Recolector recolector;
-
     @OneToMany(mappedBy = "ordenRecoleccion")
     @JsonIgnore
     @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
     private Set<CadenaOrdenRecoleccion> estados = new HashSet<>();
+
+    @ManyToOne
+    private Usuario solicitante;
+
+    @ManyToOne
+    private Usuario recolector;
 
     // jhipster-needle-entity-add-field - JHipster will add fields here, do not remove
     public Long getId() {
@@ -83,32 +83,6 @@ public class OrdenRecoleccion implements Serializable {
         this.fechaSolicitud = fechaSolicitud;
     }
 
-    public Cliente getCliente() {
-        return cliente;
-    }
-
-    public OrdenRecoleccion cliente(Cliente cliente) {
-        this.cliente = cliente;
-        return this;
-    }
-
-    public void setCliente(Cliente cliente) {
-        this.cliente = cliente;
-    }
-
-    public Recolector getRecolector() {
-        return recolector;
-    }
-
-    public OrdenRecoleccion recolector(Recolector recolector) {
-        this.recolector = recolector;
-        return this;
-    }
-
-    public void setRecolector(Recolector recolector) {
-        this.recolector = recolector;
-    }
-
     public Set<CadenaOrdenRecoleccion> getEstados() {
         return estados;
     }
@@ -132,6 +106,32 @@ public class OrdenRecoleccion implements Serializable {
 
     public void setEstados(Set<CadenaOrdenRecoleccion> cadenaOrdenRecoleccions) {
         this.estados = cadenaOrdenRecoleccions;
+    }
+
+    public Usuario getSolicitante() {
+        return solicitante;
+    }
+
+    public OrdenRecoleccion solicitante(Usuario usuario) {
+        this.solicitante = usuario;
+        return this;
+    }
+
+    public void setSolicitante(Usuario usuario) {
+        this.solicitante = usuario;
+    }
+
+    public Usuario getRecolector() {
+        return recolector;
+    }
+
+    public OrdenRecoleccion recolector(Usuario usuario) {
+        this.recolector = usuario;
+        return this;
+    }
+
+    public void setRecolector(Usuario usuario) {
+        this.recolector = usuario;
     }
     // jhipster-needle-entity-add-getters-setters - JHipster will add getters and setters here, do not remove
 

@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.5.xsd">
+    <!--
+        Added the constraints for entity Comercio.
+    -->
+    <changeSet id="20180622042349-2" author="jhipster">
+        
+        <addForeignKeyConstraint baseColumnNames="comercios_id"
+                                 baseTableName="comercio_etiquetas"
+                                 constraintName="fk_comercio_etiquetas_comercios_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="comercio"/>
+        <addForeignKeyConstraint baseColumnNames="etiquetas_id"
+                                 baseTableName="comercio_etiquetas"
+                                 constraintName="fk_comercio_etiquetas_etiquetas_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="etiqueta"/>
+        
+        <addForeignKeyConstraint baseColumnNames="comercios_id"
+                                 baseTableName="comercio_categorias"
+                                 constraintName="fk_comercio_categorias_comercios_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="comercio"/>
+        <addForeignKeyConstraint baseColumnNames="categorias_id"
+                                 baseTableName="comercio_categorias"
+                                 constraintName="fk_comercio_categorias_categorias_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="categoria_alimentacion"/>
+        
+        <addForeignKeyConstraint baseColumnNames="dueno_id"
+                                 baseTableName="comercio"
+                                 constraintName="fk_comercio_dueno_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="usuario"/>
+
+    </changeSet>
+</databaseChangeLog>

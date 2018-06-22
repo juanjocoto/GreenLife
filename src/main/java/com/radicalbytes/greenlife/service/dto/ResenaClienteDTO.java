@@ -73,8 +73,8 @@ public class ResenaClienteDTO implements Serializable {
         return clienteId;
     }
 
-    public void setClienteId(Long clienteId) {
-        this.clienteId = clienteId;
+    public void setClienteId(Long usuarioId) {
+        this.clienteId = usuarioId;
     }
 
     @Override

@@ -64,7 +64,7 @@
             ]
         }
     ],
-    "changelogDate": "20180620020737",
+    "changelogDate": "20180622042352",
     "entityTableName": "producto",
     "dto": "mapstruct",
     "pagination": "no",

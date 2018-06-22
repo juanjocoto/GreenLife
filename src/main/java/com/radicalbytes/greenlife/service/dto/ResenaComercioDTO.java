@@ -25,7 +25,7 @@ public class ResenaComercioDTO implements Serializable {
     @Size(max = 200)
     private String comentario;
 
-    private Long clienteId;
+    private Long usuarioId;
 
     private Long comercioId;
 
@@ -61,12 +61,12 @@ public class ResenaComercioDTO implements Serializable {
         this.comentario = comentario;
     }
 
-    public Long getClienteId() {
-        return clienteId;
+    public Long getUsuarioId() {
+        return usuarioId;
     }
 
-    public void setClienteId(Long clienteId) {
-        this.clienteId = clienteId;
+    public void setUsuarioId(Long usuarioId) {
+        this.usuarioId = usuarioId;
     }
 
     public Long getComercioId() {

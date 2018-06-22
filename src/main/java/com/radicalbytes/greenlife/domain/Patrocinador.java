@@ -48,10 +48,6 @@ public class Patrocinador implements Serializable {
     @Column(name = "correo", length = 10, nullable = false)
     private String correo;
 
-    @OneToOne
-    @JoinColumn(unique = true)
-    private SolicitudPatrocinio solicitud;
-
     @OneToMany(mappedBy = "patrocinador")
     @JsonIgnore
     @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
@@ -123,19 +119,6 @@ public class Patrocinador implements Serializable {
 
     public void setCorreo(String correo) {
         this.correo = correo;
-    }
-
-    public SolicitudPatrocinio getSolicitud() {
-        return solicitud;
-    }
-
-    public Patrocinador solicitud(SolicitudPatrocinio solicitudPatrocinio) {
-        this.solicitud = solicitudPatrocinio;
-        return this;
-    }
-
-    public void setSolicitud(SolicitudPatrocinio solicitudPatrocinio) {
-        this.solicitud = solicitudPatrocinio;
     }
 
     public Set<Fotografia> getFotos() {

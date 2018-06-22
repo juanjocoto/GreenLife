@@ -51,7 +51,7 @@ public class Suscripcion implements Serializable {
     private LocalDate fechaCobro;
 
     @ManyToOne
-    private Cliente cliente;
+    private Usuario usuario;
 
     @ManyToOne
     private Comercio comercio;
@@ -140,17 +140,17 @@ public class Suscripcion implements Serializable {
         this.fechaCobro = fechaCobro;
     }
 
-    public Cliente getCliente() {
-        return cliente;
+    public Usuario getUsuario() {
+        return usuario;
     }
 
-    public Suscripcion cliente(Cliente cliente) {
-        this.cliente = cliente;
+    public Suscripcion usuario(Usuario usuario) {
+        this.usuario = usuario;
         return this;
     }
 
-    public void setCliente(Cliente cliente) {
-        this.cliente = cliente;
+    public void setUsuario(Usuario usuario) {
+        this.usuario = usuario;
     }
 
     public Comercio getComercio() {

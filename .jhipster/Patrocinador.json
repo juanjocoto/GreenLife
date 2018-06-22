@@ -2,14 +2,6 @@
     "fluentMethods": true,
     "relationships": [
         {
-            "relationshipType": "one-to-one",
-            "relationshipName": "solicitud",
-            "otherEntityName": "solicitudPatrocinio",
-            "otherEntityField": "id",
-            "ownerSide": true,
-            "otherEntityRelationshipName": "patrocinador"
-        },
-        {
             "relationshipType": "one-to-many",
             "relationshipName": "fotos",
             "otherEntityName": "fotografia",
@@ -62,7 +54,7 @@
             "fieldValidateRulesMaxlength": 10
         }
     ],
-    "changelogDate": "20180620020752",
+    "changelogDate": "20180622042406",
     "entityTableName": "patrocinador",
     "dto": "mapstruct",
     "pagination": "no",
