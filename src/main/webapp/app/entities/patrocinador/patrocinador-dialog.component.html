@@ -79,13 +79,6 @@
         </div>
 
         <div class="form-group">
-            <label class="form-control-label" for="field_solicitud">Solicitud</label>
-            <select class="form-control" id="field_solicitud" name="solicitud" [(ngModel)]="patrocinador.solicitudId">
-                <option [ngValue]="null"></option>
-                <option [ngValue]="solicitudPatrocinioOption.id" *ngFor="let solicitudPatrocinioOption of solicituds; trackBy: trackSolicitudPatrocinioById">{{solicitudPatrocinioOption.id}}</option>
-            </select>
-        </div>
-        <div class="form-group">
             <label for="field_eventos">Eventos</label>
             <select class="form-control" id="field_eventos" multiple name="eventos" [(ngModel)]="patrocinador.eventos">
                 <option [ngValue]="getSelected(patrocinador.eventos, eventoOption)" *ngFor="let eventoOption of eventos; trackBy: trackEventoById">{{eventoOption.nombre}}</option>

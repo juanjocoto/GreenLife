@@ -37,7 +37,7 @@ describe('OrdenRecoleccion e2e test', () => {
         expect(ordenRecoleccionDialogPage.getFechaCrecionInput()).toMatch('2000-12-31');
         ordenRecoleccionDialogPage.setFechaSolicitudInput('2000-12-31');
         expect(ordenRecoleccionDialogPage.getFechaSolicitudInput()).toMatch('2000-12-31');
-        ordenRecoleccionDialogPage.clienteSelectLastOption();
+        ordenRecoleccionDialogPage.solicitanteSelectLastOption();
         ordenRecoleccionDialogPage.recolectorSelectLastOption();
         ordenRecoleccionDialogPage.save();
         expect(ordenRecoleccionDialogPage.getSaveButton().isPresent()).toBeFalsy();
@@ -67,7 +67,7 @@ export class OrdenRecoleccionDialogPage {
     closeButton = element(by.css('button.close'));
     fechaCrecionInput = element(by.css('input#field_fechaCrecion'));
     fechaSolicitudInput = element(by.css('input#field_fechaSolicitud'));
-    clienteSelect = element(by.css('select#field_cliente'));
+    solicitanteSelect = element(by.css('select#field_solicitante'));
     recolectorSelect = element(by.css('select#field_recolector'));
 
     getModalTitle() {
@@ -90,20 +90,20 @@ export class OrdenRecoleccionDialogPage {
         return this.fechaSolicitudInput.getAttribute('value');
     };
 
-    clienteSelectLastOption = function() {
-        this.clienteSelect.all(by.tagName('option')).last().click();
+    solicitanteSelectLastOption = function() {
+        this.solicitanteSelect.all(by.tagName('option')).last().click();
     };
 
-    clienteSelectOption = function(option) {
-        this.clienteSelect.sendKeys(option);
+    solicitanteSelectOption = function(option) {
+        this.solicitanteSelect.sendKeys(option);
     };
 
-    getClienteSelect = function() {
-        return this.clienteSelect;
+    getSolicitanteSelect = function() {
+        return this.solicitanteSelect;
     };
 
-    getClienteSelectedOption = function() {
-        return this.clienteSelect.element(by.css('option:checked')).getText();
+    getSolicitanteSelectedOption = function() {
+        return this.solicitanteSelect.element(by.css('option:checked')).getText();
     };
 
     recolectorSelectLastOption = function() {

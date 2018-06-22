@@ -9,7 +9,6 @@ import { JhiEventManager, JhiAlertService } from 'ng-jhipster';
 import { Patrocinador } from './patrocinador.model';
 import { PatrocinadorPopupService } from './patrocinador-popup.service';
 import { PatrocinadorService } from './patrocinador.service';
-import { SolicitudPatrocinio, SolicitudPatrocinioService } from '../solicitud-patrocinio';
 import { Evento, EventoService } from '../evento';
 
 @Component({
@@ -21,8 +20,6 @@ export class PatrocinadorDialogComponent implements OnInit {
     patrocinador: Patrocinador;
     isSaving: boolean;
 
-    solicituds: SolicitudPatrocinio[];
-
     eventos: Evento[];
     fechaCreacionDp: any;
 
@@ -30,7 +27,6 @@ export class PatrocinadorDialogComponent implements OnInit {
         public activeModal: NgbActiveModal,
         private jhiAlertService: JhiAlertService,
         private patrocinadorService: PatrocinadorService,
-        private solicitudPatrocinioService: SolicitudPatrocinioService,
         private eventoService: EventoService,
         private eventManager: JhiEventManager
     ) {
@@ -38,19 +34,6 @@ export class PatrocinadorDialogComponent implements OnInit {
 
     ngOnInit() {
         this.isSaving = false;
-        this.solicitudPatrocinioService
-            .query({filter: 'patrocinador-is-null'})
-            .subscribe((res: HttpResponse<SolicitudPatrocinio[]>) => {
-                if (!this.patrocinador.solicitudId) {
-                    this.solicituds = res.body;
-                } else {
-                    this.solicitudPatrocinioService
-                        .find(this.patrocinador.solicitudId)
-                        .subscribe((subRes: HttpResponse<SolicitudPatrocinio>) => {
-                            this.solicituds = [subRes.body].concat(res.body);
-                        }, (subRes: HttpErrorResponse) => this.onError(subRes.message));
-                }
-            }, (res: HttpErrorResponse) => this.onError(res.message));
         this.eventoService.query()
             .subscribe((res: HttpResponse<Evento[]>) => { this.eventos = res.body; }, (res: HttpErrorResponse) => this.onError(res.message));
     }
@@ -87,10 +70,6 @@ export class PatrocinadorDialogComponent implements OnInit {
 
     private onError(error: any) {
         this.jhiAlertService.error(error.message, null, null);
-    }
-
-    trackSolicitudPatrocinioById(index: number, item: SolicitudPatrocinio) {
-        return item.id;
     }
 
     trackEventoById(index: number, item: Evento) {

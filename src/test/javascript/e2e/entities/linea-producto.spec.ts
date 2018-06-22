@@ -35,8 +35,6 @@ describe('LineaProducto e2e test', () => {
         lineaProductoComponentsPage.clickOnCreateButton();
         lineaProductoDialogPage.setCantidadInput('5');
         expect(lineaProductoDialogPage.getCantidadInput()).toMatch('5');
-        lineaProductoDialogPage.setPrecioUnitarioInput('5');
-        expect(lineaProductoDialogPage.getPrecioUnitarioInput()).toMatch('5');
         lineaProductoDialogPage.productoSelectLastOption();
         lineaProductoDialogPage.save();
         expect(lineaProductoDialogPage.getSaveButton().isPresent()).toBeFalsy();
@@ -65,7 +63,6 @@ export class LineaProductoDialogPage {
     saveButton = element(by.css('.modal-footer .btn.btn-primary'));
     closeButton = element(by.css('button.close'));
     cantidadInput = element(by.css('input#field_cantidad'));
-    precioUnitarioInput = element(by.css('input#field_precioUnitario'));
     productoSelect = element(by.css('select#field_producto'));
 
     getModalTitle() {
@@ -78,14 +75,6 @@ export class LineaProductoDialogPage {
 
     getCantidadInput = function() {
         return this.cantidadInput.getAttribute('value');
-    };
-
-    setPrecioUnitarioInput = function(precioUnitario) {
-        this.precioUnitarioInput.sendKeys(precioUnitario);
-    };
-
-    getPrecioUnitarioInput = function() {
-        return this.precioUnitarioInput.getAttribute('value');
     };
 
     productoSelectLastOption = function() {

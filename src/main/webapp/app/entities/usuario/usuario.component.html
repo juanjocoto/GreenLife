@@ -32,20 +32,13 @@
             <th><span>ID</span></th>
             <th><span>Fecha Creacion</span></th>
             <th><span>Fecha Nacimiento</span></th>
-            <th><span>Nombre</span></th>
-            <th><span>Apellidos</span></th>
             <th><span>Cedula</span></th>
             <th><span>Direccion</span></th>
             <th><span>Telefono</span></th>
+            <th><span>Foto Url</span></th>
             <th><span>Latitud</span></th>
             <th><span>Longitud</span></th>
-            <th><span>Contrasena</span></th>
-            <th><span>Correo</span></th>
-            <th><span>Esta Activado</span></th>
-            <th><span>Nombre Usuario</span></th>
-            <th><span>Foto</span></th>
             <th><span>User Detail</span></th>
-            <th><span>Rol</span></th>
             <th></th>
             </tr>
             </thead>
@@ -54,29 +47,14 @@
                 <td><a [routerLink]="['../usuario', usuario.id ]">{{usuario.id}}</a></td>
                 <td>{{usuario.fechaCreacion | date:'mediumDate'}}</td>
                 <td>{{usuario.fechaNacimiento | date:'mediumDate'}}</td>
-                <td>{{usuario.nombre}}</td>
-                <td>{{usuario.apellidos}}</td>
                 <td>{{usuario.cedula}}</td>
                 <td>{{usuario.direccion}}</td>
                 <td>{{usuario.telefono}}</td>
+                <td>{{usuario.fotoUrl}}</td>
                 <td>{{usuario.latitud}}</td>
                 <td>{{usuario.longitud}}</td>
-                <td>{{usuario.contrasena}}</td>
-                <td>{{usuario.correo}}</td>
-                <td>{{usuario.estaActivado}}</td>
-                <td>{{usuario.nombreUsuario}}</td>
-                <td>
-                    <div *ngIf="usuario.fotoId">
-                        <a [routerLink]="['../fotografia', usuario.fotoId  ]" >{{usuario.fotoId}}</a>
-                    </div>
-                </td>
                 <td>
                     {{usuario.userDetailId}}
-                </td>
-                <td>
-                    <div *ngIf="usuario.rolId">
-                        <a [routerLink]="['../rol', usuario.rolId  ]" >{{usuario.rolNombre}}</a>
-                    </div>
                 </td>
                 <td class="text-right">
                     <div class="btn-group flex-btn-group-container">

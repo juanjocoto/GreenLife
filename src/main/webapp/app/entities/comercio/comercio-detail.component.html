@@ -24,12 +24,6 @@
         <dd>
             <span>{{comercio.tipo}}</span>
         </dd>
-        <dt><span>Usuario</span></dt>
-        <dd>
-            <div *ngIf="comercio.usuarioId">
-                <a [routerLink]="['/usuario', comercio.usuarioId]">{{comercio.usuarioNombre}}</a>
-            </div>
-        </dd>
         <dt><span>Etiquetas</span></dt>
         <dd>
             <span *ngFor="let etiquetas of comercio.etiquetas; let last = last">
@@ -41,6 +35,12 @@
             <span *ngFor="let categorias of comercio.categorias; let last = last">
                 <a [routerLink]="['/categoria-alimentacion', categorias?.id ]">{{categorias.nombre}}</a>{{last ? '' : ', '}}
             </span>
+        </dd>
+        <dt><span>Dueno</span></dt>
+        <dd>
+            <div *ngIf="comercio.duenoId">
+                <a [routerLink]="['/usuario', comercio.duenoId]">{{comercio.duenoId}}</a>
+            </div>
         </dd>
     </dl>
 

@@ -41,7 +41,6 @@ describe('Patrocinador e2e test', () => {
         expect(patrocinadorDialogPage.getCedJuridicaInput()).toMatch('cedJuridica');
         patrocinadorDialogPage.setCorreoInput('correo');
         expect(patrocinadorDialogPage.getCorreoInput()).toMatch('correo');
-        patrocinadorDialogPage.solicitudSelectLastOption();
         // patrocinadorDialogPage.eventosSelectLastOption();
         patrocinadorDialogPage.save();
         expect(patrocinadorDialogPage.getSaveButton().isPresent()).toBeFalsy();
@@ -73,7 +72,6 @@ export class PatrocinadorDialogPage {
     nombreInput = element(by.css('input#field_nombre'));
     cedJuridicaInput = element(by.css('input#field_cedJuridica'));
     correoInput = element(by.css('input#field_correo'));
-    solicitudSelect = element(by.css('select#field_solicitud'));
     eventosSelect = element(by.css('select#field_eventos'));
 
     getModalTitle() {
@@ -110,22 +108,6 @@ export class PatrocinadorDialogPage {
 
     getCorreoInput = function() {
         return this.correoInput.getAttribute('value');
-    };
-
-    solicitudSelectLastOption = function() {
-        this.solicitudSelect.all(by.tagName('option')).last().click();
-    };
-
-    solicitudSelectOption = function(option) {
-        this.solicitudSelect.sendKeys(option);
-    };
-
-    getSolicitudSelect = function() {
-        return this.solicitudSelect;
-    };
-
-    getSolicitudSelectedOption = function() {
-        return this.solicitudSelect.element(by.css('option:checked')).getText();
     };
 
     eventosSelectLastOption = function() {

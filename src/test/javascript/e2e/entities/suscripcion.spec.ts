@@ -42,7 +42,7 @@ describe('Suscripcion e2e test', () => {
         expect(suscripcionDialogPage.getFechaCancelacionInput()).toMatch('2000-12-31');
         suscripcionDialogPage.setFechaCobroInput('2000-12-31');
         expect(suscripcionDialogPage.getFechaCobroInput()).toMatch('2000-12-31');
-        suscripcionDialogPage.clienteSelectLastOption();
+        suscripcionDialogPage.usuarioSelectLastOption();
         suscripcionDialogPage.comercioSelectLastOption();
         suscripcionDialogPage.save();
         expect(suscripcionDialogPage.getSaveButton().isPresent()).toBeFalsy();
@@ -75,7 +75,7 @@ export class SuscripcionDialogPage {
     estadoSelect = element(by.css('select#field_estado'));
     fechaCancelacionInput = element(by.css('input#field_fechaCancelacion'));
     fechaCobroInput = element(by.css('input#field_fechaCobro'));
-    clienteSelect = element(by.css('select#field_cliente'));
+    usuarioSelect = element(by.css('select#field_usuario'));
     comercioSelect = element(by.css('select#field_comercio'));
 
     getModalTitle() {
@@ -125,20 +125,20 @@ export class SuscripcionDialogPage {
         return this.fechaCobroInput.getAttribute('value');
     };
 
-    clienteSelectLastOption = function() {
-        this.clienteSelect.all(by.tagName('option')).last().click();
+    usuarioSelectLastOption = function() {
+        this.usuarioSelect.all(by.tagName('option')).last().click();
     };
 
-    clienteSelectOption = function(option) {
-        this.clienteSelect.sendKeys(option);
+    usuarioSelectOption = function(option) {
+        this.usuarioSelect.sendKeys(option);
     };
 
-    getClienteSelect = function() {
-        return this.clienteSelect;
+    getUsuarioSelect = function() {
+        return this.usuarioSelect;
     };
 
-    getClienteSelectedOption = function() {
-        return this.clienteSelect.element(by.css('option:checked')).getText();
+    getUsuarioSelectedOption = function() {
+        return this.usuarioSelect.element(by.css('option:checked')).getText();
     };
 
     comercioSelectLastOption = function() {

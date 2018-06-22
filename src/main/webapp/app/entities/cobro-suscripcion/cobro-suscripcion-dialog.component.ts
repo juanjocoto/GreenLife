@@ -10,7 +10,7 @@ import { CobroSuscripcion } from './cobro-suscripcion.model';
 import { CobroSuscripcionPopupService } from './cobro-suscripcion-popup.service';
 import { CobroSuscripcionService } from './cobro-suscripcion.service';
 import { Pago, PagoService } from '../pago';
-import { Cliente, ClienteService } from '../cliente';
+import { Usuario, UsuarioService } from '../usuario';
 import { Comercio, ComercioService } from '../comercio';
 import { Suscripcion, SuscripcionService } from '../suscripcion';
 
@@ -25,7 +25,7 @@ export class CobroSuscripcionDialogComponent implements OnInit {
 
     pagos: Pago[];
 
-    clientes: Cliente[];
+    usuarios: Usuario[];
 
     comercios: Comercio[];
 
@@ -37,7 +37,7 @@ export class CobroSuscripcionDialogComponent implements OnInit {
         private jhiAlertService: JhiAlertService,
         private cobroSuscripcionService: CobroSuscripcionService,
         private pagoService: PagoService,
-        private clienteService: ClienteService,
+        private usuarioService: UsuarioService,
         private comercioService: ComercioService,
         private suscripcionService: SuscripcionService,
         private eventManager: JhiEventManager
@@ -59,8 +59,8 @@ export class CobroSuscripcionDialogComponent implements OnInit {
                         }, (subRes: HttpErrorResponse) => this.onError(subRes.message));
                 }
             }, (res: HttpErrorResponse) => this.onError(res.message));
-        this.clienteService.query()
-            .subscribe((res: HttpResponse<Cliente[]>) => { this.clientes = res.body; }, (res: HttpErrorResponse) => this.onError(res.message));
+        this.usuarioService.query()
+            .subscribe((res: HttpResponse<Usuario[]>) => { this.usuarios = res.body; }, (res: HttpErrorResponse) => this.onError(res.message));
         this.comercioService.query()
             .subscribe((res: HttpResponse<Comercio[]>) => { this.comercios = res.body; }, (res: HttpErrorResponse) => this.onError(res.message));
         this.suscripcionService.query()
@@ -105,7 +105,7 @@ export class CobroSuscripcionDialogComponent implements OnInit {
         return item.id;
     }
 
-    trackClienteById(index: number, item: Cliente) {
+    trackUsuarioById(index: number, item: Usuario) {
         return item.id;
     }
 

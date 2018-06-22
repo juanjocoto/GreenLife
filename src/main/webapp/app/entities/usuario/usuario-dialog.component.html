@@ -45,44 +45,6 @@
             </div>
         </div>
         <div class="form-group">
-            <label class="form-control-label" for="field_nombre">Nombre</label>
-            <input type="text" class="form-control" name="nombre" id="field_nombre"
-                [(ngModel)]="usuario.nombre" required minlength="5" maxlength="20"/>
-            <div [hidden]="!(editForm.controls.nombre?.dirty && editForm.controls.nombre?.invalid)">
-                <small class="form-text text-danger"
-                   [hidden]="!editForm.controls.nombre?.errors?.required">
-                   This field is required.
-                </small>
-                <small class="form-text text-danger"
-                   [hidden]="!editForm.controls.nombre?.errors?.minlength">
-                   This field is required to be at least 5 characters.
-                </small>
-                <small class="form-text text-danger"
-                   [hidden]="!editForm.controls.nombre?.errors?.maxlength">
-                   This field cannot be longer than 20 characters.
-                </small>
-            </div>
-        </div>
-        <div class="form-group">
-            <label class="form-control-label" for="field_apellidos">Apellidos</label>
-            <input type="text" class="form-control" name="apellidos" id="field_apellidos"
-                [(ngModel)]="usuario.apellidos" required minlength="5" maxlength="50"/>
-            <div [hidden]="!(editForm.controls.apellidos?.dirty && editForm.controls.apellidos?.invalid)">
-                <small class="form-text text-danger"
-                   [hidden]="!editForm.controls.apellidos?.errors?.required">
-                   This field is required.
-                </small>
-                <small class="form-text text-danger"
-                   [hidden]="!editForm.controls.apellidos?.errors?.minlength">
-                   This field is required to be at least 5 characters.
-                </small>
-                <small class="form-text text-danger"
-                   [hidden]="!editForm.controls.apellidos?.errors?.maxlength">
-                   This field cannot be longer than 50 characters.
-                </small>
-            </div>
-        </div>
-        <div class="form-group">
             <label class="form-control-label" for="field_cedula">Cedula</label>
             <input type="text" class="form-control" name="cedula" id="field_cedula"
                 [(ngModel)]="usuario.cedula" required minlength="8" maxlength="15"/>
@@ -132,6 +94,11 @@
             </div>
         </div>
         <div class="form-group">
+            <label class="form-control-label" for="field_fotoUrl">Foto Url</label>
+            <input type="text" class="form-control" name="fotoUrl" id="field_fotoUrl"
+                [(ngModel)]="usuario.fotoUrl" />
+        </div>
+        <div class="form-group">
             <label class="form-control-label" for="field_latitud">Latitud</label>
             <input type="number" class="form-control" name="latitud" id="field_latitud"
                 [(ngModel)]="usuario.latitud" />
@@ -141,82 +108,12 @@
             <input type="number" class="form-control" name="longitud" id="field_longitud"
                 [(ngModel)]="usuario.longitud" />
         </div>
-        <div class="form-group">
-            <label class="form-control-label" for="field_contrasena">Contrasena</label>
-            <input type="text" class="form-control" name="contrasena" id="field_contrasena"
-                [(ngModel)]="usuario.contrasena" required minlength="8"/>
-            <div [hidden]="!(editForm.controls.contrasena?.dirty && editForm.controls.contrasena?.invalid)">
-                <small class="form-text text-danger"
-                   [hidden]="!editForm.controls.contrasena?.errors?.required">
-                   This field is required.
-                </small>
-                <small class="form-text text-danger"
-                   [hidden]="!editForm.controls.contrasena?.errors?.minlength">
-                   This field is required to be at least 8 characters.
-                </small>
-            </div>
-        </div>
-        <div class="form-group">
-            <label class="form-control-label" for="field_correo">Correo</label>
-            <input type="text" class="form-control" name="correo" id="field_correo"
-                [(ngModel)]="usuario.correo" required maxlength="80"/>
-            <div [hidden]="!(editForm.controls.correo?.dirty && editForm.controls.correo?.invalid)">
-                <small class="form-text text-danger"
-                   [hidden]="!editForm.controls.correo?.errors?.required">
-                   This field is required.
-                </small>
-                <small class="form-text text-danger"
-                   [hidden]="!editForm.controls.correo?.errors?.maxlength">
-                   This field cannot be longer than 80 characters.
-                </small>
-            </div>
-        </div>
-        <div class="form-group">
-            <label class="form-control-label" for="field_estaActivado">Esta Activado</label>
-            <input type="checkbox" class="form-control" name="estaActivado" id="field_estaActivado"
-                [(ngModel)]="usuario.estaActivado" />
-            <div [hidden]="!(editForm.controls.estaActivado?.dirty && editForm.controls.estaActivado?.invalid)">
-                <small class="form-text text-danger"
-                   [hidden]="!editForm.controls.estaActivado?.errors?.required">
-                   This field is required.
-                </small>
-            </div>
-        </div>
-        <div class="form-group">
-            <label class="form-control-label" for="field_nombreUsuario">Nombre Usuario</label>
-            <input type="text" class="form-control" name="nombreUsuario" id="field_nombreUsuario"
-                [(ngModel)]="usuario.nombreUsuario" required maxlength="20"/>
-            <div [hidden]="!(editForm.controls.nombreUsuario?.dirty && editForm.controls.nombreUsuario?.invalid)">
-                <small class="form-text text-danger"
-                   [hidden]="!editForm.controls.nombreUsuario?.errors?.required">
-                   This field is required.
-                </small>
-                <small class="form-text text-danger"
-                   [hidden]="!editForm.controls.nombreUsuario?.errors?.maxlength">
-                   This field cannot be longer than 20 characters.
-                </small>
-            </div>
-        </div>
 
-        <div class="form-group">
-            <label class="form-control-label" for="field_foto">Foto</label>
-            <select class="form-control" id="field_foto" name="foto" [(ngModel)]="usuario.fotoId">
-                <option [ngValue]="null"></option>
-                <option [ngValue]="fotografiaOption.id" *ngFor="let fotografiaOption of fotos; trackBy: trackFotografiaById">{{fotografiaOption.id}}</option>
-            </select>
-        </div>
         <div class="form-group">
             <label class="form-control-label" for="field_userDetail">User Detail</label>
             <select class="form-control" id="field_userDetail" name="userDetail" [(ngModel)]="usuario.userDetailId" >
                 <option [ngValue]="null"></option>
                 <option [ngValue]="userOption.id" *ngFor="let userOption of users; trackBy: trackUserById">{{userOption.id}}</option>
-            </select>
-        </div>
-        <div class="form-group">
-            <label class="form-control-label" for="field_rol">Rol</label>
-            <select class="form-control" id="field_rol" name="rol" [(ngModel)]="usuario.rolId" >
-                <option [ngValue]="null"></option>
-                <option [ngValue]="rolOption.id" *ngFor="let rolOption of rols; trackBy: trackRolById">{{rolOption.nombre}}</option>
             </select>
         </div>
     </div>

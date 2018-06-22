@@ -9,8 +9,7 @@ import { JhiEventManager, JhiAlertService } from 'ng-jhipster';
 import { OrdenRecoleccion } from './orden-recoleccion.model';
 import { OrdenRecoleccionPopupService } from './orden-recoleccion-popup.service';
 import { OrdenRecoleccionService } from './orden-recoleccion.service';
-import { Cliente, ClienteService } from '../cliente';
-import { Recolector, RecolectorService } from '../recolector';
+import { Usuario, UsuarioService } from '../usuario';
 
 @Component({
     selector: 'jhi-orden-recoleccion-dialog',
@@ -21,9 +20,7 @@ export class OrdenRecoleccionDialogComponent implements OnInit {
     ordenRecoleccion: OrdenRecoleccion;
     isSaving: boolean;
 
-    clientes: Cliente[];
-
-    recolectors: Recolector[];
+    usuarios: Usuario[];
     fechaCrecionDp: any;
     fechaSolicitudDp: any;
 
@@ -31,18 +28,15 @@ export class OrdenRecoleccionDialogComponent implements OnInit {
         public activeModal: NgbActiveModal,
         private jhiAlertService: JhiAlertService,
         private ordenRecoleccionService: OrdenRecoleccionService,
-        private clienteService: ClienteService,
-        private recolectorService: RecolectorService,
+        private usuarioService: UsuarioService,
         private eventManager: JhiEventManager
     ) {
     }
 
     ngOnInit() {
         this.isSaving = false;
-        this.clienteService.query()
-            .subscribe((res: HttpResponse<Cliente[]>) => { this.clientes = res.body; }, (res: HttpErrorResponse) => this.onError(res.message));
-        this.recolectorService.query()
-            .subscribe((res: HttpResponse<Recolector[]>) => { this.recolectors = res.body; }, (res: HttpErrorResponse) => this.onError(res.message));
+        this.usuarioService.query()
+            .subscribe((res: HttpResponse<Usuario[]>) => { this.usuarios = res.body; }, (res: HttpErrorResponse) => this.onError(res.message));
     }
 
     clear() {
@@ -79,11 +73,7 @@ export class OrdenRecoleccionDialogComponent implements OnInit {
         this.jhiAlertService.error(error.message, null, null);
     }
 
-    trackClienteById(index: number, item: Cliente) {
-        return item.id;
-    }
-
-    trackRecolectorById(index: number, item: Recolector) {
+    trackUsuarioById(index: number, item: Usuario) {
         return item.id;
     }
 }

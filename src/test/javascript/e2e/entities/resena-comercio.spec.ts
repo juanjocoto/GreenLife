@@ -39,7 +39,7 @@ describe('ResenaComercio e2e test', () => {
         expect(resenaComercioDialogPage.getCalificacionInput()).toMatch('5');
         resenaComercioDialogPage.setComentarioInput('comentario');
         expect(resenaComercioDialogPage.getComentarioInput()).toMatch('comentario');
-        resenaComercioDialogPage.clienteSelectLastOption();
+        resenaComercioDialogPage.usuarioSelectLastOption();
         resenaComercioDialogPage.comercioSelectLastOption();
         resenaComercioDialogPage.save();
         expect(resenaComercioDialogPage.getSaveButton().isPresent()).toBeFalsy();
@@ -70,7 +70,7 @@ export class ResenaComercioDialogPage {
     fechaCreacionInput = element(by.css('input#field_fechaCreacion'));
     calificacionInput = element(by.css('input#field_calificacion'));
     comentarioInput = element(by.css('input#field_comentario'));
-    clienteSelect = element(by.css('select#field_cliente'));
+    usuarioSelect = element(by.css('select#field_usuario'));
     comercioSelect = element(by.css('select#field_comercio'));
 
     getModalTitle() {
@@ -101,20 +101,20 @@ export class ResenaComercioDialogPage {
         return this.comentarioInput.getAttribute('value');
     };
 
-    clienteSelectLastOption = function() {
-        this.clienteSelect.all(by.tagName('option')).last().click();
+    usuarioSelectLastOption = function() {
+        this.usuarioSelect.all(by.tagName('option')).last().click();
     };
 
-    clienteSelectOption = function(option) {
-        this.clienteSelect.sendKeys(option);
+    usuarioSelectOption = function(option) {
+        this.usuarioSelect.sendKeys(option);
     };
 
-    getClienteSelect = function() {
-        return this.clienteSelect;
+    getUsuarioSelect = function() {
+        return this.usuarioSelect;
     };
 
-    getClienteSelectedOption = function() {
-        return this.clienteSelect.element(by.css('option:checked')).getText();
+    getUsuarioSelectedOption = function() {
+        return this.usuarioSelect.element(by.css('option:checked')).getText();
     };
 
     comercioSelectLastOption = function() {

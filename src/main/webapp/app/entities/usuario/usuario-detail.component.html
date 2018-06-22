@@ -12,14 +12,6 @@
         <dd>
             <span>{{usuario.fechaNacimiento | date:'mediumDate'}}</span>
         </dd>
-        <dt><span>Nombre</span></dt>
-        <dd>
-            <span>{{usuario.nombre}}</span>
-        </dd>
-        <dt><span>Apellidos</span></dt>
-        <dd>
-            <span>{{usuario.apellidos}}</span>
-        </dd>
         <dt><span>Cedula</span></dt>
         <dd>
             <span>{{usuario.cedula}}</span>
@@ -32,6 +24,10 @@
         <dd>
             <span>{{usuario.telefono}}</span>
         </dd>
+        <dt><span>Foto Url</span></dt>
+        <dd>
+            <span>{{usuario.fotoUrl}}</span>
+        </dd>
         <dt><span>Latitud</span></dt>
         <dd>
             <span>{{usuario.latitud}}</span>
@@ -40,37 +36,9 @@
         <dd>
             <span>{{usuario.longitud}}</span>
         </dd>
-        <dt><span>Contrasena</span></dt>
-        <dd>
-            <span>{{usuario.contrasena}}</span>
-        </dd>
-        <dt><span>Correo</span></dt>
-        <dd>
-            <span>{{usuario.correo}}</span>
-        </dd>
-        <dt><span>Esta Activado</span></dt>
-        <dd>
-            <span>{{usuario.estaActivado}}</span>
-        </dd>
-        <dt><span>Nombre Usuario</span></dt>
-        <dd>
-            <span>{{usuario.nombreUsuario}}</span>
-        </dd>
-        <dt><span>Foto</span></dt>
-        <dd>
-            <div *ngIf="usuario.fotoId">
-                <a [routerLink]="['/fotografia', usuario.fotoId]">{{usuario.fotoId}}</a>
-            </div>
-        </dd>
         <dt><span>User Detail</span></dt>
         <dd>
             {{usuario.userDetailId}}
-        </dd>
-        <dt><span>Rol</span></dt>
-        <dd>
-            <div *ngIf="usuario.rolId">
-                <a [routerLink]="['/rol', usuario.rolId]">{{usuario.rolNombre}}</a>
-            </div>
         </dd>
     </dl>
 

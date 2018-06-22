@@ -16,10 +16,10 @@
         <dd>
             <span>{{resenaComercio.comentario}}</span>
         </dd>
-        <dt><span>Cliente</span></dt>
+        <dt><span>Usuario</span></dt>
         <dd>
-            <div *ngIf="resenaComercio.clienteId">
-                <a [routerLink]="['/cliente', resenaComercio.clienteId]">{{resenaComercio.clienteId}}</a>
+            <div *ngIf="resenaComercio.usuarioId">
+                <a [routerLink]="['/usuario', resenaComercio.usuarioId]">{{resenaComercio.usuarioId}}</a>
             </div>
         </dd>
         <dt><span>Comercio</span></dt>

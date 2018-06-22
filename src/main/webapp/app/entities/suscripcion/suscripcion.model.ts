@@ -2,7 +2,9 @@ import { BaseEntity } from './../../shared';
 
 export const enum EstadoSuscripcion {
     'VIGENTE',
-    'EXPIRADO'
+    'EXPIRADO',
+    'PENDIENTE',
+    'RECHAZADO'
 }
 
 export class Suscripcion implements BaseEntity {
@@ -13,7 +15,7 @@ export class Suscripcion implements BaseEntity {
         public estado?: EstadoSuscripcion,
         public fechaCancelacion?: any,
         public fechaCobro?: any,
-        public clienteId?: number,
+        public usuarioId?: number,
         public comercioId?: number,
         public pedidos?: BaseEntity[],
         public historicoEntregases?: BaseEntity[],
