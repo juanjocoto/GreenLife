@@ -1,6 +1,6 @@
+import { LandingComponent } from './views/landing/landing.component';
 import { Route } from '@angular/router';
-import { LandingComponent } from './landing/landing.component';
 
-export const greenLifeRoutes: Route = {
-    path: '', component: LandingComponent
-};
+export const greenLifeRoutes: Route[] = [
+    { path: '', component: LandingComponent }
+];

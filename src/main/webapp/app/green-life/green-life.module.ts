@@ -1,11 +1,14 @@
-import { NgModule } from '@angular/core';
+import { MatButtonModule, MatButtonToggleModule, MatCardModule, MatGridListModule, MatListModule, MatMenuModule, MatToolbarModule } from '@angular/material';
+
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { BrowserModule } from '@angular/platform-browser';
 import { CommonModule } from '@angular/common';
-import { LandingComponent } from './landing/landing.component';
-import { NavbarGreenlifeComponent } from './layout/navbar-greenlife/navbar-greenlife.component';
 import { FooterGreenlifeComponent } from './layout/footer-greenlife/footer-greenlife.component';
-import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
-import { MatMenuModule, MatButtonModule, MatButtonToggleModule, MatToolbarModule, MatCardModule, MatGridListModule, MatListModule } from '@angular/material';
+import { LandingComponent } from './views/landing/landing.component';
+import { NavbarGreenlifeComponent } from './layout/navbar-greenlife/navbar-greenlife.component';
+import { NgModule } from '@angular/core';
+import { RootComponent } from './root/root.component';
+import { RouterModule } from '@angular/router';
 
 @NgModule({
   imports: [
@@ -18,8 +21,10 @@ import { MatMenuModule, MatButtonModule, MatButtonToggleModule, MatToolbarModule
     MatToolbarModule,
     MatCardModule,
     MatGridListModule,
-    MatListModule
+    MatListModule,
+    RouterModule
   ],
-  declarations: [LandingComponent, NavbarGreenlifeComponent, FooterGreenlifeComponent]
+  declarations: [LandingComponent, NavbarGreenlifeComponent, FooterGreenlifeComponent,
+    RootComponent]
 })
 export class GreenLifeModule { }
