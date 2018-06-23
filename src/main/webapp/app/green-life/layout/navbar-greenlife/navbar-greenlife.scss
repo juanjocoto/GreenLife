@@ -1,26 +1,46 @@
 // Estilos navbar Green Life
-.navbarGreenlife {
-    background-color: white;
-    display: flex;
+.navbar {
+    background-color: #ffffff;
+    padding-left: 40px;
+    padding-right: 35px;
 }
-.navbarEspaciador {
-    flex: 1 1 auto;
-}
-.btnMenu {
+.navbar-light .navbar-nav .nav-link {
+    margin-left: 15px;
+    margin-right: 15px;
     color: #46B97E;
+    font-weight: normal;
+    font-size: 17px;
 }
-.btnRegistrarse {
-    color: white !important;
-    background-color: #38CAE0 !important;
-    border: #38CAE0 solid 1px !important;
-    margin: 0 10px 0 10px;
+.dropdown-menu {
+    margin-top: 8px;
+    border-color: #ffffff;
+    font-size: 17px;
+    border-radius: 6px;
+    box-shadow: 0 1px 3px rgba(gray, 1 * 0.14), 0 1px 2px rgba(gray, 1  * 0.24);
+    a {
+        color: #46B97E;
+    }
 }
-.btnSesion {
-    color: #38CAE0 !important;
-    background-color: white !important;
-    border: #38CAE0 solid 1px !important;
-    margin: 0 10px 0 10px;
+.dropdown-toggle:after {
+    display: none;
 }
+// Botones del navbar
+.btnIniciarSesion, .btnRegistrarse {
+    margin-left: 10px;
+    font-weight: bold;
+    text-decoration: none;
+    color: #38CAE0;
+    border-radius: 6px;
+}
+.btnIniciarSesion:hover, .btnRegistrarse:hover {
+    color: #ffffff;
+    background-color:#38CAE0 ;
+    box-shadow: 0 1px 3px rgba(gray, 1 * 0.14), 0 1px 2px rgba(gray, 1  * 0.24);
+}
+.btnIniciarSesion {
+    font-weight: normal;
+}
+
 // Estilos del logo
 .navbarLogo {
     &.logo {

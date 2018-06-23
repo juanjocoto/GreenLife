@@ -9,12 +9,15 @@ import { NavbarGreenlifeComponent } from './layout/navbar-greenlife/navbar-green
 import { NgModule } from '@angular/core';
 import { RootComponent } from './root/root.component';
 import { RouterModule } from '@angular/router';
+import { FooterGreenlifeComponent } from './layout/footer-greenlife/footer-greenlife.component';
+import { MatMenuModule, MatButtonModule, MatButtonToggleModule, MatToolbarModule, MatCardModule, MatGridListModule, MatListModule } from '@angular/material';
 
 @NgModule({
   imports: [
     CommonModule,
     BrowserModule,
     BrowserAnimationsModule,
+    NgbModule,
     MatMenuModule,
     MatButtonModule,
     MatButtonToggleModule,
