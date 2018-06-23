@@ -1,19 +1,16 @@
-/**** Sección del título ****/
-.title-section {
+/**** Sección Inicio ****/
+#main-section {
     background-color: #46B97E;
+    height: 400px;
+    width: 100%;
     text-align: center;
-    color: white;
-}
-.title-container {
     padding-top: 100px;
 }
-.title-container .title {
-    margin: 0px;
-    font-size: 85px;
-    font-weight: bold;
+#main-section h1 {
+    color: white;
+    font-size: 80px;
 }
-.title-container .divider {
-    margin: 90px 0px 0px 0px;
+#main-section .divider {
     display: block;
     unicode-bidi: isolate;
     -webkit-margin-before: 0.5em;
@@ -28,58 +25,52 @@
     -moz-box-shadow: 0px 5px 8px 0px rgba(0,0,0,0.75);
     box-shadow: 0px 5px 8px 0px rgba(0,0,0,0.75);
 }
-.title-container .sub-title {
-    margin: 20px 0px 0px 0px;
-    font-weight: normal;
-    font-size: 30px;
-}
-/**** Sección de los servicios y beneficios ****/
-.services-section {
-    text-align: center;
-    background-color: white;
-}
-.services-container {
-    padding-top: 50px;
-}
-.services-container .title{
-    color: #46B97E;
-    font-weight: normal;
-    font-size: 40px;
-}
-.services-container .service {
-    margin-top: 100px;
-    padding: 0px 50px;
-}
-.services-container .service-name {
-    color: #46B97E;
-    font-weight: bold;
-    font-size: 27px;
-}
-.services-container .service-title {
-    color: #38CAE0;
-    font-weight: bold;
-    font-size: 17px;
-}
-.services-container .service-desc {
-    color: #38CAE0;
-    font-weight: normal;
-    font-size: 17px;
-    margin: 5px;
-}
-/**** Sección Estándar ****/
-.section .picture {
-    background-repeat: no-repeat, repeat;
-    background-size: cover;
-}
-.section .content {
-    padding: 0px 0px 0px 45px;
-}
-.section .content .title {
+#main-section h2 {
     color: white;
+    font-size: 28px;
     font-weight: normal;
+    margin-top: 15px;
+}
+/**** Sección Servicios y Beneficios ****/
+#services-section {
+    text-align: center;
+    padding: 50px 0px 10px 0px;
+    width: 100%;
+}
+#services-section h1 {
+    color: #46B97E;
+    font-size: 32px;
+    font-weight: normal;
+}
+#services {
+    text-align: center;
+    margin-bottom: 25px;
+}
+#services h1 {
+    color: #46B97E;
+    font-size: 25px;
+    margin-top: 10px;
+}
+#services h2 {
+    color: #38CAE0;
+    font-size: 20px;
+    margin-top: 10px;
+    font-weight: bold;
+}
+#services p {
+    color: #38CAE0;
+    font-size: 20px;
+    margin-top: 10px;
+    font-weight: normal;
+    line-height: 23px;
+}
+/**** Sección Servicio Info ****/
+.service-info h1 {
+    color: white;
+    font-weight: bold;
     font-size: 38px;
 }
-.section .content .divider{
+.service-info .divider  {
     display: block;
     unicode-bidi: isolate;
     -webkit-margin-before: 0;
@@ -93,34 +84,109 @@
     -webkit-box-shadow: 0px 5px 8px 0px rgba(0,0,0,0.75);
     -moz-box-shadow: 0px 5px 8px 0px rgba(0,0,0,0.75);
     box-shadow: 0px 5px 8px 0px rgba(0,0,0,0.75);
-    margin-bottom: 10px;
+    margin: 10px 0px 20px 0px;
 }
-.section .content .desc {
+.service-info p {
     color: white;
     font-weight: normal;
-    font-size: 22px;
-    padding-right: 20px;
+    font-size: 20px;
+    margin: 0px;
 }
-.section .content .link {
+.service-info a {
+    display: inline-block;
     background-color: white;
     padding: 10px;
     text-decoration: none;
-    color: #38CAE0;
-    margin-top: 10px;
-    font-size: 18px;
-    display: inline-block;
+    font-size: 20px;
+    margin-top: 15px;
 }
-/**** Sección de alimentación ****/
-.alimentation-section {
+#alimentacion {
     background-color: #38CAE0;
 }
-.alimentation-section .picture {
-    background-image: url("../../../content/images/suscripcionesServicio.jpg");
+#alimentacion .picture {
+    background-image: url("../../../content/images/alimentacionServicio.jpg");
+    background-size: cover;
+    height: 100%;
 }
-/**** Sección de suscripción ****/
-.suscription-section {
-    background-color:#46B97E;
+#alimentacion .col-md-8 {
+    height: 300px;
+    padding: 40px 30px;
 }
-.suscription-section .picture {
+#alimentacion .col-md-4 {
+    padding: 0px;
+    height: 380px;
+    max-height: 380px;
+    min-height: 380px;
+}
+#alimentacion a {
+    color: #38CAE0;
+}
+#alimentacion a:hover {
+    background-color: #38CAE0;
+    color: white;
+    border: 1px solid white;
+}
+#suscripciones {
+    background-color: #46B97E;
+}
+#suscripciones a {
+    color: #46B97E;
+}
+#suscripciones a:hover {
+    background-color: #46B97E;
+    color: white;
+    border: 1px solid white;
+}
+#suscripciones .picture {
     background-image: url("../../../content/images/suscripcionesServicio.jpg");
+    background-size: cover;
+    height: 100%;
+}
+#suscripciones .col-md-8 {
+    height: 380px;
+    padding: 40px 30px;
+}
+#suscripciones .col-md-4 {
+    padding: 0px;
+    height: 380px;
+    max-height: 380px;
+    min-height: 380px;
+}
+@media only screen and (max-width: 640px) {
+    #suscripciones .col-md-8 {
+        height: 450px;
+    }
+}
+@media only screen and (max-width: 500px) {
+    #alimentacion .col-md-8 {
+        height: 350px;
+    }
+    #alimentacion h1 {
+        font-size: 30px;
+    }
+    #suscripciones .col-md-8 {
+        height: 550px;
+    }
+    #suscripciones h1 {
+        font-size: 30px;
+    }
+}
+/**** Sección Comercios Afiliados ****/
+#comercios-section {
+    text-align: center;
+    padding: 50px 0px 10px 0px;
+    width: 100%;
+    margin-bottom: 30px;
+}
+#comercios-section h1 {
+    color: #46B97E;
+    font-size: 32px;
+    font-weight: normal;
+}
+#comercios {
+    text-align: center;
+    margin-bottom: 25px;
+}
+#comercios img {
+    margin-bottom: 50px;
 }
