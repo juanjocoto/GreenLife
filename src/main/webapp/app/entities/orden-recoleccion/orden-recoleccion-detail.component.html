@@ -12,16 +12,16 @@
         <dd>
             <span>{{ordenRecoleccion.fechaSolicitud | date:'mediumDate'}}</span>
         </dd>
-        <dt><span>Cliente</span></dt>
+        <dt><span>Solicitante</span></dt>
         <dd>
-            <div *ngIf="ordenRecoleccion.clienteId">
-                <a [routerLink]="['/cliente', ordenRecoleccion.clienteId]">{{ordenRecoleccion.clienteId}}</a>
+            <div *ngIf="ordenRecoleccion.solicitanteId">
+                <a [routerLink]="['/usuario', ordenRecoleccion.solicitanteId]">{{ordenRecoleccion.solicitanteId}}</a>
             </div>
         </dd>
         <dt><span>Recolector</span></dt>
         <dd>
             <div *ngIf="ordenRecoleccion.recolectorId">
-                <a [routerLink]="['/recolector', ordenRecoleccion.recolectorId]">{{ordenRecoleccion.recolectorId}}</a>
+                <a [routerLink]="['/usuario', ordenRecoleccion.recolectorId]">{{ordenRecoleccion.recolectorId}}</a>
             </div>
         </dd>
     </dl>

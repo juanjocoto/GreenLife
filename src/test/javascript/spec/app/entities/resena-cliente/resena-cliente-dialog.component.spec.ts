@@ -10,7 +10,7 @@ import { ResenaClienteDialogComponent } from '../../../../../../main/webapp/app/
 import { ResenaClienteService } from '../../../../../../main/webapp/app/entities/resena-cliente/resena-cliente.service';
 import { ResenaCliente } from '../../../../../../main/webapp/app/entities/resena-cliente/resena-cliente.model';
 import { ComercioService } from '../../../../../../main/webapp/app/entities/comercio';
-import { ClienteService } from '../../../../../../main/webapp/app/entities/cliente';
+import { UsuarioService } from '../../../../../../main/webapp/app/entities/usuario';
 
 describe('Component Tests', () => {
 
@@ -27,7 +27,7 @@ describe('Component Tests', () => {
                 declarations: [ResenaClienteDialogComponent],
                 providers: [
                     ComercioService,
-                    ClienteService,
+                    UsuarioService,
                     ResenaClienteService
                 ]
             })

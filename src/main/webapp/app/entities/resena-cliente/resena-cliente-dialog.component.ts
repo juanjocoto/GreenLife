@@ -10,7 +10,7 @@ import { ResenaCliente } from './resena-cliente.model';
 import { ResenaClientePopupService } from './resena-cliente-popup.service';
 import { ResenaClienteService } from './resena-cliente.service';
 import { Comercio, ComercioService } from '../comercio';
-import { Cliente, ClienteService } from '../cliente';
+import { Usuario, UsuarioService } from '../usuario';
 
 @Component({
     selector: 'jhi-resena-cliente-dialog',
@@ -23,7 +23,7 @@ export class ResenaClienteDialogComponent implements OnInit {
 
     comercios: Comercio[];
 
-    clientes: Cliente[];
+    usuarios: Usuario[];
     fechaCreacionDp: any;
 
     constructor(
@@ -31,7 +31,7 @@ export class ResenaClienteDialogComponent implements OnInit {
         private jhiAlertService: JhiAlertService,
         private resenaClienteService: ResenaClienteService,
         private comercioService: ComercioService,
-        private clienteService: ClienteService,
+        private usuarioService: UsuarioService,
         private eventManager: JhiEventManager
     ) {
     }
@@ -40,8 +40,8 @@ export class ResenaClienteDialogComponent implements OnInit {
         this.isSaving = false;
         this.comercioService.query()
             .subscribe((res: HttpResponse<Comercio[]>) => { this.comercios = res.body; }, (res: HttpErrorResponse) => this.onError(res.message));
-        this.clienteService.query()
-            .subscribe((res: HttpResponse<Cliente[]>) => { this.clientes = res.body; }, (res: HttpErrorResponse) => this.onError(res.message));
+        this.usuarioService.query()
+            .subscribe((res: HttpResponse<Usuario[]>) => { this.usuarios = res.body; }, (res: HttpErrorResponse) => this.onError(res.message));
     }
 
     clear() {
@@ -82,7 +82,7 @@ export class ResenaClienteDialogComponent implements OnInit {
         return item.id;
     }
 
-    trackClienteById(index: number, item: Cliente) {
+    trackUsuarioById(index: number, item: Usuario) {
         return item.id;
     }
 }

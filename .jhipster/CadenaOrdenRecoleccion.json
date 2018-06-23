@@ -32,7 +32,7 @@
             "fieldValidateRulesMaxlength": 200
         }
     ],
-    "changelogDate": "20180620020744",
+    "changelogDate": "20180622042358",
     "entityTableName": "cadena_orden_recoleccion",
     "dto": "mapstruct",
     "pagination": "no",

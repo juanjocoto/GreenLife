@@ -9,9 +9,9 @@ import { GreenlifeTestModule } from '../../../test.module';
 import { ComercioDialogComponent } from '../../../../../../main/webapp/app/entities/comercio/comercio-dialog.component';
 import { ComercioService } from '../../../../../../main/webapp/app/entities/comercio/comercio.service';
 import { Comercio } from '../../../../../../main/webapp/app/entities/comercio/comercio.model';
-import { UsuarioService } from '../../../../../../main/webapp/app/entities/usuario';
 import { EtiquetaService } from '../../../../../../main/webapp/app/entities/etiqueta';
 import { CategoriaAlimentacionService } from '../../../../../../main/webapp/app/entities/categoria-alimentacion';
+import { UsuarioService } from '../../../../../../main/webapp/app/entities/usuario';
 
 describe('Component Tests', () => {
 
@@ -27,9 +27,9 @@ describe('Component Tests', () => {
                 imports: [GreenlifeTestModule],
                 declarations: [ComercioDialogComponent],
                 providers: [
-                    UsuarioService,
                     EtiquetaService,
                     CategoriaAlimentacionService,
+                    UsuarioService,
                     ComercioService
                 ]
             })

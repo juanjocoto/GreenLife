@@ -33,13 +33,11 @@ public class ComercioDTO implements Serializable {
 
     private TipoComercio tipo;
 
-    private Long usuarioId;
-
-    private String usuarioNombre;
-
     private Set<EtiquetaDTO> etiquetas = new HashSet<>();
 
     private Set<CategoriaAlimentacionDTO> categorias = new HashSet<>();
+
+    private Long duenoId;
 
     public Long getId() {
         return id;
@@ -89,22 +87,6 @@ public class ComercioDTO implements Serializable {
         this.tipo = tipo;
     }
 
-    public Long getUsuarioId() {
-        return usuarioId;
-    }
-
-    public void setUsuarioId(Long usuarioId) {
-        this.usuarioId = usuarioId;
-    }
-
-    public String getUsuarioNombre() {
-        return usuarioNombre;
-    }
-
-    public void setUsuarioNombre(String usuarioNombre) {
-        this.usuarioNombre = usuarioNombre;
-    }
-
     public Set<EtiquetaDTO> getEtiquetas() {
         return etiquetas;
     }
@@ -119,6 +101,14 @@ public class ComercioDTO implements Serializable {
 
     public void setCategorias(Set<CategoriaAlimentacionDTO> categoriaAlimentacions) {
         this.categorias = categoriaAlimentacions;
+    }
+
+    public Long getDuenoId() {
+        return duenoId;
+    }
+
+    public void setDuenoId(Long usuarioId) {
+        this.duenoId = usuarioId;
     }
 
     @Override

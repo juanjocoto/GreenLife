@@ -37,38 +37,19 @@ describe('Usuario e2e test', () => {
         expect(usuarioDialogPage.getFechaCreacionInput()).toMatch('2000-12-31');
         usuarioDialogPage.setFechaNacimientoInput('2000-12-31');
         expect(usuarioDialogPage.getFechaNacimientoInput()).toMatch('2000-12-31');
-        usuarioDialogPage.setNombreInput('nombre');
-        expect(usuarioDialogPage.getNombreInput()).toMatch('nombre');
-        usuarioDialogPage.setApellidosInput('apellidos');
-        expect(usuarioDialogPage.getApellidosInput()).toMatch('apellidos');
         usuarioDialogPage.setCedulaInput('cedula');
         expect(usuarioDialogPage.getCedulaInput()).toMatch('cedula');
         usuarioDialogPage.setDireccionInput('direccion');
         expect(usuarioDialogPage.getDireccionInput()).toMatch('direccion');
         usuarioDialogPage.setTelefonoInput('telefono');
         expect(usuarioDialogPage.getTelefonoInput()).toMatch('telefono');
+        usuarioDialogPage.setFotoUrlInput('fotoUrl');
+        expect(usuarioDialogPage.getFotoUrlInput()).toMatch('fotoUrl');
         usuarioDialogPage.setLatitudInput('5');
         expect(usuarioDialogPage.getLatitudInput()).toMatch('5');
         usuarioDialogPage.setLongitudInput('5');
         expect(usuarioDialogPage.getLongitudInput()).toMatch('5');
-        usuarioDialogPage.setContrasenaInput('contrasena');
-        expect(usuarioDialogPage.getContrasenaInput()).toMatch('contrasena');
-        usuarioDialogPage.setCorreoInput('correo');
-        expect(usuarioDialogPage.getCorreoInput()).toMatch('correo');
-        usuarioDialogPage.getEstaActivadoInput().isSelected().then((selected) => {
-            if (selected) {
-                usuarioDialogPage.getEstaActivadoInput().click();
-                expect(usuarioDialogPage.getEstaActivadoInput().isSelected()).toBeFalsy();
-            } else {
-                usuarioDialogPage.getEstaActivadoInput().click();
-                expect(usuarioDialogPage.getEstaActivadoInput().isSelected()).toBeTruthy();
-            }
-        });
-        usuarioDialogPage.setNombreUsuarioInput('nombreUsuario');
-        expect(usuarioDialogPage.getNombreUsuarioInput()).toMatch('nombreUsuario');
-        usuarioDialogPage.fotoSelectLastOption();
         usuarioDialogPage.userDetailSelectLastOption();
-        usuarioDialogPage.rolSelectLastOption();
         usuarioDialogPage.save();
         expect(usuarioDialogPage.getSaveButton().isPresent()).toBeFalsy();
     });
@@ -97,20 +78,13 @@ export class UsuarioDialogPage {
     closeButton = element(by.css('button.close'));
     fechaCreacionInput = element(by.css('input#field_fechaCreacion'));
     fechaNacimientoInput = element(by.css('input#field_fechaNacimiento'));
-    nombreInput = element(by.css('input#field_nombre'));
-    apellidosInput = element(by.css('input#field_apellidos'));
     cedulaInput = element(by.css('input#field_cedula'));
     direccionInput = element(by.css('input#field_direccion'));
     telefonoInput = element(by.css('input#field_telefono'));
+    fotoUrlInput = element(by.css('input#field_fotoUrl'));
     latitudInput = element(by.css('input#field_latitud'));
     longitudInput = element(by.css('input#field_longitud'));
-    contrasenaInput = element(by.css('input#field_contrasena'));
-    correoInput = element(by.css('input#field_correo'));
-    estaActivadoInput = element(by.css('input#field_estaActivado'));
-    nombreUsuarioInput = element(by.css('input#field_nombreUsuario'));
-    fotoSelect = element(by.css('select#field_foto'));
     userDetailSelect = element(by.css('select#field_userDetail'));
-    rolSelect = element(by.css('select#field_rol'));
 
     getModalTitle() {
         return this.modalTitle.getText();
@@ -130,22 +104,6 @@ export class UsuarioDialogPage {
 
     getFechaNacimientoInput = function() {
         return this.fechaNacimientoInput.getAttribute('value');
-    };
-
-    setNombreInput = function(nombre) {
-        this.nombreInput.sendKeys(nombre);
-    };
-
-    getNombreInput = function() {
-        return this.nombreInput.getAttribute('value');
-    };
-
-    setApellidosInput = function(apellidos) {
-        this.apellidosInput.sendKeys(apellidos);
-    };
-
-    getApellidosInput = function() {
-        return this.apellidosInput.getAttribute('value');
     };
 
     setCedulaInput = function(cedula) {
@@ -172,6 +130,14 @@ export class UsuarioDialogPage {
         return this.telefonoInput.getAttribute('value');
     };
 
+    setFotoUrlInput = function(fotoUrl) {
+        this.fotoUrlInput.sendKeys(fotoUrl);
+    };
+
+    getFotoUrlInput = function() {
+        return this.fotoUrlInput.getAttribute('value');
+    };
+
     setLatitudInput = function(latitud) {
         this.latitudInput.sendKeys(latitud);
     };
@@ -188,49 +154,6 @@ export class UsuarioDialogPage {
         return this.longitudInput.getAttribute('value');
     };
 
-    setContrasenaInput = function(contrasena) {
-        this.contrasenaInput.sendKeys(contrasena);
-    };
-
-    getContrasenaInput = function() {
-        return this.contrasenaInput.getAttribute('value');
-    };
-
-    setCorreoInput = function(correo) {
-        this.correoInput.sendKeys(correo);
-    };
-
-    getCorreoInput = function() {
-        return this.correoInput.getAttribute('value');
-    };
-
-    getEstaActivadoInput = function() {
-        return this.estaActivadoInput;
-    };
-    setNombreUsuarioInput = function(nombreUsuario) {
-        this.nombreUsuarioInput.sendKeys(nombreUsuario);
-    };
-
-    getNombreUsuarioInput = function() {
-        return this.nombreUsuarioInput.getAttribute('value');
-    };
-
-    fotoSelectLastOption = function() {
-        this.fotoSelect.all(by.tagName('option')).last().click();
-    };
-
-    fotoSelectOption = function(option) {
-        this.fotoSelect.sendKeys(option);
-    };
-
-    getFotoSelect = function() {
-        return this.fotoSelect;
-    };
-
-    getFotoSelectedOption = function() {
-        return this.fotoSelect.element(by.css('option:checked')).getText();
-    };
-
     userDetailSelectLastOption = function() {
         this.userDetailSelect.all(by.tagName('option')).last().click();
     };
@@ -245,22 +168,6 @@ export class UsuarioDialogPage {
 
     getUserDetailSelectedOption = function() {
         return this.userDetailSelect.element(by.css('option:checked')).getText();
-    };
-
-    rolSelectLastOption = function() {
-        this.rolSelect.all(by.tagName('option')).last().click();
-    };
-
-    rolSelectOption = function(option) {
-        this.rolSelect.sendKeys(option);
-    };
-
-    getRolSelect = function() {
-        return this.rolSelect;
-    };
-
-    getRolSelectedOption = function() {
-        return this.rolSelect.element(by.css('option:checked')).getText();
     };
 
     save() {

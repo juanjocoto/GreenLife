@@ -6,7 +6,7 @@ export class ResenaComercio implements BaseEntity {
         public fechaCreacion?: any,
         public calificacion?: number,
         public comentario?: string,
-        public clienteId?: number,
+        public usuarioId?: number,
         public comercioId?: number,
     ) {
     }

@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.5.xsd">
+    <!--
+        Added the constraints for entity CobroSuscripcion.
+    -->
+    <changeSet id="20180622042410-2" author="jhipster">
+        
+        <addForeignKeyConstraint baseColumnNames="pago_id"
+                                 baseTableName="cobro_suscripcion"
+                                 constraintName="fk_cobro_suscripcion_pago_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="pago"/>
+
+        <addForeignKeyConstraint baseColumnNames="cliente_id"
+                                 baseTableName="cobro_suscripcion"
+                                 constraintName="fk_cobro_suscripcion_cliente_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="usuario"/>
+
+        <addForeignKeyConstraint baseColumnNames="comercio_id"
+                                 baseTableName="cobro_suscripcion"
+                                 constraintName="fk_cobro_suscripcion_comercio_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="comercio"/>
+
+        <addForeignKeyConstraint baseColumnNames="suscripcion_id"
+                                 baseTableName="cobro_suscripcion"
+                                 constraintName="fk_cobro_suscripcion_suscripcion_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="suscripcion"/>
+
+    </changeSet>
+</databaseChangeLog>

@@ -9,9 +9,7 @@ import { GreenlifeTestModule } from '../../../test.module';
 import { UsuarioDialogComponent } from '../../../../../../main/webapp/app/entities/usuario/usuario-dialog.component';
 import { UsuarioService } from '../../../../../../main/webapp/app/entities/usuario/usuario.service';
 import { Usuario } from '../../../../../../main/webapp/app/entities/usuario/usuario.model';
-import { FotografiaService } from '../../../../../../main/webapp/app/entities/fotografia';
 import { UserService } from '../../../../../../main/webapp/app/shared';
-import { RolService } from '../../../../../../main/webapp/app/entities/rol';
 
 describe('Component Tests', () => {
 
@@ -27,9 +25,7 @@ describe('Component Tests', () => {
                 imports: [GreenlifeTestModule],
                 declarations: [UsuarioDialogComponent],
                 providers: [
-                    FotografiaService,
                     UserService,
-                    RolService,
                     UsuarioService
                 ]
             })

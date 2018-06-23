@@ -38,16 +38,6 @@ public class Usuario implements Serializable {
     private LocalDate fechaNacimiento;
 
     @NotNull
-    @Size(min = 5, max = 20)
-    @Column(name = "nombre", length = 20, nullable = false)
-    private String nombre;
-
-    @NotNull
-    @Size(min = 5, max = 50)
-    @Column(name = "apellidos", length = 50, nullable = false)
-    private String apellidos;
-
-    @NotNull
     @Size(min = 8, max = 15)
     @Column(name = "cedula", length = 15, nullable = false)
     private String cedula;
@@ -61,38 +51,38 @@ public class Usuario implements Serializable {
     @Column(name = "telefono", length = 8, nullable = false)
     private String telefono;
 
+    @Column(name = "foto_url")
+    private String fotoUrl;
+
     @Column(name = "latitud")
     private Double latitud;
 
     @Column(name = "longitud")
     private Double longitud;
 
-    @NotNull
-    @Size(min = 8)
-    @Column(name = "contrasena", nullable = false)
-    private String contrasena;
-
-    @NotNull
-    @Size(max = 80)
-    @Column(name = "correo", length = 80, nullable = false)
-    private String correo;
-
-    @NotNull
-    @Column(name = "esta_activado", nullable = false)
-    private Boolean estaActivado;
-
-    @NotNull
-    @Size(max = 20)
-    @Column(name = "nombre_usuario", length = 20, nullable = false)
-    private String nombreUsuario;
-
-    @OneToOne
-    @JoinColumn(unique = true)
-    private Fotografia foto;
-
     @OneToOne
     @JoinColumn(unique = true)
     private User userDetail;
+
+    @OneToMany(mappedBy = "usuario")
+    @JsonIgnore
+    @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
+    private Set<ResenaComercio> resenasComercios = new HashSet<>();
+
+    @OneToMany(mappedBy = "usuario")
+    @JsonIgnore
+    @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
+    private Set<Suscripcion> suscripciones = new HashSet<>();
+
+    @OneToMany(mappedBy = "solicitante")
+    @JsonIgnore
+    @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
+    private Set<OrdenRecoleccion> solicitudesRecoleccions = new HashSet<>();
+
+    @OneToMany(mappedBy = "recolector")
+    @JsonIgnore
+    @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
+    private Set<OrdenRecoleccion> ordenes = new HashSet<>();
 
     @OneToMany(mappedBy = "usuario")
     @JsonIgnore
@@ -104,8 +94,10 @@ public class Usuario implements Serializable {
     @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
     private Set<ComentarioPublicacion> comentarios = new HashSet<>();
 
-    @ManyToOne
-    private Rol rol;
+    @OneToMany(mappedBy = "dueno")
+    @JsonIgnore
+    @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
+    private Set<Comercio> comercios = new HashSet<>();
 
     // jhipster-needle-entity-add-field - JHipster will add fields here, do not remove
     public Long getId() {
@@ -140,32 +132,6 @@ public class Usuario implements Serializable {
 
     public void setFechaNacimiento(LocalDate fechaNacimiento) {
         this.fechaNacimiento = fechaNacimiento;
-    }
-
-    public String getNombre() {
-        return nombre;
-    }
-
-    public Usuario nombre(String nombre) {
-        this.nombre = nombre;
-        return this;
-    }
-
-    public void setNombre(String nombre) {
-        this.nombre = nombre;
-    }
-
-    public String getApellidos() {
-        return apellidos;
-    }
-
-    public Usuario apellidos(String apellidos) {
-        this.apellidos = apellidos;
-        return this;
-    }
-
-    public void setApellidos(String apellidos) {
-        this.apellidos = apellidos;
     }
 
     public String getCedula() {
@@ -207,6 +173,19 @@ public class Usuario implements Serializable {
         this.telefono = telefono;
     }
 
+    public String getFotoUrl() {
+        return fotoUrl;
+    }
+
+    public Usuario fotoUrl(String fotoUrl) {
+        this.fotoUrl = fotoUrl;
+        return this;
+    }
+
+    public void setFotoUrl(String fotoUrl) {
+        this.fotoUrl = fotoUrl;
+    }
+
     public Double getLatitud() {
         return latitud;
     }
@@ -233,71 +212,6 @@ public class Usuario implements Serializable {
         this.longitud = longitud;
     }
 
-    public String getContrasena() {
-        return contrasena;
-    }
-
-    public Usuario contrasena(String contrasena) {
-        this.contrasena = contrasena;
-        return this;
-    }
-
-    public void setContrasena(String contrasena) {
-        this.contrasena = contrasena;
-    }
-
-    public String getCorreo() {
-        return correo;
-    }
-
-    public Usuario correo(String correo) {
-        this.correo = correo;
-        return this;
-    }
-
-    public void setCorreo(String correo) {
-        this.correo = correo;
-    }
-
-    public Boolean isEstaActivado() {
-        return estaActivado;
-    }
-
-    public Usuario estaActivado(Boolean estaActivado) {
-        this.estaActivado = estaActivado;
-        return this;
-    }
-
-    public void setEstaActivado(Boolean estaActivado) {
-        this.estaActivado = estaActivado;
-    }
-
-    public String getNombreUsuario() {
-        return nombreUsuario;
-    }
-
-    public Usuario nombreUsuario(String nombreUsuario) {
-        this.nombreUsuario = nombreUsuario;
-        return this;
-    }
-
-    public void setNombreUsuario(String nombreUsuario) {
-        this.nombreUsuario = nombreUsuario;
-    }
-
-    public Fotografia getFoto() {
-        return foto;
-    }
-
-    public Usuario foto(Fotografia fotografia) {
-        this.foto = fotografia;
-        return this;
-    }
-
-    public void setFoto(Fotografia fotografia) {
-        this.foto = fotografia;
-    }
-
     public User getUserDetail() {
         return userDetail;
     }
@@ -309,6 +223,106 @@ public class Usuario implements Serializable {
 
     public void setUserDetail(User user) {
         this.userDetail = user;
+    }
+
+    public Set<ResenaComercio> getResenasComercios() {
+        return resenasComercios;
+    }
+
+    public Usuario resenasComercios(Set<ResenaComercio> resenaComercios) {
+        this.resenasComercios = resenaComercios;
+        return this;
+    }
+
+    public Usuario addResenasComercio(ResenaComercio resenaComercio) {
+        this.resenasComercios.add(resenaComercio);
+        resenaComercio.setUsuario(this);
+        return this;
+    }
+
+    public Usuario removeResenasComercio(ResenaComercio resenaComercio) {
+        this.resenasComercios.remove(resenaComercio);
+        resenaComercio.setUsuario(null);
+        return this;
+    }
+
+    public void setResenasComercios(Set<ResenaComercio> resenaComercios) {
+        this.resenasComercios = resenaComercios;
+    }
+
+    public Set<Suscripcion> getSuscripciones() {
+        return suscripciones;
+    }
+
+    public Usuario suscripciones(Set<Suscripcion> suscripcions) {
+        this.suscripciones = suscripcions;
+        return this;
+    }
+
+    public Usuario addSuscripciones(Suscripcion suscripcion) {
+        this.suscripciones.add(suscripcion);
+        suscripcion.setUsuario(this);
+        return this;
+    }
+
+    public Usuario removeSuscripciones(Suscripcion suscripcion) {
+        this.suscripciones.remove(suscripcion);
+        suscripcion.setUsuario(null);
+        return this;
+    }
+
+    public void setSuscripciones(Set<Suscripcion> suscripcions) {
+        this.suscripciones = suscripcions;
+    }
+
+    public Set<OrdenRecoleccion> getSolicitudesRecoleccions() {
+        return solicitudesRecoleccions;
+    }
+
+    public Usuario solicitudesRecoleccions(Set<OrdenRecoleccion> ordenRecoleccions) {
+        this.solicitudesRecoleccions = ordenRecoleccions;
+        return this;
+    }
+
+    public Usuario addSolicitudesRecoleccion(OrdenRecoleccion ordenRecoleccion) {
+        this.solicitudesRecoleccions.add(ordenRecoleccion);
+        ordenRecoleccion.setSolicitante(this);
+        return this;
+    }
+
+    public Usuario removeSolicitudesRecoleccion(OrdenRecoleccion ordenRecoleccion) {
+        this.solicitudesRecoleccions.remove(ordenRecoleccion);
+        ordenRecoleccion.setSolicitante(null);
+        return this;
+    }
+
+    public void setSolicitudesRecoleccions(Set<OrdenRecoleccion> ordenRecoleccions) {
+        this.solicitudesRecoleccions = ordenRecoleccions;
+    }
+
+    public Set<OrdenRecoleccion> getOrdenes() {
+        return ordenes;
+    }
+
+    public Usuario ordenes(Set<OrdenRecoleccion> ordenRecoleccions) {
+        this.ordenes = ordenRecoleccions;
+        return this;
+    }
+
+    public Usuario addOrdenes(OrdenRecoleccion ordenRecoleccion) {
+        this.ordenes.add(ordenRecoleccion);
+        ordenRecoleccion.setRecolector(this);
+        return this;
+    }
+
+    public Usuario removeOrdenes(OrdenRecoleccion ordenRecoleccion) {
+        this.ordenes.remove(ordenRecoleccion);
+        ordenRecoleccion.setRecolector(null);
+        return this;
+    }
+
+    public void setOrdenes(Set<OrdenRecoleccion> ordenRecoleccions) {
+        this.ordenes = ordenRecoleccions;
     }
 
     public Set<Publicacion> getPublicaciones() {
@@ -361,17 +375,29 @@ public class Usuario implements Serializable {
         this.comentarios = comentarioPublicacions;
     }
 
-    public Rol getRol() {
-        return rol;
+    public Set<Comercio> getComercios() {
+        return comercios;
     }
 
-    public Usuario rol(Rol rol) {
-        this.rol = rol;
+    public Usuario comercios(Set<Comercio> comercios) {
+        this.comercios = comercios;
         return this;
     }
 
-    public void setRol(Rol rol) {
-        this.rol = rol;
+    public Usuario addComercios(Comercio comercio) {
+        this.comercios.add(comercio);
+        comercio.setDueno(this);
+        return this;
+    }
+
+    public Usuario removeComercios(Comercio comercio) {
+        this.comercios.remove(comercio);
+        comercio.setDueno(null);
+        return this;
+    }
+
+    public void setComercios(Set<Comercio> comercios) {
+        this.comercios = comercios;
     }
     // jhipster-needle-entity-add-getters-setters - JHipster will add getters and setters here, do not remove
 
@@ -401,17 +427,12 @@ public class Usuario implements Serializable {
             "id=" + getId() +
             ", fechaCreacion='" + getFechaCreacion() + "'" +
             ", fechaNacimiento='" + getFechaNacimiento() + "'" +
-            ", nombre='" + getNombre() + "'" +
-            ", apellidos='" + getApellidos() + "'" +
             ", cedula='" + getCedula() + "'" +
             ", direccion='" + getDireccion() + "'" +
             ", telefono='" + getTelefono() + "'" +
+            ", fotoUrl='" + getFotoUrl() + "'" +
             ", latitud=" + getLatitud() +
             ", longitud=" + getLongitud() +
-            ", contrasena='" + getContrasena() + "'" +
-            ", correo='" + getCorreo() + "'" +
-            ", estaActivado='" + isEstaActivado() + "'" +
-            ", nombreUsuario='" + getNombreUsuario() + "'" +
             "}";
     }
 }

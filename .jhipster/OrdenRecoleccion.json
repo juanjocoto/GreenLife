@@ -2,22 +2,22 @@
     "fluentMethods": true,
     "relationships": [
         {
-            "relationshipName": "cliente",
-            "otherEntityName": "cliente",
-            "relationshipType": "many-to-one",
-            "otherEntityField": "id"
-        },
-        {
-            "relationshipName": "recolector",
-            "otherEntityName": "recolector",
-            "relationshipType": "many-to-one",
-            "otherEntityField": "id"
-        },
-        {
             "relationshipType": "one-to-many",
             "relationshipName": "estado",
             "otherEntityName": "cadenaOrdenRecoleccion",
             "otherEntityRelationshipName": "ordenRecoleccion"
+        },
+        {
+            "relationshipType": "many-to-one",
+            "relationshipName": "solicitante",
+            "otherEntityName": "usuario",
+            "otherEntityField": "id"
+        },
+        {
+            "relationshipType": "many-to-one",
+            "relationshipName": "recolector",
+            "otherEntityName": "usuario",
+            "otherEntityField": "id"
         }
     ],
     "fields": [
@@ -36,7 +36,7 @@
             ]
         }
     ],
-    "changelogDate": "20180620020743",
+    "changelogDate": "20180622042357",
     "entityTableName": "orden_recoleccion",
     "dto": "mapstruct",
     "pagination": "no",

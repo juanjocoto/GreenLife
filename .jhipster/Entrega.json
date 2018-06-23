@@ -35,7 +35,7 @@
             ]
         }
     ],
-    "changelogDate": "20180620020755",
+    "changelogDate": "20180622042408",
     "entityTableName": "entrega",
     "dto": "mapstruct",
     "pagination": "no",

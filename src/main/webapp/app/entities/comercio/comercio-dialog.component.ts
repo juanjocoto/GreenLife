@@ -9,9 +9,9 @@ import { JhiEventManager, JhiAlertService } from 'ng-jhipster';
 import { Comercio } from './comercio.model';
 import { ComercioPopupService } from './comercio-popup.service';
 import { ComercioService } from './comercio.service';
-import { Usuario, UsuarioService } from '../usuario';
 import { Etiqueta, EtiquetaService } from '../etiqueta';
 import { CategoriaAlimentacion, CategoriaAlimentacionService } from '../categoria-alimentacion';
+import { Usuario, UsuarioService } from '../usuario';
 
 @Component({
     selector: 'jhi-comercio-dialog',
@@ -22,43 +22,32 @@ export class ComercioDialogComponent implements OnInit {
     comercio: Comercio;
     isSaving: boolean;
 
-    usuarios: Usuario[];
-
     etiquetas: Etiqueta[];
 
     categoriaalimentacions: CategoriaAlimentacion[];
+
+    usuarios: Usuario[];
     fechaCreacionDp: any;
 
     constructor(
         public activeModal: NgbActiveModal,
         private jhiAlertService: JhiAlertService,
         private comercioService: ComercioService,
-        private usuarioService: UsuarioService,
         private etiquetaService: EtiquetaService,
         private categoriaAlimentacionService: CategoriaAlimentacionService,
+        private usuarioService: UsuarioService,
         private eventManager: JhiEventManager
     ) {
     }
 
     ngOnInit() {
         this.isSaving = false;
-        this.usuarioService
-            .query({filter: 'comercio-is-null'})
-            .subscribe((res: HttpResponse<Usuario[]>) => {
-                if (!this.comercio.usuarioId) {
-                    this.usuarios = res.body;
-                } else {
-                    this.usuarioService
-                        .find(this.comercio.usuarioId)
-                        .subscribe((subRes: HttpResponse<Usuario>) => {
-                            this.usuarios = [subRes.body].concat(res.body);
-                        }, (subRes: HttpErrorResponse) => this.onError(subRes.message));
-                }
-            }, (res: HttpErrorResponse) => this.onError(res.message));
         this.etiquetaService.query()
             .subscribe((res: HttpResponse<Etiqueta[]>) => { this.etiquetas = res.body; }, (res: HttpErrorResponse) => this.onError(res.message));
         this.categoriaAlimentacionService.query()
             .subscribe((res: HttpResponse<CategoriaAlimentacion[]>) => { this.categoriaalimentacions = res.body; }, (res: HttpErrorResponse) => this.onError(res.message));
+        this.usuarioService.query()
+            .subscribe((res: HttpResponse<Usuario[]>) => { this.usuarios = res.body; }, (res: HttpErrorResponse) => this.onError(res.message));
     }
 
     clear() {
@@ -95,15 +84,15 @@ export class ComercioDialogComponent implements OnInit {
         this.jhiAlertService.error(error.message, null, null);
     }
 
-    trackUsuarioById(index: number, item: Usuario) {
-        return item.id;
-    }
-
     trackEtiquetaById(index: number, item: Etiqueta) {
         return item.id;
     }
 
     trackCategoriaAlimentacionById(index: number, item: CategoriaAlimentacion) {
+        return item.id;
+    }
+
+    trackUsuarioById(index: number, item: Usuario) {
         return item.id;
     }
 

@@ -21,7 +21,7 @@ public class OrdenRecoleccionDTO implements Serializable {
     @NotNull
     private LocalDate fechaSolicitud;
 
-    private Long clienteId;
+    private Long solicitanteId;
 
     private Long recolectorId;
 
@@ -49,20 +49,20 @@ public class OrdenRecoleccionDTO implements Serializable {
         this.fechaSolicitud = fechaSolicitud;
     }
 
-    public Long getClienteId() {
-        return clienteId;
+    public Long getSolicitanteId() {
+        return solicitanteId;
     }
 
-    public void setClienteId(Long clienteId) {
-        this.clienteId = clienteId;
+    public void setSolicitanteId(Long usuarioId) {
+        this.solicitanteId = usuarioId;
     }
 
     public Long getRecolectorId() {
         return recolectorId;
     }
 
-    public void setRecolectorId(Long recolectorId) {
-        this.recolectorId = recolectorId;
+    public void setRecolectorId(Long usuarioId) {
+        this.recolectorId = usuarioId;
     }
 
     @Override

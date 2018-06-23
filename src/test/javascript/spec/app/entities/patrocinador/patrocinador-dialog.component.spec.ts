@@ -9,7 +9,6 @@ import { GreenlifeTestModule } from '../../../test.module';
 import { PatrocinadorDialogComponent } from '../../../../../../main/webapp/app/entities/patrocinador/patrocinador-dialog.component';
 import { PatrocinadorService } from '../../../../../../main/webapp/app/entities/patrocinador/patrocinador.service';
 import { Patrocinador } from '../../../../../../main/webapp/app/entities/patrocinador/patrocinador.model';
-import { SolicitudPatrocinioService } from '../../../../../../main/webapp/app/entities/solicitud-patrocinio';
 import { EventoService } from '../../../../../../main/webapp/app/entities/evento';
 
 describe('Component Tests', () => {
@@ -26,7 +25,6 @@ describe('Component Tests', () => {
                 imports: [GreenlifeTestModule],
                 declarations: [PatrocinadorDialogComponent],
                 providers: [
-                    SolicitudPatrocinioService,
                     EventoService,
                     PatrocinadorService
                 ]

@@ -35,7 +35,7 @@ public class CobroSuscripcion implements Serializable {
     private Pago pago;
 
     @ManyToOne
-    private Cliente cliente;
+    private Usuario cliente;
 
     @ManyToOne
     private Comercio comercio;
@@ -78,17 +78,17 @@ public class CobroSuscripcion implements Serializable {
         this.pago = pago;
     }
 
-    public Cliente getCliente() {
+    public Usuario getCliente() {
         return cliente;
     }
 
-    public CobroSuscripcion cliente(Cliente cliente) {
-        this.cliente = cliente;
+    public CobroSuscripcion cliente(Usuario usuario) {
+        this.cliente = usuario;
         return this;
     }
 
-    public void setCliente(Cliente cliente) {
-        this.cliente = cliente;
+    public void setCliente(Usuario usuario) {
+        this.cliente = usuario;
     }
 
     public Comercio getComercio() {

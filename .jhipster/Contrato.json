@@ -23,7 +23,7 @@
             ]
         }
     ],
-    "changelogDate": "20180620020728",
+    "changelogDate": "20180622042346",
     "entityTableName": "contrato",
     "dto": "mapstruct",
     "pagination": "no",

@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.5.xsd">
+    <!--
+        Added the constraints for entity Publicacion.
+    -->
+    <changeSet id="20180622042400-2" author="jhipster">
+        
+        <addForeignKeyConstraint baseColumnNames="usuario_id"
+                                 baseTableName="publicacion"
+                                 constraintName="fk_publicacion_usuario_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="usuario"/>
+
+        <addForeignKeyConstraint baseColumnNames="publicacions_id"
+                                 baseTableName="publicacion_etiquetas"
+                                 constraintName="fk_publicacion_etiquetas_publicacions_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="publicacion"/>
+        <addForeignKeyConstraint baseColumnNames="etiquetas_id"
+                                 baseTableName="publicacion_etiquetas"
+                                 constraintName="fk_publicacion_etiquetas_etiquetas_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="etiqueta"/>
+        
+    </changeSet>
+</databaseChangeLog>

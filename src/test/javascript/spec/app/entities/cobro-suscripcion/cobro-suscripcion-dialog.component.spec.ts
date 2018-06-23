@@ -10,7 +10,7 @@ import { CobroSuscripcionDialogComponent } from '../../../../../../main/webapp/a
 import { CobroSuscripcionService } from '../../../../../../main/webapp/app/entities/cobro-suscripcion/cobro-suscripcion.service';
 import { CobroSuscripcion } from '../../../../../../main/webapp/app/entities/cobro-suscripcion/cobro-suscripcion.model';
 import { PagoService } from '../../../../../../main/webapp/app/entities/pago';
-import { ClienteService } from '../../../../../../main/webapp/app/entities/cliente';
+import { UsuarioService } from '../../../../../../main/webapp/app/entities/usuario';
 import { ComercioService } from '../../../../../../main/webapp/app/entities/comercio';
 import { SuscripcionService } from '../../../../../../main/webapp/app/entities/suscripcion';
 
@@ -29,7 +29,7 @@ describe('Component Tests', () => {
                 declarations: [CobroSuscripcionDialogComponent],
                 providers: [
                     PagoService,
-                    ClienteService,
+                    UsuarioService,
                     ComercioService,
                     SuscripcionService,
                     CobroSuscripcionService

@@ -22,14 +22,6 @@ public class UsuarioDTO implements Serializable {
     private LocalDate fechaNacimiento;
 
     @NotNull
-    @Size(min = 5, max = 20)
-    private String nombre;
-
-    @NotNull
-    @Size(min = 5, max = 50)
-    private String apellidos;
-
-    @NotNull
     @Size(min = 8, max = 15)
     private String cedula;
 
@@ -40,32 +32,13 @@ public class UsuarioDTO implements Serializable {
     @Size(min = 8, max = 8)
     private String telefono;
 
+    private String fotoUrl;
+
     private Double latitud;
 
     private Double longitud;
 
-    @NotNull
-    @Size(min = 8)
-    private String contrasena;
-
-    @NotNull
-    @Size(max = 80)
-    private String correo;
-
-    @NotNull
-    private Boolean estaActivado;
-
-    @NotNull
-    @Size(max = 20)
-    private String nombreUsuario;
-
-    private Long fotoId;
-
     private Long userDetailId;
-
-    private Long rolId;
-
-    private String rolNombre;
 
     public Long getId() {
         return id;
@@ -89,22 +62,6 @@ public class UsuarioDTO implements Serializable {
 
     public void setFechaNacimiento(LocalDate fechaNacimiento) {
         this.fechaNacimiento = fechaNacimiento;
-    }
-
-    public String getNombre() {
-        return nombre;
-    }
-
-    public void setNombre(String nombre) {
-        this.nombre = nombre;
-    }
-
-    public String getApellidos() {
-        return apellidos;
-    }
-
-    public void setApellidos(String apellidos) {
-        this.apellidos = apellidos;
     }
 
     public String getCedula() {
@@ -131,6 +88,14 @@ public class UsuarioDTO implements Serializable {
         this.telefono = telefono;
     }
 
+    public String getFotoUrl() {
+        return fotoUrl;
+    }
+
+    public void setFotoUrl(String fotoUrl) {
+        this.fotoUrl = fotoUrl;
+    }
+
     public Double getLatitud() {
         return latitud;
     }
@@ -147,68 +112,12 @@ public class UsuarioDTO implements Serializable {
         this.longitud = longitud;
     }
 
-    public String getContrasena() {
-        return contrasena;
-    }
-
-    public void setContrasena(String contrasena) {
-        this.contrasena = contrasena;
-    }
-
-    public String getCorreo() {
-        return correo;
-    }
-
-    public void setCorreo(String correo) {
-        this.correo = correo;
-    }
-
-    public Boolean isEstaActivado() {
-        return estaActivado;
-    }
-
-    public void setEstaActivado(Boolean estaActivado) {
-        this.estaActivado = estaActivado;
-    }
-
-    public String getNombreUsuario() {
-        return nombreUsuario;
-    }
-
-    public void setNombreUsuario(String nombreUsuario) {
-        this.nombreUsuario = nombreUsuario;
-    }
-
-    public Long getFotoId() {
-        return fotoId;
-    }
-
-    public void setFotoId(Long fotografiaId) {
-        this.fotoId = fotografiaId;
-    }
-
     public Long getUserDetailId() {
         return userDetailId;
     }
 
     public void setUserDetailId(Long userId) {
         this.userDetailId = userId;
-    }
-
-    public Long getRolId() {
-        return rolId;
-    }
-
-    public void setRolId(Long rolId) {
-        this.rolId = rolId;
-    }
-
-    public String getRolNombre() {
-        return rolNombre;
-    }
-
-    public void setRolNombre(String rolNombre) {
-        this.rolNombre = rolNombre;
     }
 
     @Override
@@ -238,17 +147,12 @@ public class UsuarioDTO implements Serializable {
             "id=" + getId() +
             ", fechaCreacion='" + getFechaCreacion() + "'" +
             ", fechaNacimiento='" + getFechaNacimiento() + "'" +
-            ", nombre='" + getNombre() + "'" +
-            ", apellidos='" + getApellidos() + "'" +
             ", cedula='" + getCedula() + "'" +
             ", direccion='" + getDireccion() + "'" +
             ", telefono='" + getTelefono() + "'" +
+            ", fotoUrl='" + getFotoUrl() + "'" +
             ", latitud=" + getLatitud() +
             ", longitud=" + getLongitud() +
-            ", contrasena='" + getContrasena() + "'" +
-            ", correo='" + getCorreo() + "'" +
-            ", estaActivado='" + isEstaActivado() + "'" +
-            ", nombreUsuario='" + getNombreUsuario() + "'" +
             "}";
     }
 }

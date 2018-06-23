@@ -54,10 +54,6 @@ public class Comercio implements Serializable {
     @Column(name = "tipo")
     private TipoComercio tipo;
 
-    @OneToOne
-    @JoinColumn(unique = true)
-    private Usuario usuario;
-
     @OneToMany(mappedBy = "comercio")
     @JsonIgnore
     @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
@@ -106,6 +102,9 @@ public class Comercio implements Serializable {
                joinColumns = @JoinColumn(name="comercios_id", referencedColumnName="id"),
                inverseJoinColumns = @JoinColumn(name="categorias_id", referencedColumnName="id"))
     private Set<CategoriaAlimentacion> categorias = new HashSet<>();
+
+    @ManyToOne
+    private Usuario dueno;
 
     // jhipster-needle-entity-add-field - JHipster will add fields here, do not remove
     public Long getId() {
@@ -179,19 +178,6 @@ public class Comercio implements Serializable {
 
     public void setTipo(TipoComercio tipo) {
         this.tipo = tipo;
-    }
-
-    public Usuario getUsuario() {
-        return usuario;
-    }
-
-    public Comercio usuario(Usuario usuario) {
-        this.usuario = usuario;
-        return this;
-    }
-
-    public void setUsuario(Usuario usuario) {
-        this.usuario = usuario;
     }
 
     public Set<ResenaCliente> getResenasClientes() {
@@ -413,6 +399,19 @@ public class Comercio implements Serializable {
 
     public void setCategorias(Set<CategoriaAlimentacion> categoriaAlimentacions) {
         this.categorias = categoriaAlimentacions;
+    }
+
+    public Usuario getDueno() {
+        return dueno;
+    }
+
+    public Comercio dueno(Usuario usuario) {
+        this.dueno = usuario;
+        return this;
+    }
+
+    public void setDueno(Usuario usuario) {
+        this.dueno = usuario;
     }
     // jhipster-needle-entity-add-getters-setters - JHipster will add getters and setters here, do not remove
 

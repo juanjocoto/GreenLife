@@ -9,7 +9,7 @@ import { GreenlifeTestModule } from '../../../test.module';
 import { ResenaComercioDialogComponent } from '../../../../../../main/webapp/app/entities/resena-comercio/resena-comercio-dialog.component';
 import { ResenaComercioService } from '../../../../../../main/webapp/app/entities/resena-comercio/resena-comercio.service';
 import { ResenaComercio } from '../../../../../../main/webapp/app/entities/resena-comercio/resena-comercio.model';
-import { ClienteService } from '../../../../../../main/webapp/app/entities/cliente';
+import { UsuarioService } from '../../../../../../main/webapp/app/entities/usuario';
 import { ComercioService } from '../../../../../../main/webapp/app/entities/comercio';
 
 describe('Component Tests', () => {
@@ -26,7 +26,7 @@ describe('Component Tests', () => {
                 imports: [GreenlifeTestModule],
                 declarations: [ResenaComercioDialogComponent],
                 providers: [
-                    ClienteService,
+                    UsuarioService,
                     ComercioService,
                     ResenaComercioService
                 ]

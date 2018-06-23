@@ -49,12 +49,6 @@ public class UsuarioResourceIntTest {
     private static final LocalDate DEFAULT_FECHA_NACIMIENTO = LocalDate.ofEpochDay(0L);
     private static final LocalDate UPDATED_FECHA_NACIMIENTO = LocalDate.now(ZoneId.systemDefault());
 
-    private static final String DEFAULT_NOMBRE = "AAAAAAAAAA";
-    private static final String UPDATED_NOMBRE = "BBBBBBBBBB";
-
-    private static final String DEFAULT_APELLIDOS = "AAAAAAAAAA";
-    private static final String UPDATED_APELLIDOS = "BBBBBBBBBB";
-
     private static final String DEFAULT_CEDULA = "AAAAAAAAAA";
     private static final String UPDATED_CEDULA = "BBBBBBBBBB";
 
@@ -64,23 +58,14 @@ public class UsuarioResourceIntTest {
     private static final String DEFAULT_TELEFONO = "AAAAAAAA";
     private static final String UPDATED_TELEFONO = "BBBBBBBB";
 
+    private static final String DEFAULT_FOTO_URL = "AAAAAAAAAA";
+    private static final String UPDATED_FOTO_URL = "BBBBBBBBBB";
+
     private static final Double DEFAULT_LATITUD = 1D;
     private static final Double UPDATED_LATITUD = 2D;
 
     private static final Double DEFAULT_LONGITUD = 1D;
     private static final Double UPDATED_LONGITUD = 2D;
-
-    private static final String DEFAULT_CONTRASENA = "AAAAAAAAAA";
-    private static final String UPDATED_CONTRASENA = "BBBBBBBBBB";
-
-    private static final String DEFAULT_CORREO = "AAAAAAAAAA";
-    private static final String UPDATED_CORREO = "BBBBBBBBBB";
-
-    private static final Boolean DEFAULT_ESTA_ACTIVADO = false;
-    private static final Boolean UPDATED_ESTA_ACTIVADO = true;
-
-    private static final String DEFAULT_NOMBRE_USUARIO = "AAAAAAAAAA";
-    private static final String UPDATED_NOMBRE_USUARIO = "BBBBBBBBBB";
 
     @Autowired
     private UsuarioRepository usuarioRepository;
@@ -128,17 +113,12 @@ public class UsuarioResourceIntTest {
         Usuario usuario = new Usuario()
             .fechaCreacion(DEFAULT_FECHA_CREACION)
             .fechaNacimiento(DEFAULT_FECHA_NACIMIENTO)
-            .nombre(DEFAULT_NOMBRE)
-            .apellidos(DEFAULT_APELLIDOS)
             .cedula(DEFAULT_CEDULA)
             .direccion(DEFAULT_DIRECCION)
             .telefono(DEFAULT_TELEFONO)
+            .fotoUrl(DEFAULT_FOTO_URL)
             .latitud(DEFAULT_LATITUD)
-            .longitud(DEFAULT_LONGITUD)
-            .contrasena(DEFAULT_CONTRASENA)
-            .correo(DEFAULT_CORREO)
-            .estaActivado(DEFAULT_ESTA_ACTIVADO)
-            .nombreUsuario(DEFAULT_NOMBRE_USUARIO);
+            .longitud(DEFAULT_LONGITUD);
         return usuario;
     }
 
@@ -166,17 +146,12 @@ public class UsuarioResourceIntTest {
         Usuario testUsuario = usuarioList.get(usuarioList.size() - 1);
         assertThat(testUsuario.getFechaCreacion()).isEqualTo(DEFAULT_FECHA_CREACION);
         assertThat(testUsuario.getFechaNacimiento()).isEqualTo(DEFAULT_FECHA_NACIMIENTO);
-        assertThat(testUsuario.getNombre()).isEqualTo(DEFAULT_NOMBRE);
-        assertThat(testUsuario.getApellidos()).isEqualTo(DEFAULT_APELLIDOS);
         assertThat(testUsuario.getCedula()).isEqualTo(DEFAULT_CEDULA);
         assertThat(testUsuario.getDireccion()).isEqualTo(DEFAULT_DIRECCION);
         assertThat(testUsuario.getTelefono()).isEqualTo(DEFAULT_TELEFONO);
+        assertThat(testUsuario.getFotoUrl()).isEqualTo(DEFAULT_FOTO_URL);
         assertThat(testUsuario.getLatitud()).isEqualTo(DEFAULT_LATITUD);
         assertThat(testUsuario.getLongitud()).isEqualTo(DEFAULT_LONGITUD);
-        assertThat(testUsuario.getContrasena()).isEqualTo(DEFAULT_CONTRASENA);
-        assertThat(testUsuario.getCorreo()).isEqualTo(DEFAULT_CORREO);
-        assertThat(testUsuario.isEstaActivado()).isEqualTo(DEFAULT_ESTA_ACTIVADO);
-        assertThat(testUsuario.getNombreUsuario()).isEqualTo(DEFAULT_NOMBRE_USUARIO);
 
         // Validate the Usuario in Elasticsearch
         Usuario usuarioEs = usuarioSearchRepository.findOne(testUsuario.getId());
@@ -243,44 +218,6 @@ public class UsuarioResourceIntTest {
 
     @Test
     @Transactional
-    public void checkNombreIsRequired() throws Exception {
-        int databaseSizeBeforeTest = usuarioRepository.findAll().size();
-        // set the field null
-        usuario.setNombre(null);
-
-        // Create the Usuario, which fails.
-        UsuarioDTO usuarioDTO = usuarioMapper.toDto(usuario);
-
-        restUsuarioMockMvc.perform(post("/api/usuarios")
-            .contentType(TestUtil.APPLICATION_JSON_UTF8)
-            .content(TestUtil.convertObjectToJsonBytes(usuarioDTO)))
-            .andExpect(status().isBadRequest());
-
-        List<Usuario> usuarioList = usuarioRepository.findAll();
-        assertThat(usuarioList).hasSize(databaseSizeBeforeTest);
-    }
-
-    @Test
-    @Transactional
-    public void checkApellidosIsRequired() throws Exception {
-        int databaseSizeBeforeTest = usuarioRepository.findAll().size();
-        // set the field null
-        usuario.setApellidos(null);
-
-        // Create the Usuario, which fails.
-        UsuarioDTO usuarioDTO = usuarioMapper.toDto(usuario);
-
-        restUsuarioMockMvc.perform(post("/api/usuarios")
-            .contentType(TestUtil.APPLICATION_JSON_UTF8)
-            .content(TestUtil.convertObjectToJsonBytes(usuarioDTO)))
-            .andExpect(status().isBadRequest());
-
-        List<Usuario> usuarioList = usuarioRepository.findAll();
-        assertThat(usuarioList).hasSize(databaseSizeBeforeTest);
-    }
-
-    @Test
-    @Transactional
     public void checkCedulaIsRequired() throws Exception {
         int databaseSizeBeforeTest = usuarioRepository.findAll().size();
         // set the field null
@@ -319,82 +256,6 @@ public class UsuarioResourceIntTest {
 
     @Test
     @Transactional
-    public void checkContrasenaIsRequired() throws Exception {
-        int databaseSizeBeforeTest = usuarioRepository.findAll().size();
-        // set the field null
-        usuario.setContrasena(null);
-
-        // Create the Usuario, which fails.
-        UsuarioDTO usuarioDTO = usuarioMapper.toDto(usuario);
-
-        restUsuarioMockMvc.perform(post("/api/usuarios")
-            .contentType(TestUtil.APPLICATION_JSON_UTF8)
-            .content(TestUtil.convertObjectToJsonBytes(usuarioDTO)))
-            .andExpect(status().isBadRequest());
-
-        List<Usuario> usuarioList = usuarioRepository.findAll();
-        assertThat(usuarioList).hasSize(databaseSizeBeforeTest);
-    }
-
-    @Test
-    @Transactional
-    public void checkCorreoIsRequired() throws Exception {
-        int databaseSizeBeforeTest = usuarioRepository.findAll().size();
-        // set the field null
-        usuario.setCorreo(null);
-
-        // Create the Usuario, which fails.
-        UsuarioDTO usuarioDTO = usuarioMapper.toDto(usuario);
-
-        restUsuarioMockMvc.perform(post("/api/usuarios")
-            .contentType(TestUtil.APPLICATION_JSON_UTF8)
-            .content(TestUtil.convertObjectToJsonBytes(usuarioDTO)))
-            .andExpect(status().isBadRequest());
-
-        List<Usuario> usuarioList = usuarioRepository.findAll();
-        assertThat(usuarioList).hasSize(databaseSizeBeforeTest);
-    }
-
-    @Test
-    @Transactional
-    public void checkEstaActivadoIsRequired() throws Exception {
-        int databaseSizeBeforeTest = usuarioRepository.findAll().size();
-        // set the field null
-        usuario.setEstaActivado(null);
-
-        // Create the Usuario, which fails.
-        UsuarioDTO usuarioDTO = usuarioMapper.toDto(usuario);
-
-        restUsuarioMockMvc.perform(post("/api/usuarios")
-            .contentType(TestUtil.APPLICATION_JSON_UTF8)
-            .content(TestUtil.convertObjectToJsonBytes(usuarioDTO)))
-            .andExpect(status().isBadRequest());
-
-        List<Usuario> usuarioList = usuarioRepository.findAll();
-        assertThat(usuarioList).hasSize(databaseSizeBeforeTest);
-    }
-
-    @Test
-    @Transactional
-    public void checkNombreUsuarioIsRequired() throws Exception {
-        int databaseSizeBeforeTest = usuarioRepository.findAll().size();
-        // set the field null
-        usuario.setNombreUsuario(null);
-
-        // Create the Usuario, which fails.
-        UsuarioDTO usuarioDTO = usuarioMapper.toDto(usuario);
-
-        restUsuarioMockMvc.perform(post("/api/usuarios")
-            .contentType(TestUtil.APPLICATION_JSON_UTF8)
-            .content(TestUtil.convertObjectToJsonBytes(usuarioDTO)))
-            .andExpect(status().isBadRequest());
-
-        List<Usuario> usuarioList = usuarioRepository.findAll();
-        assertThat(usuarioList).hasSize(databaseSizeBeforeTest);
-    }
-
-    @Test
-    @Transactional
     public void getAllUsuarios() throws Exception {
         // Initialize the database
         usuarioRepository.saveAndFlush(usuario);
@@ -406,17 +267,12 @@ public class UsuarioResourceIntTest {
             .andExpect(jsonPath("$.[*].id").value(hasItem(usuario.getId().intValue())))
             .andExpect(jsonPath("$.[*].fechaCreacion").value(hasItem(DEFAULT_FECHA_CREACION.toString())))
             .andExpect(jsonPath("$.[*].fechaNacimiento").value(hasItem(DEFAULT_FECHA_NACIMIENTO.toString())))
-            .andExpect(jsonPath("$.[*].nombre").value(hasItem(DEFAULT_NOMBRE.toString())))
-            .andExpect(jsonPath("$.[*].apellidos").value(hasItem(DEFAULT_APELLIDOS.toString())))
             .andExpect(jsonPath("$.[*].cedula").value(hasItem(DEFAULT_CEDULA.toString())))
             .andExpect(jsonPath("$.[*].direccion").value(hasItem(DEFAULT_DIRECCION.toString())))
             .andExpect(jsonPath("$.[*].telefono").value(hasItem(DEFAULT_TELEFONO.toString())))
+            .andExpect(jsonPath("$.[*].fotoUrl").value(hasItem(DEFAULT_FOTO_URL.toString())))
             .andExpect(jsonPath("$.[*].latitud").value(hasItem(DEFAULT_LATITUD.doubleValue())))
-            .andExpect(jsonPath("$.[*].longitud").value(hasItem(DEFAULT_LONGITUD.doubleValue())))
-            .andExpect(jsonPath("$.[*].contrasena").value(hasItem(DEFAULT_CONTRASENA.toString())))
-            .andExpect(jsonPath("$.[*].correo").value(hasItem(DEFAULT_CORREO.toString())))
-            .andExpect(jsonPath("$.[*].estaActivado").value(hasItem(DEFAULT_ESTA_ACTIVADO.booleanValue())))
-            .andExpect(jsonPath("$.[*].nombreUsuario").value(hasItem(DEFAULT_NOMBRE_USUARIO.toString())));
+            .andExpect(jsonPath("$.[*].longitud").value(hasItem(DEFAULT_LONGITUD.doubleValue())));
     }
 
     @Test
@@ -432,17 +288,12 @@ public class UsuarioResourceIntTest {
             .andExpect(jsonPath("$.id").value(usuario.getId().intValue()))
             .andExpect(jsonPath("$.fechaCreacion").value(DEFAULT_FECHA_CREACION.toString()))
             .andExpect(jsonPath("$.fechaNacimiento").value(DEFAULT_FECHA_NACIMIENTO.toString()))
-            .andExpect(jsonPath("$.nombre").value(DEFAULT_NOMBRE.toString()))
-            .andExpect(jsonPath("$.apellidos").value(DEFAULT_APELLIDOS.toString()))
             .andExpect(jsonPath("$.cedula").value(DEFAULT_CEDULA.toString()))
             .andExpect(jsonPath("$.direccion").value(DEFAULT_DIRECCION.toString()))
             .andExpect(jsonPath("$.telefono").value(DEFAULT_TELEFONO.toString()))
+            .andExpect(jsonPath("$.fotoUrl").value(DEFAULT_FOTO_URL.toString()))
             .andExpect(jsonPath("$.latitud").value(DEFAULT_LATITUD.doubleValue()))
-            .andExpect(jsonPath("$.longitud").value(DEFAULT_LONGITUD.doubleValue()))
-            .andExpect(jsonPath("$.contrasena").value(DEFAULT_CONTRASENA.toString()))
-            .andExpect(jsonPath("$.correo").value(DEFAULT_CORREO.toString()))
-            .andExpect(jsonPath("$.estaActivado").value(DEFAULT_ESTA_ACTIVADO.booleanValue()))
-            .andExpect(jsonPath("$.nombreUsuario").value(DEFAULT_NOMBRE_USUARIO.toString()));
+            .andExpect(jsonPath("$.longitud").value(DEFAULT_LONGITUD.doubleValue()));
     }
 
     @Test
@@ -468,17 +319,12 @@ public class UsuarioResourceIntTest {
         updatedUsuario
             .fechaCreacion(UPDATED_FECHA_CREACION)
             .fechaNacimiento(UPDATED_FECHA_NACIMIENTO)
-            .nombre(UPDATED_NOMBRE)
-            .apellidos(UPDATED_APELLIDOS)
             .cedula(UPDATED_CEDULA)
             .direccion(UPDATED_DIRECCION)
             .telefono(UPDATED_TELEFONO)
+            .fotoUrl(UPDATED_FOTO_URL)
             .latitud(UPDATED_LATITUD)
-            .longitud(UPDATED_LONGITUD)
-            .contrasena(UPDATED_CONTRASENA)
-            .correo(UPDATED_CORREO)
-            .estaActivado(UPDATED_ESTA_ACTIVADO)
-            .nombreUsuario(UPDATED_NOMBRE_USUARIO);
+            .longitud(UPDATED_LONGITUD);
         UsuarioDTO usuarioDTO = usuarioMapper.toDto(updatedUsuario);
 
         restUsuarioMockMvc.perform(put("/api/usuarios")
@@ -492,17 +338,12 @@ public class UsuarioResourceIntTest {
         Usuario testUsuario = usuarioList.get(usuarioList.size() - 1);
         assertThat(testUsuario.getFechaCreacion()).isEqualTo(UPDATED_FECHA_CREACION);
         assertThat(testUsuario.getFechaNacimiento()).isEqualTo(UPDATED_FECHA_NACIMIENTO);
-        assertThat(testUsuario.getNombre()).isEqualTo(UPDATED_NOMBRE);
-        assertThat(testUsuario.getApellidos()).isEqualTo(UPDATED_APELLIDOS);
         assertThat(testUsuario.getCedula()).isEqualTo(UPDATED_CEDULA);
         assertThat(testUsuario.getDireccion()).isEqualTo(UPDATED_DIRECCION);
         assertThat(testUsuario.getTelefono()).isEqualTo(UPDATED_TELEFONO);
+        assertThat(testUsuario.getFotoUrl()).isEqualTo(UPDATED_FOTO_URL);
         assertThat(testUsuario.getLatitud()).isEqualTo(UPDATED_LATITUD);
         assertThat(testUsuario.getLongitud()).isEqualTo(UPDATED_LONGITUD);
-        assertThat(testUsuario.getContrasena()).isEqualTo(UPDATED_CONTRASENA);
-        assertThat(testUsuario.getCorreo()).isEqualTo(UPDATED_CORREO);
-        assertThat(testUsuario.isEstaActivado()).isEqualTo(UPDATED_ESTA_ACTIVADO);
-        assertThat(testUsuario.getNombreUsuario()).isEqualTo(UPDATED_NOMBRE_USUARIO);
 
         // Validate the Usuario in Elasticsearch
         Usuario usuarioEs = usuarioSearchRepository.findOne(testUsuario.getId());
@@ -564,17 +405,12 @@ public class UsuarioResourceIntTest {
             .andExpect(jsonPath("$.[*].id").value(hasItem(usuario.getId().intValue())))
             .andExpect(jsonPath("$.[*].fechaCreacion").value(hasItem(DEFAULT_FECHA_CREACION.toString())))
             .andExpect(jsonPath("$.[*].fechaNacimiento").value(hasItem(DEFAULT_FECHA_NACIMIENTO.toString())))
-            .andExpect(jsonPath("$.[*].nombre").value(hasItem(DEFAULT_NOMBRE.toString())))
-            .andExpect(jsonPath("$.[*].apellidos").value(hasItem(DEFAULT_APELLIDOS.toString())))
             .andExpect(jsonPath("$.[*].cedula").value(hasItem(DEFAULT_CEDULA.toString())))
             .andExpect(jsonPath("$.[*].direccion").value(hasItem(DEFAULT_DIRECCION.toString())))
             .andExpect(jsonPath("$.[*].telefono").value(hasItem(DEFAULT_TELEFONO.toString())))
+            .andExpect(jsonPath("$.[*].fotoUrl").value(hasItem(DEFAULT_FOTO_URL.toString())))
             .andExpect(jsonPath("$.[*].latitud").value(hasItem(DEFAULT_LATITUD.doubleValue())))
-            .andExpect(jsonPath("$.[*].longitud").value(hasItem(DEFAULT_LONGITUD.doubleValue())))
-            .andExpect(jsonPath("$.[*].contrasena").value(hasItem(DEFAULT_CONTRASENA.toString())))
-            .andExpect(jsonPath("$.[*].correo").value(hasItem(DEFAULT_CORREO.toString())))
-            .andExpect(jsonPath("$.[*].estaActivado").value(hasItem(DEFAULT_ESTA_ACTIVADO.booleanValue())))
-            .andExpect(jsonPath("$.[*].nombreUsuario").value(hasItem(DEFAULT_NOMBRE_USUARIO.toString())));
+            .andExpect(jsonPath("$.[*].longitud").value(hasItem(DEFAULT_LONGITUD.doubleValue())));
     }
 
     @Test

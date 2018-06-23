@@ -10,7 +10,7 @@
         {
             "relationshipType": "many-to-one",
             "relationshipName": "cliente",
-            "otherEntityName": "cliente",
+            "otherEntityName": "usuario",
             "otherEntityField": "id"
         }
     ],
@@ -39,7 +39,7 @@
             "fieldValidateRulesMaxlength": 200
         }
     ],
-    "changelogDate": "20180620020751",
+    "changelogDate": "20180622042405",
     "entityTableName": "resena_cliente",
     "dto": "mapstruct",
     "pagination": "no",

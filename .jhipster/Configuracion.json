@@ -67,7 +67,7 @@
             ]
         }
     ],
-    "changelogDate": "20180620020724",
+    "changelogDate": "20180622042344",
     "entityTableName": "configuracion",
     "dto": "mapstruct",
     "pagination": "no",

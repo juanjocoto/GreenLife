@@ -74,7 +74,7 @@
             "fieldValidateRulesMaxlength": 200
         }
     ],
-    "changelogDate": "20180620020733",
+    "changelogDate": "20180622042348",
     "entityTableName": "centro_acopio",
     "dto": "mapstruct",
     "pagination": "no",

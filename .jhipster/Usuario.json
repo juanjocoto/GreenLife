@@ -3,19 +3,35 @@
     "relationships": [
         {
             "relationshipType": "one-to-one",
-            "relationshipName": "foto",
-            "otherEntityName": "fotografia",
-            "otherEntityField": "id",
-            "ownerSide": true,
-            "otherEntityRelationshipName": "usuario"
-        },
-        {
-            "relationshipType": "one-to-one",
             "relationshipName": "userDetail",
             "otherEntityName": "user",
             "otherEntityField": "id",
             "ownerSide": true,
             "otherEntityRelationshipName": "usuario"
+        },
+        {
+            "relationshipType": "one-to-many",
+            "relationshipName": "resenasComercio",
+            "otherEntityName": "resenaComercio",
+            "otherEntityRelationshipName": "usuario"
+        },
+        {
+            "relationshipType": "one-to-many",
+            "relationshipName": "suscripciones",
+            "otherEntityName": "suscripcion",
+            "otherEntityRelationshipName": "usuario"
+        },
+        {
+            "relationshipType": "one-to-many",
+            "relationshipName": "solicitudesRecoleccion",
+            "otherEntityName": "ordenRecoleccion",
+            "otherEntityRelationshipName": "solicitante"
+        },
+        {
+            "relationshipType": "one-to-many",
+            "relationshipName": "ordenes",
+            "otherEntityName": "ordenRecoleccion",
+            "otherEntityRelationshipName": "recolector"
         },
         {
             "relationshipType": "one-to-many",
@@ -30,10 +46,10 @@
             "otherEntityRelationshipName": "usuario"
         },
         {
-            "relationshipType": "many-to-one",
-            "relationshipName": "rol",
-            "otherEntityName": "rol",
-            "otherEntityField": "nombre"
+            "relationshipType": "one-to-many",
+            "relationshipName": "comercios",
+            "otherEntityName": "comercio",
+            "otherEntityRelationshipName": "dueno"
         }
     ],
     "fields": [
@@ -50,28 +66,6 @@
             "fieldValidateRules": [
                 "required"
             ]
-        },
-        {
-            "fieldName": "nombre",
-            "fieldType": "String",
-            "fieldValidateRules": [
-                "required",
-                "minlength",
-                "maxlength"
-            ],
-            "fieldValidateRulesMinlength": 5,
-            "fieldValidateRulesMaxlength": 20
-        },
-        {
-            "fieldName": "apellidos",
-            "fieldType": "String",
-            "fieldValidateRules": [
-                "required",
-                "minlength",
-                "maxlength"
-            ],
-            "fieldValidateRulesMinlength": 5,
-            "fieldValidateRulesMaxlength": 50
         },
         {
             "fieldName": "cedula",
@@ -104,49 +98,19 @@
             "fieldValidateRulesMaxlength": 8
         },
         {
+            "fieldName": "fotoUrl",
+            "fieldType": "String"
+        },
+        {
             "fieldName": "latitud",
             "fieldType": "Double"
         },
         {
             "fieldName": "longitud",
             "fieldType": "Double"
-        },
-        {
-            "fieldName": "contrasena",
-            "fieldType": "String",
-            "fieldValidateRules": [
-                "required",
-                "minlength"
-            ],
-            "fieldValidateRulesMinlength": 8
-        },
-        {
-            "fieldName": "correo",
-            "fieldType": "String",
-            "fieldValidateRules": [
-                "required",
-                "maxlength"
-            ],
-            "fieldValidateRulesMaxlength": 80
-        },
-        {
-            "fieldName": "estaActivado",
-            "fieldType": "Boolean",
-            "fieldValidateRules": [
-                "required"
-            ]
-        },
-        {
-            "fieldName": "nombreUsuario",
-            "fieldType": "String",
-            "fieldValidateRules": [
-                "required",
-                "maxlength"
-            ],
-            "fieldValidateRulesMaxlength": 20
         }
     ],
-    "changelogDate": "20180620020727",
+    "changelogDate": "20180622042345",
     "entityTableName": "usuario",
     "dto": "mapstruct",
     "pagination": "no",

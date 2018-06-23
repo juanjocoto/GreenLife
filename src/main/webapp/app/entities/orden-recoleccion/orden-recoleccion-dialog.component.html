@@ -46,17 +46,17 @@
         </div>
 
         <div class="form-group">
-            <label class="form-control-label" for="field_cliente">Cliente</label>
-            <select class="form-control" id="field_cliente" name="cliente" [(ngModel)]="ordenRecoleccion.clienteId" >
+            <label class="form-control-label" for="field_solicitante">Solicitante</label>
+            <select class="form-control" id="field_solicitante" name="solicitante" [(ngModel)]="ordenRecoleccion.solicitanteId" >
                 <option [ngValue]="null"></option>
-                <option [ngValue]="clienteOption.id" *ngFor="let clienteOption of clientes; trackBy: trackClienteById">{{clienteOption.id}}</option>
+                <option [ngValue]="usuarioOption.id" *ngFor="let usuarioOption of usuarios; trackBy: trackUsuarioById">{{usuarioOption.id}}</option>
             </select>
         </div>
         <div class="form-group">
             <label class="form-control-label" for="field_recolector">Recolector</label>
             <select class="form-control" id="field_recolector" name="recolector" [(ngModel)]="ordenRecoleccion.recolectorId" >
                 <option [ngValue]="null"></option>
-                <option [ngValue]="recolectorOption.id" *ngFor="let recolectorOption of recolectors; trackBy: trackRecolectorById">{{recolectorOption.id}}</option>
+                <option [ngValue]="usuarioOption.id" *ngFor="let usuarioOption of usuarios; trackBy: trackUsuarioById">{{usuarioOption.id}}</option>
             </select>
         </div>
     </div>

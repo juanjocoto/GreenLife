@@ -40,7 +40,7 @@ public class ResenaComercio implements Serializable {
     private String comentario;
 
     @ManyToOne
-    private Cliente cliente;
+    private Usuario usuario;
 
     @ManyToOne
     private Comercio comercio;
@@ -93,17 +93,17 @@ public class ResenaComercio implements Serializable {
         this.comentario = comentario;
     }
 
-    public Cliente getCliente() {
-        return cliente;
+    public Usuario getUsuario() {
+        return usuario;
     }
 
-    public ResenaComercio cliente(Cliente cliente) {
-        this.cliente = cliente;
+    public ResenaComercio usuario(Usuario usuario) {
+        this.usuario = usuario;
         return this;
     }
 
-    public void setCliente(Cliente cliente) {
-        this.cliente = cliente;
+    public void setUsuario(Usuario usuario) {
+        this.usuario = usuario;
     }
 
     public Comercio getComercio() {

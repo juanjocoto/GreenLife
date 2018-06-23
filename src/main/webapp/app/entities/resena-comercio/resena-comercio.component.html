@@ -33,7 +33,7 @@
             <th><span>Fecha Creacion</span></th>
             <th><span>Calificacion</span></th>
             <th><span>Comentario</span></th>
-            <th><span>Cliente</span></th>
+            <th><span>Usuario</span></th>
             <th><span>Comercio</span></th>
             <th></th>
             </tr>
@@ -45,8 +45,8 @@
                 <td>{{resenaComercio.calificacion}}</td>
                 <td>{{resenaComercio.comentario}}</td>
                 <td>
-                    <div *ngIf="resenaComercio.clienteId">
-                        <a [routerLink]="['../cliente', resenaComercio.clienteId  ]" >{{resenaComercio.clienteId}}</a>
+                    <div *ngIf="resenaComercio.usuarioId">
+                        <a [routerLink]="['../usuario', resenaComercio.usuarioId  ]" >{{resenaComercio.usuarioId}}</a>
                     </div>
                 </td>
                 <td>

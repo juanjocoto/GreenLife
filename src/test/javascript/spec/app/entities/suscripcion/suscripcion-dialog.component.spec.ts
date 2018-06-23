@@ -9,7 +9,7 @@ import { GreenlifeTestModule } from '../../../test.module';
 import { SuscripcionDialogComponent } from '../../../../../../main/webapp/app/entities/suscripcion/suscripcion-dialog.component';
 import { SuscripcionService } from '../../../../../../main/webapp/app/entities/suscripcion/suscripcion.service';
 import { Suscripcion } from '../../../../../../main/webapp/app/entities/suscripcion/suscripcion.model';
-import { ClienteService } from '../../../../../../main/webapp/app/entities/cliente';
+import { UsuarioService } from '../../../../../../main/webapp/app/entities/usuario';
 import { ComercioService } from '../../../../../../main/webapp/app/entities/comercio';
 
 describe('Component Tests', () => {
@@ -26,7 +26,7 @@ describe('Component Tests', () => {
                 imports: [GreenlifeTestModule],
                 declarations: [SuscripcionDialogComponent],
                 providers: [
-                    ClienteService,
+                    UsuarioService,
                     ComercioService,
                     SuscripcionService
                 ]
