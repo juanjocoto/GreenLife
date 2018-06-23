@@ -1,42 +1,55 @@
-<!--Navbar por defecto de Green Life para usuarios sin una sesion iniciada-->
-<mat-toolbar class="navbarGreenlife mat-elevation-z1 mat-small" >
-    <mat-toolbar-row>
-        <!--Logo del navbar-->
-        <a class="navbarLogo logo" routerLink="/">
-            <span class="logoImg"></span>
-        </a>
-        <span class="navbarEspaciador"></span>
-        <!--Opcion Alimentacion del menu-->
-        <button mat-button class="btnMenu" [matMenuTriggerFor]="menuAlimentacion"><span class="mat-h3">Alimentación</span></button>
-        <mat-menu #menuAlimentacion="matMenu">
-            <button mat-menu-item class="btnMenu">Vegetarianismo</button>
-            <button mat-menu-item class="btnMenu">Veganismo</button>
-            <button mat-menu-item class="btnMenu">Frugivorismo</button>
-            <button mat-menu-item class="btnMenu">Intolerancia a la lactosa</button>
-            <button mat-menu-item class="btnMenu">Diabetes</button>
-            <button mat-menu-item class="btnMenu">Celiaquía</button>
-        </mat-menu>
-        <!--Opcion Suscripciones del menu-->
-        <button mat-button class="btnMenu" [matMenuTriggerFor]="menuSuscripcion"><span class="mat-h3">Suscripciones</span></button>
-        <mat-menu #menuSuscripcion="matMenu">
-            <button mat-menu-item class="btnMenu">Comercios</button>
-            <button mat-menu-item class="btnMenu">Pedidos</button>
-        </mat-menu>
-        <!--Opcion Social del menu-->
-        <button mat-button class="btnMenu" [matMenuTriggerFor]="menuEventos"><span class="mat-h3">Social</span></button>
-        <mat-menu #menuEventos="matMenu">
-            <button mat-menu-item class="btnMenu">Eventos</button>
-            <button mat-menu-item class="btnMenu">Blogs</button>
-        </mat-menu>
-        <!--Opcion Reciclaje del menu-->
-        <button mat-button class="btnMenu" [matMenuTriggerFor]="menuReciclaje"><span class="mat-h3">Reciclaje</span></button>
-        <mat-menu #menuReciclaje="matMenu">
-            <button mat-menu-item class="btnMenu">Acerca del reciclaje</button>
-            <button mat-menu-item class="btnMenu">Servicio de Recolección</button>
-        </mat-menu>
-        <span class="navbarEspaciador"></span>
-        <!--Botones de registro y inicio de sesion-->
-        <button mat-flat-button class="btnRegistrarse"><span class="mat-h4">Registrarse</span></button>
-        <button mat-flat-button class="btnSesion"><span class="mat-h4">Iniciar Sesión</span></button>
-    </mat-toolbar-row>
-</mat-toolbar>
+<!--Navbar por defecto de Green Life-->
+<nav class="navbar navbar-expand-lg navbar-light fixed-top">
+    <!--Logo del navbar-->
+    <a class="navbarLogo logo" routerLink="/"><span class="logoImg"></span></a>
+    <!--Categorias del menu-->
+    <div [ngbCollapse]="isNavbarCollapsed" class="collapse navbar-collapse justify-content-md-center" id="navbarMenu ">
+        <ul class="navbar-nav">
+            <!--Opcion Alimentacion -->
+            <li class="nav-item dropdown" ngbDropdown>
+                <a class="nav-link dropdown-toggle" ngbDropdownToggle>Alimentación</a>
+                <div class="dropdown-menu" ngbDropdownMenu>
+                    <a class="dropdown-item">Vegetarianismo</a>
+                    <a class="dropdown-item">Veganismo</a>
+                    <a class="dropdown-item">Frugivorismo</a>
+                    <a class="dropdown-item">Intolerancia a la lactosa</a>
+                    <a class="dropdown-item">Diabetes</a>
+                    <a class="dropdown-item">Celiaquía</a>
+                </div>
+            </li>
+            <!--Opcion Suscripciones-->
+            <li class="nav-item dropdown" ngbDropdown>
+                <a class="nav-link dropdown-toggle" ngbDropdownToggle>Suscripciones</a>
+                <div class="dropdown-menu" ngbDropdownMenu>
+                    <a class="dropdown-item">Comercios</a>
+                    <a class="dropdown-item">Pedidos</a>
+                </div>
+            </li>
+            <!--Opcion Social-->
+            <li class="nav-item dropdown" ngbDropdown>
+                <a class="nav-link dropdown-toggle" ngbDropdownToggle>Social</a>
+                <div class="dropdown-menu" ngbDropdownMenu>
+                    <a class="dropdown-item">Eventos</a>
+                    <a class="dropdown-item">Blog</a>
+                </div>
+            </li>
+            <!--Opcion Reciclaje-->
+            <li class="nav-item dropdown" ngbDropdown>
+                <a class="nav-link dropdown-toggle" ngbDropdownToggle>Reciclaje</a>
+                <div class="dropdown-menu" ngbDropdownMenu>
+                    <a class="dropdown-item">Acerca del reciclaje</a>
+                    <a class="dropdown-item">Servicio de Recolección</a>
+                </div>
+            </li>
+        </ul>
+    </div>
+    <!--Botones del menu-->
+    <div class="d-inline-flex justify-content-end">
+        <button type="button" class="btn btn-link btnRegistrarse">Registrarse</button>
+        <button type="button" class="btn btn-link btnIniciarSesion">Iniciar Sesión</button>
+    </div>
+    <!--Boton collapse del menu-->
+    <button class="navbar-toggler hidden-lg-up" type="button" (click)="isNavbarCollapsed = !isNavbarCollapsed" data-target="#navbarMenu" aria-controls="navbarMenu" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+</nav>
