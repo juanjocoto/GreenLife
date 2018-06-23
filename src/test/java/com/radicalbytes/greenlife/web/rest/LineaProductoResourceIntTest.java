@@ -44,9 +44,6 @@ public class LineaProductoResourceIntTest {
     private static final Integer DEFAULT_CANTIDAD = 1;
     private static final Integer UPDATED_CANTIDAD = 2;
 
-    private static final Float DEFAULT_PRECIO_UNITARIO = 1F;
-    private static final Float UPDATED_PRECIO_UNITARIO = 2F;
-
     @Autowired
     private LineaProductoRepository lineaProductoRepository;
 
@@ -91,8 +88,7 @@ public class LineaProductoResourceIntTest {
      */
     public static LineaProducto createEntity(EntityManager em) {
         LineaProducto lineaProducto = new LineaProducto()
-            .cantidad(DEFAULT_CANTIDAD)
-            .precioUnitario(DEFAULT_PRECIO_UNITARIO);
+            .cantidad(DEFAULT_CANTIDAD);
         return lineaProducto;
     }
 
@@ -119,7 +115,6 @@ public class LineaProductoResourceIntTest {
         assertThat(lineaProductoList).hasSize(databaseSizeBeforeCreate + 1);
         LineaProducto testLineaProducto = lineaProductoList.get(lineaProductoList.size() - 1);
         assertThat(testLineaProducto.getCantidad()).isEqualTo(DEFAULT_CANTIDAD);
-        assertThat(testLineaProducto.getPrecioUnitario()).isEqualTo(DEFAULT_PRECIO_UNITARIO);
 
         // Validate the LineaProducto in Elasticsearch
         LineaProducto lineaProductoEs = lineaProductoSearchRepository.findOne(testLineaProducto.getId());
@@ -167,25 +162,6 @@ public class LineaProductoResourceIntTest {
 
     @Test
     @Transactional
-    public void checkPrecioUnitarioIsRequired() throws Exception {
-        int databaseSizeBeforeTest = lineaProductoRepository.findAll().size();
-        // set the field null
-        lineaProducto.setPrecioUnitario(null);
-
-        // Create the LineaProducto, which fails.
-        LineaProductoDTO lineaProductoDTO = lineaProductoMapper.toDto(lineaProducto);
-
-        restLineaProductoMockMvc.perform(post("/api/linea-productos")
-            .contentType(TestUtil.APPLICATION_JSON_UTF8)
-            .content(TestUtil.convertObjectToJsonBytes(lineaProductoDTO)))
-            .andExpect(status().isBadRequest());
-
-        List<LineaProducto> lineaProductoList = lineaProductoRepository.findAll();
-        assertThat(lineaProductoList).hasSize(databaseSizeBeforeTest);
-    }
-
-    @Test
-    @Transactional
     public void getAllLineaProductos() throws Exception {
         // Initialize the database
         lineaProductoRepository.saveAndFlush(lineaProducto);
@@ -195,8 +171,7 @@ public class LineaProductoResourceIntTest {
             .andExpect(status().isOk())
             .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
             .andExpect(jsonPath("$.[*].id").value(hasItem(lineaProducto.getId().intValue())))
-            .andExpect(jsonPath("$.[*].cantidad").value(hasItem(DEFAULT_CANTIDAD)))
-            .andExpect(jsonPath("$.[*].precioUnitario").value(hasItem(DEFAULT_PRECIO_UNITARIO.doubleValue())));
+            .andExpect(jsonPath("$.[*].cantidad").value(hasItem(DEFAULT_CANTIDAD)));
     }
 
     @Test
@@ -210,8 +185,7 @@ public class LineaProductoResourceIntTest {
             .andExpect(status().isOk())
             .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
             .andExpect(jsonPath("$.id").value(lineaProducto.getId().intValue()))
-            .andExpect(jsonPath("$.cantidad").value(DEFAULT_CANTIDAD))
-            .andExpect(jsonPath("$.precioUnitario").value(DEFAULT_PRECIO_UNITARIO.doubleValue()));
+            .andExpect(jsonPath("$.cantidad").value(DEFAULT_CANTIDAD));
     }
 
     @Test
@@ -235,8 +209,7 @@ public class LineaProductoResourceIntTest {
         // Disconnect from session so that the updates on updatedLineaProducto are not directly saved in db
         em.detach(updatedLineaProducto);
         updatedLineaProducto
-            .cantidad(UPDATED_CANTIDAD)
-            .precioUnitario(UPDATED_PRECIO_UNITARIO);
+            .cantidad(UPDATED_CANTIDAD);
         LineaProductoDTO lineaProductoDTO = lineaProductoMapper.toDto(updatedLineaProducto);
 
         restLineaProductoMockMvc.perform(put("/api/linea-productos")
@@ -249,7 +222,6 @@ public class LineaProductoResourceIntTest {
         assertThat(lineaProductoList).hasSize(databaseSizeBeforeUpdate);
         LineaProducto testLineaProducto = lineaProductoList.get(lineaProductoList.size() - 1);
         assertThat(testLineaProducto.getCantidad()).isEqualTo(UPDATED_CANTIDAD);
-        assertThat(testLineaProducto.getPrecioUnitario()).isEqualTo(UPDATED_PRECIO_UNITARIO);
 
         // Validate the LineaProducto in Elasticsearch
         LineaProducto lineaProductoEs = lineaProductoSearchRepository.findOne(testLineaProducto.getId());
@@ -309,8 +281,7 @@ public class LineaProductoResourceIntTest {
             .andExpect(status().isOk())
             .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
             .andExpect(jsonPath("$.[*].id").value(hasItem(lineaProducto.getId().intValue())))
-            .andExpect(jsonPath("$.[*].cantidad").value(hasItem(DEFAULT_CANTIDAD)))
-            .andExpect(jsonPath("$.[*].precioUnitario").value(hasItem(DEFAULT_PRECIO_UNITARIO.doubleValue())));
+            .andExpect(jsonPath("$.[*].cantidad").value(hasItem(DEFAULT_CANTIDAD)));
     }
 
     @Test

@@ -30,8 +30,6 @@ public class PatrocinadorDTO implements Serializable {
     @Size(max = 10)
     private String correo;
 
-    private Long solicitudId;
-
     private Set<EventoDTO> eventos = new HashSet<>();
 
     public Long getId() {
@@ -72,14 +70,6 @@ public class PatrocinadorDTO implements Serializable {
 
     public void setCorreo(String correo) {
         this.correo = correo;
-    }
-
-    public Long getSolicitudId() {
-        return solicitudId;
-    }
-
-    public void setSolicitudId(Long solicitudPatrocinioId) {
-        this.solicitudId = solicitudPatrocinioId;
     }
 
     public Set<EventoDTO> getEventos() {

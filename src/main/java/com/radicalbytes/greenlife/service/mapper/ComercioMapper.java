@@ -8,14 +8,12 @@ import org.mapstruct.*;
 /**
  * Mapper for the entity Comercio and its DTO ComercioDTO.
  */
-@Mapper(componentModel = "spring", uses = {UsuarioMapper.class, EtiquetaMapper.class, CategoriaAlimentacionMapper.class})
+@Mapper(componentModel = "spring", uses = {EtiquetaMapper.class, CategoriaAlimentacionMapper.class, UsuarioMapper.class})
 public interface ComercioMapper extends EntityMapper<ComercioDTO, Comercio> {
 
-    @Mapping(source = "usuario.id", target = "usuarioId")
-    @Mapping(source = "usuario.nombre", target = "usuarioNombre")
+    @Mapping(source = "dueno.id", target = "duenoId")
     ComercioDTO toDto(Comercio comercio);
 
-    @Mapping(source = "usuarioId", target = "usuario")
     @Mapping(target = "resenasClientes", ignore = true)
     @Mapping(target = "resenasPropias", ignore = true)
     @Mapping(target = "productos", ignore = true)
@@ -23,6 +21,7 @@ public interface ComercioMapper extends EntityMapper<ComercioDTO, Comercio> {
     @Mapping(target = "suscriptores", ignore = true)
     @Mapping(target = "fotos", ignore = true)
     @Mapping(target = "contratos", ignore = true)
+    @Mapping(source = "duenoId", target = "dueno")
     Comercio toEntity(ComercioDTO comercioDTO);
 
     default Comercio fromId(Long id) {

@@ -5,9 +5,9 @@ export class OrdenRecoleccion implements BaseEntity {
         public id?: number,
         public fechaCrecion?: any,
         public fechaSolicitud?: any,
-        public clienteId?: number,
-        public recolectorId?: number,
         public estados?: BaseEntity[],
+        public solicitanteId?: number,
+        public recolectorId?: number,
     ) {
     }
 }

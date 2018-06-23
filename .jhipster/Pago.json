@@ -10,7 +10,7 @@
             ]
         }
     ],
-    "changelogDate": "20180620020758",
+    "changelogDate": "20180622042411",
     "entityTableName": "pago",
     "dto": "mapstruct",
     "pagination": "no",

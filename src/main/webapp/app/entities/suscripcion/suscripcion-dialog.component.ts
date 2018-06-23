@@ -9,7 +9,7 @@ import { JhiEventManager, JhiAlertService } from 'ng-jhipster';
 import { Suscripcion } from './suscripcion.model';
 import { SuscripcionPopupService } from './suscripcion-popup.service';
 import { SuscripcionService } from './suscripcion.service';
-import { Cliente, ClienteService } from '../cliente';
+import { Usuario, UsuarioService } from '../usuario';
 import { Comercio, ComercioService } from '../comercio';
 
 @Component({
@@ -21,7 +21,7 @@ export class SuscripcionDialogComponent implements OnInit {
     suscripcion: Suscripcion;
     isSaving: boolean;
 
-    clientes: Cliente[];
+    usuarios: Usuario[];
 
     comercios: Comercio[];
     fechaCreacionDp: any;
@@ -32,7 +32,7 @@ export class SuscripcionDialogComponent implements OnInit {
         public activeModal: NgbActiveModal,
         private jhiAlertService: JhiAlertService,
         private suscripcionService: SuscripcionService,
-        private clienteService: ClienteService,
+        private usuarioService: UsuarioService,
         private comercioService: ComercioService,
         private eventManager: JhiEventManager
     ) {
@@ -40,8 +40,8 @@ export class SuscripcionDialogComponent implements OnInit {
 
     ngOnInit() {
         this.isSaving = false;
-        this.clienteService.query()
-            .subscribe((res: HttpResponse<Cliente[]>) => { this.clientes = res.body; }, (res: HttpErrorResponse) => this.onError(res.message));
+        this.usuarioService.query()
+            .subscribe((res: HttpResponse<Usuario[]>) => { this.usuarios = res.body; }, (res: HttpErrorResponse) => this.onError(res.message));
         this.comercioService.query()
             .subscribe((res: HttpResponse<Comercio[]>) => { this.comercios = res.body; }, (res: HttpErrorResponse) => this.onError(res.message));
     }
@@ -80,7 +80,7 @@ export class SuscripcionDialogComponent implements OnInit {
         this.jhiAlertService.error(error.message, null, null);
     }
 
-    trackClienteById(index: number, item: Cliente) {
+    trackUsuarioById(index: number, item: Usuario) {
         return item.id;
     }
 

@@ -35,7 +35,7 @@
             <th><span>Estado</span></th>
             <th><span>Fecha Cancelacion</span></th>
             <th><span>Fecha Cobro</span></th>
-            <th><span>Cliente</span></th>
+            <th><span>Usuario</span></th>
             <th><span>Comercio</span></th>
             <th></th>
             </tr>
@@ -49,8 +49,8 @@
                 <td>{{suscripcion.fechaCancelacion | date:'mediumDate'}}</td>
                 <td>{{suscripcion.fechaCobro | date:'mediumDate'}}</td>
                 <td>
-                    <div *ngIf="suscripcion.clienteId">
-                        <a [routerLink]="['../cliente', suscripcion.clienteId  ]" >{{suscripcion.clienteId}}</a>
+                    <div *ngIf="suscripcion.usuarioId">
+                        <a [routerLink]="['../usuario', suscripcion.usuarioId  ]" >{{suscripcion.usuarioId}}</a>
                     </div>
                 </td>
                 <td>

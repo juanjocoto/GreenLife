@@ -21,7 +21,7 @@
             "fieldValidateRulesMaxlength": 200
         }
     ],
-    "changelogDate": "20180620020745",
+    "changelogDate": "20180622042359",
     "entityTableName": "categoria_alimentacion",
     "dto": "mapstruct",
     "pagination": "no",

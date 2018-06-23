@@ -42,9 +42,9 @@ describe('Comercio e2e test', () => {
         comercioDialogPage.setNombreComercialInput('nombreComercial');
         expect(comercioDialogPage.getNombreComercialInput()).toMatch('nombreComercial');
         comercioDialogPage.tipoSelectLastOption();
-        comercioDialogPage.usuarioSelectLastOption();
         // comercioDialogPage.etiquetasSelectLastOption();
         // comercioDialogPage.categoriasSelectLastOption();
+        comercioDialogPage.duenoSelectLastOption();
         comercioDialogPage.save();
         expect(comercioDialogPage.getSaveButton().isPresent()).toBeFalsy();
     });
@@ -76,9 +76,9 @@ export class ComercioDialogPage {
     razonSocialInput = element(by.css('input#field_razonSocial'));
     nombreComercialInput = element(by.css('input#field_nombreComercial'));
     tipoSelect = element(by.css('select#field_tipo'));
-    usuarioSelect = element(by.css('select#field_usuario'));
     etiquetasSelect = element(by.css('select#field_etiquetas'));
     categoriasSelect = element(by.css('select#field_categorias'));
+    duenoSelect = element(by.css('select#field_dueno'));
 
     getModalTitle() {
         return this.modalTitle.getText();
@@ -127,22 +127,6 @@ export class ComercioDialogPage {
     tipoSelectLastOption = function() {
         this.tipoSelect.all(by.tagName('option')).last().click();
     };
-    usuarioSelectLastOption = function() {
-        this.usuarioSelect.all(by.tagName('option')).last().click();
-    };
-
-    usuarioSelectOption = function(option) {
-        this.usuarioSelect.sendKeys(option);
-    };
-
-    getUsuarioSelect = function() {
-        return this.usuarioSelect;
-    };
-
-    getUsuarioSelectedOption = function() {
-        return this.usuarioSelect.element(by.css('option:checked')).getText();
-    };
-
     etiquetasSelectLastOption = function() {
         this.etiquetasSelect.all(by.tagName('option')).last().click();
     };
@@ -173,6 +157,22 @@ export class ComercioDialogPage {
 
     getCategoriasSelectedOption = function() {
         return this.categoriasSelect.element(by.css('option:checked')).getText();
+    };
+
+    duenoSelectLastOption = function() {
+        this.duenoSelect.all(by.tagName('option')).last().click();
+    };
+
+    duenoSelectOption = function(option) {
+        this.duenoSelect.sendKeys(option);
+    };
+
+    getDuenoSelect = function() {
+        return this.duenoSelect;
+    };
+
+    getDuenoSelectedOption = function() {
+        return this.duenoSelect.element(by.css('option:checked')).getText();
     };
 
     save() {

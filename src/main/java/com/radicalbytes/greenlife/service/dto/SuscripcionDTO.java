@@ -29,7 +29,7 @@ public class SuscripcionDTO implements Serializable {
     @NotNull
     private LocalDate fechaCobro;
 
-    private Long clienteId;
+    private Long usuarioId;
 
     private Long comercioId;
 
@@ -81,12 +81,12 @@ public class SuscripcionDTO implements Serializable {
         this.fechaCobro = fechaCobro;
     }
 
-    public Long getClienteId() {
-        return clienteId;
+    public Long getUsuarioId() {
+        return usuarioId;
     }
 
-    public void setClienteId(Long clienteId) {
-        this.clienteId = clienteId;
+    public void setUsuarioId(Long usuarioId) {
+        this.usuarioId = usuarioId;
     }
 
     public Long getComercioId() {

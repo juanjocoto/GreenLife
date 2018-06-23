@@ -31,7 +31,6 @@
             <tr>
             <th><span>ID</span></th>
             <th><span>Cantidad</span></th>
-            <th><span>Precio Unitario</span></th>
             <th><span>Producto</span></th>
             <th></th>
             </tr>
@@ -40,7 +39,6 @@
             <tr *ngFor="let lineaProducto of lineaProductos ;trackBy: trackId">
                 <td><a [routerLink]="['../linea-producto', lineaProducto.id ]">{{lineaProducto.id}}</a></td>
                 <td>{{lineaProducto.cantidad}}</td>
-                <td>{{lineaProducto.precioUnitario}}</td>
                 <td>
                     <div *ngIf="lineaProducto.productoId">
                         <a [routerLink]="['../producto', lineaProducto.productoId  ]" >{{lineaProducto.productoId}}</a>

@@ -19,7 +19,7 @@
             ]
         }
     ],
-    "changelogDate": "20180620020754",
+    "changelogDate": "20180622042407",
     "entityTableName": "etiqueta",
     "dto": "mapstruct",
     "pagination": "no",

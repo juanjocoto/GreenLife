@@ -2,14 +2,6 @@
     "fluentMethods": true,
     "relationships": [
         {
-            "relationshipType": "one-to-one",
-            "relationshipName": "usuario",
-            "otherEntityName": "usuario",
-            "otherEntityField": "nombre",
-            "ownerSide": true,
-            "otherEntityRelationshipName": "comercio"
-        },
-        {
             "relationshipType": "one-to-many",
             "relationshipName": "resenasClientes",
             "otherEntityName": "resenaCliente",
@@ -66,6 +58,12 @@
             "otherEntityName": "categoriaAlimentacion",
             "otherEntityField": "nombre",
             "ownerSide": true
+        },
+        {
+            "relationshipType": "many-to-one",
+            "relationshipName": "dueno",
+            "otherEntityName": "usuario",
+            "otherEntityField": "id"
         }
     ],
     "fields": [
@@ -111,7 +109,7 @@
             "fieldValues": "RESTAURANTE,TIENDA"
         }
     ],
-    "changelogDate": "20180620020734",
+    "changelogDate": "20180622042349",
     "entityTableName": "comercio",
     "dto": "mapstruct",
     "pagination": "no",

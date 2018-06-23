@@ -9,8 +9,7 @@ import { GreenlifeTestModule } from '../../../test.module';
 import { OrdenRecoleccionDialogComponent } from '../../../../../../main/webapp/app/entities/orden-recoleccion/orden-recoleccion-dialog.component';
 import { OrdenRecoleccionService } from '../../../../../../main/webapp/app/entities/orden-recoleccion/orden-recoleccion.service';
 import { OrdenRecoleccion } from '../../../../../../main/webapp/app/entities/orden-recoleccion/orden-recoleccion.model';
-import { ClienteService } from '../../../../../../main/webapp/app/entities/cliente';
-import { RecolectorService } from '../../../../../../main/webapp/app/entities/recolector';
+import { UsuarioService } from '../../../../../../main/webapp/app/entities/usuario';
 
 describe('Component Tests', () => {
 
@@ -26,8 +25,7 @@ describe('Component Tests', () => {
                 imports: [GreenlifeTestModule],
                 declarations: [OrdenRecoleccionDialogComponent],
                 providers: [
-                    ClienteService,
-                    RecolectorService,
+                    UsuarioService,
                     OrdenRecoleccionService
                 ]
             })

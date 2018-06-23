@@ -43,7 +43,7 @@ public class ResenaCliente implements Serializable {
     private Comercio comercio;
 
     @ManyToOne
-    private Cliente cliente;
+    private Usuario cliente;
 
     // jhipster-needle-entity-add-field - JHipster will add fields here, do not remove
     public Long getId() {
@@ -106,17 +106,17 @@ public class ResenaCliente implements Serializable {
         this.comercio = comercio;
     }
 
-    public Cliente getCliente() {
+    public Usuario getCliente() {
         return cliente;
     }
 
-    public ResenaCliente cliente(Cliente cliente) {
-        this.cliente = cliente;
+    public ResenaCliente cliente(Usuario usuario) {
+        this.cliente = usuario;
         return this;
     }
 
-    public void setCliente(Cliente cliente) {
-        this.cliente = cliente;
+    public void setCliente(Usuario usuario) {
+        this.cliente = usuario;
     }
     // jhipster-needle-entity-add-getters-setters - JHipster will add getters and setters here, do not remove
 

@@ -9,9 +9,7 @@ import { JhiEventManager, JhiAlertService } from 'ng-jhipster';
 import { Usuario } from './usuario.model';
 import { UsuarioPopupService } from './usuario-popup.service';
 import { UsuarioService } from './usuario.service';
-import { Fotografia, FotografiaService } from '../fotografia';
 import { User, UserService } from '../../shared';
-import { Rol, RolService } from '../rol';
 
 @Component({
     selector: 'jhi-usuario-dialog',
@@ -22,11 +20,7 @@ export class UsuarioDialogComponent implements OnInit {
     usuario: Usuario;
     isSaving: boolean;
 
-    fotos: Fotografia[];
-
     users: User[];
-
-    rols: Rol[];
     fechaCreacionDp: any;
     fechaNacimientoDp: any;
 
@@ -34,32 +28,15 @@ export class UsuarioDialogComponent implements OnInit {
         public activeModal: NgbActiveModal,
         private jhiAlertService: JhiAlertService,
         private usuarioService: UsuarioService,
-        private fotografiaService: FotografiaService,
         private userService: UserService,
-        private rolService: RolService,
         private eventManager: JhiEventManager
     ) {
     }
 
     ngOnInit() {
         this.isSaving = false;
-        this.fotografiaService
-            .query({filter: 'usuario-is-null'})
-            .subscribe((res: HttpResponse<Fotografia[]>) => {
-                if (!this.usuario.fotoId) {
-                    this.fotos = res.body;
-                } else {
-                    this.fotografiaService
-                        .find(this.usuario.fotoId)
-                        .subscribe((subRes: HttpResponse<Fotografia>) => {
-                            this.fotos = [subRes.body].concat(res.body);
-                        }, (subRes: HttpErrorResponse) => this.onError(subRes.message));
-                }
-            }, (res: HttpErrorResponse) => this.onError(res.message));
         this.userService.query()
             .subscribe((res: HttpResponse<User[]>) => { this.users = res.body; }, (res: HttpErrorResponse) => this.onError(res.message));
-        this.rolService.query()
-            .subscribe((res: HttpResponse<Rol[]>) => { this.rols = res.body; }, (res: HttpErrorResponse) => this.onError(res.message));
     }
 
     clear() {
@@ -96,15 +73,7 @@ export class UsuarioDialogComponent implements OnInit {
         this.jhiAlertService.error(error.message, null, null);
     }
 
-    trackFotografiaById(index: number, item: Fotografia) {
-        return item.id;
-    }
-
     trackUserById(index: number, item: User) {
-        return item.id;
-    }
-
-    trackRolById(index: number, item: Rol) {
         return item.id;
     }
 }

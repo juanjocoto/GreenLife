@@ -9,7 +9,7 @@ import { JhiEventManager, JhiAlertService } from 'ng-jhipster';
 import { ResenaComercio } from './resena-comercio.model';
 import { ResenaComercioPopupService } from './resena-comercio-popup.service';
 import { ResenaComercioService } from './resena-comercio.service';
-import { Cliente, ClienteService } from '../cliente';
+import { Usuario, UsuarioService } from '../usuario';
 import { Comercio, ComercioService } from '../comercio';
 
 @Component({
@@ -21,7 +21,7 @@ export class ResenaComercioDialogComponent implements OnInit {
     resenaComercio: ResenaComercio;
     isSaving: boolean;
 
-    clientes: Cliente[];
+    usuarios: Usuario[];
 
     comercios: Comercio[];
     fechaCreacionDp: any;
@@ -30,7 +30,7 @@ export class ResenaComercioDialogComponent implements OnInit {
         public activeModal: NgbActiveModal,
         private jhiAlertService: JhiAlertService,
         private resenaComercioService: ResenaComercioService,
-        private clienteService: ClienteService,
+        private usuarioService: UsuarioService,
         private comercioService: ComercioService,
         private eventManager: JhiEventManager
     ) {
@@ -38,8 +38,8 @@ export class ResenaComercioDialogComponent implements OnInit {
 
     ngOnInit() {
         this.isSaving = false;
-        this.clienteService.query()
-            .subscribe((res: HttpResponse<Cliente[]>) => { this.clientes = res.body; }, (res: HttpErrorResponse) => this.onError(res.message));
+        this.usuarioService.query()
+            .subscribe((res: HttpResponse<Usuario[]>) => { this.usuarios = res.body; }, (res: HttpErrorResponse) => this.onError(res.message));
         this.comercioService.query()
             .subscribe((res: HttpResponse<Comercio[]>) => { this.comercios = res.body; }, (res: HttpErrorResponse) => this.onError(res.message));
     }
@@ -78,7 +78,7 @@ export class ResenaComercioDialogComponent implements OnInit {
         this.jhiAlertService.error(error.message, null, null);
     }
 
-    trackClienteById(index: number, item: Cliente) {
+    trackUsuarioById(index: number, item: Usuario) {
         return item.id;
     }
 

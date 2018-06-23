@@ -35,9 +35,9 @@
             <th><span>Razon Social</span></th>
             <th><span>Nombre Comercial</span></th>
             <th><span>Tipo</span></th>
-            <th><span>Usuario</span></th>
             <th><span>Etiquetas</span></th>
             <th><span>Categorias</span></th>
+            <th><span>Dueno</span></th>
             <th></th>
             </tr>
             </thead>
@@ -50,11 +50,6 @@
                 <td>{{comercio.nombreComercial}}</td>
                 <td>{{comercio.tipo}}</td>
                 <td>
-                    <div *ngIf="comercio.usuarioId">
-                        <a [routerLink]="['../usuario', comercio.usuarioId  ]" >{{comercio.usuarioNombre}}</a>
-                    </div>
-                </td>
-                <td>
                     <span *ngFor="let etiquetas of comercio.etiquetas; let last = last">
                             <a class="form-control-static" [routerLink]="['../etiqueta', etiquetas?.id ]">{{etiquetas.nombre}}</a>{{last ? '' : ', '}}
                         </span>
@@ -63,6 +58,11 @@
                     <span *ngFor="let categorias of comercio.categorias; let last = last">
                             <a class="form-control-static" [routerLink]="['../categoria-alimentacion', categorias?.id ]">{{categorias.nombre}}</a>{{last ? '' : ', '}}
                         </span>
+                </td>
+                <td>
+                    <div *ngIf="comercio.duenoId">
+                        <a [routerLink]="['../usuario', comercio.duenoId  ]" >{{comercio.duenoId}}</a>
+                    </div>
                 </td>
                 <td class="text-right">
                     <div class="btn-group flex-btn-group-container">

@@ -43,21 +43,12 @@ public class CacheConfiguration {
             cm.createCache(com.radicalbytes.greenlife.domain.User.class.getName() + ".authorities", jcacheConfiguration);
             cm.createCache(com.radicalbytes.greenlife.domain.SocialUserConnection.class.getName(), jcacheConfiguration);
             cm.createCache(com.radicalbytes.greenlife.domain.Configuracion.class.getName(), jcacheConfiguration);
-            cm.createCache(com.radicalbytes.greenlife.domain.Rol.class.getName(), jcacheConfiguration);
-            cm.createCache(com.radicalbytes.greenlife.domain.Rol.class.getName() + ".permisos", jcacheConfiguration);
-            cm.createCache(com.radicalbytes.greenlife.domain.Permiso.class.getName(), jcacheConfiguration);
             cm.createCache(com.radicalbytes.greenlife.domain.Usuario.class.getName(), jcacheConfiguration);
             cm.createCache(com.radicalbytes.greenlife.domain.Usuario.class.getName() + ".publicaciones", jcacheConfiguration);
             cm.createCache(com.radicalbytes.greenlife.domain.Usuario.class.getName() + ".comentarios", jcacheConfiguration);
             cm.createCache(com.radicalbytes.greenlife.domain.Contrato.class.getName(), jcacheConfiguration);
             cm.createCache(com.radicalbytes.greenlife.domain.TipoContrato.class.getName(), jcacheConfiguration);
-            cm.createCache(com.radicalbytes.greenlife.domain.Cliente.class.getName(), jcacheConfiguration);
-            cm.createCache(com.radicalbytes.greenlife.domain.Cliente.class.getName() + ".resenas", jcacheConfiguration);
-            cm.createCache(com.radicalbytes.greenlife.domain.Cliente.class.getName() + ".suscripciones", jcacheConfiguration);
-            cm.createCache(com.radicalbytes.greenlife.domain.Cliente.class.getName() + ".solicitudesRecoleccions", jcacheConfiguration);
             cm.createCache(com.radicalbytes.greenlife.domain.Administrador.class.getName(), jcacheConfiguration);
-            cm.createCache(com.radicalbytes.greenlife.domain.Recolector.class.getName(), jcacheConfiguration);
-            cm.createCache(com.radicalbytes.greenlife.domain.Recolector.class.getName() + ".ordenes", jcacheConfiguration);
             cm.createCache(com.radicalbytes.greenlife.domain.CentroAcopio.class.getName(), jcacheConfiguration);
             cm.createCache(com.radicalbytes.greenlife.domain.CentroAcopio.class.getName() + ".fotos", jcacheConfiguration);
             cm.createCache(com.radicalbytes.greenlife.domain.Comercio.class.getName(), jcacheConfiguration);
@@ -76,7 +67,6 @@ public class CacheConfiguration {
             cm.createCache(com.radicalbytes.greenlife.domain.Producto.class.getName() + ".fotos", jcacheConfiguration);
             cm.createCache(com.radicalbytes.greenlife.domain.Producto.class.getName() + ".etiquetas", jcacheConfiguration);
             cm.createCache(com.radicalbytes.greenlife.domain.Producto.class.getName() + ".categorias", jcacheConfiguration);
-            cm.createCache(com.radicalbytes.greenlife.domain.SolicitudSuscripcion.class.getName(), jcacheConfiguration);
             cm.createCache(com.radicalbytes.greenlife.domain.Suscripcion.class.getName(), jcacheConfiguration);
             cm.createCache(com.radicalbytes.greenlife.domain.Suscripcion.class.getName() + ".pedidos", jcacheConfiguration);
             cm.createCache(com.radicalbytes.greenlife.domain.Suscripcion.class.getName() + ".historicoEntregases", jcacheConfiguration);
@@ -102,7 +92,6 @@ public class CacheConfiguration {
             cm.createCache(com.radicalbytes.greenlife.domain.Patrocinador.class.getName(), jcacheConfiguration);
             cm.createCache(com.radicalbytes.greenlife.domain.Patrocinador.class.getName() + ".fotos", jcacheConfiguration);
             cm.createCache(com.radicalbytes.greenlife.domain.Patrocinador.class.getName() + ".eventos", jcacheConfiguration);
-            cm.createCache(com.radicalbytes.greenlife.domain.SolicitudPatrocinio.class.getName(), jcacheConfiguration);
             cm.createCache(com.radicalbytes.greenlife.domain.Etiqueta.class.getName(), jcacheConfiguration);
             cm.createCache(com.radicalbytes.greenlife.domain.Entrega.class.getName(), jcacheConfiguration);
             cm.createCache(com.radicalbytes.greenlife.domain.Entrega.class.getName() + ".cadenas", jcacheConfiguration);
@@ -111,6 +100,12 @@ public class CacheConfiguration {
             cm.createCache(com.radicalbytes.greenlife.domain.CobroSuscripcion.class.getName(), jcacheConfiguration);
             cm.createCache(com.radicalbytes.greenlife.domain.Pago.class.getName(), jcacheConfiguration);
             cm.createCache(com.radicalbytes.greenlife.domain.CobroMensualidad.class.getName(), jcacheConfiguration);
+            cm.createCache(com.radicalbytes.greenlife.domain.Usuario.class.getName() + ".resenas", jcacheConfiguration);
+            cm.createCache(com.radicalbytes.greenlife.domain.Usuario.class.getName() + ".suscripciones", jcacheConfiguration);
+            cm.createCache(com.radicalbytes.greenlife.domain.Usuario.class.getName() + ".solicitudesRecoleccions", jcacheConfiguration);
+            cm.createCache(com.radicalbytes.greenlife.domain.Usuario.class.getName() + ".ordenes", jcacheConfiguration);
+            cm.createCache(com.radicalbytes.greenlife.domain.Usuario.class.getName() + ".comercios", jcacheConfiguration);
+            cm.createCache(com.radicalbytes.greenlife.domain.Usuario.class.getName() + ".resenasComercios", jcacheConfiguration);
             // jhipster-needle-ehcache-add-entry
         };
     }

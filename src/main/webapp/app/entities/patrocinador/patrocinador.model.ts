@@ -7,7 +7,6 @@ export class Patrocinador implements BaseEntity {
         public nombre?: string,
         public cedJuridica?: string,
         public correo?: string,
-        public solicitudId?: number,
         public fotos?: BaseEntity[],
         public eventos?: BaseEntity[],
     ) {

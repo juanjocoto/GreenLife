@@ -24,10 +24,10 @@
         <dd>
             <span>{{suscripcion.fechaCobro | date:'mediumDate'}}</span>
         </dd>
-        <dt><span>Cliente</span></dt>
+        <dt><span>Usuario</span></dt>
         <dd>
-            <div *ngIf="suscripcion.clienteId">
-                <a [routerLink]="['/cliente', suscripcion.clienteId]">{{suscripcion.clienteId}}</a>
+            <div *ngIf="suscripcion.usuarioId">
+                <a [routerLink]="['/usuario', suscripcion.usuarioId]">{{suscripcion.usuarioId}}</a>
             </div>
         </dd>
         <dt><span>Comercio</span></dt>

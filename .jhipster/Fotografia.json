@@ -47,7 +47,7 @@
             ]
         }
     ],
-    "changelogDate": "20180620020736",
+    "changelogDate": "20180622042351",
     "entityTableName": "fotografia",
     "dto": "mapstruct",
     "pagination": "no",

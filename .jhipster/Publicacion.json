@@ -55,7 +55,7 @@
             "fieldValidateRulesMaxlength": 2000
         }
     ],
-    "changelogDate": "20180620020746",
+    "changelogDate": "20180622042400",
     "entityTableName": "publicacion",
     "dto": "mapstruct",
     "pagination": "no",

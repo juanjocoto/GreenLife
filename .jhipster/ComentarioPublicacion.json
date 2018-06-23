@@ -32,7 +32,7 @@
             "fieldValidateRulesMaxlength": 300
         }
     ],
-    "changelogDate": "20180620020747",
+    "changelogDate": "20180622042401",
     "entityTableName": "comentario_publicacion",
     "dto": "mapstruct",
     "pagination": "no",

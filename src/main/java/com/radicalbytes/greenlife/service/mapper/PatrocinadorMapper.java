@@ -8,13 +8,10 @@ import org.mapstruct.*;
 /**
  * Mapper for the entity Patrocinador and its DTO PatrocinadorDTO.
  */
-@Mapper(componentModel = "spring", uses = {SolicitudPatrocinioMapper.class, EventoMapper.class})
+@Mapper(componentModel = "spring", uses = {EventoMapper.class})
 public interface PatrocinadorMapper extends EntityMapper<PatrocinadorDTO, Patrocinador> {
 
-    @Mapping(source = "solicitud.id", target = "solicitudId")
-    PatrocinadorDTO toDto(Patrocinador patrocinador);
 
-    @Mapping(source = "solicitudId", target = "solicitud")
     @Mapping(target = "fotos", ignore = true)
     Patrocinador toEntity(PatrocinadorDTO patrocinadorDTO);
 

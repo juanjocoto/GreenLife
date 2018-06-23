@@ -20,12 +20,6 @@
         <dd>
             <span>{{patrocinador.correo}}</span>
         </dd>
-        <dt><span>Solicitud</span></dt>
-        <dd>
-            <div *ngIf="patrocinador.solicitudId">
-                <a [routerLink]="['/solicitud-patrocinio', patrocinador.solicitudId]">{{patrocinador.solicitudId}}</a>
-            </div>
-        </dd>
         <dt><span>Eventos</span></dt>
         <dd>
             <span *ngFor="let eventos of patrocinador.eventos; let last = last">

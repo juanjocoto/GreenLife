@@ -17,9 +17,6 @@ public class LineaProductoDTO implements Serializable {
     @NotNull
     private Integer cantidad;
 
-    @NotNull
-    private Float precioUnitario;
-
     private Long productoId;
 
     public Long getId() {
@@ -36,14 +33,6 @@ public class LineaProductoDTO implements Serializable {
 
     public void setCantidad(Integer cantidad) {
         this.cantidad = cantidad;
-    }
-
-    public Float getPrecioUnitario() {
-        return precioUnitario;
-    }
-
-    public void setPrecioUnitario(Float precioUnitario) {
-        this.precioUnitario = precioUnitario;
     }
 
     public Long getProductoId() {
@@ -80,7 +69,6 @@ public class LineaProductoDTO implements Serializable {
         return "LineaProductoDTO{" +
             "id=" + getId() +
             ", cantidad=" + getCantidad() +
-            ", precioUnitario=" + getPrecioUnitario() +
             "}";
     }
 }

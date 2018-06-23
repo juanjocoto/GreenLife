@@ -32,7 +32,7 @@
             <th><span>ID</span></th>
             <th><span>Fecha Crecion</span></th>
             <th><span>Fecha Solicitud</span></th>
-            <th><span>Cliente</span></th>
+            <th><span>Solicitante</span></th>
             <th><span>Recolector</span></th>
             <th></th>
             </tr>
@@ -43,13 +43,13 @@
                 <td>{{ordenRecoleccion.fechaCrecion | date:'mediumDate'}}</td>
                 <td>{{ordenRecoleccion.fechaSolicitud | date:'mediumDate'}}</td>
                 <td>
-                    <div *ngIf="ordenRecoleccion.clienteId">
-                        <a [routerLink]="['../cliente', ordenRecoleccion.clienteId  ]" >{{ordenRecoleccion.clienteId}}</a>
+                    <div *ngIf="ordenRecoleccion.solicitanteId">
+                        <a [routerLink]="['../usuario', ordenRecoleccion.solicitanteId  ]" >{{ordenRecoleccion.solicitanteId}}</a>
                     </div>
                 </td>
                 <td>
                     <div *ngIf="ordenRecoleccion.recolectorId">
-                        <a [routerLink]="['../recolector', ordenRecoleccion.recolectorId  ]" >{{ordenRecoleccion.recolectorId}}</a>
+                        <a [routerLink]="['../usuario', ordenRecoleccion.recolectorId  ]" >{{ordenRecoleccion.recolectorId}}</a>
                     </div>
                 </td>
                 <td class="text-right">

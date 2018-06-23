@@ -8,14 +8,14 @@ import org.mapstruct.*;
 /**
  * Mapper for the entity Suscripcion and its DTO SuscripcionDTO.
  */
-@Mapper(componentModel = "spring", uses = {ClienteMapper.class, ComercioMapper.class})
+@Mapper(componentModel = "spring", uses = {UsuarioMapper.class, ComercioMapper.class})
 public interface SuscripcionMapper extends EntityMapper<SuscripcionDTO, Suscripcion> {
 
-    @Mapping(source = "cliente.id", target = "clienteId")
+    @Mapping(source = "usuario.id", target = "usuarioId")
     @Mapping(source = "comercio.id", target = "comercioId")
     SuscripcionDTO toDto(Suscripcion suscripcion);
 
-    @Mapping(source = "clienteId", target = "cliente")
+    @Mapping(source = "usuarioId", target = "usuario")
     @Mapping(source = "comercioId", target = "comercio")
     @Mapping(target = "pedidos", ignore = true)
     @Mapping(target = "historicoEntregases", ignore = true)
