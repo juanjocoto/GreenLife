@@ -1,0 +1,44 @@
+<div class="form-container">
+  <form [formGroup]="formulario">
+    <mat-form-field>
+      <input matInput placeholder="Nombre" formControlName="nombre">
+    </mat-form-field>
+    <mat-form-field>
+      <input matInput placeholder="Apellidos" formControlName="apellidos">
+    </mat-form-field>
+    <mat-form-field>
+      <input matInput [matDatepicker]="picker" placeholder="Fecha nacimineto" formControlName="fechaNacimiento">
+      <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+      <mat-datepicker #picker></mat-datepicker>
+    </mat-form-field>
+    <mat-form-field>
+      <input matInput jhiValidadorNumero placeholder="Cédula" formControlName="cedula">
+      <mat-error *ngIf="formulario.get('cedula').invalid">
+        El numero de teléfono debe de contener 9 números
+      </mat-error>
+    </mat-form-field>
+    <mat-form-field>
+      <input matInput jhiValidadorNumero placeholder="Teléfono" formControlName="telefono">
+      <mat-error *ngIf="formulario.get('telefono').invalid">
+        El numero de teléfono debe de contener 8 números
+      </mat-error>
+    </mat-form-field>
+    <mat-form-field>
+      <input matInput placeholder="Correo electronico" formControlName="correo">
+      <mat-error *ngIf="formulario.get('correo').invalid">
+        El formato de correo es invalido
+      </mat-error>
+    </mat-form-field>
+    <mat-form-field>
+      <input matInput placeholder="Nombre de usuario" formControlName="usuario">
+    </mat-form-field>
+    <mat-form-field>
+      <input matInput placeholder="Contraseña" formControlName="clave" type="password">
+      <mat-hint>Debe de contener letras, números y no menos de 8 caracteres</mat-hint>
+    </mat-form-field>
+    <div style="display:flex">
+      <div style="flex:1 1"></div>
+      <button class="btn" (click)="crearUsuario()">Crear</button>
+    </div>
+  </form>
+</div>
