@@ -1,4 +1,5 @@
 import { MatButtonModule, MatButtonToggleModule, MatCardModule, MatGridListModule, MatListModule, MatMenuModule, MatToolbarModule } from '@angular/material';
+
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { BrowserModule } from '@angular/platform-browser';
 import { CommonModule } from '@angular/common';
@@ -6,9 +7,10 @@ import { FooterGreenlifeComponent } from './layout/footer-greenlife/footer-green
 import { LandingComponent } from './views/landing/landing.component';
 import { NavbarGreenlifeComponent } from './layout/navbar-greenlife/navbar-greenlife.component';
 import { NgModule } from '@angular/core';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { RootComponent } from './root/root.component';
 import { RouterModule } from '@angular/router';
-import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
+import { UsuarioPerfilComponent } from './views/usuario-perfil/usuario-perfil.component';
 
 @NgModule({
   imports: [
@@ -25,7 +27,11 @@ import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
     MatListModule,
     RouterModule
   ],
-  declarations: [LandingComponent, NavbarGreenlifeComponent, FooterGreenlifeComponent,
-    RootComponent]
+  declarations: [
+    LandingComponent,
+    NavbarGreenlifeComponent,
+    FooterGreenlifeComponent,
+    RootComponent,
+    UsuarioPerfilComponent]
 })
 export class GreenLifeModule { }

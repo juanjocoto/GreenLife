@@ -1,10 +1,9 @@
-import { Injectable } from '@angular/core';
 import { HttpClient, HttpResponse } from '@angular/common/http';
+
+import { Injectable } from '@angular/core';
+import { JhiDateUtils } from 'ng-jhipster';
 import { Observable } from 'rxjs/Observable';
 import { SERVER_API_URL } from '../../app.constants';
-
-import { JhiDateUtils } from 'ng-jhipster';
-
 import { Usuario } from './usuario.model';
 import { createRequestOption } from '../../shared';
 
@@ -13,7 +12,7 @@ export type EntityResponseType = HttpResponse<Usuario>;
 @Injectable()
 export class UsuarioService {
 
-    private resourceUrl =  SERVER_API_URL + 'api/usuarios';
+    private resourceUrl = SERVER_API_URL + 'api/usuarios';
     private resourceSearchUrl = SERVER_API_URL + 'api/_search/usuarios';
 
     constructor(private http: HttpClient, private dateUtils: JhiDateUtils) { }
@@ -31,7 +30,7 @@ export class UsuarioService {
     }
 
     find(id: number): Observable<EntityResponseType> {
-        return this.http.get<Usuario>(`${this.resourceUrl}/${id}`, { observe: 'response'})
+        return this.http.get<Usuario>(`${this.resourceUrl}/${id}`, { observe: 'response' })
             .map((res: EntityResponseType) => this.convertResponse(res));
     }
 
@@ -42,7 +41,7 @@ export class UsuarioService {
     }
 
     delete(id: number): Observable<HttpResponse<any>> {
-        return this.http.delete<any>(`${this.resourceUrl}/${id}`, { observe: 'response'});
+        return this.http.delete<any>(`${this.resourceUrl}/${id}`, { observe: 'response' });
     }
 
     search(req?: any): Observable<HttpResponse<Usuario[]>> {
@@ -51,9 +50,14 @@ export class UsuarioService {
             .map((res: HttpResponse<Usuario[]>) => this.convertArrayResponse(res));
     }
 
+    findByUserLogin(login: string): Observable<EntityResponseType> {
+        return this.http.get<Usuario>(`${this.resourceUrl}/login/${login}`, { observe: 'response' })
+            .map((res: EntityResponseType) => this.convertResponse(res));
+    }
+
     private convertResponse(res: EntityResponseType): EntityResponseType {
         const body: Usuario = this.convertItemFromServer(res.body);
-        return res.clone({body});
+        return res.clone({ body });
     }
 
     private convertArrayResponse(res: HttpResponse<Usuario[]>): HttpResponse<Usuario[]> {
@@ -62,7 +66,7 @@ export class UsuarioService {
         for (let i = 0; i < jsonResponse.length; i++) {
             body.push(this.convertItemFromServer(jsonResponse[i]));
         }
-        return res.clone({body});
+        return res.clone({ body });
     }
 
     /**

@@ -1,30 +1,41 @@
 package com.radicalbytes.greenlife.web.rest;
 
-import com.codahale.metrics.annotation.Timed;
-import com.radicalbytes.greenlife.domain.Usuario;
+import static org.elasticsearch.index.query.QueryBuilders.queryStringQuery;
 
-import com.radicalbytes.greenlife.repository.UsuarioRepository;
-import com.radicalbytes.greenlife.repository.search.UsuarioSearchRepository;
-import com.radicalbytes.greenlife.web.rest.errors.BadRequestAlertException;
-import com.radicalbytes.greenlife.web.rest.util.HeaderUtil;
-import com.radicalbytes.greenlife.service.dto.UsuarioDTO;
-import com.radicalbytes.greenlife.service.mapper.UsuarioMapper;
-import io.github.jhipster.web.util.ResponseUtil;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.*;
-
-import javax.validation.Valid;
 import java.net.URI;
 import java.net.URISyntaxException;
-
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
 import java.util.stream.StreamSupport;
 
-import static org.elasticsearch.index.query.QueryBuilders.*;
+import javax.validation.Valid;
+
+import com.codahale.metrics.annotation.Timed;
+import com.radicalbytes.greenlife.domain.User;
+import com.radicalbytes.greenlife.domain.Usuario;
+import com.radicalbytes.greenlife.repository.UserRepository;
+import com.radicalbytes.greenlife.repository.UsuarioRepository;
+import com.radicalbytes.greenlife.repository.search.UsuarioSearchRepository;
+import com.radicalbytes.greenlife.service.dto.UsuarioDTO;
+import com.radicalbytes.greenlife.service.mapper.UsuarioMapper;
+import com.radicalbytes.greenlife.web.rest.errors.BadRequestAlertException;
+import com.radicalbytes.greenlife.web.rest.util.HeaderUtil;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RestController;
+
+import io.github.jhipster.web.util.ResponseUtil;
 
 /**
  * REST controller for managing Usuario.
@@ -43,22 +54,29 @@ public class UsuarioResource {
 
     private final UsuarioSearchRepository usuarioSearchRepository;
 
-    public UsuarioResource(UsuarioRepository usuarioRepository, UsuarioMapper usuarioMapper, UsuarioSearchRepository usuarioSearchRepository) {
+    private final UserRepository userRepository;
+
+    public UsuarioResource(UsuarioRepository usuarioRepository, UsuarioMapper usuarioMapper,
+            UsuarioSearchRepository usuarioSearchRepository, UserRepository userRepository) {
         this.usuarioRepository = usuarioRepository;
         this.usuarioMapper = usuarioMapper;
         this.usuarioSearchRepository = usuarioSearchRepository;
+        this.userRepository = userRepository;
     }
 
     /**
-     * POST  /usuarios : Create a new usuario.
+     * POST /usuarios : Create a new usuario.
      *
      * @param usuarioDTO the usuarioDTO to create
-     * @return the ResponseEntity with status 201 (Created) and with body the new usuarioDTO, or with status 400 (Bad Request) if the usuario has already an ID
+     * @return the ResponseEntity with status 201 (Created) and with body the new
+     *         usuarioDTO, or with status 400 (Bad Request) if the usuario has
+     *         already an ID
      * @throws URISyntaxException if the Location URI syntax is incorrect
      */
     @PostMapping("/usuarios")
     @Timed
-    public ResponseEntity<UsuarioDTO> createUsuario(@Valid @RequestBody UsuarioDTO usuarioDTO) throws URISyntaxException {
+    public ResponseEntity<UsuarioDTO> createUsuario(@Valid @RequestBody UsuarioDTO usuarioDTO)
+            throws URISyntaxException {
         log.debug("REST request to save Usuario : {}", usuarioDTO);
         if (usuarioDTO.getId() != null) {
             throw new BadRequestAlertException("A new usuario cannot already have an ID", ENTITY_NAME, "idexists");
@@ -68,22 +86,23 @@ public class UsuarioResource {
         UsuarioDTO result = usuarioMapper.toDto(usuario);
         usuarioSearchRepository.save(usuario);
         return ResponseEntity.created(new URI("/api/usuarios/" + result.getId()))
-            .headers(HeaderUtil.createEntityCreationAlert(ENTITY_NAME, result.getId().toString()))
-            .body(result);
+                .headers(HeaderUtil.createEntityCreationAlert(ENTITY_NAME, result.getId().toString())).body(result);
     }
 
     /**
-     * PUT  /usuarios : Updates an existing usuario.
+     * PUT /usuarios : Updates an existing usuario.
      *
      * @param usuarioDTO the usuarioDTO to update
-     * @return the ResponseEntity with status 200 (OK) and with body the updated usuarioDTO,
-     * or with status 400 (Bad Request) if the usuarioDTO is not valid,
-     * or with status 500 (Internal Server Error) if the usuarioDTO couldn't be updated
+     * @return the ResponseEntity with status 200 (OK) and with body the updated
+     *         usuarioDTO, or with status 400 (Bad Request) if the usuarioDTO is not
+     *         valid, or with status 500 (Internal Server Error) if the usuarioDTO
+     *         couldn't be updated
      * @throws URISyntaxException if the Location URI syntax is incorrect
      */
     @PutMapping("/usuarios")
     @Timed
-    public ResponseEntity<UsuarioDTO> updateUsuario(@Valid @RequestBody UsuarioDTO usuarioDTO) throws URISyntaxException {
+    public ResponseEntity<UsuarioDTO> updateUsuario(@Valid @RequestBody UsuarioDTO usuarioDTO)
+            throws URISyntaxException {
         log.debug("REST request to update Usuario : {}", usuarioDTO);
         if (usuarioDTO.getId() == null) {
             return createUsuario(usuarioDTO);
@@ -93,14 +112,14 @@ public class UsuarioResource {
         UsuarioDTO result = usuarioMapper.toDto(usuario);
         usuarioSearchRepository.save(usuario);
         return ResponseEntity.ok()
-            .headers(HeaderUtil.createEntityUpdateAlert(ENTITY_NAME, usuarioDTO.getId().toString()))
-            .body(result);
+                .headers(HeaderUtil.createEntityUpdateAlert(ENTITY_NAME, usuarioDTO.getId().toString())).body(result);
     }
 
     /**
-     * GET  /usuarios : get all the usuarios.
+     * GET /usuarios : get all the usuarios.
      *
-     * @return the ResponseEntity with status 200 (OK) and the list of usuarios in body
+     * @return the ResponseEntity with status 200 (OK) and the list of usuarios in
+     *         body
      */
     @GetMapping("/usuarios")
     @Timed
@@ -108,13 +127,14 @@ public class UsuarioResource {
         log.debug("REST request to get all Usuarios");
         List<Usuario> usuarios = usuarioRepository.findAll();
         return usuarioMapper.toDto(usuarios);
-        }
+    }
 
     /**
-     * GET  /usuarios/:id : get the "id" usuario.
+     * GET /usuarios/:id : get the "id" usuario.
      *
      * @param id the id of the usuarioDTO to retrieve
-     * @return the ResponseEntity with status 200 (OK) and with body the usuarioDTO, or with status 404 (Not Found)
+     * @return the ResponseEntity with status 200 (OK) and with body the usuarioDTO,
+     *         or with status 404 (Not Found)
      */
     @GetMapping("/usuarios/{id}")
     @Timed
@@ -126,7 +146,24 @@ public class UsuarioResource {
     }
 
     /**
-     * DELETE  /usuarios/:id : delete the "id" usuario.
+     * GET /usuarios/login/:login
+     * 
+     * @param login
+     * @return the ResponseEntity with status 200 (OK) and with body the usuarioDTO,
+     *         or with status 404 (Not Found)
+     */
+    @GetMapping("/usuarios/login/{login}")
+    @Timed
+    public ResponseEntity<UsuarioDTO> getUsuarioByLogin(@PathVariable String login) {
+        log.debug("REST request to get Usuario : {}", login);
+        User user = userRepository.findOneByLogin(login).get();
+        Usuario usuario = usuarioSearchRepository.findByUserDetailId(user.getId()).get();
+        UsuarioDTO usuarioDTO = usuarioMapper.toDto(usuario);
+        return ResponseUtil.wrapOrNotFound(Optional.ofNullable(usuarioDTO));
+    }
+
+    /**
+     * DELETE /usuarios/:id : delete the "id" usuario.
      *
      * @param id the id of the usuarioDTO to delete
      * @return the ResponseEntity with status 200 (OK)
@@ -141,7 +178,7 @@ public class UsuarioResource {
     }
 
     /**
-     * SEARCH  /_search/usuarios?query=:query : search for the usuario corresponding
+     * SEARCH /_search/usuarios?query=:query : search for the usuario corresponding
      * to the query.
      *
      * @param query the query of the usuario search
@@ -151,10 +188,8 @@ public class UsuarioResource {
     @Timed
     public List<UsuarioDTO> searchUsuarios(@RequestParam String query) {
         log.debug("REST request to search Usuarios for query {}", query);
-        return StreamSupport
-            .stream(usuarioSearchRepository.search(queryStringQuery(query)).spliterator(), false)
-            .map(usuarioMapper::toDto)
-            .collect(Collectors.toList());
+        return StreamSupport.stream(usuarioSearchRepository.search(queryStringQuery(query)).spliterator(), false)
+                .map(usuarioMapper::toDto).collect(Collectors.toList());
     }
 
 }
