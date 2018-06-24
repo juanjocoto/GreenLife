@@ -19,7 +19,7 @@ const LAYOUT_ROUTES: Route[] = [
 
 @NgModule({
     imports: [
-        RouterModule.forRoot(LAYOUT_ROUTES, { useHash: true, enableTracing: DEBUG_INFO_ENABLED })
+        RouterModule.forRoot(LAYOUT_ROUTES, { useHash: true, enableTracing: false })
     ],
     exports: [
         RouterModule
