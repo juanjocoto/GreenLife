@@ -1,0 +1,12 @@
+.form-container {
+    margin: 0 auto;
+    width: 800px;
+}
+
+mat-form-field {
+    width: 100%;
+}
+
+.ng-invalid:not(form) {
+    border-left: unset;
+}
