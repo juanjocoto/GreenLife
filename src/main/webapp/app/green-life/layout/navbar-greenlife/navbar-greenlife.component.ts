@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import {MatDialog} from '@angular/material';
+import { LoginComponent } from '../../dialogos/login/login.component';
 
 @Component({
   selector: 'jhi-navbar-greenlife',
@@ -10,9 +12,14 @@ import { Component, OnInit } from '@angular/core';
 export class NavbarGreenlifeComponent implements OnInit {
    isNavbarCollapsed = true;
 
-  constructor() { }
+  constructor(public dialog: MatDialog) { }
 
   ngOnInit() {
   }
 
+  openDialog() {
+    this.dialog.open(LoginComponent, {
+      width: '300px'
+    });
+  }
 }
