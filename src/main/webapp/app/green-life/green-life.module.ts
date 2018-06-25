@@ -28,6 +28,7 @@ import { UsuarioRolesComponent } from './views/usuario-roles/usuario-roles.compo
   ],
   declarations: [LandingComponent, NavbarGreenlifeComponent, FooterGreenlifeComponent,
     RootComponent,
-    UsuarioRolesComponent]
+    UsuarioRolesComponent,
+  ]
 })
 export class GreenLifeModule { }
