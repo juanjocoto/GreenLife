@@ -1,4 +1,52 @@
+@import "../../green-life.colors";
 .view-container {
-    width: 800px;
-    margin: 57px auto 0;
+    max-width: 800px;
+    margin: 0 auto 0;
+}
+
+.title {
+    background: $config-green-color;
+    color: #fff;
+    padding: 20px;
+    margin: 0 0 20px;
+}
+
+h2,
+h2>.btn {
+    color: $config-green-color;
+}
+
+table {
+    width: 100%;
+}
+
+table tr>td:nth-child(1) {
+    width: 20%;
+    color: $config-green-color;
+}
+
+table tr>td:nth-child(2) {
+    border-bottom: 1px solid #d3d7d8;
+    color: $config-gray-color;
+}
+
+tr {
+    padding: 5px 0;
+}
+
+.img-container {
+    max-width: 100px;
+    margin: 0 auto;
+    position: relative;
+}
+
+.img-container img {
+    width: 100%;
+}
+
+.btn.img-config {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    color: $config-green-color;
 }

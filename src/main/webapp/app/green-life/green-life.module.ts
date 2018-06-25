@@ -5,6 +5,7 @@ import {
   MatDatepickerModule,
   MatFormFieldModule,
   MatGridListModule,
+  MatIconModule,
   MatInputModule,
   MatListModule,
   MatMenuModule,
@@ -46,7 +47,8 @@ import { ValidadorNumeroDirective } from './shared/directives/validador-numero.d
     MatInputModule,
     ReactiveFormsModule,
     MatDatepickerModule,
-    MatNativeDateModule
+    MatNativeDateModule,
+    MatIconModule
   ],
   declarations: [
     LandingComponent,

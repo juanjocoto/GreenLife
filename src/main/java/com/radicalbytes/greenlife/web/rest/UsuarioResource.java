@@ -157,9 +157,16 @@ public class UsuarioResource {
     public ResponseEntity<UsuarioDTO> getUsuarioByLogin(@PathVariable String login) {
         log.debug("REST request to get Usuario : {}", login);
         User user = userRepository.findOneByLogin(login).get();
-        Usuario usuario = usuarioSearchRepository.findByUserDetailId(user.getId()).get();
-        UsuarioDTO usuarioDTO = usuarioMapper.toDto(usuario);
-        return ResponseUtil.wrapOrNotFound(Optional.ofNullable(usuarioDTO));
+        Optional<Usuario> ob = usuarioRepository.findByUserDetail(user);
+        Usuario usuario;
+        if (ob.isPresent()) {
+            usuario = ob.get();
+            UsuarioDTO usuarioDTO = usuarioMapper.toDto(usuario);
+            return ResponseUtil.wrapOrNotFound(Optional.ofNullable(usuarioDTO));
+        }
+
+        return null;
+
     }
 
     /**

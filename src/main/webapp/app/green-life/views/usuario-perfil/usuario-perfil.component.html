@@ -1,5 +1,79 @@
-<div class="view-container">
-  <p>
-    usuario-perfil works!
-  </p>
+<div class="title">
+  <h1>Configuración del Usuario</h1>
+</div>
+<div class="view-container" *ngIf="usuario && user">
+  <div class="container">
+    <div class="row">
+      <div class="col-9">
+        <h2>Información general
+          <button class="btn">
+            <mat-icon>
+              settings
+            </mat-icon>
+          </button>
+        </h2>
+        <div class="row">
+          <div class="col-sm">
+            <table>
+              <tbody>
+                <tr>
+                  <td>Nombre:</td>
+                  <td>{{user.firstName}}</td>
+                </tr>
+                <tr>
+                  <td>Apellidos:</td>
+                  <td>{{user.lastName}}</td>
+                </tr>
+                <tr>
+                  <td>Cédula:</td>
+                  <td>{{usuario.cedula}}</td>
+                </tr>
+                <tr>
+                  <td>Correo:</td>
+                  <td>{{user.email}}</td>
+                </tr>
+                <tr>
+                  <td>Teléfono:</td>
+                  <td>{{usuario.telefono}}</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <div class="col-sm">
+            <table>
+              <tbody>
+                <tr>
+                  <td>Dirección:</td>
+                  <td>{{usuario.direccion}}</td>
+                </tr>
+                <tr>
+                  <td>Fecha de nacimiento:</td>
+                  <td>{{usuario.fechaNacimiento | date}}</td>
+                </tr>
+                <tr>
+                  <td>Nombre de usuario</td>
+                  <td>{{user.login}}</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+      <div class="col-3">
+        <h2>Foto perfíl</h2>
+        <div class="row">
+          <div class="img-container">
+            <img *ngIf="usuario.fotoUrl" [src]="usuario.fotoUrl" alt="">
+            <img *ngIf="!usuario.fotoUrl" src="http://www.iconexperience.com/_img/o_collection_png/green_dark_grey/512x512/plain/user.png"
+              alt="">
+          </div>
+          <button class="btn img-config">
+            <mat-icon>
+              settings
+            </mat-icon>
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>
