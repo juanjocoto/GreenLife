@@ -5,6 +5,7 @@ import com.radicalbytes.greenlife.domain.Usuario;
 
 import com.radicalbytes.greenlife.repository.UsuarioRepository;
 import com.radicalbytes.greenlife.repository.search.UsuarioSearchRepository;
+import com.radicalbytes.greenlife.security.AuthoritiesConstants;
 import com.radicalbytes.greenlife.web.rest.errors.BadRequestAlertException;
 import com.radicalbytes.greenlife.web.rest.util.HeaderUtil;
 import com.radicalbytes.greenlife.service.dto.UsuarioDTO;
@@ -13,6 +14,7 @@ import io.github.jhipster.web.util.ResponseUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.annotation.Secured;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
@@ -58,6 +60,7 @@ public class UsuarioResource {
      */
     @PostMapping("/usuarios")
     @Timed
+    @Secured(AuthoritiesConstants.ANONYMOUS)
     public ResponseEntity<UsuarioDTO> createUsuario(@Valid @RequestBody UsuarioDTO usuarioDTO) throws URISyntaxException {
         log.debug("REST request to save Usuario : {}", usuarioDTO);
         if (usuarioDTO.getId() != null) {
