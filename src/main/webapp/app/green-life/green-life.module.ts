@@ -9,6 +9,7 @@ import { NgModule } from '@angular/core';
 import { RootComponent } from './root/root.component';
 import { RouterModule } from '@angular/router';
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
+import { UsuarioRolesComponent } from './views/usuario-roles/usuario-roles.component';
 
 @NgModule({
   imports: [
@@ -26,6 +27,7 @@ import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
     RouterModule
   ],
   declarations: [LandingComponent, NavbarGreenlifeComponent, FooterGreenlifeComponent,
-    RootComponent]
+    RootComponent,
+    UsuarioRolesComponent]
 })
 export class GreenLifeModule { }
