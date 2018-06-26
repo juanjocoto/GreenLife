@@ -9,6 +9,6 @@
   <div *ngIf="!isValid" class="alert alert-danger">
     <strong>Error!</strong> {{ msgError }}
   </div>
-  <button type="button" class="btn btn-secondary" mat-dialog-close>Cancelar</button>
-  <button type="submit" class="btn btn-success" [disabled]="!formulario.valid" (click)="login()">Ingresar</button>
+  <button type="button" class="btn btn-secondary" mat-dialog-close id="btnCancelar">Cancelar</button>
+  <button type="submit" class="btn btn-success" [disabled]="!formulario.valid" (click)="login()" id="btnLogin">Ingresar</button>
 </form>
