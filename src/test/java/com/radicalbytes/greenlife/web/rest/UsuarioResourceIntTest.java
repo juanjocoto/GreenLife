@@ -3,6 +3,7 @@ package com.radicalbytes.greenlife.web.rest;
 import com.radicalbytes.greenlife.GreenlifeApp;
 
 import com.radicalbytes.greenlife.domain.Usuario;
+import com.radicalbytes.greenlife.repository.UserRepository;
 import com.radicalbytes.greenlife.repository.UsuarioRepository;
 import com.radicalbytes.greenlife.repository.search.UsuarioSearchRepository;
 import com.radicalbytes.greenlife.service.dto.UsuarioDTO;
@@ -88,6 +89,9 @@ public class UsuarioResourceIntTest {
     @Autowired
     private EntityManager em;
 
+    @Autowired
+    private UserRepository userRepository;
+
     private MockMvc restUsuarioMockMvc;
 
     private Usuario usuario;
@@ -95,30 +99,24 @@ public class UsuarioResourceIntTest {
     @Before
     public void setup() {
         MockitoAnnotations.initMocks(this);
-        final UsuarioResource usuarioResource = new UsuarioResource(usuarioRepository, usuarioMapper, usuarioSearchRepository);
+        final UsuarioResource usuarioResource = new UsuarioResource(usuarioRepository, usuarioMapper,
+                usuarioSearchRepository, userRepository);
         this.restUsuarioMockMvc = MockMvcBuilders.standaloneSetup(usuarioResource)
-            .setCustomArgumentResolvers(pageableArgumentResolver)
-            .setControllerAdvice(exceptionTranslator)
-            .setConversionService(createFormattingConversionService())
-            .setMessageConverters(jacksonMessageConverter).build();
+                .setCustomArgumentResolvers(pageableArgumentResolver).setControllerAdvice(exceptionTranslator)
+                .setConversionService(createFormattingConversionService()).setMessageConverters(jacksonMessageConverter)
+                .build();
     }
 
     /**
      * Create an entity for this test.
      *
-     * This is a static method, as tests for other entities might also need it,
-     * if they test an entity which requires the current entity.
+     * This is a static method, as tests for other entities might also need it, if
+     * they test an entity which requires the current entity.
      */
     public static Usuario createEntity(EntityManager em) {
-        Usuario usuario = new Usuario()
-            .fechaCreacion(DEFAULT_FECHA_CREACION)
-            .fechaNacimiento(DEFAULT_FECHA_NACIMIENTO)
-            .cedula(DEFAULT_CEDULA)
-            .direccion(DEFAULT_DIRECCION)
-            .telefono(DEFAULT_TELEFONO)
-            .fotoUrl(DEFAULT_FOTO_URL)
-            .latitud(DEFAULT_LATITUD)
-            .longitud(DEFAULT_LONGITUD);
+        Usuario usuario = new Usuario().fechaCreacion(DEFAULT_FECHA_CREACION).fechaNacimiento(DEFAULT_FECHA_NACIMIENTO)
+                .cedula(DEFAULT_CEDULA).direccion(DEFAULT_DIRECCION).telefono(DEFAULT_TELEFONO)
+                .fotoUrl(DEFAULT_FOTO_URL).latitud(DEFAULT_LATITUD).longitud(DEFAULT_LONGITUD);
         return usuario;
     }
 
@@ -135,10 +133,8 @@ public class UsuarioResourceIntTest {
 
         // Create the Usuario
         UsuarioDTO usuarioDTO = usuarioMapper.toDto(usuario);
-        restUsuarioMockMvc.perform(post("/api/usuarios")
-            .contentType(TestUtil.APPLICATION_JSON_UTF8)
-            .content(TestUtil.convertObjectToJsonBytes(usuarioDTO)))
-            .andExpect(status().isCreated());
+        restUsuarioMockMvc.perform(post("/api/usuarios").contentType(TestUtil.APPLICATION_JSON_UTF8)
+                .content(TestUtil.convertObjectToJsonBytes(usuarioDTO))).andExpect(status().isCreated());
 
         // Validate the Usuario in the database
         List<Usuario> usuarioList = usuarioRepository.findAll();
@@ -168,10 +164,8 @@ public class UsuarioResourceIntTest {
         UsuarioDTO usuarioDTO = usuarioMapper.toDto(usuario);
 
         // An entity with an existing ID cannot be created, so this API call must fail
-        restUsuarioMockMvc.perform(post("/api/usuarios")
-            .contentType(TestUtil.APPLICATION_JSON_UTF8)
-            .content(TestUtil.convertObjectToJsonBytes(usuarioDTO)))
-            .andExpect(status().isBadRequest());
+        restUsuarioMockMvc.perform(post("/api/usuarios").contentType(TestUtil.APPLICATION_JSON_UTF8)
+                .content(TestUtil.convertObjectToJsonBytes(usuarioDTO))).andExpect(status().isBadRequest());
 
         // Validate the Usuario in the database
         List<Usuario> usuarioList = usuarioRepository.findAll();
@@ -188,10 +182,8 @@ public class UsuarioResourceIntTest {
         // Create the Usuario, which fails.
         UsuarioDTO usuarioDTO = usuarioMapper.toDto(usuario);
 
-        restUsuarioMockMvc.perform(post("/api/usuarios")
-            .contentType(TestUtil.APPLICATION_JSON_UTF8)
-            .content(TestUtil.convertObjectToJsonBytes(usuarioDTO)))
-            .andExpect(status().isBadRequest());
+        restUsuarioMockMvc.perform(post("/api/usuarios").contentType(TestUtil.APPLICATION_JSON_UTF8)
+                .content(TestUtil.convertObjectToJsonBytes(usuarioDTO))).andExpect(status().isBadRequest());
 
         List<Usuario> usuarioList = usuarioRepository.findAll();
         assertThat(usuarioList).hasSize(databaseSizeBeforeTest);
@@ -207,10 +199,8 @@ public class UsuarioResourceIntTest {
         // Create the Usuario, which fails.
         UsuarioDTO usuarioDTO = usuarioMapper.toDto(usuario);
 
-        restUsuarioMockMvc.perform(post("/api/usuarios")
-            .contentType(TestUtil.APPLICATION_JSON_UTF8)
-            .content(TestUtil.convertObjectToJsonBytes(usuarioDTO)))
-            .andExpect(status().isBadRequest());
+        restUsuarioMockMvc.perform(post("/api/usuarios").contentType(TestUtil.APPLICATION_JSON_UTF8)
+                .content(TestUtil.convertObjectToJsonBytes(usuarioDTO))).andExpect(status().isBadRequest());
 
         List<Usuario> usuarioList = usuarioRepository.findAll();
         assertThat(usuarioList).hasSize(databaseSizeBeforeTest);
@@ -226,10 +216,8 @@ public class UsuarioResourceIntTest {
         // Create the Usuario, which fails.
         UsuarioDTO usuarioDTO = usuarioMapper.toDto(usuario);
 
-        restUsuarioMockMvc.perform(post("/api/usuarios")
-            .contentType(TestUtil.APPLICATION_JSON_UTF8)
-            .content(TestUtil.convertObjectToJsonBytes(usuarioDTO)))
-            .andExpect(status().isBadRequest());
+        restUsuarioMockMvc.perform(post("/api/usuarios").contentType(TestUtil.APPLICATION_JSON_UTF8)
+                .content(TestUtil.convertObjectToJsonBytes(usuarioDTO))).andExpect(status().isBadRequest());
 
         List<Usuario> usuarioList = usuarioRepository.findAll();
         assertThat(usuarioList).hasSize(databaseSizeBeforeTest);
@@ -245,10 +233,8 @@ public class UsuarioResourceIntTest {
         // Create the Usuario, which fails.
         UsuarioDTO usuarioDTO = usuarioMapper.toDto(usuario);
 
-        restUsuarioMockMvc.perform(post("/api/usuarios")
-            .contentType(TestUtil.APPLICATION_JSON_UTF8)
-            .content(TestUtil.convertObjectToJsonBytes(usuarioDTO)))
-            .andExpect(status().isBadRequest());
+        restUsuarioMockMvc.perform(post("/api/usuarios").contentType(TestUtil.APPLICATION_JSON_UTF8)
+                .content(TestUtil.convertObjectToJsonBytes(usuarioDTO))).andExpect(status().isBadRequest());
 
         List<Usuario> usuarioList = usuarioRepository.findAll();
         assertThat(usuarioList).hasSize(databaseSizeBeforeTest);
@@ -261,18 +247,17 @@ public class UsuarioResourceIntTest {
         usuarioRepository.saveAndFlush(usuario);
 
         // Get all the usuarioList
-        restUsuarioMockMvc.perform(get("/api/usuarios?sort=id,desc"))
-            .andExpect(status().isOk())
-            .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
-            .andExpect(jsonPath("$.[*].id").value(hasItem(usuario.getId().intValue())))
-            .andExpect(jsonPath("$.[*].fechaCreacion").value(hasItem(DEFAULT_FECHA_CREACION.toString())))
-            .andExpect(jsonPath("$.[*].fechaNacimiento").value(hasItem(DEFAULT_FECHA_NACIMIENTO.toString())))
-            .andExpect(jsonPath("$.[*].cedula").value(hasItem(DEFAULT_CEDULA.toString())))
-            .andExpect(jsonPath("$.[*].direccion").value(hasItem(DEFAULT_DIRECCION.toString())))
-            .andExpect(jsonPath("$.[*].telefono").value(hasItem(DEFAULT_TELEFONO.toString())))
-            .andExpect(jsonPath("$.[*].fotoUrl").value(hasItem(DEFAULT_FOTO_URL.toString())))
-            .andExpect(jsonPath("$.[*].latitud").value(hasItem(DEFAULT_LATITUD.doubleValue())))
-            .andExpect(jsonPath("$.[*].longitud").value(hasItem(DEFAULT_LONGITUD.doubleValue())));
+        restUsuarioMockMvc.perform(get("/api/usuarios?sort=id,desc")).andExpect(status().isOk())
+                .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
+                .andExpect(jsonPath("$.[*].id").value(hasItem(usuario.getId().intValue())))
+                .andExpect(jsonPath("$.[*].fechaCreacion").value(hasItem(DEFAULT_FECHA_CREACION.toString())))
+                .andExpect(jsonPath("$.[*].fechaNacimiento").value(hasItem(DEFAULT_FECHA_NACIMIENTO.toString())))
+                .andExpect(jsonPath("$.[*].cedula").value(hasItem(DEFAULT_CEDULA.toString())))
+                .andExpect(jsonPath("$.[*].direccion").value(hasItem(DEFAULT_DIRECCION.toString())))
+                .andExpect(jsonPath("$.[*].telefono").value(hasItem(DEFAULT_TELEFONO.toString())))
+                .andExpect(jsonPath("$.[*].fotoUrl").value(hasItem(DEFAULT_FOTO_URL.toString())))
+                .andExpect(jsonPath("$.[*].latitud").value(hasItem(DEFAULT_LATITUD.doubleValue())))
+                .andExpect(jsonPath("$.[*].longitud").value(hasItem(DEFAULT_LONGITUD.doubleValue())));
     }
 
     @Test
@@ -282,26 +267,24 @@ public class UsuarioResourceIntTest {
         usuarioRepository.saveAndFlush(usuario);
 
         // Get the usuario
-        restUsuarioMockMvc.perform(get("/api/usuarios/{id}", usuario.getId()))
-            .andExpect(status().isOk())
-            .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
-            .andExpect(jsonPath("$.id").value(usuario.getId().intValue()))
-            .andExpect(jsonPath("$.fechaCreacion").value(DEFAULT_FECHA_CREACION.toString()))
-            .andExpect(jsonPath("$.fechaNacimiento").value(DEFAULT_FECHA_NACIMIENTO.toString()))
-            .andExpect(jsonPath("$.cedula").value(DEFAULT_CEDULA.toString()))
-            .andExpect(jsonPath("$.direccion").value(DEFAULT_DIRECCION.toString()))
-            .andExpect(jsonPath("$.telefono").value(DEFAULT_TELEFONO.toString()))
-            .andExpect(jsonPath("$.fotoUrl").value(DEFAULT_FOTO_URL.toString()))
-            .andExpect(jsonPath("$.latitud").value(DEFAULT_LATITUD.doubleValue()))
-            .andExpect(jsonPath("$.longitud").value(DEFAULT_LONGITUD.doubleValue()));
+        restUsuarioMockMvc.perform(get("/api/usuarios/{id}", usuario.getId())).andExpect(status().isOk())
+                .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
+                .andExpect(jsonPath("$.id").value(usuario.getId().intValue()))
+                .andExpect(jsonPath("$.fechaCreacion").value(DEFAULT_FECHA_CREACION.toString()))
+                .andExpect(jsonPath("$.fechaNacimiento").value(DEFAULT_FECHA_NACIMIENTO.toString()))
+                .andExpect(jsonPath("$.cedula").value(DEFAULT_CEDULA.toString()))
+                .andExpect(jsonPath("$.direccion").value(DEFAULT_DIRECCION.toString()))
+                .andExpect(jsonPath("$.telefono").value(DEFAULT_TELEFONO.toString()))
+                .andExpect(jsonPath("$.fotoUrl").value(DEFAULT_FOTO_URL.toString()))
+                .andExpect(jsonPath("$.latitud").value(DEFAULT_LATITUD.doubleValue()))
+                .andExpect(jsonPath("$.longitud").value(DEFAULT_LONGITUD.doubleValue()));
     }
 
     @Test
     @Transactional
     public void getNonExistingUsuario() throws Exception {
         // Get the usuario
-        restUsuarioMockMvc.perform(get("/api/usuarios/{id}", Long.MAX_VALUE))
-            .andExpect(status().isNotFound());
+        restUsuarioMockMvc.perform(get("/api/usuarios/{id}", Long.MAX_VALUE)).andExpect(status().isNotFound());
     }
 
     @Test
@@ -314,23 +297,16 @@ public class UsuarioResourceIntTest {
 
         // Update the usuario
         Usuario updatedUsuario = usuarioRepository.findOne(usuario.getId());
-        // Disconnect from session so that the updates on updatedUsuario are not directly saved in db
+        // Disconnect from session so that the updates on updatedUsuario are not
+        // directly saved in db
         em.detach(updatedUsuario);
-        updatedUsuario
-            .fechaCreacion(UPDATED_FECHA_CREACION)
-            .fechaNacimiento(UPDATED_FECHA_NACIMIENTO)
-            .cedula(UPDATED_CEDULA)
-            .direccion(UPDATED_DIRECCION)
-            .telefono(UPDATED_TELEFONO)
-            .fotoUrl(UPDATED_FOTO_URL)
-            .latitud(UPDATED_LATITUD)
-            .longitud(UPDATED_LONGITUD);
+        updatedUsuario.fechaCreacion(UPDATED_FECHA_CREACION).fechaNacimiento(UPDATED_FECHA_NACIMIENTO)
+                .cedula(UPDATED_CEDULA).direccion(UPDATED_DIRECCION).telefono(UPDATED_TELEFONO)
+                .fotoUrl(UPDATED_FOTO_URL).latitud(UPDATED_LATITUD).longitud(UPDATED_LONGITUD);
         UsuarioDTO usuarioDTO = usuarioMapper.toDto(updatedUsuario);
 
-        restUsuarioMockMvc.perform(put("/api/usuarios")
-            .contentType(TestUtil.APPLICATION_JSON_UTF8)
-            .content(TestUtil.convertObjectToJsonBytes(usuarioDTO)))
-            .andExpect(status().isOk());
+        restUsuarioMockMvc.perform(put("/api/usuarios").contentType(TestUtil.APPLICATION_JSON_UTF8)
+                .content(TestUtil.convertObjectToJsonBytes(usuarioDTO))).andExpect(status().isOk());
 
         // Validate the Usuario in the database
         List<Usuario> usuarioList = usuarioRepository.findAll();
@@ -358,11 +334,10 @@ public class UsuarioResourceIntTest {
         // Create the Usuario
         UsuarioDTO usuarioDTO = usuarioMapper.toDto(usuario);
 
-        // If the entity doesn't have an ID, it will be created instead of just being updated
-        restUsuarioMockMvc.perform(put("/api/usuarios")
-            .contentType(TestUtil.APPLICATION_JSON_UTF8)
-            .content(TestUtil.convertObjectToJsonBytes(usuarioDTO)))
-            .andExpect(status().isCreated());
+        // If the entity doesn't have an ID, it will be created instead of just being
+        // updated
+        restUsuarioMockMvc.perform(put("/api/usuarios").contentType(TestUtil.APPLICATION_JSON_UTF8)
+                .content(TestUtil.convertObjectToJsonBytes(usuarioDTO))).andExpect(status().isCreated());
 
         // Validate the Usuario in the database
         List<Usuario> usuarioList = usuarioRepository.findAll();
@@ -378,9 +353,8 @@ public class UsuarioResourceIntTest {
         int databaseSizeBeforeDelete = usuarioRepository.findAll().size();
 
         // Get the usuario
-        restUsuarioMockMvc.perform(delete("/api/usuarios/{id}", usuario.getId())
-            .accept(TestUtil.APPLICATION_JSON_UTF8))
-            .andExpect(status().isOk());
+        restUsuarioMockMvc.perform(delete("/api/usuarios/{id}", usuario.getId()).accept(TestUtil.APPLICATION_JSON_UTF8))
+                .andExpect(status().isOk());
 
         // Validate Elasticsearch is empty
         boolean usuarioExistsInEs = usuarioSearchRepository.exists(usuario.getId());
@@ -399,18 +373,17 @@ public class UsuarioResourceIntTest {
         usuarioSearchRepository.save(usuario);
 
         // Search the usuario
-        restUsuarioMockMvc.perform(get("/api/_search/usuarios?query=id:" + usuario.getId()))
-            .andExpect(status().isOk())
-            .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
-            .andExpect(jsonPath("$.[*].id").value(hasItem(usuario.getId().intValue())))
-            .andExpect(jsonPath("$.[*].fechaCreacion").value(hasItem(DEFAULT_FECHA_CREACION.toString())))
-            .andExpect(jsonPath("$.[*].fechaNacimiento").value(hasItem(DEFAULT_FECHA_NACIMIENTO.toString())))
-            .andExpect(jsonPath("$.[*].cedula").value(hasItem(DEFAULT_CEDULA.toString())))
-            .andExpect(jsonPath("$.[*].direccion").value(hasItem(DEFAULT_DIRECCION.toString())))
-            .andExpect(jsonPath("$.[*].telefono").value(hasItem(DEFAULT_TELEFONO.toString())))
-            .andExpect(jsonPath("$.[*].fotoUrl").value(hasItem(DEFAULT_FOTO_URL.toString())))
-            .andExpect(jsonPath("$.[*].latitud").value(hasItem(DEFAULT_LATITUD.doubleValue())))
-            .andExpect(jsonPath("$.[*].longitud").value(hasItem(DEFAULT_LONGITUD.doubleValue())));
+        restUsuarioMockMvc.perform(get("/api/_search/usuarios?query=id:" + usuario.getId())).andExpect(status().isOk())
+                .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
+                .andExpect(jsonPath("$.[*].id").value(hasItem(usuario.getId().intValue())))
+                .andExpect(jsonPath("$.[*].fechaCreacion").value(hasItem(DEFAULT_FECHA_CREACION.toString())))
+                .andExpect(jsonPath("$.[*].fechaNacimiento").value(hasItem(DEFAULT_FECHA_NACIMIENTO.toString())))
+                .andExpect(jsonPath("$.[*].cedula").value(hasItem(DEFAULT_CEDULA.toString())))
+                .andExpect(jsonPath("$.[*].direccion").value(hasItem(DEFAULT_DIRECCION.toString())))
+                .andExpect(jsonPath("$.[*].telefono").value(hasItem(DEFAULT_TELEFONO.toString())))
+                .andExpect(jsonPath("$.[*].fotoUrl").value(hasItem(DEFAULT_FOTO_URL.toString())))
+                .andExpect(jsonPath("$.[*].latitud").value(hasItem(DEFAULT_LATITUD.doubleValue())))
+                .andExpect(jsonPath("$.[*].longitud").value(hasItem(DEFAULT_LONGITUD.doubleValue())));
     }
 
     @Test
