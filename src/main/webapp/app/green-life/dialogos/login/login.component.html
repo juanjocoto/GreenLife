@@ -1,16 +1,14 @@
 <h1 id="title">Iniciar Sesión</h1>
-<form #loginForm="ngForm" (ngSubmit)="login(loginForm)">
-  <div class="form-group">
-    <label for="">Nombre de usuario</label>
-    <input type="text" class="form-control" name="username" placeholder="Ingrese su nombre de usuario" required ngModel>
-  </div>
-  <div class="form-group">
-    <label for="">Contraseña</label>
-    <input type="password" class="form-control" name="password" placeholder="Ingrese su contraseña" required ngModel>
-  </div>
+<form [formGroup]="formulario">
+  <mat-form-field>
+    <input matInput placeholder="Nombre de usuario" formControlName="username">
+  </mat-form-field>
+  <mat-form-field>
+    <input type="password" matInput placeholder="Contraseña" formControlName="password">
+  </mat-form-field>
   <div *ngIf="!isValid" class="alert alert-danger">
     <strong>Error!</strong> {{ msgError }}
   </div>
-  <button type="button" class="btn btn-secondary" mat-dialog-close>Cancelar</button>
-  <button type="submit" class="btn btn-success" [disabled]="!loginForm.valid">Ingresar</button>
+  <button type="button" class="btn btn-secondary" mat-dialog-close id="btnCancelar">Cancelar</button>
+  <button type="submit" class="btn btn-success" [disabled]="!formulario.valid" (click)="login()" id="btnLogin">Ingresar</button>
 </form>

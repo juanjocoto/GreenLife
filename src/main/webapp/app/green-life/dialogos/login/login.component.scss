@@ -11,5 +11,20 @@ form {
 }
 .alert {
     padding: 8px;
-    margin-top: 13px;
+}
+mat-form-field {
+    width: 100%;
+}
+.ng-invalid:not(form) {
+    border-left: unset;
+}
+button {
+    border-radius: 6px;
+}
+#btnCancelar {
+    background-color: #e74c3c;
+    margin-right: 8px;
+}
+#btnLogin {
+    background-color: #46B97E;
 }
