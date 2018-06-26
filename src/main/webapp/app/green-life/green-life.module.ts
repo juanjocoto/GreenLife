@@ -31,6 +31,7 @@ import { UsuarioRolesComponent } from './views/usuario-roles/usuario-roles.compo
 import { ValidadorNumeroDirective } from './shared/directives/validador-numero.directive';
 import { LoginComponent } from './dialogos/login/login.component';
 import { UsuarioRegistroComponent } from './views/usuario-registro/usuario-registro.component';
+import { UsuarioPerfilComponent } from './views/usuario-perfil/usuario-perfil.component';
 
 @NgModule({
   imports: [
