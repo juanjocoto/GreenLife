@@ -11,5 +11,10 @@ form {
 }
 .alert {
     padding: 8px;
-    margin-top: 13px;
+}
+mat-form-field {
+    width: 100%;
+}
+.ng-invalid:not(form) {
+    border-left: unset;
 }

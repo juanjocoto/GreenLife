@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { NgForm } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+
 import { LoginService } from '../../../shared';
 
 @Component({
@@ -11,19 +12,29 @@ export class LoginComponent implements OnInit {
 
   isValid = true;
   msgError = 'Error al ingresar al sistema, verifique sus datos nuevamente';
+  formulario: FormGroup;
 
-  constructor(private loginService: LoginService) { }
+  constructor(private loginService: LoginService, private formBuilder: FormBuilder) { }
 
   ngOnInit() {
+    this.formulario = this.formBuilder.group({
+      username: ['', [
+        Validators.required
+      ]],
+      password: ['', [
+        Validators.required
+      ]]
+    });
   }
 
-  public login(form: NgForm) {
+  public login() {
     this.loginService.login({
-      username: form.controls['username'].value,
-      password: form.controls['password'].value,
+      username:  this.formulario.get('username').value,
+      password: this.formulario.get('password').value,
       rememberMe: false
     }).then((res) => {
       localStorage.setItem('greenlifetoken', res + '');
+      this.isValid = true;
     }).catch(() => {
       this.isValid = false;
     });
