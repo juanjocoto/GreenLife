@@ -1,0 +1,37 @@
+@import 'green-life-variables';
+
+@import '~@angular/material/prebuilt-themes/deeppurple-amber.css';
+@import '~@angular/material/theming';
+
+@include mat-core();
+
+// Tipografia Green Life
+@import url('https://fonts.googleapis.com/css?family=Lato:300,300i,400,400i,700,700i');
+
+// Declaracion de la tipografia Lato
+$custom-typography: mat-typography-config(
+$font-family: 'Lato, sans-serif'
+);
+
+// Sobreescribe la tipografia para todos los componentes de Angular Material
+@include angular-material-typography($custom-typography);
+@include mat-core($custom-typography);
+
+// css global
+
+.title-bar,
+.title-bar-config {
+    color: #fff;
+    padding: 20px;
+    margin: 0 0 20px;
+    background: $green-color;
+}
+
+.title-bar-config{
+    background: $config-green-color;
+}
+
+.title-bar-config h1,
+.title-bar h1{
+    margin: 0;
+}
