@@ -1,7 +1,10 @@
 package com.radicalbytes.greenlife.config;
 
-import com.radicalbytes.greenlife.security.*;
-import com.radicalbytes.greenlife.security.jwt.*;
+import javax.annotation.PostConstruct;
+
+import com.radicalbytes.greenlife.security.AuthoritiesConstants;
+import com.radicalbytes.greenlife.security.jwt.JWTConfigurer;
+import com.radicalbytes.greenlife.security.jwt.TokenProvider;
 
 import org.springframework.beans.factory.BeanInitializationException;
 import org.springframework.context.annotation.Bean;
@@ -21,8 +24,6 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 import org.springframework.web.filter.CorsFilter;
 import org.zalando.problem.spring.web.advice.security.SecurityProblemSupport;
-
-import javax.annotation.PostConstruct;
 
 @Configuration
 @Import(SecurityProblemSupport.class)
@@ -94,6 +95,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
         .and()
             .authorizeRequests()
             .antMatchers("/api/register").permitAll()
+            .antMatchers("/api/usuarios").permitAll()
             .antMatchers("/api/activate").permitAll()
             .antMatchers("/api/authenticate").permitAll()
             .antMatchers("/api/account/reset-password/init").permitAll()

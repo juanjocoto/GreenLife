@@ -70,7 +70,10 @@ public class AccountResource {
             throw new EmailAlreadyUsedException();
         });
         User user = userService.registerUser(managedUserVM, managedUserVM.getPassword());
-        mailService.sendActivationEmail(user);
+        user.setActivated(true);
+
+        userRepository.save(user);
+        // mailService.sendActivationEmail(user);
 
         return new ResponseEntity<Long>(user.getId(), HttpStatus.CREATED);
     }
