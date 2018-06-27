@@ -1,14 +1,7 @@
-@import "../../green-life.colors";
+@import "../../../../content/scss/green-life-variables";
 .view-container {
     max-width: 800px;
     margin: 0 auto 0;
-}
-
-.title {
-    background: $config-green-color;
-    color: #fff;
-    padding: 20px;
-    margin: 0 0 20px;
 }
 
 h2,
@@ -27,7 +20,7 @@ table tr>td:nth-child(1) {
 
 table tr>td:nth-child(2) {
     border-bottom: 1px solid #d3d7d8;
-    color: $config-gray-color;
+    color: $config-dark-gray-color;
 }
 
 tr {
