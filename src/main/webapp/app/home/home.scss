@@ -32,6 +32,7 @@ h1 {
 .titleCms {
     font-weight: 400;
     text-align: center;
+    padding-top: 25px;
 }
 
 .btnLogin {
@@ -76,7 +77,6 @@ h1 {
     text-align: center;
     color: $config-dark-gray-color;
     font-size: 18px;
-    font-weight: 300;
 }
 
 /* wait autoprefixer update to allow simple generation of high pixel density media query */
