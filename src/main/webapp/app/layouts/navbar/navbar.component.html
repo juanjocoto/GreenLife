@@ -1,11 +1,11 @@
-<nav class="navbar navbar-dark navbar-expand-md jh-navbar">
+<nav class="navbar fixed-top navbar-dark navbar-expand-md jh-navbar">
     <div class="jh-logo-container float-left">
         <a class="jh-navbar-toggler d-lg-none float-right" href="javascript:void(0);" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation" (click)="toggleNavbar()">
             <i class="fa fa-bars"></i>
         </a>
         <a class="navbar-brand logo float-left" routerLink="/" (click)="collapseNavbar()">
             <span class="logo-img"></span>
-            <span class="navbar-title">Greenlife</span> <span class="navbar-version">{{version}}</span>
+           <span class="navbar-version">{{version}}</span>
         </a>
     </div>
     <div class="navbar-collapse collapse" id="navbarResponsive" [ngbCollapse]="isNavbarCollapsed" [ngSwitch]="isAuthenticated()">
@@ -14,7 +14,7 @@
                 <a class="nav-link" routerLink="/" (click)="collapseNavbar()">
                     <span>
                         <i class="fa fa-home" aria-hidden="true"></i>
-                        <span>Home</span>
+                        <span>Inicio</span>
                     </span>
                 </a>
             </li>
@@ -24,614 +24,176 @@
                     <span>
                         <i class="fa fa-th-list" aria-hidden="true"></i>
                         <span>
-                            Entities
+                            Entidades
                         </span>
                     </span>
                 </a>
                 <ul class="dropdown-menu" ngbDropdownMenu>
                     <li>
                         <a class="dropdown-item" routerLink="configuracion" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" (click)="collapseNavbar()">
-                            <i class="fa fa-fw fa-asterisk" aria-hidden="true"></i>
-                            <span>Configuracion</span>
-                        </a>
-                    </li>
-                    <li>
-                        <a class="dropdown-item" routerLink="rol" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" (click)="collapseNavbar()">
-                            <i class="fa fa-fw fa-asterisk" aria-hidden="true"></i>
-                            <span>Rol</span>
-                        </a>
-                    </li>
-                    <li>
-                        <a class="dropdown-item" routerLink="permiso" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" (click)="collapseNavbar()">
-                            <i class="fa fa-fw fa-asterisk" aria-hidden="true"></i>
-                            <span>Permiso</span>
+                            <i class="fa fa-fw fa-cog" aria-hidden="true"></i>
+                            <span>Configuración</span>
                         </a>
                     </li>
                     <li>
                         <a class="dropdown-item" routerLink="usuario" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" (click)="collapseNavbar()">
-                            <i class="fa fa-fw fa-asterisk" aria-hidden="true"></i>
+                            <i class="fa fa-fw fa-user" aria-hidden="true"></i>
                             <span>Usuario</span>
                         </a>
                     </li>
                     <li>
                         <a class="dropdown-item" routerLink="contrato" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" (click)="collapseNavbar()">
-                            <i class="fa fa-fw fa-asterisk" aria-hidden="true"></i>
+                            <i class="fa fa-fw fa-file-text" aria-hidden="true"></i>
                             <span>Contrato</span>
                         </a>
                     </li>
                     <li>
                         <a class="dropdown-item" routerLink="tipo-contrato" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" (click)="collapseNavbar()">
-                            <i class="fa fa-fw fa-asterisk" aria-hidden="true"></i>
-                            <span>Tipo Contrato</span>
-                        </a>
-                    </li>
-                    <li>
-                        <a class="dropdown-item" routerLink="cliente" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" (click)="collapseNavbar()">
-                            <i class="fa fa-fw fa-asterisk" aria-hidden="true"></i>
-                            <span>Cliente</span>
-                        </a>
-                    </li>
-                    <li>
-                        <a class="dropdown-item" routerLink="administrador" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" (click)="collapseNavbar()">
-                            <i class="fa fa-fw fa-asterisk" aria-hidden="true"></i>
-                            <span>Administrador</span>
-                        </a>
-                    </li>
-                    <li>
-                        <a class="dropdown-item" routerLink="recolector" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" (click)="collapseNavbar()">
-                            <i class="fa fa-fw fa-asterisk" aria-hidden="true"></i>
-                            <span>Recolector</span>
-                        </a>
-                    </li>
-                    <li>
-                        <a class="dropdown-item" routerLink="centro-acopio" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" (click)="collapseNavbar()">
-                            <i class="fa fa-fw fa-asterisk" aria-hidden="true"></i>
-                            <span>Centro Acopio</span>
-                        </a>
-                    </li>
-                    <li>
-                        <a class="dropdown-item" routerLink="comercio" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" (click)="collapseNavbar()">
-                            <i class="fa fa-fw fa-asterisk" aria-hidden="true"></i>
-                            <span>Comercio</span>
-                        </a>
-                    </li>
-                    <li>
-                        <a class="dropdown-item" routerLink="local" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" (click)="collapseNavbar()">
-                            <i class="fa fa-fw fa-asterisk" aria-hidden="true"></i>
-                            <span>Local</span>
-                        </a>
-                    </li>
-                    <li>
-                        <a class="dropdown-item" routerLink="fotografia" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" (click)="collapseNavbar()">
-                            <i class="fa fa-fw fa-asterisk" aria-hidden="true"></i>
-                            <span>Fotografia</span>
-                        </a>
-                    </li>
-                    <li>
-                        <a class="dropdown-item" routerLink="producto" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" (click)="collapseNavbar()">
-                            <i class="fa fa-fw fa-asterisk" aria-hidden="true"></i>
-                            <span>Producto</span>
-                        </a>
-                    </li>
-                    <li>
-                        <a class="dropdown-item" routerLink="solicitud-suscripcion" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" (click)="collapseNavbar()">
-                            <i class="fa fa-fw fa-asterisk" aria-hidden="true"></i>
-                            <span>Solicitud Suscripcion</span>
-                        </a>
-                    </li>
-                    <li>
-                        <a class="dropdown-item" routerLink="suscripcion" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" (click)="collapseNavbar()">
-                            <i class="fa fa-fw fa-asterisk" aria-hidden="true"></i>
-                            <span>Suscripcion</span>
-                        </a>
-                    </li>
-                    <li>
-                        <a class="dropdown-item" routerLink="pedido" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" (click)="collapseNavbar()">
-                            <i class="fa fa-fw fa-asterisk" aria-hidden="true"></i>
-                            <span>Pedido</span>
-                        </a>
-                    </li>
-                    <li>
-                        <a class="dropdown-item" routerLink="linea-producto" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" (click)="collapseNavbar()">
-                            <i class="fa fa-fw fa-asterisk" aria-hidden="true"></i>
-                            <span>Linea Producto</span>
-                        </a>
-                    </li>
-                    <li>
-                        <a class="dropdown-item" routerLink="linea-entrega" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" (click)="collapseNavbar()">
-                            <i class="fa fa-fw fa-asterisk" aria-hidden="true"></i>
-                            <span>Linea Entrega</span>
-                        </a>
-                    </li>
-                    <li>
-                        <a class="dropdown-item" routerLink="orden-recoleccion" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" (click)="collapseNavbar()">
-                            <i class="fa fa-fw fa-asterisk" aria-hidden="true"></i>
-                            <span>Orden Recoleccion</span>
-                        </a>
-                    </li>
-                    <li>
-                        <a class="dropdown-item" routerLink="cadena-orden-recoleccion" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" (click)="collapseNavbar()">
-                            <i class="fa fa-fw fa-asterisk" aria-hidden="true"></i>
-                            <span>Cadena Orden Recoleccion</span>
-                        </a>
-                    </li>
-                    <li>
-                        <a class="dropdown-item" routerLink="categoria-alimentacion" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" (click)="collapseNavbar()">
-                            <i class="fa fa-fw fa-asterisk" aria-hidden="true"></i>
-                            <span>Categoria Alimentacion</span>
-                        </a>
-                    </li>
-                    <li>
-                        <a class="dropdown-item" routerLink="publicacion" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" (click)="collapseNavbar()">
-                            <i class="fa fa-fw fa-asterisk" aria-hidden="true"></i>
-                            <span>Publicacion</span>
-                        </a>
-                    </li>
-                    <li>
-                        <a class="dropdown-item" routerLink="comentario-publicacion" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" (click)="collapseNavbar()">
-                            <i class="fa fa-fw fa-asterisk" aria-hidden="true"></i>
-                            <span>Comentario Publicacion</span>
-                        </a>
-                    </li>
-                    <li>
-                        <a class="dropdown-item" routerLink="evento" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" (click)="collapseNavbar()">
-                            <i class="fa fa-fw fa-asterisk" aria-hidden="true"></i>
-                            <span>Evento</span>
-                        </a>
-                    </li>
-                    <li>
-                        <a class="dropdown-item" routerLink="dia-entrega" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" (click)="collapseNavbar()">
-                            <i class="fa fa-fw fa-asterisk" aria-hidden="true"></i>
-                            <span>Dia Entrega</span>
-                        </a>
-                    </li>
-                    <li>
-                        <a class="dropdown-item" routerLink="resena-comercio" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" (click)="collapseNavbar()">
-                            <i class="fa fa-fw fa-asterisk" aria-hidden="true"></i>
-                            <span>Resena Comercio</span>
-                        </a>
-                    </li>
-                    <li>
-                        <a class="dropdown-item" routerLink="resena-cliente" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" (click)="collapseNavbar()">
-                            <i class="fa fa-fw fa-asterisk" aria-hidden="true"></i>
-                            <span>Resena Cliente</span>
-                        </a>
-                    </li>
-                    <li>
-                        <a class="dropdown-item" routerLink="patrocinador" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" (click)="collapseNavbar()">
-                            <i class="fa fa-fw fa-asterisk" aria-hidden="true"></i>
-                            <span>Patrocinador</span>
-                        </a>
-                    </li>
-                    <li>
-                        <a class="dropdown-item" routerLink="solicitud-patrocinio" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" (click)="collapseNavbar()">
-                            <i class="fa fa-fw fa-asterisk" aria-hidden="true"></i>
-                            <span>Solicitud Patrocinio</span>
-                        </a>
-                    </li>
-                    <li>
-                        <a class="dropdown-item" routerLink="etiqueta" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" (click)="collapseNavbar()">
-                            <i class="fa fa-fw fa-asterisk" aria-hidden="true"></i>
-                            <span>Etiqueta</span>
-                        </a>
-                    </li>
-                    <li>
-                        <a class="dropdown-item" routerLink="entrega" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" (click)="collapseNavbar()">
-                            <i class="fa fa-fw fa-asterisk" aria-hidden="true"></i>
-                            <span>Entrega</span>
-                        </a>
-                    </li>
-                    <li>
-                        <a class="dropdown-item" routerLink="cadena-entrega" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" (click)="collapseNavbar()">
-                            <i class="fa fa-fw fa-asterisk" aria-hidden="true"></i>
-                            <span>Cadena Entrega</span>
-                        </a>
-                    </li>
-                    <li>
-                        <a class="dropdown-item" routerLink="cobro-suscripcion" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" (click)="collapseNavbar()">
-                            <i class="fa fa-fw fa-asterisk" aria-hidden="true"></i>
-                            <span>Cobro Suscripcion</span>
-                        </a>
-                    </li>
-                    <li>
-                        <a class="dropdown-item" routerLink="pago" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" (click)="collapseNavbar()">
-                            <i class="fa fa-fw fa-asterisk" aria-hidden="true"></i>
-                            <span>Pago</span>
-                        </a>
-                    </li>
-                    <li>
-                        <a class="dropdown-item" routerLink="cobro-mensualidad" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" (click)="collapseNavbar()">
-                            <i class="fa fa-fw fa-asterisk" aria-hidden="true"></i>
-                            <span>Cobro Mensualidad</span>
-                        </a>
-                    </li>
-                    <li>
-                        <a class="dropdown-item" routerLink="configuracion" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" (click)="collapseNavbar()">
-                            <i class="fa fa-fw fa-asterisk" aria-hidden="true"></i>
-                            <span>Configuracion</span>
-                        </a>
-                    </li>
-                    <li>
-                        <a class="dropdown-item" routerLink="rol" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" (click)="collapseNavbar()">
-                            <i class="fa fa-fw fa-asterisk" aria-hidden="true"></i>
-                            <span>Rol</span>
-                        </a>
-                    </li>
-                    <li>
-                        <a class="dropdown-item" routerLink="permiso" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" (click)="collapseNavbar()">
-                            <i class="fa fa-fw fa-asterisk" aria-hidden="true"></i>
-                            <span>Permiso</span>
-                        </a>
-                    </li>
-                    <li>
-                        <a class="dropdown-item" routerLink="usuario" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" (click)="collapseNavbar()">
-                            <i class="fa fa-fw fa-asterisk" aria-hidden="true"></i>
-                            <span>Usuario</span>
-                        </a>
-                    </li>
-                    <li>
-                        <a class="dropdown-item" routerLink="contrato" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" (click)="collapseNavbar()">
-                            <i class="fa fa-fw fa-asterisk" aria-hidden="true"></i>
-                            <span>Contrato</span>
-                        </a>
-                    </li>
-                    <li>
-                        <a class="dropdown-item" routerLink="tipo-contrato" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" (click)="collapseNavbar()">
-                            <i class="fa fa-fw fa-asterisk" aria-hidden="true"></i>
-                            <span>Tipo Contrato</span>
-                        </a>
-                    </li>
-                    <li>
-                        <a class="dropdown-item" routerLink="cliente" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" (click)="collapseNavbar()">
-                            <i class="fa fa-fw fa-asterisk" aria-hidden="true"></i>
-                            <span>Cliente</span>
-                        </a>
-                    </li>
-                    <li>
-                        <a class="dropdown-item" routerLink="administrador" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" (click)="collapseNavbar()">
-                            <i class="fa fa-fw fa-asterisk" aria-hidden="true"></i>
-                            <span>Administrador</span>
-                        </a>
-                    </li>
-                    <li>
-                        <a class="dropdown-item" routerLink="recolector" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" (click)="collapseNavbar()">
-                            <i class="fa fa-fw fa-asterisk" aria-hidden="true"></i>
-                            <span>Recolector</span>
-                        </a>
-                    </li>
-                    <li>
-                        <a class="dropdown-item" routerLink="centro-acopio" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" (click)="collapseNavbar()">
-                            <i class="fa fa-fw fa-asterisk" aria-hidden="true"></i>
-                            <span>Centro Acopio</span>
-                        </a>
-                    </li>
-                    <li>
-                        <a class="dropdown-item" routerLink="comercio" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" (click)="collapseNavbar()">
-                            <i class="fa fa-fw fa-asterisk" aria-hidden="true"></i>
-                            <span>Comercio</span>
-                        </a>
-                    </li>
-                    <li>
-                        <a class="dropdown-item" routerLink="local" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" (click)="collapseNavbar()">
-                            <i class="fa fa-fw fa-asterisk" aria-hidden="true"></i>
-                            <span>Local</span>
-                        </a>
-                    </li>
-                    <li>
-                        <a class="dropdown-item" routerLink="fotografia" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" (click)="collapseNavbar()">
-                            <i class="fa fa-fw fa-asterisk" aria-hidden="true"></i>
-                            <span>Fotografia</span>
-                        </a>
-                    </li>
-                    <li>
-                        <a class="dropdown-item" routerLink="producto" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" (click)="collapseNavbar()">
-                            <i class="fa fa-fw fa-asterisk" aria-hidden="true"></i>
-                            <span>Producto</span>
-                        </a>
-                    </li>
-                    <li>
-                        <a class="dropdown-item" routerLink="solicitud-suscripcion" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" (click)="collapseNavbar()">
-                            <i class="fa fa-fw fa-asterisk" aria-hidden="true"></i>
-                            <span>Solicitud Suscripcion</span>
-                        </a>
-                    </li>
-                    <li>
-                        <a class="dropdown-item" routerLink="suscripcion" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" (click)="collapseNavbar()">
-                            <i class="fa fa-fw fa-asterisk" aria-hidden="true"></i>
-                            <span>Suscripcion</span>
-                        </a>
-                    </li>
-                    <li>
-                        <a class="dropdown-item" routerLink="pedido" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" (click)="collapseNavbar()">
-                            <i class="fa fa-fw fa-asterisk" aria-hidden="true"></i>
-                            <span>Pedido</span>
-                        </a>
-                    </li>
-                    <li>
-                        <a class="dropdown-item" routerLink="linea-producto" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" (click)="collapseNavbar()">
-                            <i class="fa fa-fw fa-asterisk" aria-hidden="true"></i>
-                            <span>Linea Producto</span>
-                        </a>
-                    </li>
-                    <li>
-                        <a class="dropdown-item" routerLink="linea-entrega" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" (click)="collapseNavbar()">
-                            <i class="fa fa-fw fa-asterisk" aria-hidden="true"></i>
-                            <span>Linea Entrega</span>
-                        </a>
-                    </li>
-                    <li>
-                        <a class="dropdown-item" routerLink="orden-recoleccion" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" (click)="collapseNavbar()">
-                            <i class="fa fa-fw fa-asterisk" aria-hidden="true"></i>
-                            <span>Orden Recoleccion</span>
-                        </a>
-                    </li>
-                    <li>
-                        <a class="dropdown-item" routerLink="cadena-orden-recoleccion" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" (click)="collapseNavbar()">
-                            <i class="fa fa-fw fa-asterisk" aria-hidden="true"></i>
-                            <span>Cadena Orden Recoleccion</span>
-                        </a>
-                    </li>
-                    <li>
-                        <a class="dropdown-item" routerLink="categoria-alimentacion" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" (click)="collapseNavbar()">
-                            <i class="fa fa-fw fa-asterisk" aria-hidden="true"></i>
-                            <span>Categoria Alimentacion</span>
-                        </a>
-                    </li>
-                    <li>
-                        <a class="dropdown-item" routerLink="publicacion" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" (click)="collapseNavbar()">
-                            <i class="fa fa-fw fa-asterisk" aria-hidden="true"></i>
-                            <span>Publicacion</span>
-                        </a>
-                    </li>
-                    <li>
-                        <a class="dropdown-item" routerLink="comentario-publicacion" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" (click)="collapseNavbar()">
-                            <i class="fa fa-fw fa-asterisk" aria-hidden="true"></i>
-                            <span>Comentario Publicacion</span>
-                        </a>
-                    </li>
-                    <li>
-                        <a class="dropdown-item" routerLink="evento" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" (click)="collapseNavbar()">
-                            <i class="fa fa-fw fa-asterisk" aria-hidden="true"></i>
-                            <span>Evento</span>
-                        </a>
-                    </li>
-                    <li>
-                        <a class="dropdown-item" routerLink="dia-entrega" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" (click)="collapseNavbar()">
-                            <i class="fa fa-fw fa-asterisk" aria-hidden="true"></i>
-                            <span>Dia Entrega</span>
-                        </a>
-                    </li>
-                    <li>
-                        <a class="dropdown-item" routerLink="resena-comercio" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" (click)="collapseNavbar()">
-                            <i class="fa fa-fw fa-asterisk" aria-hidden="true"></i>
-                            <span>Resena Comercio</span>
-                        </a>
-                    </li>
-                    <li>
-                        <a class="dropdown-item" routerLink="resena-cliente" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" (click)="collapseNavbar()">
-                            <i class="fa fa-fw fa-asterisk" aria-hidden="true"></i>
-                            <span>Resena Cliente</span>
-                        </a>
-                    </li>
-                    <li>
-                        <a class="dropdown-item" routerLink="patrocinador" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" (click)="collapseNavbar()">
-                            <i class="fa fa-fw fa-asterisk" aria-hidden="true"></i>
-                            <span>Patrocinador</span>
-                        </a>
-                    </li>
-                    <li>
-                        <a class="dropdown-item" routerLink="solicitud-patrocinio" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" (click)="collapseNavbar()">
-                            <i class="fa fa-fw fa-asterisk" aria-hidden="true"></i>
-                            <span>Solicitud Patrocinio</span>
-                        </a>
-                    </li>
-                    <li>
-                        <a class="dropdown-item" routerLink="etiqueta" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" (click)="collapseNavbar()">
-                            <i class="fa fa-fw fa-asterisk" aria-hidden="true"></i>
-                            <span>Etiqueta</span>
-                        </a>
-                    </li>
-                    <li>
-                        <a class="dropdown-item" routerLink="entrega" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" (click)="collapseNavbar()">
-                            <i class="fa fa-fw fa-asterisk" aria-hidden="true"></i>
-                            <span>Entrega</span>
-                        </a>
-                    </li>
-                    <li>
-                        <a class="dropdown-item" routerLink="cadena-entrega" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" (click)="collapseNavbar()">
-                            <i class="fa fa-fw fa-asterisk" aria-hidden="true"></i>
-                            <span>Cadena Entrega</span>
-                        </a>
-                    </li>
-                    <li>
-                        <a class="dropdown-item" routerLink="cobro-suscripcion" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" (click)="collapseNavbar()">
-                            <i class="fa fa-fw fa-asterisk" aria-hidden="true"></i>
-                            <span>Cobro Suscripcion</span>
-                        </a>
-                    </li>
-                    <li>
-                        <a class="dropdown-item" routerLink="pago" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" (click)="collapseNavbar()">
-                            <i class="fa fa-fw fa-asterisk" aria-hidden="true"></i>
-                            <span>Pago</span>
-                        </a>
-                    </li>
-                    <li>
-                        <a class="dropdown-item" routerLink="cobro-mensualidad" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" (click)="collapseNavbar()">
-                            <i class="fa fa-fw fa-asterisk" aria-hidden="true"></i>
-                            <span>Cobro Mensualidad</span>
-                        </a>
-                    </li>
-                    <li>
-                        <a class="dropdown-item" routerLink="configuracion" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" (click)="collapseNavbar()">
-                            <i class="fa fa-fw fa-asterisk" aria-hidden="true"></i>
-                            <span>Configuracion</span>
-                        </a>
-                    </li>
-                    <li>
-                        <a class="dropdown-item" routerLink="usuario" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" (click)="collapseNavbar()">
-                            <i class="fa fa-fw fa-asterisk" aria-hidden="true"></i>
-                            <span>Usuario</span>
-                        </a>
-                    </li>
-                    <li>
-                        <a class="dropdown-item" routerLink="contrato" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" (click)="collapseNavbar()">
-                            <i class="fa fa-fw fa-asterisk" aria-hidden="true"></i>
-                            <span>Contrato</span>
-                        </a>
-                    </li>
-                    <li>
-                        <a class="dropdown-item" routerLink="tipo-contrato" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" (click)="collapseNavbar()">
-                            <i class="fa fa-fw fa-asterisk" aria-hidden="true"></i>
+                            <i class="fa fa-fw fa-files-o" aria-hidden="true"></i>
                             <span>Tipo Contrato</span>
                         </a>
                     </li>
                     <li>
                         <a class="dropdown-item" routerLink="centro-acopio" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" (click)="collapseNavbar()">
-                            <i class="fa fa-fw fa-asterisk" aria-hidden="true"></i>
+                            <i class="fa fa-fw fa-recycle" aria-hidden="true"></i>
                             <span>Centro Acopio</span>
                         </a>
                     </li>
                     <li>
                         <a class="dropdown-item" routerLink="comercio" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" (click)="collapseNavbar()">
-                            <i class="fa fa-fw fa-asterisk" aria-hidden="true"></i>
+                            <i class="fa fa-fw fa-building" aria-hidden="true"></i>
                             <span>Comercio</span>
                         </a>
                     </li>
                     <li>
                         <a class="dropdown-item" routerLink="local" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" (click)="collapseNavbar()">
-                            <i class="fa fa-fw fa-asterisk" aria-hidden="true"></i>
+                            <i class="fa fa-fw fa-building-o" aria-hidden="true"></i>
                             <span>Local</span>
                         </a>
                     </li>
                     <li>
                         <a class="dropdown-item" routerLink="fotografia" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" (click)="collapseNavbar()">
-                            <i class="fa fa-fw fa-asterisk" aria-hidden="true"></i>
-                            <span>Fotografia</span>
+                            <i class="fa fa-fw fa-image" aria-hidden="true"></i>
+                            <span>Fotografía</span>
                         </a>
                     </li>
                     <li>
                         <a class="dropdown-item" routerLink="producto" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" (click)="collapseNavbar()">
-                            <i class="fa fa-fw fa-asterisk" aria-hidden="true"></i>
+                            <i class="fa fa-fw fa-shopping-bag" aria-hidden="true"></i>
                             <span>Producto</span>
                         </a>
                     </li>
                     <li>
                         <a class="dropdown-item" routerLink="suscripcion" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" (click)="collapseNavbar()">
-                            <i class="fa fa-fw fa-asterisk" aria-hidden="true"></i>
-                            <span>Suscripcion</span>
+                            <i class="fa fa-fw fa-truck" aria-hidden="true"></i>
+                            <span>Suscripción</span>
                         </a>
                     </li>
                     <li>
                         <a class="dropdown-item" routerLink="pedido" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" (click)="collapseNavbar()">
-                            <i class="fa fa-fw fa-asterisk" aria-hidden="true"></i>
+                            <i class="fa fa-fw fa-shopping-basket" aria-hidden="true"></i>
                             <span>Pedido</span>
                         </a>
                     </li>
                     <li>
                         <a class="dropdown-item" routerLink="linea-producto" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" (click)="collapseNavbar()">
-                            <i class="fa fa-fw fa-asterisk" aria-hidden="true"></i>
-                            <span>Linea Producto</span>
+                            <i class="fa fa-fw fa-shopping-bag" aria-hidden="true"></i>
+                            <span>Línea Producto</span>
                         </a>
                     </li>
                     <li>
                         <a class="dropdown-item" routerLink="linea-entrega" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" (click)="collapseNavbar()">
-                            <i class="fa fa-fw fa-asterisk" aria-hidden="true"></i>
-                            <span>Linea Entrega</span>
+                            <i class="fa fa-fw fa-truck" aria-hidden="true"></i>
+                            <span>Línea Entrega</span>
                         </a>
                     </li>
                     <li>
                         <a class="dropdown-item" routerLink="orden-recoleccion" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" (click)="collapseNavbar()">
-                            <i class="fa fa-fw fa-asterisk" aria-hidden="true"></i>
-                            <span>Orden Recoleccion</span>
+                            <i class="fa fa-fw fa-file-o" aria-hidden="true"></i>
+                            <span>Orden Recolección</span>
                         </a>
                     </li>
                     <li>
                         <a class="dropdown-item" routerLink="cadena-orden-recoleccion" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" (click)="collapseNavbar()">
-                            <i class="fa fa-fw fa-asterisk" aria-hidden="true"></i>
-                            <span>Cadena Orden Recoleccion</span>
+                            <i class="fa fa-fw fa-files-o" aria-hidden="true"></i>
+                            <span>Cadena Orden Recolección</span>
                         </a>
                     </li>
                     <li>
                         <a class="dropdown-item" routerLink="categoria-alimentacion" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" (click)="collapseNavbar()">
-                            <i class="fa fa-fw fa-asterisk" aria-hidden="true"></i>
-                            <span>Categoria Alimentacion</span>
+                            <i class="fa fa-fw fa-apple" aria-hidden="true"></i>
+                            <span>Categoría Alimentación</span>
                         </a>
                     </li>
                     <li>
                         <a class="dropdown-item" routerLink="publicacion" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" (click)="collapseNavbar()">
-                            <i class="fa fa-fw fa-asterisk" aria-hidden="true"></i>
-                            <span>Publicacion</span>
+                            <i class="fa fa-fw fa-rss-square" aria-hidden="true"></i>
+                            <span>Publicación</span>
                         </a>
                     </li>
                     <li>
                         <a class="dropdown-item" routerLink="comentario-publicacion" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" (click)="collapseNavbar()">
-                            <i class="fa fa-fw fa-asterisk" aria-hidden="true"></i>
-                            <span>Comentario Publicacion</span>
+                            <i class="fa fa-fw fa-comments" aria-hidden="true"></i>
+                            <span>Comentario Publicación</span>
                         </a>
                     </li>
                     <li>
                         <a class="dropdown-item" routerLink="evento" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" (click)="collapseNavbar()">
-                            <i class="fa fa-fw fa-asterisk" aria-hidden="true"></i>
+                            <i class="fa fa-fw fa-calendar" aria-hidden="true"></i>
                             <span>Evento</span>
                         </a>
                     </li>
                     <li>
                         <a class="dropdown-item" routerLink="dia-entrega" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" (click)="collapseNavbar()">
-                            <i class="fa fa-fw fa-asterisk" aria-hidden="true"></i>
-                            <span>Dia Entrega</span>
+                            <i class="fa fa-fw fa-calendar-times-o" aria-hidden="true"></i>
+                            <span>Día Entrega</span>
                         </a>
                     </li>
                     <li>
                         <a class="dropdown-item" routerLink="resena-comercio" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" (click)="collapseNavbar()">
-                            <i class="fa fa-fw fa-asterisk" aria-hidden="true"></i>
-                            <span>Resena Comercio</span>
-                        </a>
-                    </li>
-                    <li>
-                        <a class="dropdown-item" routerLink="resena-cliente" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" (click)="collapseNavbar()">
-                            <i class="fa fa-fw fa-asterisk" aria-hidden="true"></i>
-                            <span>Resena Cliente</span>
+                            <i class="fa fa-fw fa-comment" aria-hidden="true"></i>
+                            <span>Reseña Comercio</span>
                         </a>
                     </li>
                     <li>
                         <a class="dropdown-item" routerLink="patrocinador" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" (click)="collapseNavbar()">
-                            <i class="fa fa-fw fa-asterisk" aria-hidden="true"></i>
+                            <i class="fa fa-fw fa-handshake-o" aria-hidden="true"></i>
                             <span>Patrocinador</span>
                         </a>
                     </li>
                     <li>
                         <a class="dropdown-item" routerLink="etiqueta" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" (click)="collapseNavbar()">
-                            <i class="fa fa-fw fa-asterisk" aria-hidden="true"></i>
+                            <i class="fa fa-fw fa-tags" aria-hidden="true"></i>
                             <span>Etiqueta</span>
                         </a>
                     </li>
                     <li>
                         <a class="dropdown-item" routerLink="entrega" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" (click)="collapseNavbar()">
-                            <i class="fa fa-fw fa-asterisk" aria-hidden="true"></i>
+                            <i class="fa fa-fw fa-truck" aria-hidden="true"></i>
                             <span>Entrega</span>
                         </a>
                     </li>
                     <li>
                         <a class="dropdown-item" routerLink="cadena-entrega" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" (click)="collapseNavbar()">
-                            <i class="fa fa-fw fa-asterisk" aria-hidden="true"></i>
+                            <i class="fa fa-fw fa-files-o" aria-hidden="true"></i>
                             <span>Cadena Entrega</span>
                         </a>
                     </li>
                     <li>
                         <a class="dropdown-item" routerLink="cobro-suscripcion" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" (click)="collapseNavbar()">
-                            <i class="fa fa-fw fa-asterisk" aria-hidden="true"></i>
-                            <span>Cobro Suscripcion</span>
+                            <i class="fa fa-fw fa-credit-card-alt" aria-hidden="true"></i>
+                            <span>Cobro Suscripción</span>
                         </a>
                     </li>
                     <li>
                         <a class="dropdown-item" routerLink="pago" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" (click)="collapseNavbar()">
-                            <i class="fa fa-fw fa-asterisk" aria-hidden="true"></i>
+                            <i class="fa fa-fw fa-paypal" aria-hidden="true"></i>
                             <span>Pago</span>
                         </a>
                     </li>
                     <li>
                         <a class="dropdown-item" routerLink="cobro-mensualidad" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" (click)="collapseNavbar()">
-                            <i class="fa fa-fw fa-asterisk" aria-hidden="true"></i>
+                            <i class="fa fa-fw fa-credit-card-alt" aria-hidden="true"></i>
                             <span>Cobro Mensualidad</span>
                         </a>
                     </li>
@@ -642,50 +204,50 @@
                 <a class="nav-link dropdown-toggle" ngbDropdownToggle href="javascript:void(0);" id="admin-menu">
                     <span>
                         <i class="fa fa-user-plus" aria-hidden="true"></i>
-                        <span>Administration</span>
+                        <span>Administración</span>
                     </span>
                 </a>
                 <ul class="dropdown-menu" ngbDropdownMenu>
                     <li>
                         <a class="dropdown-item" routerLink="user-management" routerLinkActive="active" (click)="collapseNavbar()">
                             <i class="fa fa-fw fa-user" aria-hidden="true"></i>
-                            <span>User management</span>
+                            <span>Administración de usuarios</span>
                         </a>
                     </li>
                     <li>
                         <a class="dropdown-item" routerLink="jhi-tracker" routerLinkActive="active" (click)="collapseNavbar()">
                             <i class="fa fa-fw fa-eye" aria-hidden="true"></i>
-                            <span>User tracker</span>
+                            <span>Actividad de usuarios</span>
                         </a>
                     </li>
                     <li>
                         <a class="dropdown-item" routerLink="jhi-metrics" routerLinkActive="active" (click)="collapseNavbar()">
                             <i class="fa fa-fw fa-tachometer" aria-hidden="true"></i>
-                            <span>Metrics</span>
+                            <span>Métricas</span>
                         </a>
                     </li>
                     <li>
                         <a class="dropdown-item" routerLink="jhi-health" routerLinkActive="active" (click)="collapseNavbar()">
                             <i class="fa fa-fw fa-heart" aria-hidden="true"></i>
-                            <span>Health</span>
+                            <span>Salud Sistema</span>
                         </a>
                     </li>
                     <li>
                         <a class="dropdown-item" routerLink="jhi-configuration" routerLinkActive="active" (click)="collapseNavbar()">
                             <i class="fa fa-fw fa-list" aria-hidden="true"></i>
-                            <span>Configuration</span>
+                            <span>Configuración</span>
                         </a>
                     </li>
                     <li>
                         <a class="dropdown-item" routerLink="audits" routerLinkActive="active" (click)="collapseNavbar()">
                             <i class="fa fa-fw fa-bell" aria-hidden="true"></i>
-                            <span>Audits</span>
+                            <span>Auditorías</span>
                         </a>
                     </li>
                     <li>
                         <a class="dropdown-item" routerLink="logs" routerLinkActive="active" (click)="collapseNavbar()">
                             <i class="fa fa-fw fa-tasks" aria-hidden="true"></i>
-                            <span>Logs</span>
+                            <span>Registros</span>
                         </a>
                     </li>
                     <li *ngIf="swaggerEnabled">
@@ -702,7 +264,7 @@
                   <span *ngIf="!getImageUrl()">
                     <i class="fa fa-user" aria-hidden="true"></i>
                     <span>
-                      Account
+                      Cuenta
                     </span>
                   </span>
                   <span *ngIf="getImageUrl()">
@@ -713,31 +275,31 @@
                     <li *ngSwitchCase="true">
                         <a class="dropdown-item" routerLink="settings" routerLinkActive="active" (click)="collapseNavbar()">
                             <i class="fa fa-fw fa-wrench" aria-hidden="true"></i>
-                            <span>Settings</span>
+                            <span>Configuración</span>
                         </a>
                     </li>
                     <li *ngSwitchCase="true">
                         <a class="dropdown-item" routerLink="password" routerLinkActive="active" (click)="collapseNavbar()">
                             <i class="fa fa-fw fa-clock-o" aria-hidden="true"></i>
-                            <span>Password</span>
+                            <span>Contraseña</span>
                         </a>
                     </li>
                     <li *ngSwitchCase="true">
                         <a class="dropdown-item" (click)="logout()" id="logout">
                             <i class="fa fa-fw fa-sign-out" aria-hidden="true"></i>
-                            <span>Sign out</span>
+                            <span>Cerrar Sesión</span>
                         </a>
                     </li>
                     <li *ngSwitchCase="false">
                         <a class="dropdown-item" (click)="login()" id="login">
                             <i class="fa fa-fw fa-sign-in" aria-hidden="true"></i>
-                            <span>Sign in</span>
+                            <span>Iniciar Sesión</span>
                         </a>
                     </li>
                     <li *ngSwitchCase="false">
                         <a class="dropdown-item" routerLink="register" routerLinkActive="active" (click)="collapseNavbar()">
                             <i class="fa fa-fw fa-user-plus" aria-hidden="true"></i>
-                            <span>Register</span>
+                            <span>Registrarse</span>
                         </a>
                     </li>
                 </ul>
