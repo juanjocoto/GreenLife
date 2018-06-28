@@ -1,19 +1,22 @@
-import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
-import { RouterModule } from '@angular/router';
-
-import { GreenlifeSharedModule } from '../../shared';
+import { CUSTOM_ELEMENTS_SCHEMA, NgModule } from '@angular/core';
 import {
-    PagoService,
-    PagoPopupService,
     PagoComponent,
+    PagoDeleteDialogComponent,
+    PagoDeletePopupComponent,
     PagoDetailComponent,
     PagoDialogComponent,
     PagoPopupComponent,
-    PagoDeletePopupComponent,
-    PagoDeleteDialogComponent,
-    pagoRoute,
+    PagoPopupService,
+    PagoService,
     pagoPopupRoute,
+    pagoRoute,
 } from './';
+
+import { GreenlifeSharedModule } from '../../shared';
+import { RouterModule } from '@angular/router';
+import { enviroment } from './../../enviroment';
+
+pagoRoute.forEach((a) => a.path = `${enviroment.cmsPath}/${a.path}`);
 
 const ENTITY_STATES = [
     ...pagoRoute,

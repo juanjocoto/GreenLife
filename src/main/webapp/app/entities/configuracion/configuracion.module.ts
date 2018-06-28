@@ -1,19 +1,22 @@
-import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
-import { RouterModule } from '@angular/router';
-
-import { GreenlifeSharedModule } from '../../shared';
+import { CUSTOM_ELEMENTS_SCHEMA, NgModule } from '@angular/core';
 import {
-    ConfiguracionService,
-    ConfiguracionPopupService,
     ConfiguracionComponent,
+    ConfiguracionDeleteDialogComponent,
+    ConfiguracionDeletePopupComponent,
     ConfiguracionDetailComponent,
     ConfiguracionDialogComponent,
     ConfiguracionPopupComponent,
-    ConfiguracionDeletePopupComponent,
-    ConfiguracionDeleteDialogComponent,
-    configuracionRoute,
+    ConfiguracionPopupService,
+    ConfiguracionService,
     configuracionPopupRoute,
+    configuracionRoute,
 } from './';
+
+import { GreenlifeSharedModule } from '../../shared';
+import { RouterModule } from '@angular/router';
+import { enviroment } from './../../enviroment';
+
+configuracionRoute.forEach((a) => a.path = `${enviroment.cmsPath}/${a.path}`);
 
 const ENTITY_STATES = [
     ...configuracionRoute,

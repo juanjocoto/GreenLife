@@ -1,20 +1,23 @@
-import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
-import { RouterModule } from '@angular/router';
-
-import { GreenlifeSharedModule } from '../../shared';
-import { GreenlifeAdminModule } from '../../admin/admin.module';
+import { CUSTOM_ELEMENTS_SCHEMA, NgModule } from '@angular/core';
 import {
-    UsuarioService,
-    UsuarioPopupService,
     UsuarioComponent,
+    UsuarioDeleteDialogComponent,
+    UsuarioDeletePopupComponent,
     UsuarioDetailComponent,
     UsuarioDialogComponent,
     UsuarioPopupComponent,
-    UsuarioDeletePopupComponent,
-    UsuarioDeleteDialogComponent,
-    usuarioRoute,
+    UsuarioPopupService,
+    UsuarioService,
     usuarioPopupRoute,
+    usuarioRoute,
 } from './';
+
+import { GreenlifeAdminModule } from '../../admin/admin.module';
+import { GreenlifeSharedModule } from '../../shared';
+import { RouterModule } from '@angular/router';
+import { enviroment } from './../../enviroment';
+
+usuarioRoute.forEach((a) => a.path = `${enviroment.cmsPath}/${a.path}`);
 
 const ENTITY_STATES = [
     ...usuarioRoute,
@@ -48,4 +51,4 @@ const ENTITY_STATES = [
     ],
     schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })
-export class GreenlifeUsuarioModule {}
+export class GreenlifeUsuarioModule { }

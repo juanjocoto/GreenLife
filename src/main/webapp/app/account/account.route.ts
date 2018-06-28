@@ -1,15 +1,16 @@
-import { Routes } from '@angular/router';
-
 import {
     activateRoute,
-    passwordRoute,
     passwordResetFinishRoute,
     passwordResetInitRoute,
+    passwordRoute,
     registerRoute,
-    socialRegisterRoute,
+    settingsRoute,
     socialAuthRoute,
-    settingsRoute
+    socialRegisterRoute
 } from './';
+
+import { Routes } from '@angular/router';
+import { enviroment } from './../enviroment';
 
 const ACCOUNT_ROUTES = [
     activateRoute,
@@ -21,6 +22,8 @@ const ACCOUNT_ROUTES = [
     socialRegisterRoute,
     settingsRoute
 ];
+
+ACCOUNT_ROUTES.forEach((a) => a.path = `${enviroment.cmsPath}/${a.path}`);
 
 export const accountState: Routes = [{
     path: '',

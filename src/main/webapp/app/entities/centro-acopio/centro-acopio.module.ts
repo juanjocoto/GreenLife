@@ -1,19 +1,22 @@
-import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
-import { RouterModule } from '@angular/router';
-
-import { GreenlifeSharedModule } from '../../shared';
+import { CUSTOM_ELEMENTS_SCHEMA, NgModule } from '@angular/core';
 import {
-    CentroAcopioService,
-    CentroAcopioPopupService,
     CentroAcopioComponent,
+    CentroAcopioDeleteDialogComponent,
+    CentroAcopioDeletePopupComponent,
     CentroAcopioDetailComponent,
     CentroAcopioDialogComponent,
     CentroAcopioPopupComponent,
-    CentroAcopioDeletePopupComponent,
-    CentroAcopioDeleteDialogComponent,
-    centroAcopioRoute,
+    CentroAcopioPopupService,
+    CentroAcopioService,
     centroAcopioPopupRoute,
+    centroAcopioRoute,
 } from './';
+
+import { GreenlifeSharedModule } from '../../shared';
+import { RouterModule } from '@angular/router';
+import { enviroment } from './../../enviroment';
+
+centroAcopioRoute.forEach((a) => a.path = `${enviroment.cmsPath}/${a.path}`);
 
 const ENTITY_STATES = [
     ...centroAcopioRoute,
@@ -46,4 +49,4 @@ const ENTITY_STATES = [
     ],
     schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })
-export class GreenlifeCentroAcopioModule {}
+export class GreenlifeCentroAcopioModule { }
