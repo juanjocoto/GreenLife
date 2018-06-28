@@ -16,6 +16,7 @@ import { ValidadorNumeroDirective } from './shared/directives/validador-numero.d
 import { UsuarioRegistroComponent } from './views/usuario-registro/usuario-registro.component';
 import { UsuarioPerfilComponent } from './views/usuario-perfil/usuario-perfil.component';
 import { ComerciosProductosComponent } from './views/comercios-productos/comercios-productos.component';
+import { ConfigComercioLocalesComponent } from './views/config-comercio-locales/config-comercio-locales.component';
 import {
   MatButtonModule,
   MatButtonToggleModule,
@@ -71,7 +72,8 @@ import {
     ValidadorNumeroDirective,
     UsuarioRolesComponent,
     ConvertidorFechaPipe,
-    ComerciosProductosComponent
+    ComerciosProductosComponent,
+    ConfigComercioLocalesComponent
   ],
   entryComponents: [
     LoginComponent
