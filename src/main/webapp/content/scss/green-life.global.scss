@@ -18,10 +18,9 @@ $font-family: 'Lato, sans-serif'
 @include mat-core($custom-typography);
 
 // css global
-
 .title-bar,
 .title-bar-config {
-    color: #fff;
+    color: #FFFFFF;
     padding: 20px;
     margin: 0 0 20px;
     background: $green-color;
@@ -33,5 +32,31 @@ $font-family: 'Lato, sans-serif'
 
 .title-bar-config h1,
 .title-bar h1{
-    margin: 0;
+    display: inline-flex;
+    font-size: 46px;
+    font-weight: 700;
+}
+
+.title-bar-right-section h3 {
+    font-size: 20px;
+}
+
+.title-bar .right-section-icon,
+.title-bar-config .right-section-icon {
+    font-size: 48px;
+}
+
+.title-bar-config .icon,
+.title-bar .icon {
+    &.icon {
+        padding: 0 25px;
+        .iconImg {
+            height: 55px;
+            width: 55px;
+            display: inline-block;
+            vertical-align: top;
+            background: url("../images/localSymbolic.png") no-repeat center center;
+            background-size: contain;
+        }
+    }
 }
