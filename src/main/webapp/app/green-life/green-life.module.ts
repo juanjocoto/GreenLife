@@ -18,6 +18,7 @@ import { UsuarioRegistroComponent } from './views/usuario-registro/usuario-regis
 import { UsuarioPerfilComponent } from './views/usuario-perfil/usuario-perfil.component';
 import { ComerciosProductosComponent } from './views/comercios-productos/comercios-productos.component';
 import { ConfigComercioLocalesComponent } from './views/config-comercio-locales/config-comercio-locales.component';
+import { UsuarioModificarComponent } from './views/usuario-modificar/usuario-modificar.component';
 import {
   MatButtonModule,
   MatButtonToggleModule,
@@ -79,7 +80,8 @@ import {
     UsuarioRolesComponent,
     ConvertidorFechaPipe,
     ComerciosProductosComponent,
-    ConfigComercioLocalesComponent
+    ConfigComercioLocalesComponent,
+    UsuarioModificarComponent
   ],
   entryComponents: [
     LoginComponent
