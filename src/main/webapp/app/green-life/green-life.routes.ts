@@ -4,11 +4,13 @@ import { UsuarioPerfilComponent } from './views/usuario-perfil/usuario-perfil.co
 import { UsuarioRegistroComponent } from './views/usuario-registro/usuario-registro.component';
 import { ComerciosProductosComponent } from './views/comercios-productos/comercios-productos.component';
 import {ConfigComercioLocalesComponent} from './views/config-comercio-locales/config-comercio-locales.component';
+import {UsuarioModificarComponent} from "./views/usuario-modificar/usuario-modificar.component";
 
 export const greenLifeRoutes: Route[] = [
     { path: '', component: LandingComponent },
     { path: 'registrarse', component: UsuarioRegistroComponent },
     { path: 'usuario/:login', component: UsuarioPerfilComponent },
     { path: 'comercios/:comercioId/productos', component: ComerciosProductosComponent},
-    { path: ':idComercio/local/:idLocal', component: ConfigComercioLocalesComponent }
+    { path: ':idComercio/local/:idLocal', component: ConfigComercioLocalesComponent },
+    { path: 'modificar/:login', component: UsuarioModificarComponent}
 ];
