@@ -11,6 +11,7 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { ReactiveFormsModule } from '@angular/forms';
 import { RootComponent } from './root/root.component';
 import { RouterModule } from '@angular/router';
+import { AgmCoreModule } from '@agm/core';
 import { UsuarioRolesComponent } from './views/usuario-roles/usuario-roles.component';
 import { ValidadorNumeroDirective } from './shared/directives/validador-numero.directive';
 import { UsuarioRegistroComponent } from './views/usuario-registro/usuario-registro.component';
@@ -33,7 +34,8 @@ import {
   MatToolbarModule,
   MatPaginatorModule,
   MatTableModule,
-  MatSortModule
+  MatSortModule,
+  MatTabsModule
 } from '@angular/material';
 
 @NgModule({
@@ -43,6 +45,9 @@ import {
     BrowserModule,
     BrowserAnimationsModule,
     NgbModule,
+    AgmCoreModule.forRoot({
+       apiKey: 'AIzaSyAKK8_ZbHnWx9CD9b4NZFGRKe8rMw83wmI'
+    }),
     MatMenuModule,
     MatButtonModule,
     MatButtonToggleModule,
@@ -59,7 +64,8 @@ import {
     MatDialogModule,
     MatPaginatorModule,
     MatTableModule,
-    MatSortModule
+    MatSortModule,
+    MatTabsModule
   ],
   declarations: [
     LandingComponent,
