@@ -1,31 +1,41 @@
-// Estilos navbar Green Life
-.navbar {
+#green-life-navbar {
+    height: 57px;
     background-color: #ffffff;
-    padding-left: 40px;
-    padding-right: 35px;
-    height: 51px;
+    padding: 0px 35px 0 23px;
 }
-.navbar-light .navbar-nav .nav-link {
-    margin-left: 15px;
-    margin-right: 15px;
-    color: #46B97E;
-    font-weight: normal;
-    font-size: 17px;
-}
-.dropdown-menu {
-    margin-top: 5px;
-    border: none;
-    font-size: 17px;
-    border-radius: 6px;
-    box-shadow: 0 1px 3px rgba(gray, 1 * 0.14), 0 1px 2px rgba(gray, 1  * 0.24);
-    a {
-        color: #46B97E;
+.navbarLogo {
+    &.logo {
+        .logoImg {
+            height: 40px;
+            width: 180px;
+            display: inline-block;
+            vertical-align: middle;
+            background: url("../../../../content/images/GreenLifeLogo.png") no-repeat center center;
+            background-size: contain;
+            position: absolute;
+            top: 9px;
+        }
     }
 }
-.dropdown-toggle:after {
+.show {
+    background-color: #ffffff;
+    padding: 5px 0px 5px 10px;
+}
+.nav-item.show.dropdown {
+    padding: 0px !important;
+}
+.hidden {
     display: none;
 }
-// Botones del navbar
+.nav-link {
+    color: #6AABAD !important;
+    font-weight: normal;
+    font-size: 17px;
+    margin-right: 10px;
+}
+.inicio .nav-link {
+    color: #46B97E !important;
+}
 .btnIniciarSesion, .btnRegistrarse {
     margin-left: 10px;
     font-weight: bold;
@@ -41,18 +51,66 @@
 .btnIniciarSesion {
     font-weight: normal;
 }
-
-// Estilos del logo
-.navbarLogo {
-    &.logo {
-        //padding: 5px 15px;
-        .logoImg {
-            height: 40px;
-            width: 180px;
-            display: inline-block;
-            vertical-align: middle;
-            background: url("../../../../content/images/GreenLifeLogo.png") no-repeat center center;
-            background-size: contain;
-        }
+.dropdown-menu {
+    top: 38px !important;
+    left: 7px !important;
+    padding: 0px 0px !important;
+}
+.dropdown-item {
+    padding: 2px 10px !important;
+}
+.dropdown-toggle::after {
+    vertical-align: -13px;
+    display: inline;
+}
+.ml-auto {
+    padding-top: 15px;
+}
+#button-area {
+    padding-top: 0px;
+}
+.user-img {
+    background: url("../../../../content/images/user.png") no-repeat center center;
+    height: 32px;
+    width: 32px;
+    display: inline-block;
+    vertical-align: top;
+    background-size: contain;
+}
+#user-config .dropdown-menu{
+    top: 45px !important;
+    left: -105px !important;
+}
+#user-config .dropdown {
+    background-color: transparent;
+}
+.text {
+    display: none;
+}
+#user-config .dropdown-toggle::after {
+    display: none;
+}
+@media only screen and (max-width: 1090px) {
+    #green-life-navbar {
+        padding: 0px;
+    }
+    .navbar-toggler {
+        margin: 8px 8px 0px 0px;
+    }
+    .ml-auto {
+        padding-top: 0px;
+    }
+    .nav-link {
+        height: 35px;
+    }
+    .dropdown-menu {
+        width: 400px !important;
+        min-width: 400px !important;
+    }
+    .user-img {
+        display: none;
+    }
+    .text {
+        display: inline-block;
     }
 }
