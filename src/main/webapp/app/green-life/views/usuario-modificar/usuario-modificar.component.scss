@@ -1,0 +1,21 @@
+@import "../../green-life.colors";
+
+.title {
+    background: $config-green-color;
+    color: #fff;
+    padding: 20px;
+    margin: 0 0 20px;
+}
+
+.form-container {
+    margin: 0 auto;
+    width: 800px;
+}
+
+mat-form-field {
+    width: 100%;
+}
+
+.ng-invalid:not(form) {
+    border-left: unset;
+}

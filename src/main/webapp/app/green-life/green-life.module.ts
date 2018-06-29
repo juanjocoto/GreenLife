@@ -31,6 +31,7 @@ import { UsuarioRolesComponent } from './views/usuario-roles/usuario-roles.compo
 import { ValidadorNumeroDirective } from './shared/directives/validador-numero.directive';
 import { UsuarioRegistroComponent } from './views/usuario-registro/usuario-registro.component';
 import { UsuarioPerfilComponent } from './views/usuario-perfil/usuario-perfil.component';
+import { UsuarioModificarComponent } from './views/usuario-modificar/usuario-modificar.component';
 
 @NgModule({
   imports: [
@@ -65,7 +66,8 @@ import { UsuarioPerfilComponent } from './views/usuario-perfil/usuario-perfil.co
     UsuarioRegistroComponent,
     ValidadorNumeroDirective,
     UsuarioRolesComponent,
-    ConvertidorFechaPipe
+    ConvertidorFechaPipe,
+    UsuarioModificarComponent
   ],
   entryComponents: [
     LoginComponent
