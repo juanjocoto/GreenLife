@@ -1,22 +1,14 @@
 @import 'green-life-variables';
-
 @import '~@angular/material/prebuilt-themes/deeppurple-amber.css';
 @import '~@angular/material/theming';
-
 @include mat-core();
-
 // Tipografia Green Life
 @import url('https://fonts.googleapis.com/css?family=Lato:300,300i,400,400i,700,700i');
-
 // Declaracion de la tipografia Lato
-$custom-typography: mat-typography-config(
-$font-family: 'Lato, sans-serif'
-);
-
+$custom-typography: mat-typography-config( $font-family: 'Lato, sans-serif');
 // Sobreescribe la tipografia para todos los componentes de Angular Material
 @include angular-material-typography($custom-typography);
 @include mat-core($custom-typography);
-
 // css global
 .title-bar,
 .title-bar-config {
@@ -26,12 +18,12 @@ $font-family: 'Lato, sans-serif'
     background: $green-color;
 }
 
-.title-bar-config{
+.title-bar-config {
     background: $config-green-color;
 }
 
 .title-bar-config h1,
-.title-bar h1{
+.title-bar h1 {
     display: inline-flex;
     font-size: 46px;
     font-weight: 700;
@@ -62,4 +54,18 @@ $font-family: 'Lato, sans-serif'
 
 .green-life-form .ng-invalid:not(form) {
     border-left: unset;
+}
+
+.spacer {
+    flex: 1 1;
+}
+
+.btn-success {
+    background-color: $green-color !important;
+    border-color: $green-color !important;
+}
+
+.btn-danger {
+    background-color: $warning-color !important;
+    border-color: $warning-color !important;
 }

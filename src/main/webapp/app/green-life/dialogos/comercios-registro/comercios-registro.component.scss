@@ -1,7 +1,10 @@
-.green-life-form{
-  max-width: 200px;
+@import './../../../../content/scss/green-life-variables';
+
+.green-life-form {
+    max-width: 200px;
 }
 
-.green-life-form mat-form-field{
-  width: 100%;
+.green-life-form mat-form-field {
+    width: 100%;
 }
+
