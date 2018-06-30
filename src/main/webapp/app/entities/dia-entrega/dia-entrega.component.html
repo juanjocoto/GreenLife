@@ -4,7 +4,7 @@
         <button class="btn btn-primary float-right jh-create-entity create-dia-entrega" [routerLink]="['/', { outlets: { popup: ['dia-entrega-new'] } }]">
             <span class="fa fa-plus"></span>
             <span class="hidden-sm-down" >
-            Create new Dia Entrega
+            Crear nueva Dia Entrega
             </span>
         </button>
     </h2>
@@ -44,7 +44,7 @@
                                 [routerLink]="['../dia-entrega', diaEntrega.id ]"
                                 class="btn btn-info btn-sm">
                             <span class="fa fa-eye"></span>
-                            <span class="d-none d-md-inline">View</span>
+                            <span class="d-none d-md-inline">Ver</span>
                         </button>
                         <button type="submit"
                                 [routerLink]="['/', { outlets: { popup: 'dia-entrega/'+ diaEntrega.id + '/edit'} }]"
@@ -52,7 +52,7 @@
                                 queryParamsHandling="merge"
                                 class="btn btn-primary btn-sm">
                             <span class="fa fa-pencil"></span>
-                            <span class="d-none d-md-inline">Edit</span>
+                            <span class="d-none d-md-inline">Editar</span>
                         </button>
                         <button type="submit"
                                 [routerLink]="['/', { outlets: { popup: 'dia-entrega/'+ diaEntrega.id + '/delete'} }]"
@@ -60,7 +60,7 @@
                                 queryParamsHandling="merge"
                                 class="btn btn-danger btn-sm">
                             <span class="fa fa-remove"></span>
-                            <span class="d-none d-md-inline">Delete</span>
+                            <span class="d-none d-md-inline">Eliminar</span>
                         </button>
                     </div>
                 </td>

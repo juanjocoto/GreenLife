@@ -1,5 +1,5 @@
 <div class="table-responsive" *ngIf="loggers">
-    <h2>Logs</h2>
+    <h2>Registros</h2>
 
     <p>There are {{ loggers.length }} loggers.</p>
 
@@ -8,8 +8,8 @@
     <table class="table table-sm table-striped table-bordered">
         <thead>
         <tr title="click to order">
-            <th (click)="orderProp = 'name'; reverse=!reverse"><span>Name</span></th>
-            <th (click)="orderProp = 'level'; reverse=!reverse"><span>Level</span></th>
+            <th (click)="orderProp = 'name'; reverse=!reverse"><span>Nombre</span></th>
+            <th (click)="orderProp = 'level'; reverse=!reverse"><span>Nivel</span></th>
         </tr>
         </thead>
 

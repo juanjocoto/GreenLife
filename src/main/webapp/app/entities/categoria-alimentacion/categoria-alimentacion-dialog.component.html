@@ -1,7 +1,7 @@
 <form name="editForm" role="form" novalidate (ngSubmit)="save()" #editForm="ngForm">
 
     <div class="modal-header">
-        <h4 class="modal-title" id="myCategoriaAlimentacionLabel">Create or edit a Categoria Alimentacion</h4>
+        <h4 class="modal-title" id="myCategoriaAlimentacionLabel">Crear o editar Categoria Alimentación</h4>
         <button type="button" class="close" data-dismiss="modal" aria-hidden="true"
                 (click)="clear()">&times;</button>
     </div>
@@ -19,11 +19,11 @@
             <div [hidden]="!(editForm.controls.nombre?.dirty && editForm.controls.nombre?.invalid)">
                 <small class="form-text text-danger"
                    [hidden]="!editForm.controls.nombre?.errors?.required">
-                   This field is required.
+                   Campo requerido.
                 </small>
                 <small class="form-text text-danger"
                    [hidden]="!editForm.controls.nombre?.errors?.maxlength">
-                   This field cannot be longer than 50 characters.
+                   Este campo no puede contener mas de 50 caracteres.
                 </small>
             </div>
         </div>
@@ -34,11 +34,11 @@
             <div [hidden]="!(editForm.controls.descripcion?.dirty && editForm.controls.descripcion?.invalid)">
                 <small class="form-text text-danger"
                    [hidden]="!editForm.controls.descripcion?.errors?.required">
-                   This field is required.
+                   Campo requerido.
                 </small>
                 <small class="form-text text-danger"
                    [hidden]="!editForm.controls.descripcion?.errors?.maxlength">
-                   This field cannot be longer than 200 characters.
+                    Este campo no puede contener mas de 200 caracteres.
                 </small>
             </div>
         </div>
@@ -46,10 +46,10 @@
     </div>
     <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal" (click)="clear()">
-            <span class="fa fa-ban"></span>&nbsp;<span>Cancel</span>
+            <span class="fa fa-ban"></span>&nbsp;<span>Cancelar</span>
         </button>
         <button type="submit" [disabled]="editForm.form.invalid || isSaving" class="btn btn-primary">
-            <span class="fa fa-save"></span>&nbsp;<span>Save</span>
+            <span class="fa fa-save"></span>&nbsp;<span>Guardar</span>
         </button>
     </div>
 </form>

@@ -1,7 +1,7 @@
 <form name="editForm" role="form" novalidate (ngSubmit)="save()" #editForm="ngForm">
 
     <div class="modal-header">
-        <h4 class="modal-title" id="myDiaEntregaLabel">Create or edit a Dia Entrega</h4>
+        <h4 class="modal-title" id="myDiaEntregaLabel">Crear o editar Dia Entrega</h4>
         <button type="button" class="close" data-dismiss="modal" aria-hidden="true"
                 (click)="clear()">&times;</button>
     </div>
@@ -19,11 +19,11 @@
             <div [hidden]="!(editForm.controls.nombre?.dirty && editForm.controls.nombre?.invalid)">
                 <small class="form-text text-danger"
                    [hidden]="!editForm.controls.nombre?.errors?.required">
-                   This field is required.
+                   Campo requerido.
                 </small>
                 <small class="form-text text-danger"
                    [hidden]="!editForm.controls.nombre?.errors?.maxlength">
-                   This field cannot be longer than 20 characters.
+                   Este campo no puede contener mas de 20 caracteres.
                 </small>
             </div>
         </div>
@@ -31,10 +31,10 @@
     </div>
     <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal" (click)="clear()">
-            <span class="fa fa-ban"></span>&nbsp;<span>Cancel</span>
+            <span class="fa fa-ban"></span>&nbsp;<span>Cancelar</span>
         </button>
         <button type="submit" [disabled]="editForm.form.invalid || isSaving" class="btn btn-primary">
-            <span class="fa fa-save"></span>&nbsp;<span>Save</span>
+            <span class="fa fa-save"></span>&nbsp;<span>Guardar</span>
         </button>
     </div>
 </form>

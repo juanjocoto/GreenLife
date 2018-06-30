@@ -1,7 +1,7 @@
 <form name="editForm" role="form" novalidate (ngSubmit)="save()" #editForm="ngForm">
 
     <div class="modal-header">
-        <h4 class="modal-title" id="myConfiguracionLabel">Create or edit a Configuracion</h4>
+        <h4 class="modal-title" id="myConfiguracionLabel">Crear o editar Configuracion</h4>
         <button type="button" class="close" data-dismiss="modal" aria-hidden="true"
                 (click)="clear()">&times;</button>
     </div>
@@ -19,11 +19,11 @@
             <div [hidden]="!(editForm.controls.calificacionMinima?.dirty && editForm.controls.calificacionMinima?.invalid)">
                 <small class="form-text text-danger"
                    [hidden]="!editForm.controls.calificacionMinima?.errors?.required">
-                   This field is required.
+                   Campo requerido.
                 </small>
                 <small class="form-text text-danger"
                     [hidden]="!editForm.controls.calificacionMinima?.errors?.number">
-                    This field should be a number.
+                    Este campo solo puede contener numeros.
                 </small>
             </div>
         </div>
@@ -34,11 +34,11 @@
             <div [hidden]="!(editForm.controls.calificacionMaxima?.dirty && editForm.controls.calificacionMaxima?.invalid)">
                 <small class="form-text text-danger"
                    [hidden]="!editForm.controls.calificacionMaxima?.errors?.required">
-                   This field is required.
+                   Campo requerido.
                 </small>
                 <small class="form-text text-danger"
                     [hidden]="!editForm.controls.calificacionMaxima?.errors?.number">
-                    This field should be a number.
+                    Este campo solo puede contener numeros.
                 </small>
             </div>
         </div>
@@ -49,7 +49,7 @@
             <div [hidden]="!(editForm.controls.nombreAplicacion?.dirty && editForm.controls.nombreAplicacion?.invalid)">
                 <small class="form-text text-danger"
                    [hidden]="!editForm.controls.nombreAplicacion?.errors?.required">
-                   This field is required.
+                   Campo requerido.
                 </small>
             </div>
         </div>
@@ -60,7 +60,7 @@
             <div [hidden]="!(editForm.controls.razonSocial?.dirty && editForm.controls.razonSocial?.invalid)">
                 <small class="form-text text-danger"
                    [hidden]="!editForm.controls.razonSocial?.errors?.required">
-                   This field is required.
+                   Campo requerido.
                 </small>
             </div>
         </div>
@@ -71,7 +71,7 @@
             <div [hidden]="!(editForm.controls.cedJuridica?.dirty && editForm.controls.cedJuridica?.invalid)">
                 <small class="form-text text-danger"
                    [hidden]="!editForm.controls.cedJuridica?.errors?.required">
-                   This field is required.
+                   Campo requerido.
                 </small>
             </div>
         </div>
@@ -82,7 +82,7 @@
             <div [hidden]="!(editForm.controls.direccion?.dirty && editForm.controls.direccion?.invalid)">
                 <small class="form-text text-danger"
                    [hidden]="!editForm.controls.direccion?.errors?.required">
-                   This field is required.
+                   Campo requerido.
                 </small>
             </div>
         </div>
@@ -103,7 +103,7 @@
             <div [hidden]="!(editForm.controls.telefono?.dirty && editForm.controls.telefono?.invalid)">
                 <small class="form-text text-danger"
                    [hidden]="!editForm.controls.telefono?.errors?.required">
-                   This field is required.
+                   Campo requerido.
                 </small>
             </div>
         </div>
@@ -114,7 +114,7 @@
             <div [hidden]="!(editForm.controls.urlLogo?.dirty && editForm.controls.urlLogo?.invalid)">
                 <small class="form-text text-danger"
                    [hidden]="!editForm.controls.urlLogo?.errors?.required">
-                   This field is required.
+                   Campo requerido.
                 </small>
             </div>
         </div>
@@ -122,10 +122,10 @@
     </div>
     <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal" (click)="clear()">
-            <span class="fa fa-ban"></span>&nbsp;<span>Cancel</span>
+            <span class="fa fa-ban"></span>&nbsp;<span>Cancelar</span>
         </button>
         <button type="submit" [disabled]="editForm.form.invalid || isSaving" class="btn btn-primary">
-            <span class="fa fa-save"></span>&nbsp;<span>Save</span>
+            <span class="fa fa-save"></span>&nbsp;<span>Guardar</span>
         </button>
     </div>
 </form>
