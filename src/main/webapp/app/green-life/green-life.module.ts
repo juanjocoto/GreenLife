@@ -12,21 +12,25 @@ import {
   MatMenuModule,
   MatNativeDateModule,
   MatPaginatorModule,
+  MatSelectModule,
   MatSortModule,
   MatTableModule,
-  MatToolbarModule,
-  MatSelectModule
+  MatTabsModule,
+  MatToolbarModule
 } from '@angular/material';
 
+import { AgmCoreModule } from '@agm/core';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { BrowserModule } from '@angular/platform-browser';
 import { ComerciosProductosComponent } from './views/comercios-productos/comercios-productos.component';
 import { ComerciosRegistroComponent } from './dialogos/comercios-registro/comercios-registro.component';
+import { CommonAdapterService } from './shared/services/common-adapter.service';
 import { CommonModule } from '@angular/common';
 import { ConfigComercioLocalesComponent } from './views/config-comercio-locales/config-comercio-locales.component';
 import { ConvertidorFechaPipe } from './shared/pipes/convertidor-fecha.pipe';
 import { FooterGreenlifeComponent } from './layout/footer-greenlife/footer-greenlife.component';
 import { LandingComponent } from './views/landing/landing.component';
+import { ListaComerciosComponent } from './fragments/lista-comercios/lista-comercios.component';
 import { LoginComponent } from './dialogos/login/login.component';
 import { NavbarGreenlifeComponent } from './layout/navbar-greenlife/navbar-greenlife.component';
 import { NgModule } from '@angular/core';
@@ -39,8 +43,6 @@ import { UsuarioPerfilComponent } from './views/usuario-perfil/usuario-perfil.co
 import { UsuarioRegistroComponent } from './views/usuario-registro/usuario-registro.component';
 import { UsuarioRolesComponent } from './views/usuario-roles/usuario-roles.component';
 import { ValidadorNumeroDirective } from './shared/directives/validador-numero.directive';
-import { CommonAdapterService } from './shared/services/common-adapter.service';
-import { ListaComerciosComponent } from './fragments/lista-comercios/lista-comercios.component';
 
 @NgModule({
   imports: [
@@ -49,6 +51,9 @@ import { ListaComerciosComponent } from './fragments/lista-comercios/lista-comer
     BrowserModule,
     BrowserAnimationsModule,
     NgbModule,
+    AgmCoreModule.forRoot({
+      apiKey: 'AIzaSyAKK8_ZbHnWx9CD9b4NZFGRKe8rMw83wmI'
+    }),
     MatMenuModule,
     MatButtonModule,
     MatButtonToggleModule,
@@ -66,7 +71,8 @@ import { ListaComerciosComponent } from './fragments/lista-comercios/lista-comer
     MatPaginatorModule,
     MatTableModule,
     MatSortModule,
-    MatSelectModule
+    MatSelectModule,
+    MatTabsModule
   ],
   declarations: [
     LandingComponent,

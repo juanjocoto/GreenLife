@@ -1,19 +1,58 @@
-<div class="row title-bar-config">
-    <div class="col-md-8">
+<div class="title-bar-config">
+    <div class="col-md-auto">
         <h1>
             <span class="title-bar-config-icon icon"><span class="iconImg"></span></span>
             Locales del Comercio
         </h1>
     </div>
-    <div class="col">
-        <div class="row title-bar-right-section">
-            <div class="col-md-auto">
-                <i class="fa fa-cogs right-section-icon"></i>
-            </div>
-            <div class="col">
-                <h3> Configura la información de los locales del comercio.</h3>
+</div>
+
+<div class="container">
+    <div class="row config-section">
+        <div class="col pr-md-5">
+            <h3>Locales</h3>
+            <mat-tab-group class="tab-container">
+                <mat-tab label="Mapa de locales">
+                    <div class="map-container">
+                        <agm-map [latitude]="lat" [longitude]="long">
+                            <!--<agm-marker [latitude]="lat" [longitude]="lng"></agm-marker>-->
+                        </agm-map>
+                    </div>
+                </mat-tab>
+                <mat-tab label="Lista de locales">
+                    <mat-card>Local 1</mat-card>
+                    <mat-card>Local 2</mat-card>
+                    <mat-card>Local 3</mat-card>
+                    <mat-card>Simple card</mat-card>
+                </mat-tab>
+            </mat-tab-group>
+        </div>
+        <div class="col">
+            <h3>Información del local</h3>
+            <div class="form-container">
+                <form [formGroup]="formLocales">
+                    <mat-form-field>
+                        <input matInput placeholder="Nombre" formControlName="nombre">
+                    </mat-form-field>
+                    <mat-form-field>
+                        <input matInput jhiValidadorNumero placeholder="Teléfono" formControlName="telefono">
+                        <mat-error *ngIf="formLocales.get('telefono').invalid">
+                            El numero de teléfono debe de contener 8 números
+                        </mat-error>
+                    </mat-form-field>
+                    <mat-form-field>
+                        <textarea matInput placeholder="Dirección" formControlName="direccion">
+                    </mat-form-field>
+                    <h5>Ubicación en el mapa</h5>
+                    <h5>Horario</h5>
+                    <mat-form-field>
+                        <input matInput type="time" placeholder="Hora de apertura" formControlName="horaApertura">
+                    </mat-form-field>
+                    <mat-form-field>
+                        <input matInput type="time" placeholder="Hora de cierre" formControlName="horaCierre">
+                    </mat-form-field>
+                </form>
             </div>
         </div>
-        <div class="row"></div>
     </div>
 </div>
