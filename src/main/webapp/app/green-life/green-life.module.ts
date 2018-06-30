@@ -1,3 +1,4 @@
+import { AgmCoreModule } from '@agm/core';
 import {
   MatButtonModule,
   MatButtonToggleModule,
@@ -14,6 +15,7 @@ import {
   MatPaginatorModule,
   MatSortModule,
   MatTableModule,
+  MatTabsModule,
   MatToolbarModule
 } from '@angular/material';
 
@@ -46,6 +48,9 @@ import { ValidadorNumeroDirective } from './shared/directives/validador-numero.d
     BrowserModule,
     BrowserAnimationsModule,
     NgbModule,
+    AgmCoreModule.forRoot({
+       apiKey: 'AIzaSyAKK8_ZbHnWx9CD9b4NZFGRKe8rMw83wmI'
+    }),
     MatMenuModule,
     MatButtonModule,
     MatButtonToggleModule,
@@ -62,7 +67,8 @@ import { ValidadorNumeroDirective } from './shared/directives/validador-numero.d
     MatDialogModule,
     MatPaginatorModule,
     MatTableModule,
-    MatSortModule
+    MatSortModule,
+    MatTabsModule
   ],
   declarations: [
     LandingComponent,
