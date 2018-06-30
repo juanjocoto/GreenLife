@@ -14,7 +14,8 @@ import {
   MatPaginatorModule,
   MatSortModule,
   MatTableModule,
-  MatToolbarModule
+  MatToolbarModule,
+  MatSelectModule
 } from '@angular/material';
 
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -38,6 +39,8 @@ import { UsuarioPerfilComponent } from './views/usuario-perfil/usuario-perfil.co
 import { UsuarioRegistroComponent } from './views/usuario-registro/usuario-registro.component';
 import { UsuarioRolesComponent } from './views/usuario-roles/usuario-roles.component';
 import { ValidadorNumeroDirective } from './shared/directives/validador-numero.directive';
+import { CommonAdapterService } from './shared/services/common-adapter.service';
+import { ListaComerciosComponent } from './fragments/lista-comercios/lista-comercios.component';
 
 @NgModule({
   imports: [
@@ -62,7 +65,8 @@ import { ValidadorNumeroDirective } from './shared/directives/validador-numero.d
     MatDialogModule,
     MatPaginatorModule,
     MatTableModule,
-    MatSortModule
+    MatSortModule,
+    MatSelectModule
   ],
   declarations: [
     LandingComponent,
@@ -78,11 +82,13 @@ import { ValidadorNumeroDirective } from './shared/directives/validador-numero.d
     ComerciosProductosComponent,
     ConfigComercioLocalesComponent,
     ComerciosRegistroComponent,
-    UsuarioModificarComponent
+    UsuarioModificarComponent,
+    ListaComerciosComponent
   ],
   entryComponents: [
     LoginComponent,
     ComerciosRegistroComponent
-  ]
+  ],
+  providers: [CommonAdapterService]
 })
 export class GreenLifeModule { }
