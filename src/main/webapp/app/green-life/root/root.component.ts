@@ -5,7 +5,7 @@ import { Component, OnInit } from '@angular/core';
   templateUrl: './root.component.html',
   styles: [`
     .main-container{
-      margin: 57px 0 0;
+      margin: 0px;
       min-height: calc(100vh - 57px - 345px);
     }
   `]

@@ -33,6 +33,7 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { ReactiveFormsModule } from '@angular/forms';
 import { RootComponent } from './root/root.component';
 import { RouterModule } from '@angular/router';
+import { UsuarioModificarComponent } from './views/usuario-modificar/usuario-modificar.component';
 import { UsuarioPerfilComponent } from './views/usuario-perfil/usuario-perfil.component';
 import { UsuarioRegistroComponent } from './views/usuario-registro/usuario-registro.component';
 import { UsuarioRolesComponent } from './views/usuario-roles/usuario-roles.component';
@@ -76,7 +77,8 @@ import { ValidadorNumeroDirective } from './shared/directives/validador-numero.d
     ConvertidorFechaPipe,
     ComerciosProductosComponent,
     ConfigComercioLocalesComponent,
-    ComerciosRegistroComponent
+    ComerciosRegistroComponent,
+    UsuarioModificarComponent
   ],
   entryComponents: [
     LoginComponent,

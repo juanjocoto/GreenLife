@@ -1,4 +1,12 @@
 // Estilos footer Green Life
+.inicio {
+    display: none !important;
+}
+.changeFooter {
+    background-color: #6AABAD !important;
+    padding-left: 45px;
+    padding-right: 45px;
+}
 .footer {
     background-color: #46B97E;
     padding-left: 45px;
@@ -45,6 +53,11 @@
 .btn-outline-success:hover {
     color: #46B97E;
     border-color: #46B97E;
+    background-color: #ffffff;
+}
+.changeFooter .btn-outline-success:hover {
+    color: #6AABAD;
+    border-color: #6AABAD;
     background-color: #ffffff;
 }
 .btn-outline-success:active:focus {
