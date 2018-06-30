@@ -1,7 +1,7 @@
 <form name="editForm" role="form" novalidate (ngSubmit)="save()" #editForm="ngForm">
 
     <div class="modal-header">
-        <h4 class="modal-title" id="myEventoLabel">Create or edit a Evento</h4>
+        <h4 class="modal-title" id="myEventoLabel">Crear o editar Evento</h4>
         <button type="button" class="close" data-dismiss="modal" aria-hidden="true"
                 (click)="clear()">&times;</button>
     </div>
@@ -24,7 +24,7 @@
             <div [hidden]="!(editForm.controls.fechaCreacion?.dirty && editForm.controls.fechaCreacion?.invalid)">
                 <small class="form-text text-danger"
                    [hidden]="!editForm.controls.fechaCreacion?.errors?.required">
-                   This field is required.
+                   Campo requerido.
                 </small>
             </div>
         </div>
@@ -40,7 +40,7 @@
             <div [hidden]="!(editForm.controls.fechaActividad?.dirty && editForm.controls.fechaActividad?.invalid)">
                 <small class="form-text text-danger"
                    [hidden]="!editForm.controls.fechaActividad?.errors?.required">
-                   This field is required.
+                   Campo requerido.
                 </small>
             </div>
         </div>
@@ -51,11 +51,11 @@
             <div [hidden]="!(editForm.controls.nombre?.dirty && editForm.controls.nombre?.invalid)">
                 <small class="form-text text-danger"
                    [hidden]="!editForm.controls.nombre?.errors?.required">
-                   This field is required.
+                   Campo requerido.
                 </small>
                 <small class="form-text text-danger"
                    [hidden]="!editForm.controls.nombre?.errors?.maxlength">
-                   This field cannot be longer than 20 characters.
+                   Este campo no puede contener mas de 20 caracteres
                 </small>
             </div>
         </div>
@@ -66,11 +66,11 @@
             <div [hidden]="!(editForm.controls.direccion?.dirty && editForm.controls.direccion?.invalid)">
                 <small class="form-text text-danger"
                    [hidden]="!editForm.controls.direccion?.errors?.required">
-                   This field is required.
+                   Campo requerido.
                 </small>
                 <small class="form-text text-danger"
                    [hidden]="!editForm.controls.direccion?.errors?.maxlength">
-                   This field cannot be longer than 200 characters.
+                   Este campo no puede contener mas de 20 caracteres.
                 </small>
             </div>
         </div>
@@ -81,11 +81,11 @@
             <div [hidden]="!(editForm.controls.latitud?.dirty && editForm.controls.latitud?.invalid)">
                 <small class="form-text text-danger"
                    [hidden]="!editForm.controls.latitud?.errors?.required">
-                   This field is required.
+                   Campo requerido.
                 </small>
                 <small class="form-text text-danger"
                     [hidden]="!editForm.controls.latitud?.errors?.number">
-                    This field should be a number.
+                    Este campo debe de contener solamente numeros.
                 </small>
             </div>
         </div>
@@ -96,11 +96,11 @@
             <div [hidden]="!(editForm.controls.longitud?.dirty && editForm.controls.longitud?.invalid)">
                 <small class="form-text text-danger"
                    [hidden]="!editForm.controls.longitud?.errors?.required">
-                   This field is required.
+                   Campo requerido.
                 </small>
                 <small class="form-text text-danger"
                     [hidden]="!editForm.controls.longitud?.errors?.number">
-                    This field should be a number.
+                    Este campo debe de contener solamente numeros.
                 </small>
             </div>
         </div>
@@ -111,11 +111,11 @@
             <div [hidden]="!(editForm.controls.horario?.dirty && editForm.controls.horario?.invalid)">
                 <small class="form-text text-danger"
                    [hidden]="!editForm.controls.horario?.errors?.required">
-                   This field is required.
+                   Campo requerido.
                 </small>
                 <small class="form-text text-danger"
                    [hidden]="!editForm.controls.horario?.errors?.maxlength">
-                   This field cannot be longer than 30 characters.
+                    Este campo no puede contener mas de 30 caracteres.
                 </small>
             </div>
         </div>
@@ -129,10 +129,10 @@
     </div>
     <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal" (click)="clear()">
-            <span class="fa fa-ban"></span>&nbsp;<span>Cancel</span>
+            <span class="fa fa-ban"></span>&nbsp;<span>Cancelar</span>
         </button>
         <button type="submit" [disabled]="editForm.form.invalid || isSaving" class="btn btn-primary">
-            <span class="fa fa-save"></span>&nbsp;<span>Save</span>
+            <span class="fa fa-save"></span>&nbsp;<span>Guardar</span>
         </button>
     </div>
 </form>

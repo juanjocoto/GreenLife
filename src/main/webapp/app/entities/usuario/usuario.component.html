@@ -4,7 +4,7 @@
         <button class="btn btn-primary float-right jh-create-entity create-usuario" [routerLink]="['/', { outlets: { popup: ['usuario-new'] } }]">
             <span class="fa fa-plus"></span>
             <span class="hidden-sm-down" >
-            Create new Usuario
+            Crear nuevo Usuario
             </span>
         </button>
     </h2>
@@ -30,10 +30,10 @@
             <thead>
             <tr>
             <th><span>ID</span></th>
-            <th><span>Fecha Creacion</span></th>
+            <th><span>Fecha Creación</span></th>
             <th><span>Fecha Nacimiento</span></th>
             <th><span>Cedula</span></th>
-            <th><span>Direccion</span></th>
+            <th><span>Dirección</span></th>
             <th><span>Telefono</span></th>
             <th><span>Foto Url</span></th>
             <th><span>Latitud</span></th>
@@ -62,7 +62,7 @@
                                 [routerLink]="['../usuario', usuario.id ]"
                                 class="btn btn-info btn-sm">
                             <span class="fa fa-eye"></span>
-                            <span class="d-none d-md-inline">View</span>
+                            <span class="d-none d-md-inline">Ver</span>
                         </button>
                         <button type="submit"
                                 [routerLink]="['/', { outlets: { popup: 'usuario/'+ usuario.id + '/edit'} }]"
@@ -70,7 +70,7 @@
                                 queryParamsHandling="merge"
                                 class="btn btn-primary btn-sm">
                             <span class="fa fa-pencil"></span>
-                            <span class="d-none d-md-inline">Edit</span>
+                            <span class="d-none d-md-inline">Editar</span>
                         </button>
                         <button type="submit"
                                 [routerLink]="['/', { outlets: { popup: 'usuario/'+ usuario.id + '/delete'} }]"
@@ -78,7 +78,7 @@
                                 queryParamsHandling="merge"
                                 class="btn btn-danger btn-sm">
                             <span class="fa fa-remove"></span>
-                            <span class="d-none d-md-inline">Delete</span>
+                            <span class="d-none d-md-inline">Eliminar</span>
                         </button>
                     </div>
                 </td>

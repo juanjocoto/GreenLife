@@ -1,6 +1,6 @@
 
 <div *ngIf="tipoContrato">
-    <h2><span>Tipo Contrato</span> {{tipoContrato.id}}</h2>
+    <h2><span>Tipo de Contrato</span> {{tipoContrato.id}}</h2>
     <hr>
     <jhi-alert-error></jhi-alert-error>
     <dl class="row-md jh-entity-details">
@@ -8,7 +8,7 @@
         <dd>
             <span>{{tipoContrato.nombre}}</span>
         </dd>
-        <dt><span>Descripcion</span></dt>
+        <dt><span>Descripción</span></dt>
         <dd>
             <span>{{tipoContrato.descripcion}}</span>
         </dd>
@@ -21,7 +21,7 @@
     <button type="submit"
             (click)="previousState()"
             class="btn btn-info">
-        <span class="fa fa-arrow-left"></span>&nbsp;<span> Back</span>
+        <span class="fa fa-arrow-left"></span>&nbsp;<span> Regresar</span>
     </button>
 
     <button type="button"
@@ -29,6 +29,6 @@
             replaceUrl="true"
             queryParamsHandling="merge"
             class="btn btn-primary">
-        <span class="fa fa-pencil"></span>&nbsp;<span> Edit</span>
+        <span class="fa fa-pencil"></span>&nbsp;<span> Editar</span>
     </button>
 </div>
