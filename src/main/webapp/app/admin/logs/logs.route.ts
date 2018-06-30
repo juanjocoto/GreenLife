@@ -1,9 +1,9 @@
+import { CMS_PATH } from '../../app.constants';
+import { LogsComponent } from './logs.component';
 import { Route } from '@angular/router';
 
-import { LogsComponent } from './logs.component';
-
 export const logsRoute: Route = {
-    path: 'logs',
+    path: `${CMS_PATH}/logs`,
     component: LogsComponent,
     data: {
         pageTitle: 'Logs'

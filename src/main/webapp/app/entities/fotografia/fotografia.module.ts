@@ -1,19 +1,22 @@
-import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
-import { RouterModule } from '@angular/router';
-
-import { GreenlifeSharedModule } from '../../shared';
+import { CUSTOM_ELEMENTS_SCHEMA, NgModule } from '@angular/core';
 import {
-    FotografiaService,
-    FotografiaPopupService,
     FotografiaComponent,
+    FotografiaDeleteDialogComponent,
+    FotografiaDeletePopupComponent,
     FotografiaDetailComponent,
     FotografiaDialogComponent,
     FotografiaPopupComponent,
-    FotografiaDeletePopupComponent,
-    FotografiaDeleteDialogComponent,
-    fotografiaRoute,
+    FotografiaPopupService,
+    FotografiaService,
     fotografiaPopupRoute,
+    fotografiaRoute,
 } from './';
+
+import { CMS_PATH } from '../../app.constants';
+import { GreenlifeSharedModule } from '../../shared';
+import { RouterModule } from '@angular/router';
+
+fotografiaRoute.forEach((a) => a.path = `${CMS_PATH}/${a.path}`);
 
 const ENTITY_STATES = [
     ...fotografiaRoute,

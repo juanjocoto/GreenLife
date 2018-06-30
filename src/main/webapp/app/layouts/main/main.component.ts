@@ -1,8 +1,8 @@
+import { ActivatedRouteSnapshot, NavigationEnd, Router } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
-import { Router, ActivatedRouteSnapshot, NavigationEnd } from '@angular/router';
 
+import { CMS_PATH } from '../../app.constants';
 import { Title } from '@angular/platform-browser';
-import { enviroment } from '../../enviroment';
 
 @Component({
     selector: 'jhi-main',
@@ -19,7 +19,7 @@ export class JhiMainComponent implements OnInit {
         private titleService: Title,
         private router: Router
     ) {
-        this.showCms = this.router.url.includes(enviroment.cmsPath);
+        this.showCms = this.router.url.includes(CMS_PATH);
     }
 
     private getPageTitle(routeSnapshot: ActivatedRouteSnapshot) {
@@ -32,8 +32,9 @@ export class JhiMainComponent implements OnInit {
 
     ngOnInit() {
         this.router.events.subscribe((event) => {
+
             if (event instanceof NavigationEnd) {
-                this.showCms = this.router.url.includes(enviroment.cmsPath);
+                this.showCms = this.router.url.includes(CMS_PATH);
                 this.titleService.setTitle(this.getPageTitle(this.router.routerState.snapshot.root));
             }
         });

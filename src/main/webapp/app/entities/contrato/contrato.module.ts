@@ -1,19 +1,22 @@
-import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
-import { RouterModule } from '@angular/router';
-
-import { GreenlifeSharedModule } from '../../shared';
+import { CUSTOM_ELEMENTS_SCHEMA, NgModule } from '@angular/core';
 import {
-    ContratoService,
-    ContratoPopupService,
     ContratoComponent,
+    ContratoDeleteDialogComponent,
+    ContratoDeletePopupComponent,
     ContratoDetailComponent,
     ContratoDialogComponent,
     ContratoPopupComponent,
-    ContratoDeletePopupComponent,
-    ContratoDeleteDialogComponent,
-    contratoRoute,
+    ContratoPopupService,
+    ContratoService,
     contratoPopupRoute,
+    contratoRoute,
 } from './';
+
+import { CMS_PATH } from '../../app.constants';
+import { GreenlifeSharedModule } from '../../shared';
+import { RouterModule } from '@angular/router';
+
+contratoRoute.forEach((a) => a.path = `${CMS_PATH}/${a.path}`);
 
 const ENTITY_STATES = [
     ...contratoRoute,

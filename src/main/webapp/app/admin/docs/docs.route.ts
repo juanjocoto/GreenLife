@@ -1,9 +1,9 @@
+import { CMS_PATH } from '../../app.constants';
+import { JhiDocsComponent } from './docs.component';
 import { Route } from '@angular/router';
 
-import { JhiDocsComponent } from './docs.component';
-
 export const docsRoute: Route = {
-    path: 'docs',
+    path: `${CMS_PATH}/docs`,
     component: JhiDocsComponent,
     data: {
         pageTitle: 'API'

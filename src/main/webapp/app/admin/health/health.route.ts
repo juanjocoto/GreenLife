@@ -1,9 +1,9 @@
+import { CMS_PATH } from '../../app.constants';
+import { JhiHealthCheckComponent } from './health.component';
 import { Route } from '@angular/router';
 
-import { JhiHealthCheckComponent } from './health.component';
-
 export const healthRoute: Route = {
-    path: 'jhi-health',
+    path: `${CMS_PATH}/jhi-health`,
     component: JhiHealthCheckComponent,
     data: {
         pageTitle: 'Health Checks'
