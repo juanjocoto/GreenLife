@@ -4,7 +4,7 @@
         <button class="btn btn-primary float-right jh-create-entity create-comercio" [routerLink]="['/', { outlets: { popup: ['comercio-new'] } }]">
             <span class="fa fa-plus"></span>
             <span class="hidden-sm-down" >
-            Create new Comercio
+            Crear nuevo Comercio
             </span>
         </button>
     </h2>
@@ -70,7 +70,7 @@
                                 [routerLink]="['../comercio', comercio.id ]"
                                 class="btn btn-info btn-sm">
                             <span class="fa fa-eye"></span>
-                            <span class="d-none d-md-inline">View</span>
+                            <span class="d-none d-md-inline">Ver</span>
                         </button>
                         <button type="submit"
                                 [routerLink]="['/', { outlets: { popup: 'comercio/'+ comercio.id + '/edit'} }]"
@@ -78,7 +78,7 @@
                                 queryParamsHandling="merge"
                                 class="btn btn-primary btn-sm">
                             <span class="fa fa-pencil"></span>
-                            <span class="d-none d-md-inline">Edit</span>
+                            <span class="d-none d-md-inline">Editar</span>
                         </button>
                         <button type="submit"
                                 [routerLink]="['/', { outlets: { popup: 'comercio/'+ comercio.id + '/delete'} }]"
@@ -86,7 +86,7 @@
                                 queryParamsHandling="merge"
                                 class="btn btn-danger btn-sm">
                             <span class="fa fa-remove"></span>
-                            <span class="d-none d-md-inline">Delete</span>
+                            <span class="d-none d-md-inline">Eliminar</span>
                         </button>
                     </div>
                 </td>

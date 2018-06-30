@@ -2,11 +2,10 @@
 <div *ngIf="showCms">
     <router-outlet name="navbar"></router-outlet>
 </div>
-<div *ngIf="showCms" class="container-fluid containerCms">
-    <div class="card jh-card">
+<div [class]="{showCms:'container-fluid containerCms'}">
+    <div [class]="{showCms:'card jh-card'}">
         <router-outlet></router-outlet>
-        <router-outlet name="popup"></router-outlet>
+        <router-outlet *ngIf="showCms" name="popup"></router-outlet>
     </div>
-    <jhi-footer></jhi-footer>
+    <jhi-footer *ngIf="showCms"></jhi-footer>
 </div>
-<router-outlet *ngIf="!showCms"></router-outlet>

@@ -1,10 +1,9 @@
 import { Routes } from '@angular/router';
-
 import { UserRouteAccessService } from '../../shared';
 import { UsuarioComponent } from './usuario.component';
+import { UsuarioDeletePopupComponent } from './usuario-delete-dialog.component';
 import { UsuarioDetailComponent } from './usuario-detail.component';
 import { UsuarioPopupComponent } from './usuario-dialog.component';
-import { UsuarioDeletePopupComponent } from './usuario-delete-dialog.component';
 
 export const usuarioRoute: Routes = [
     {

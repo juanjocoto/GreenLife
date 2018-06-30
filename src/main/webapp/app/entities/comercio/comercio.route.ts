@@ -1,14 +1,14 @@
-import { Routes } from '@angular/router';
-
-import { UserRouteAccessService } from '../../shared';
+import { CMS_PATH } from '../../app.constants';
 import { ComercioComponent } from './comercio.component';
+import { ComercioDeletePopupComponent } from './comercio-delete-dialog.component';
 import { ComercioDetailComponent } from './comercio-detail.component';
 import { ComercioPopupComponent } from './comercio-dialog.component';
-import { ComercioDeletePopupComponent } from './comercio-delete-dialog.component';
+import { Routes } from '@angular/router';
+import { UserRouteAccessService } from '../../shared';
 
 export const comercioRoute: Routes = [
     {
-        path: 'comercio',
+        path: `${CMS_PATH}/comercio`,
         component: ComercioComponent,
         data: {
             authorities: ['ROLE_USER'],
@@ -16,7 +16,7 @@ export const comercioRoute: Routes = [
         },
         canActivate: [UserRouteAccessService]
     }, {
-        path: 'comercio/:id',
+        path: `${CMS_PATH}/comercio/:id`,
         component: ComercioDetailComponent,
         data: {
             authorities: ['ROLE_USER'],

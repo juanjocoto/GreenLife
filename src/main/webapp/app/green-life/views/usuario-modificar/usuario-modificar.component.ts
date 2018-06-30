@@ -6,7 +6,7 @@ import { User } from '../../../shared';
 import { UserService } from './../../../shared/user/user.service';
 import { Usuario } from '../../../entities/usuario';
 import { UsuarioService } from './../../../entities/usuario/usuario.service';
-import {FormBuilder, FormGroup, Validators} from "@angular/forms";
+import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 
 @Component({
   selector: 'jhi-usuario-modificar',
@@ -24,14 +24,13 @@ export class UsuarioModificarComponent implements OnInit {
       private userService: UserService,
       private route: ActivatedRoute,
       private formBuilder: FormBuilder,
-      private router: Router)
-  { }
+      private router: Router) { }
 
   ngOnInit() {
       this.getUser();
   }
 
-  getUser():void{
+  getUser(): void {
       this.route.params.subscribe((params) => {
           const usuario = this.usuarioService.findByUserLogin(params.login);
           const user = this.userService.find(params.login);
@@ -65,13 +64,13 @@ export class UsuarioModificarComponent implements OnInit {
                       Validators.required,
                       Validators.email
                   ]],
-                  latitud: [this.usuario.latitud,[
+                  latitud: [this.usuario.latitud, [
                       Validators.minLength(1),
-                      Validators.pattern("^[-.0-9]*$")
+                      Validators.pattern('^[-.0-9]*$')
                   ]],
-                  longitud: [this.usuario.longitud,[
+                  longitud: [this.usuario.longitud, [
                       Validators.minLength(1),
-                      Validators.pattern("^[-.0-9]*$")
+                      Validators.pattern('^[-.0-9]*$')
                   ]],
                   usuario: [this.user.login, [
                       Validators.required
@@ -81,7 +80,7 @@ export class UsuarioModificarComponent implements OnInit {
       });
   }
 
-  modificarUsuario(){
+  modificarUsuario() {
 
       this.user.firstName = this.formulario.get('nombre').value;
       this.user.lastName = this.formulario.get('apellido').value;
@@ -95,7 +94,7 @@ export class UsuarioModificarComponent implements OnInit {
       this.usuario.fechaNacimiento = this.convertirFecha(new Date(this.formulario.get('fechaNacimiento').value));
       this.usuario.longitud = this.formulario.get('longitud').value;
 
-      if (this.formulario.valid){
+      if (this.formulario.valid) {
           this.userService.update(this.user).subscribe((result) => {
               console.log(result);
               this.usuario.fechaCreacion = this.convertirFecha(new Date());

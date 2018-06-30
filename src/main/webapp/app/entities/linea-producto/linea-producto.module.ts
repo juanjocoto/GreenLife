@@ -1,19 +1,23 @@
-import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
-import { RouterModule } from '@angular/router';
-
-import { GreenlifeSharedModule } from '../../shared';
+import { CUSTOM_ELEMENTS_SCHEMA, NgModule } from '@angular/core';
 import {
-    LineaProductoService,
-    LineaProductoPopupService,
     LineaProductoComponent,
+    LineaProductoDeleteDialogComponent,
+    LineaProductoDeletePopupComponent,
     LineaProductoDetailComponent,
     LineaProductoDialogComponent,
     LineaProductoPopupComponent,
-    LineaProductoDeletePopupComponent,
-    LineaProductoDeleteDialogComponent,
-    lineaProductoRoute,
+    LineaProductoPopupService,
+    LineaProductoService,
     lineaProductoPopupRoute,
+    lineaProductoRoute,
 } from './';
+
+import { CMS_PATH } from '../../app.constants';
+import { GreenlifeSharedModule } from '../../shared';
+import { RouterModule } from '@angular/router';
+import { lineaEntregaRoute } from './../linea-entrega/linea-entrega.route';
+
+lineaEntregaRoute.forEach((a) => a.path = `${CMS_PATH}/${a.path}`);
 
 const ENTITY_STATES = [
     ...lineaProductoRoute,

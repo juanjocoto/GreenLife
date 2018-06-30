@@ -1,14 +1,13 @@
+import { ActivatedRouteSnapshot, CanActivate, Resolve, RouterStateSnapshot, Routes } from '@angular/router';
+
+import { CMS_PATH } from '../../app.constants';
 import { Injectable } from '@angular/core';
-import { Resolve, ActivatedRouteSnapshot, RouterStateSnapshot, Routes, CanActivate } from '@angular/router';
-
 import { JhiPaginationUtil } from 'ng-jhipster';
-
+import { Principal } from '../../shared';
+import { UserDeleteDialogComponent } from './user-management-delete-dialog.component';
+import { UserDialogComponent } from './user-management-dialog.component';
 import { UserMgmtComponent } from './user-management.component';
 import { UserMgmtDetailComponent } from './user-management-detail.component';
-import { UserDialogComponent } from './user-management-dialog.component';
-import { UserDeleteDialogComponent } from './user-management-delete-dialog.component';
-
-import { Principal } from '../../shared';
 
 @Injectable()
 export class UserResolve implements CanActivate {
@@ -38,7 +37,7 @@ export class UserResolvePagingParams implements Resolve<any> {
 
 export const userMgmtRoute: Routes = [
     {
-        path: 'user-management',
+        path: `cms/user-management`,
         component: UserMgmtComponent,
         resolve: {
             'pagingParams': UserResolvePagingParams
@@ -48,7 +47,7 @@ export const userMgmtRoute: Routes = [
         }
     },
     {
-        path: 'user-management/:login',
+        path: `${CMS_PATH}/user-management/:login`,
         component: UserMgmtDetailComponent,
         data: {
             pageTitle: 'Users'

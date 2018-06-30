@@ -32,8 +32,7 @@ export class LoginComponent implements OnInit {
       username:  this.formulario.get('username').value,
       password: this.formulario.get('password').value,
       rememberMe: false
-    }).then((res) => {
-      localStorage.setItem('greenlifetoken', res + '');
+    }).then(() => {
       this.isValid = true;
     }).catch(() => {
       this.isValid = false;
