@@ -1,9 +1,9 @@
 import { AuditsComponent } from './audits.component';
+import { CMS_PATH } from '../../app.constants';
 import { Route } from '@angular/router';
-import { enviroment } from './../../enviroment';
 
 export const auditsRoute: Route = {
-    path: `${enviroment.cmsPath}/audits`,
+    path: `${CMS_PATH}/audits`,
     component: AuditsComponent,
     data: {
         pageTitle: 'Audits'

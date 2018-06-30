@@ -12,11 +12,11 @@ import {
     resenaClienteRoute,
 } from './';
 
+import { CMS_PATH } from '../../app.constants';
 import { GreenlifeSharedModule } from '../../shared';
 import { RouterModule } from '@angular/router';
-import { enviroment } from './../../enviroment';
 
-resenaClienteRoute.forEach((a) => a.path = `${enviroment.cmsPath}/${a.path}`);
+resenaClienteRoute.forEach((a) => a.path = `${CMS_PATH}/${a.path}`);
 
 const ENTITY_STATES = [
     ...resenaClienteRoute,

@@ -1,9 +1,9 @@
+import { CMS_PATH } from '../../app.constants';
 import { JhiMetricsMonitoringComponent } from './metrics.component';
 import { Route } from '@angular/router';
-import { enviroment } from './../../enviroment';
 
 export const metricsRoute: Route = {
-    path: `${enviroment.cmsPath}/jhi-metrics`,
+    path: `${CMS_PATH}/jhi-metrics`,
     component: JhiMetricsMonitoringComponent,
     data: {
         pageTitle: 'Application Metrics'

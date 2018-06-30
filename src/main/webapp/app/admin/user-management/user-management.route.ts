@@ -1,5 +1,6 @@
 import { ActivatedRouteSnapshot, CanActivate, Resolve, RouterStateSnapshot, Routes } from '@angular/router';
 
+import { CMS_PATH } from '../../app.constants';
 import { Injectable } from '@angular/core';
 import { JhiPaginationUtil } from 'ng-jhipster';
 import { Principal } from '../../shared';
@@ -7,7 +8,6 @@ import { UserDeleteDialogComponent } from './user-management-delete-dialog.compo
 import { UserDialogComponent } from './user-management-dialog.component';
 import { UserMgmtComponent } from './user-management.component';
 import { UserMgmtDetailComponent } from './user-management-detail.component';
-import { enviroment } from './../../enviroment';
 
 @Injectable()
 export class UserResolve implements CanActivate {
@@ -47,7 +47,7 @@ export const userMgmtRoute: Routes = [
         }
     },
     {
-        path: `${enviroment.cmsPath}/user-management/:login`,
+        path: `${CMS_PATH}/user-management/:login`,
         component: UserMgmtDetailComponent,
         data: {
             pageTitle: 'Users'

@@ -1,10 +1,9 @@
+import { CMS_PATH } from '../app.constants';
+import { HomeComponent } from './';
 import { Route } from '@angular/router';
 
-import { HomeComponent } from './';
-import { enviroment } from '../enviroment';
-
 export const HOME_ROUTE: Route = {
-    path: enviroment.cmsPath,
+    path: CMS_PATH,
     component: HomeComponent,
     data: {
         authorities: [],

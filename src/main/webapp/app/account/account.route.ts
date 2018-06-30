@@ -9,8 +9,8 @@ import {
     socialRegisterRoute
 } from './';
 
+import { CMS_PATH } from '../app.constants';
 import { Routes } from '@angular/router';
-import { enviroment } from './../enviroment';
 
 const ACCOUNT_ROUTES = [
     activateRoute,
@@ -23,7 +23,7 @@ const ACCOUNT_ROUTES = [
     settingsRoute
 ];
 
-ACCOUNT_ROUTES.forEach((a) => a.path = `${enviroment.cmsPath}/${a.path}`);
+ACCOUNT_ROUTES.forEach((a) => a.path = `${CMS_PATH}/${a.path}`);
 
 export const accountState: Routes = [{
     path: '',
