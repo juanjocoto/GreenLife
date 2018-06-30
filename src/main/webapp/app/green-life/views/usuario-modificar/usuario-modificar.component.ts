@@ -6,8 +6,7 @@ import { User } from '../../../shared';
 import { UserService } from './../../../shared/user/user.service';
 import { Usuario } from '../../../entities/usuario';
 import { UsuarioService } from './../../../entities/usuario/usuario.service';
-import {FormBuilder, FormGroup, Validator, Validators} from "@angular/forms";
-import {HttpErrorResponse, HttpResponse} from "@angular/common/http";
+import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 
 @Component({
   selector: 'jhi-usuario-modificar',
@@ -67,10 +66,12 @@ export class UsuarioModificarComponent implements OnInit {
                       Validators.email
                   ]],
                   latitud: [this.usuario.latitud,[
-                      Validators.pattern('(-.[0-9])')
+                      Validators.minLength(1),
+                      Validators.pattern("^[-.0-9]*$")
                   ]],
                   longitud: [this.usuario.longitud,[
-                      Validators.pattern('(-.[0-9])')
+                      Validators.minLength(1),
+                      Validators.pattern("^[-.0-9]*$")
                   ]],
                   usuario: [this.user.login, [
                       Validators.required
@@ -99,8 +100,8 @@ export class UsuarioModificarComponent implements OnInit {
               console.log(result);
               this.usuario.fechaCreacion = this.convertirFecha(new Date());
 
-              this.usuarioService.update(this.usuario).subscribe((result) => {
-                  console.log(result);
+              this.usuarioService.update(this.usuario).subscribe((resuld) => {
+                  console.log(resuld);
               });
           });
       }

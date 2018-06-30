@@ -1,36 +1,42 @@
 @import 'bootstrap-variables';
-@import '~@angular/material/prebuilt-themes/deeppurple-amber.css';
-@import '~@angular/material/theming';
+@import 'green-life.global';
 // Tipografia Green Life
 @import url('https://fonts.googleapis.com/css?family=Lato:300,300i,400,400i,700,700i');
-@include mat-core();
-
-// Declaracion de la tipografia Lato
-$custom-typography: mat-typography-config(
-$font-family: 'Lato, sans-serif'
-);
-
-// Sobreescribe la tipografia para todos los componentes de Angular Material
-@include angular-material-typography($custom-typography);
-@include mat-core($custom-typography);
 
 /* ==============================================================
 Bootstrap tweaks
 ===============================================================*/
-
 body {
-    font-weight: 300;
+    font-weight: 400;
     background-color: white;
+    font-family: 'Lato', sans-serif;
+    //margin-top: 72px;
+    margin-top: 57px;
 }
 
 a {
-    color: #533f03;
+    color: $config-green-color;
     font-weight: bold;
 }
 
 a:hover {
-    color: #533f03;
+    color: $config-green-color;
     font-weight: bold;
+}
+
+// Default scrollbar
+::-webkit-scrollbar {
+    width: 13px;
+}
+
+::-webkit-scrollbar-track {
+    -webkit-box-shadow: inset 0 1px 3px rgba(#808080, 1 * 0.14), 0 1px 2px rgba(#808080, 1  * 0.24);
+}
+
+::-webkit-scrollbar-thumb {
+    border-radius: 6px;
+    background: #f2f2f2;
+    -webkit-box-shadow: 0 1px 3px rgba(#808080, 1 * 0.14), 0 1px 2px rgba(#808080, 1  * 0.24);
 }
 
 /* ==========================================================================

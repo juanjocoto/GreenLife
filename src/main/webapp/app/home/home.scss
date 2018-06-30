@@ -1,14 +1,82 @@
+@import '../../content/scss/green-life-variables';
 
 /* ==========================================================================
 Main page styles
 ========================================================================== */
 
-.hipster {
+h1 {
+    color: $config-green-color;
+}
+
+.lead {
+    color: $config-dark-gray-color;
+    font-size: 25px;
+    margin-top: 10px;
+}
+
+.dividerCms {
     display: inline-block;
-    width: 347px;
-    height: 497px;
-    background: url("../../content/images/hipster.png") no-repeat center top;
-    background-size: contain;
+    width: 100%;
+    height: 20px;
+    background: url("../../content/images/coverCMS.png") no-repeat right top;
+    background-size: cover;
+    margin-bottom: 10px;
+    margin-top: 5px;
+}
+
+.fa.fa-cogs {
+    padding-right: 18px;
+    color: $config-green-color;
+}
+
+.titleCms {
+    font-weight: 400;
+    text-align: center;
+    padding-top: 25px;
+}
+
+.btnLogin {
+    text-align: center;
+    color: $config-green-color !important;
+    font-weight: 700;
+    border-radius: 6px;
+    font-size: 20px;
+    background-color: #FFFFFF;
+    margin-top: 40px;
+    padding-top: 2px;
+    padding-bottom: 2px;
+}
+
+.btnLogin:hover {
+    color: #FFFFFF !important;
+    background-color: $config-green-color;
+    box-shadow: 0 1px 3px rgba(gray, 1 * 0.14), 0 1px 2px rgba(gray, 1  * 0.24);
+}
+
+.card {
+    margin-top: 20px;
+    margin-bottom: 125px;
+    border: 0;
+    border-radius: 6px;
+    box-shadow: 0 1px 3px rgba(gray, 1 * 0.14), 0 1px 2px rgba(gray, 1  * 0.24);
+    height: 250px;
+}
+
+.card-header {
+    color: #ffffff;
+    background-color: $config-green-color;
+    font-size: 23px;
+    font-weight: 700;
+    text-align: center;
+    padding-top: 2px;
+    padding-bottom: 0;
+}
+
+.card-text {
+    margin-top: 20px;
+    text-align: center;
+    color: $config-dark-gray-color;
+    font-size: 18px;
 }
 
 /* wait autoprefixer update to allow simple generation of high pixel density media query */
@@ -19,8 +87,8 @@ only screen and (     -o-min-device-pixel-ratio: 2/1),
 only screen and (        min-device-pixel-ratio: 2),
 only screen and (                min-resolution: 192dpi),
 only screen and (                min-resolution: 2dppx) {
-    .hipster {
-        background: url("../../content/images/hipster2x.png") no-repeat center top;
-        background-size: contain;
+    .dividerCms {
+        background: url("../../content/images/coverCMS.png") no-repeat right top;
+        background-size: cover;
     }
 }
