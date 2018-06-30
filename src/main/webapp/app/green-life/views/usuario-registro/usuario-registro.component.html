@@ -1,5 +1,5 @@
 <div class="form-container">
-  <form [formGroup]="formulario">
+  <form [formGroup]="formulario" class="green-life-form">
     <mat-form-field>
       <input matInput placeholder="Nombre" formControlName="nombre">
     </mat-form-field>
@@ -14,7 +14,7 @@
     <mat-form-field>
       <input matInput jhiValidadorNumero placeholder="Cédula" formControlName="cedula">
       <mat-error *ngIf="formulario.get('cedula').invalid">
-        El numero de teléfono debe de contener 9 números
+        La cédula debe de contener 9 números
       </mat-error>
     </mat-form-field>
     <mat-form-field>

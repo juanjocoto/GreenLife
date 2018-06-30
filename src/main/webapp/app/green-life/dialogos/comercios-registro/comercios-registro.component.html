@@ -1,3 +1,28 @@
-<p>
-  comercios-registro works!
-</p>
+<h1 mat-dialog-title>Registro de Comercio</h1>
+<mat-dialog-content>
+  <form [formGroup]="newComercioForm" class="green-life-form">
+    <mat-form-field>
+      <input matInput placeholder="Razón social" formControlName="razonSocial">
+    </mat-form-field>
+    <mat-form-field>
+      <input matInput placeholder="Nombre comercial" formControlName="nombreComercial">
+    </mat-form-field>
+    <mat-form-field>
+      <input matInput jhiValidadorNumero placeholder="Cédula juridica" formControlName="cedJuridica">
+      <mat-error *ngIf="newComercioForm.get('cedJuridica').invalid">
+        Debe de contener 10 números
+      </mat-error>
+    </mat-form-field>
+    <mat-form-field>
+      <mat-select placeholder="Tipo de comercio" formControlName="tipo">
+        <mat-option value="RESTAURANTE">Restaurante</mat-option>
+        <mat-option value="TIENDA">Tienda</mat-option>
+      </mat-select>
+    </mat-form-field>
+  </form>
+</mat-dialog-content>
+<mat-dialog-actions>
+  <button class="btn btn-danger" mat-dialog-close>Cerrar</button>
+  <div class="spacer"></div>
+  <button class="btn btn-success" (click)="crearComercio()">Crear</button>
+</mat-dialog-actions>
