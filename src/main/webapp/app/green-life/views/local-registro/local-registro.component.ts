@@ -9,13 +9,13 @@ import {Comercio, ComercioService} from '../../../entities/comercio';
 import {Fotografia, FotografiaService} from '../../../entities/fotografia';
 
 @Component({
-  selector: 'jhi-config-comercio-locales',
-  templateUrl: './config-comercio-locales.component.html',
+  selector: 'jhi-local-registro',
+  templateUrl: './local-registro.component.html',
   styleUrls: [
-      'config-comercio-locales.scss'
+      'local-registro.component.scss'
   ]
 })
-export class ConfigComercioLocalesComponent implements OnInit {
+export class LocalRegistroComponent implements OnInit {
 
     formLocales: FormGroup;
     comercio: Comercio;
