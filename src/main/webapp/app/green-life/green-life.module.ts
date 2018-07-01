@@ -40,6 +40,8 @@ import { UsuarioPerfilComponent } from './views/usuario-perfil/usuario-perfil.co
 import { UsuarioRegistroComponent } from './views/usuario-registro/usuario-registro.component';
 import { UsuarioRolesComponent } from './views/usuario-roles/usuario-roles.component';
 import { ValidadorNumeroDirective } from './shared/directives/validador-numero.directive';
+import { CategoriasComponent } from './views/categorias/categorias.component';
+import { CategoriasRegistroComponent } from './dialogos/categorias-registro/categorias-registro.component';
 
 @NgModule({
   imports: [
@@ -84,11 +86,14 @@ import { ValidadorNumeroDirective } from './shared/directives/validador-numero.d
     ComerciosProductosComponent,
     ConfigComercioLocalesComponent,
     ComerciosRegistroComponent,
-    UsuarioModificarComponent
+    UsuarioModificarComponent,
+    CategoriasComponent,
+    CategoriasRegistroComponent
   ],
   entryComponents: [
     LoginComponent,
-    ComerciosRegistroComponent
+    ComerciosRegistroComponent,
+    CategoriasRegistroComponent
   ]
 })
 export class GreenLifeModule { }
