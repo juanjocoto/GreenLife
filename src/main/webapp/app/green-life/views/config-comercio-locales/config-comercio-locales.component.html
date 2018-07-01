@@ -2,7 +2,7 @@
     <div class="col-md-auto">
         <h1>
             <span class="title-bar-config-icon icon"><span class="iconImg"></span></span>
-            Locales del Comercio
+            Locales del comercio
         </h1>
     </div>
 </div>
@@ -14,16 +14,18 @@
             <mat-tab-group class="tab-container">
                 <mat-tab label="Mapa de locales">
                     <div class="map-container">
-                        <agm-map [latitude]="lat" [longitude]="long">
-                            <!--<agm-marker [latitude]="lat" [longitude]="lng"></agm-marker>-->
+                        <agm-map
+                            [latitude]="lat"
+                            [longitude]="long"
+                            [zoom]="zoom">
+                            <agm-marker
+                                [latitude]="lat"
+                                [longitude]="long"
+                                [markerDraggable]="true"
+                                (dragEnd)="markerDragEnd($event)">
+                            </agm-marker>
                         </agm-map>
                     </div>
-                </mat-tab>
-                <mat-tab label="Lista de locales">
-                    <mat-card>Local 1</mat-card>
-                    <mat-card>Local 2</mat-card>
-                    <mat-card>Local 3</mat-card>
-                    <mat-card>Simple card</mat-card>
                 </mat-tab>
             </mat-tab-group>
         </div>
@@ -41,9 +43,15 @@
                         </mat-error>
                     </mat-form-field>
                     <mat-form-field>
-                        <textarea matInput placeholder="Dirección" formControlName="direccion">
+                        <textarea matInput matTextareaAutosize matAutosizeMinRows="4" matAutosizeMaxRows="4"  placeholder="Dirección" formControlName="direccion"></textarea>
                     </mat-form-field>
                     <h5>Ubicación en el mapa</h5>
+                    <mat-form-field>
+                        <input matInput [readonly]="true" [value]="marker.lat" placeholder="Latitud">
+                    </mat-form-field>
+                    <mat-form-field>
+                        <input matInput [readonly]="true" [value]="marker.long" placeholder="Longitud">
+                    </mat-form-field>
                     <h5>Horario</h5>
                     <mat-form-field>
                         <input matInput type="time" placeholder="Hora de apertura" formControlName="horaApertura">
@@ -51,7 +59,9 @@
                     <mat-form-field>
                         <input matInput type="time" placeholder="Hora de cierre" formControlName="horaCierre">
                     </mat-form-field>
+                    <button class="btn btnPrimary" (click)="createLocal()">Crear</button>
                 </form>
+                <button class="btn btnSecondary" (click)="this.formLocales.reset()">Cancelar</button>
             </div>
         </div>
     </div>
