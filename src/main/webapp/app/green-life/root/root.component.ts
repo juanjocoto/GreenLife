@@ -5,8 +5,8 @@ import { Component, OnInit } from '@angular/core';
   templateUrl: './root.component.html',
   styles: [`
     .main-container{
-      margin: 0px;
-      min-height: calc(100vh - 57px - 345px);
+      margin: 57px 0px 20px;
+      min-height: calc(100vh - 345px);
     }
   `]
 })

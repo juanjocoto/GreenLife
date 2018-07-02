@@ -1,31 +1,39 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { MatDialog, MatSnackBar } from '@angular/material';
 
 import { ActivatedRoute } from '@angular/router';
+import { CargaImagenesComponent } from '../../dialogos/carga-imagenes/carga-imagenes.component';
 import { Comercio } from '../../../entities/comercio';
 import { ComercioService } from '../../../entities/comercio/comercio.service';
 import { CommonAdapterService } from '../../shared/services/common-adapter.service';
+import { SERVER_API_URL } from '../../../app.constants';
 
 @Component({
   selector: 'jhi-comercio-editar',
   templateUrl: './comercio-editar.component.html',
-  styles: [`mat-form-field{with:100%}`]
+  styleUrls: [`comercio-editar.component.scss`]
 })
 export class ComercioEditarComponent implements OnInit {
 
   comercio: Comercio;
   comercioForm: FormGroup;
+  hostPath = SERVER_API_URL;
 
   constructor(private route: ActivatedRoute,
     private formBuilder: FormBuilder,
     private comercioService: ComercioService,
-    private commonAdapterService: CommonAdapterService
+    private commonAdapterService: CommonAdapterService,
+    private snackBar: MatSnackBar,
+    private dialog: MatDialog
   ) { }
 
   ngOnInit() {
     this.route.params.subscribe((params) => {
       this.comercioService.find(params.comercioId).subscribe((httpResponse) => {
         this.comercio = httpResponse.body;
+
+        console.log(this.comercio);
 
         this.comercioForm.get('razonSocial').setValue(this.comercio.razonSocial);
         this.comercioForm.get('nombreComercial').setValue(this.comercio.nombreComercial);
@@ -46,6 +54,16 @@ export class ComercioEditarComponent implements OnInit {
     });
   }
 
+  abrirDialogoImagen() {
+    this.dialog.open(CargaImagenesComponent).afterClosed().subscribe((imageName) => {
+      this.comercio.logoUrl = `/api/images/${imageName}`;
+      this.comercio.fechaCreacion = this.commonAdapterService.dateToJHILocalDate(this.comercio.fechaCreacion);
+      this.comercioService.update(this.comercio).subscribe((httpResponse) => {
+        console.log(httpResponse.body);
+      });
+    });
+  }
+
   guardar() {
     console.log(this.comercioForm.valid);
     if (this.comercioForm.valid) {
@@ -58,6 +76,11 @@ export class ComercioEditarComponent implements OnInit {
 
       this.comercioService.update(this.comercio).subscribe((httpResponse) => {
         console.log(httpResponse);
+        if (httpResponse.status === 200) {
+          this.snackBar.open('El comercio ha sido actualizado', undefined, { duration: 2000 });
+        } else {
+          this.snackBar.open('Se generó un error', undefined, { duration: 2000 });
+        }
       });
     }
   }

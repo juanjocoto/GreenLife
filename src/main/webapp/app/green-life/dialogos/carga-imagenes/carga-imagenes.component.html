@@ -1,0 +1,13 @@
+<h1 mat-dialog-title>Subir imagen</h1>
+<mat-dialog-content>
+  <form [formGroup]="imageForm" #form [action]="apiPath" method="post" enctype="multipart/form-data" target="upload_target"
+    (submit)="subirImage($event)">
+    <input name="file" type="file" placeholder="Seleccionar imagen" (change)="imagenCargada($event)" accept="image/*">
+    <img class="preview-img" *ngIf="imageBase64" [src]="imageBase64" alt="">
+  </form>
+</mat-dialog-content>
+<iframe name="upload_target" src="http://localhost:8080/api/images/dummy" style="display:none" #iframe></iframe>
+<mat-dialog-actions>
+  <div class="spacer"></div>
+  <button class="btn btn-success" (click)="subirImage()">Enviar</button>
+</mat-dialog-actions>

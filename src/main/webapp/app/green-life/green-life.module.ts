@@ -1,29 +1,31 @@
 import {
-   MatAutocompleteModule,
-   MatButtonModule,
-   MatButtonToggleModule,
-   MatCardModule,
-   MatChipsModule,
-   MatDatepickerModule,
-   MatDialogModule,
-   MatFormFieldModule,
-   MatGridListModule,
-   MatIconModule,
-   MatInputModule,
-   MatListModule,
-   MatMenuModule,
-   MatNativeDateModule,
-   MatPaginatorModule,
-   MatSelectModule,
-   MatSortModule,
-   MatTableModule,
-   MatTabsModule,
-   MatToolbarModule
+  MatAutocompleteModule,
+  MatButtonModule,
+  MatButtonToggleModule,
+  MatCardModule,
+  MatChipsModule,
+  MatDatepickerModule,
+  MatDialogModule,
+  MatFormFieldModule,
+  MatGridListModule,
+  MatIconModule,
+  MatInputModule,
+  MatListModule,
+  MatMenuModule,
+  MatNativeDateModule,
+  MatPaginatorModule,
+  MatSelectModule,
+  MatSnackBarModule,
+  MatSortModule,
+  MatTableModule,
+  MatTabsModule,
+  MatToolbarModule
 } from '@angular/material';
 
 import { AgmCoreModule } from '@agm/core';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { BrowserModule } from '@angular/platform-browser';
+import { CargaImagenesComponent } from './dialogos/carga-imagenes/carga-imagenes.component';
 import { CategoriasComponent } from './views/categorias/categorias.component';
 import { CategoriasRegistroComponent } from './dialogos/categorias-registro/categorias-registro.component';
 import { ComercioEditarComponent } from './views/comercio-editar/comercio-editar.component';
@@ -80,7 +82,8 @@ import { ValidadorNumeroDirective } from './shared/directives/validador-numero.d
     MatSelectModule,
     MatTabsModule,
     MatAutocompleteModule,
-    MatChipsModule
+    MatChipsModule,
+    MatSnackBarModule
   ],
   declarations: [
     LandingComponent,
@@ -101,17 +104,19 @@ import { ValidadorNumeroDirective } from './shared/directives/validador-numero.d
     ComercioEditarComponent,
     SelectorEtiquetasComponent,
     CategoriasComponent,
-    CategoriasRegistroComponent
+    CategoriasRegistroComponent,
+    CargaImagenesComponent
 
   ],
   entryComponents: [
     LoginComponent,
     ComerciosRegistroComponent,
-    CategoriasRegistroComponent
+    CategoriasRegistroComponent,
+    CargaImagenesComponent
   ],
-  providers: [CommonAdapterService,
+  providers: [
+    CommonAdapterService,
     CategoriasComponent,
-    CategoriasRegistroComponent
   ],
 })
 export class GreenLifeModule { }
