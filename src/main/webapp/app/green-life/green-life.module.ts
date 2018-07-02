@@ -26,7 +26,7 @@ import { ComerciosProductosComponent } from './views/comercios-productos/comerci
 import { ComerciosRegistroComponent } from './dialogos/comercios-registro/comercios-registro.component';
 import { CommonAdapterService } from './shared/services/common-adapter.service';
 import { CommonModule } from '@angular/common';
-import { ConfigComercioLocalesComponent } from './views/config-comercio-locales/config-comercio-locales.component';
+import { LocalRegistroComponent } from './views/local-registro/local-registro.component';
 import { ConvertidorFechaPipe } from './shared/pipes/convertidor-fecha.pipe';
 import { FooterGreenlifeComponent } from './layout/footer-greenlife/footer-greenlife.component';
 import { LandingComponent } from './views/landing/landing.component';
@@ -88,7 +88,7 @@ import { CategoriasRegistroComponent } from './dialogos/categorias-registro/cate
     UsuarioRolesComponent,
     ConvertidorFechaPipe,
     ComerciosProductosComponent,
-    ConfigComercioLocalesComponent,
+    LocalRegistroComponent,
     ComerciosRegistroComponent,
     UsuarioModificarComponent,
     ListaComerciosComponent,
