@@ -5,6 +5,7 @@ import { Route } from '@angular/router';
 import { UsuarioModificarComponent } from './views/usuario-modificar/usuario-modificar.component';
 import { UsuarioPerfilComponent } from './views/usuario-perfil/usuario-perfil.component';
 import { UsuarioRegistroComponent } from './views/usuario-registro/usuario-registro.component';
+import {CategoriasComponent} from './views/categorias/categorias.component';
 
 export const greenLifeRoutes: Route[] = [
     { path: '', component: LandingComponent },
@@ -13,5 +14,6 @@ export const greenLifeRoutes: Route[] = [
     { path: 'comercios/:comercioId/productos', component: ComerciosProductosComponent },
     { path: ':idComercio/local/:idLocal', component: ConfigComercioLocalesComponent },
     { path: 'comercios/:comercioId/productos', component: ComerciosProductosComponent},
-    { path: 'modificar/:login', component: UsuarioModificarComponent}
+    { path: 'modificar/:login', component: UsuarioModificarComponent},
+    { path: 'comercios/:comercioId/categorias', component: CategoriasComponent}
 ];
