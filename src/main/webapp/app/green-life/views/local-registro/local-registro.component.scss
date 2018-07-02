@@ -18,11 +18,13 @@ h5 {
     padding: 10px 0;
 }
 
+p {
+    color: $config-dark-gray-color;
+}
+
 .tab-container {
     border-radius: 6px;
     box-shadow:  0 1px 3px rgba(50,50,93,.11), 0 1px 3px rgba(0,0,0,.08);
-    //box-shadow: 0 1px 3px rgba(#808080, 1 * 0.14), 0 1px 2px rgba(#808080, 1  * 0.24);
-    //box-shadow:  0 15px 35px rgba(50,50,93,.1), 0 5px 15px rgba(0,0,0,.07);
 }
 
 agm-map {
@@ -31,12 +33,25 @@ agm-map {
 
 mat-form-field {
     width: 100%;
-    //max-width: 100%;
-    textarea {
-        height: 100px;
-    }
 }
 
 .ng-invalid:not(form) {
     border-left: unset;
+}
+
+.btnPrimary {
+    color: #FFFFFF;
+    background: $config-green-color;
+    box-shadow:  0 1px 3px rgba(50,50,93,.11), 0 1px 3px rgba(0,0,0,.08);
+    float: right;
+    margin: 20px 0 0 10px;
+}
+
+.btnSecondary {
+    color: $config-green-color;
+    background: #FFFFFF;
+    border-color: $config-green-color;
+    box-shadow:  0 1px 3px rgba(50,50,93,.11), 0 1px 3px rgba(0,0,0,.08);
+    float: right;
+    margin: 20px 10px 0 0;
 }

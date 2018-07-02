@@ -24,16 +24,18 @@ import {
 import { AgmCoreModule } from '@agm/core';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { BrowserModule } from '@angular/platform-browser';
+import { CategoriasComponent } from './views/categorias/categorias.component';
+import { CategoriasRegistroComponent } from './dialogos/categorias-registro/categorias-registro.component';
 import { ComercioEditarComponent } from './views/comercio-editar/comercio-editar.component';
 import { ComerciosProductosComponent } from './views/comercios-productos/comercios-productos.component';
 import { ComerciosRegistroComponent } from './dialogos/comercios-registro/comercios-registro.component';
 import { CommonAdapterService } from './shared/services/common-adapter.service';
 import { CommonModule } from '@angular/common';
-import { ConfigComercioLocalesComponent } from './views/config-comercio-locales/config-comercio-locales.component';
 import { ConvertidorFechaPipe } from './shared/pipes/convertidor-fecha.pipe';
 import { FooterGreenlifeComponent } from './layout/footer-greenlife/footer-greenlife.component';
 import { LandingComponent } from './views/landing/landing.component';
 import { ListaComerciosComponent } from './fragments/lista-comercios/lista-comercios.component';
+import { LocalRegistroComponent } from './views/local-registro/local-registro.component';
 import { LoginComponent } from './dialogos/login/login.component';
 import { NavbarGreenlifeComponent } from './layout/navbar-greenlife/navbar-greenlife.component';
 import { NgModule } from '@angular/core';
@@ -92,17 +94,24 @@ import { ValidadorNumeroDirective } from './shared/directives/validador-numero.d
     UsuarioRolesComponent,
     ConvertidorFechaPipe,
     ComerciosProductosComponent,
-    ConfigComercioLocalesComponent,
+    LocalRegistroComponent,
     ComerciosRegistroComponent,
     UsuarioModificarComponent,
     ListaComerciosComponent,
     ComercioEditarComponent,
-    SelectorEtiquetasComponent
+    SelectorEtiquetasComponent,
+    CategoriasComponent,
+    CategoriasRegistroComponent
+
   ],
   entryComponents: [
     LoginComponent,
-    ComerciosRegistroComponent
+    ComerciosRegistroComponent,
+    CategoriasRegistroComponent
   ],
-  providers: [CommonAdapterService]
+  providers: [CommonAdapterService,
+    CategoriasComponent,
+    CategoriasRegistroComponent
+  ],
 })
 export class GreenLifeModule { }
