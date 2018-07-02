@@ -1,6 +1,5 @@
 package com.radicalbytes.greenlife.service.dto;
 
-
 import java.time.LocalDate;
 import javax.validation.constraints.*;
 import java.io.Serializable;
@@ -31,6 +30,9 @@ public class ComercioDTO implements Serializable {
     @Size(max = 50)
     private String nombreComercial;
 
+    @Size(max = 50)
+    private String logoUrl;
+
     private TipoComercio tipo;
 
     private Set<EtiquetaDTO> etiquetas = new HashSet<>();
@@ -45,6 +47,14 @@ public class ComercioDTO implements Serializable {
 
     public void setId(Long id) {
         this.id = id;
+    }
+
+    public void setLogoUrl(String logoUrl) {
+        this.logoUrl = logoUrl;
+    }
+
+    public String getLogoUrl() {
+        return this.logoUrl;
     }
 
     public LocalDate getFechaCreacion() {
@@ -121,7 +131,7 @@ public class ComercioDTO implements Serializable {
         }
 
         ComercioDTO comercioDTO = (ComercioDTO) o;
-        if(comercioDTO.getId() == null || getId() == null) {
+        if (comercioDTO.getId() == null || getId() == null) {
             return false;
         }
         return Objects.equals(getId(), comercioDTO.getId());
@@ -134,13 +144,8 @@ public class ComercioDTO implements Serializable {
 
     @Override
     public String toString() {
-        return "ComercioDTO{" +
-            "id=" + getId() +
-            ", fechaCreacion='" + getFechaCreacion() + "'" +
-            ", cedJuridica='" + getCedJuridica() + "'" +
-            ", razonSocial='" + getRazonSocial() + "'" +
-            ", nombreComercial='" + getNombreComercial() + "'" +
-            ", tipo='" + getTipo() + "'" +
-            "}";
+        return "ComercioDTO{" + "id=" + getId() + ", fechaCreacion='" + getFechaCreacion() + "'" + ", cedJuridica='"
+                + getCedJuridica() + "'" + ", razonSocial='" + getRazonSocial() + "'" + ", nombreComercial='"
+                + getNombreComercial() + "'" + ", tipo='" + getTipo() + "'" + ", logoUrl='" + getLogoUrl() + "'}";
     }
 }
