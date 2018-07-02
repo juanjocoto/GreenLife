@@ -1,4 +1,6 @@
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import {
+  MatAutocompleteModule,
   MatButtonModule,
   MatButtonToggleModule,
   MatCardModule,
@@ -22,6 +24,7 @@ import {
 import { AgmCoreModule } from '@agm/core';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { BrowserModule } from '@angular/platform-browser';
+import { ComercioEditarComponent } from './views/comercio-editar/comercio-editar.component';
 import { ComerciosProductosComponent } from './views/comercios-productos/comercios-productos.component';
 import { ComerciosRegistroComponent } from './dialogos/comercios-registro/comercios-registro.component';
 import { CommonAdapterService } from './shared/services/common-adapter.service';
@@ -35,7 +38,6 @@ import { LoginComponent } from './dialogos/login/login.component';
 import { NavbarGreenlifeComponent } from './layout/navbar-greenlife/navbar-greenlife.component';
 import { NgModule } from '@angular/core';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
-import { ReactiveFormsModule } from '@angular/forms';
 import { RootComponent } from './root/root.component';
 import { RouterModule } from '@angular/router';
 import { UsuarioModificarComponent } from './views/usuario-modificar/usuario-modificar.component';
@@ -72,7 +74,9 @@ import { ValidadorNumeroDirective } from './shared/directives/validador-numero.d
     MatTableModule,
     MatSortModule,
     MatSelectModule,
-    MatTabsModule
+    MatTabsModule,
+    MatAutocompleteModule,
+    FormsModule
   ],
   declarations: [
     LandingComponent,
@@ -89,7 +93,8 @@ import { ValidadorNumeroDirective } from './shared/directives/validador-numero.d
     ConfigComercioLocalesComponent,
     ComerciosRegistroComponent,
     UsuarioModificarComponent,
-    ListaComerciosComponent
+    ListaComerciosComponent,
+    ComercioEditarComponent
   ],
   entryComponents: [
     LoginComponent,
