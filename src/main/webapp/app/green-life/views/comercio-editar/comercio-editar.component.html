@@ -1,1 +1,27 @@
-<jhi-selector-etiquetas *ngIf="comercio" [model]="comercio.etiquetas"></jhi-selector-etiquetas>
+<div class="container">
+    <form [formGroup]="comercioForm" class="green-life-form">
+        <mat-form-field>
+            <input matInput placeholder="Razón social" formControlName="razonSocial">
+        </mat-form-field>
+        <mat-form-field>
+            <input matInput placeholder="Nombre comercial" formControlName="nombreComercial">
+        </mat-form-field>
+        <mat-form-field>
+            <input matInput jhiValidadorNumero placeholder="Cédula juridica" formControlName="cedJuridica">
+            <mat-error *ngIf="comercioForm.get('cedJuridica').invalid">
+                Debe de contener 10 números
+            </mat-error>
+        </mat-form-field>
+        <mat-form-field>
+            <mat-select placeholder="Tipo de comercio" formControlName="tipo">
+                <mat-option value="RESTAURANTE">Restaurante</mat-option>
+                <mat-option value="TIENDA">Tienda</mat-option>
+            </mat-select>
+        </mat-form-field>
+        <jhi-selector-etiquetas *ngIf="comercio" [model]="comercio.etiquetas"></jhi-selector-etiquetas>
+        <div style="display:flex">
+            <div class="spacer"></div>
+            <button class="btn btn-success" (click)="guardar()">Guardar</button>
+        </div>
+    </form>
+</div>

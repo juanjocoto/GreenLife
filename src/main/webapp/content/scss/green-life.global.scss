@@ -74,3 +74,7 @@ $custom-typography: mat-typography-config( $font-family: 'Lato, sans-serif');
 .mat-button:focus {
     outline: unset;
 }
+
+.green-life-form mat-form-field {
+    width: 100%;
+}

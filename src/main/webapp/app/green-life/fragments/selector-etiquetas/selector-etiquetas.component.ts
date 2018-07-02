@@ -11,7 +11,7 @@ import { Observable } from 'rxjs';
 @Component({
   selector: 'jhi-selector-etiquetas',
   templateUrl: './selector-etiquetas.component.html',
-  styles: []
+  styles: [`mat-form-field {width:100%}`]
 })
 export class SelectorEtiquetasComponent implements OnInit {
 
