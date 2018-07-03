@@ -59,4 +59,11 @@ export class CategoriasComponent implements OnInit {
         });
     }
 
+    eliminarCategoria(pcategoria: CategoriaAlimentacion) {
+        this.categoriaService.delete(pcategoria.id).subscribe((resul) => {
+            console.log(resul);
+            this.getCategorias();
+        });
+    }
+
 }

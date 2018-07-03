@@ -24,8 +24,8 @@
                 <td>{{categoria.nombre}}</td>
                 <td>{{categoria.descripcion}}</td>
                 <td>
-                    <a href="#editEmployeeModal" class="edit" data-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="Editar">&#xE254;</i></a>
-                    <a href="#deleteEmployeeModal" class="delete" data-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="Eliminar">&#xE872;</i></a>
+                    <a class="edit" data-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="Editar">&#xE254;</i></a>
+                    <a class="delete" data-toggle="modal" (click)="eliminarCategoria(categoria)"><i class="material-icons" data-toggle="tooltip" title="Eliminar">&#xE872;</i></a>
                 </td>
             </tr>
             </tbody>
