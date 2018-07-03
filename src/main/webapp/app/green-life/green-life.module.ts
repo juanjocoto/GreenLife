@@ -1,25 +1,25 @@
 import {
-  MatAutocompleteModule,
-  MatButtonModule,
-  MatButtonToggleModule,
-  MatCardModule,
-  MatChipsModule,
-  MatDatepickerModule,
-  MatDialogModule,
-  MatFormFieldModule,
-  MatGridListModule,
-  MatIconModule,
-  MatInputModule,
-  MatListModule,
-  MatMenuModule,
-  MatNativeDateModule,
-  MatPaginatorModule,
-  MatSelectModule,
-  MatSnackBarModule,
-  MatSortModule,
-  MatTableModule,
-  MatTabsModule,
-  MatToolbarModule
+   MatAutocompleteModule,
+   MatButtonModule,
+   MatButtonToggleModule,
+   MatCardModule,
+   MatChipsModule,
+   MatDatepickerModule,
+   MatDialogModule,
+   MatFormFieldModule,
+   MatGridListModule,
+   MatIconModule,
+   MatInputModule,
+   MatListModule,
+   MatMenuModule,
+   MatNativeDateModule,
+   MatPaginatorModule,
+   MatSelectModule,
+   MatSnackBarModule,
+   MatSortModule,
+   MatTableModule,
+   MatTabsModule,
+   MatToolbarModule
 } from '@angular/material';
 
 import { AgmCoreModule } from '@agm/core';
@@ -39,6 +39,7 @@ import { FooterGreenlifeComponent } from './layout/footer-greenlife/footer-green
 import { LandingComponent } from './views/landing/landing.component';
 import { ListaComerciosComponent } from './fragments/lista-comercios/lista-comercios.component';
 import { LocalEliminarComponent } from './dialogos/local-eliminar/local-eliminar.component';
+import { LocalModificarComponent } from './views/local-modificar/local-modificar.component';
 import { LocalRegistroComponent } from './views/local-registro/local-registro.component';
 import { LoginComponent } from './dialogos/login/login.component';
 import { NavbarGreenlifeComponent } from './layout/navbar-greenlife/navbar-greenlife.component';
@@ -109,8 +110,8 @@ import { ValidadorNumeroDirective } from './shared/directives/validador-numero.d
     CategoriasRegistroComponent,
     CargaImagenesComponent,
     ConfirmacionDialogComponent,
+    LocalModificarComponent,
     LocalEliminarComponent
-
   ],
   entryComponents: [
     LoginComponent,
