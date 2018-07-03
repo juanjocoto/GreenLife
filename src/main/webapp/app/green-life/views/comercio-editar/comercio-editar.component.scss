@@ -1,0 +1,18 @@
+@import '../../../../content/scss/green-life-variables';
+.logo-container {
+    width: 100%;
+}
+
+.logo-container img {
+    display: block;
+    max-width: 800px;
+    max-height: 300px;
+    height: auto;
+    width: auto;
+    margin: 0 auto;
+}
+
+.row h2,
+.row mat-icon {
+    color: $config-green-color;
+}

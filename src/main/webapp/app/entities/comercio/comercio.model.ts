@@ -23,6 +23,7 @@ export class Comercio implements BaseEntity {
         public etiquetas?: BaseEntity[],
         public categorias?: BaseEntity[],
         public duenoId?: number,
+        public logoUrl?: string
     ) {
     }
 }

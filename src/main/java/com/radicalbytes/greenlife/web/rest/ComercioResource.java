@@ -18,7 +18,7 @@ import org.springframework.web.bind.annotation.*;
 import javax.validation.Valid;
 import java.net.URI;
 import java.net.URISyntaxException;
-
+import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -64,6 +64,7 @@ public class ComercioResource {
             throw new BadRequestAlertException("A new comercio cannot already have an ID", ENTITY_NAME, "idexists");
         }
         Comercio comercio = comercioMapper.toEntity(comercioDTO);
+        comercio.setFechaCreacion(LocalDate.now());
         comercio = comercioRepository.save(comercio);
         ComercioDTO result = comercioMapper.toDto(comercio);
         comercioSearchRepository.save(comercio);
@@ -89,6 +90,7 @@ public class ComercioResource {
             return createComercio(comercioDTO);
         }
         Comercio comercio = comercioMapper.toEntity(comercioDTO);
+        comercio.setFechaCreacion(comercioRepository.findOne(comercio.getId()).getFechaCreacion());
         comercio = comercioRepository.save(comercio);
         ComercioDTO result = comercioMapper.toDto(comercio);
         comercioSearchRepository.save(comercio);
