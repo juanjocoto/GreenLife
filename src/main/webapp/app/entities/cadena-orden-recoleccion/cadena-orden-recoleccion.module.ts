@@ -1,19 +1,23 @@
-import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
-import { RouterModule } from '@angular/router';
-
-import { GreenlifeSharedModule } from '../../shared';
+import { CUSTOM_ELEMENTS_SCHEMA, NgModule } from '@angular/core';
 import {
-    CadenaOrdenRecoleccionService,
-    CadenaOrdenRecoleccionPopupService,
     CadenaOrdenRecoleccionComponent,
+    CadenaOrdenRecoleccionDeleteDialogComponent,
+    CadenaOrdenRecoleccionDeletePopupComponent,
     CadenaOrdenRecoleccionDetailComponent,
     CadenaOrdenRecoleccionDialogComponent,
     CadenaOrdenRecoleccionPopupComponent,
-    CadenaOrdenRecoleccionDeletePopupComponent,
-    CadenaOrdenRecoleccionDeleteDialogComponent,
-    cadenaOrdenRecoleccionRoute,
+    CadenaOrdenRecoleccionPopupService,
+    CadenaOrdenRecoleccionService,
     cadenaOrdenRecoleccionPopupRoute,
+    cadenaOrdenRecoleccionRoute,
 } from './';
+
+import { CMS_PATH } from '../../app.constants';
+import { GreenlifeSharedModule } from '../../shared';
+import { RouterModule } from '@angular/router';
+import { cadenaEntregaRoute } from './../cadena-entrega/cadena-entrega.route';
+
+cadenaEntregaRoute.forEach((a) => a.path = `${CMS_PATH}/${a.path}`);
 
 const ENTITY_STATES = [
     ...cadenaOrdenRecoleccionRoute,

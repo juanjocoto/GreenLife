@@ -4,7 +4,7 @@
         <button class="btn btn-primary float-right jh-create-entity create-pago" [routerLink]="['/', { outlets: { popup: ['pago-new'] } }]">
             <span class="fa fa-plus"></span>
             <span class="hidden-sm-down" >
-            Create new Pago
+            Crear nuevo pago
             </span>
         </button>
     </h2>
@@ -44,7 +44,7 @@
                                 [routerLink]="['../pago', pago.id ]"
                                 class="btn btn-info btn-sm">
                             <span class="fa fa-eye"></span>
-                            <span class="d-none d-md-inline">View</span>
+                            <span class="d-none d-md-inline">Ver</span>
                         </button>
                         <button type="submit"
                                 [routerLink]="['/', { outlets: { popup: 'pago/'+ pago.id + '/edit'} }]"
@@ -52,7 +52,7 @@
                                 queryParamsHandling="merge"
                                 class="btn btn-primary btn-sm">
                             <span class="fa fa-pencil"></span>
-                            <span class="d-none d-md-inline">Edit</span>
+                            <span class="d-none d-md-inline">Editar</span>
                         </button>
                         <button type="submit"
                                 [routerLink]="['/', { outlets: { popup: 'pago/'+ pago.id + '/delete'} }]"
@@ -60,7 +60,7 @@
                                 queryParamsHandling="merge"
                                 class="btn btn-danger btn-sm">
                             <span class="fa fa-remove"></span>
-                            <span class="d-none d-md-inline">Delete</span>
+                            <span class="d-none d-md-inline">Eliminar</span>
                         </button>
                     </div>
                 </td>

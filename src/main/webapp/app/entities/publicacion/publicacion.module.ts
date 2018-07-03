@@ -1,19 +1,22 @@
-import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
-import { RouterModule } from '@angular/router';
-
-import { GreenlifeSharedModule } from '../../shared';
+import { CUSTOM_ELEMENTS_SCHEMA, NgModule } from '@angular/core';
 import {
-    PublicacionService,
-    PublicacionPopupService,
     PublicacionComponent,
+    PublicacionDeleteDialogComponent,
+    PublicacionDeletePopupComponent,
     PublicacionDetailComponent,
     PublicacionDialogComponent,
     PublicacionPopupComponent,
-    PublicacionDeletePopupComponent,
-    PublicacionDeleteDialogComponent,
-    publicacionRoute,
+    PublicacionPopupService,
+    PublicacionService,
     publicacionPopupRoute,
+    publicacionRoute,
 } from './';
+
+import { CMS_PATH } from '../../app.constants';
+import { GreenlifeSharedModule } from '../../shared';
+import { RouterModule } from '@angular/router';
+
+publicacionRoute.forEach((a) => a.path = `${CMS_PATH}/${a.path}`);
 
 const ENTITY_STATES = [
     ...publicacionRoute,

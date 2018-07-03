@@ -4,7 +4,7 @@
         <button class="btn btn-primary float-right jh-create-entity create-tipo-contrato" [routerLink]="['/', { outlets: { popup: ['tipo-contrato-new'] } }]">
             <span class="fa fa-plus"></span>
             <span class="hidden-sm-down" >
-            Create new Tipo Contrato
+            Crear nuevo Tipo de Contrato
             </span>
         </button>
     </h2>
@@ -31,7 +31,7 @@
             <tr>
             <th><span>ID</span></th>
             <th><span>Nombre</span></th>
-            <th><span>Descripcion</span></th>
+            <th><span>Descripción</span></th>
             <th><span>Costo</span></th>
             <th></th>
             </tr>
@@ -48,7 +48,7 @@
                                 [routerLink]="['../tipo-contrato', tipoContrato.id ]"
                                 class="btn btn-info btn-sm">
                             <span class="fa fa-eye"></span>
-                            <span class="d-none d-md-inline">View</span>
+                            <span class="d-none d-md-inline">Ver</span>
                         </button>
                         <button type="submit"
                                 [routerLink]="['/', { outlets: { popup: 'tipo-contrato/'+ tipoContrato.id + '/edit'} }]"
@@ -56,7 +56,7 @@
                                 queryParamsHandling="merge"
                                 class="btn btn-primary btn-sm">
                             <span class="fa fa-pencil"></span>
-                            <span class="d-none d-md-inline">Edit</span>
+                            <span class="d-none d-md-inline">Editar</span>
                         </button>
                         <button type="submit"
                                 [routerLink]="['/', { outlets: { popup: 'tipo-contrato/'+ tipoContrato.id + '/delete'} }]"
@@ -64,7 +64,7 @@
                                 queryParamsHandling="merge"
                                 class="btn btn-danger btn-sm">
                             <span class="fa fa-remove"></span>
-                            <span class="d-none d-md-inline">Delete</span>
+                            <span class="d-none d-md-inline">Eliminar</span>
                         </button>
                     </div>
                 </td>

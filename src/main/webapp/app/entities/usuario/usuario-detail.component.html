@@ -4,7 +4,7 @@
     <hr>
     <jhi-alert-error></jhi-alert-error>
     <dl class="row-md jh-entity-details">
-        <dt><span>Fecha Creacion</span></dt>
+        <dt><span>Fecha Creación</span></dt>
         <dd>
             <span>{{usuario.fechaCreacion | date:'mediumDate'}}</span>
         </dd>
@@ -16,7 +16,7 @@
         <dd>
             <span>{{usuario.cedula}}</span>
         </dd>
-        <dt><span>Direccion</span></dt>
+        <dt><span>Dirección</span></dt>
         <dd>
             <span>{{usuario.direccion}}</span>
         </dd>
@@ -45,7 +45,7 @@
     <button type="submit"
             (click)="previousState()"
             class="btn btn-info">
-        <span class="fa fa-arrow-left"></span>&nbsp;<span> Back</span>
+        <span class="fa fa-arrow-left"></span>&nbsp;<span> Regresar</span>
     </button>
 
     <button type="button"
@@ -53,6 +53,6 @@
             replaceUrl="true"
             queryParamsHandling="merge"
             class="btn btn-primary">
-        <span class="fa fa-pencil"></span>&nbsp;<span> Edit</span>
+        <span class="fa fa-pencil"></span>&nbsp;<span> Editar</span>
     </button>
 </div>

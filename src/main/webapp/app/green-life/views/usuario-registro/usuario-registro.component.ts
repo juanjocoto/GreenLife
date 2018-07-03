@@ -6,6 +6,7 @@ import { Router } from '@angular/router';
 import { User } from '../../../shared';
 import { Usuario } from '../../../entities/usuario';
 import { UsuarioService } from './../../../entities/usuario/usuario.service';
+import { CommonAdapterService } from '../../shared/services/common-adapter.service';
 
 @Component({
   selector: 'jhi-usuario-registro',
@@ -19,7 +20,8 @@ export class UsuarioRegistroComponent implements OnInit {
   constructor(private formBuilder: FormBuilder,
     private registerService: Register,
     private usuarioService: UsuarioService,
-    private router: Router
+    private router: Router,
+    private commonAdapterService: CommonAdapterService
   ) { }
 
   ngOnInit() {
@@ -71,14 +73,14 @@ export class UsuarioRegistroComponent implements OnInit {
     newUser.activated = true;
 
     nuevoUsuario.cedula = this.formulario.get('cedula').value;
-    nuevoUsuario.fechaNacimiento = this.covertirFecha(new Date(this.formulario.get('fechaNacimiento').value));
+    nuevoUsuario.fechaNacimiento = this.commonAdapterService.dateToJHILocalDate(new Date(this.formulario.get('fechaNacimiento').value));
     nuevoUsuario.telefono = this.formulario.get('telefono').value;
 
     if (this.formulario.valid) {
       this.registerService.save(newUser).subscribe((id) => {
         // this.userService.find(newUser.login).subscribe((jhiUser) => {
         nuevoUsuario.userDetailId = id;
-        nuevoUsuario.fechaCreacion = this.covertirFecha(new Date());
+        nuevoUsuario.fechaCreacion = this.commonAdapterService.dateToJHILocalDate(new Date());
 
         this.usuarioService.create(nuevoUsuario).subscribe((result) => {
           console.log(result);
@@ -90,11 +92,4 @@ export class UsuarioRegistroComponent implements OnInit {
 
   }
 
-  private covertirFecha(value: Date, args?: any): any {
-    return {
-      year: value.getFullYear(),
-      month: value.getMonth() + 1,
-      day: value.getDay()
-    };
-  }
 }
