@@ -55,12 +55,14 @@ export class ComercioEditarComponent implements OnInit {
   }
 
   abrirDialogoImagen() {
-    this.dialog.open(CargaImagenesComponent).afterClosed().subscribe((imageName) => {
-      this.comercio.logoUrl = `/api/images/${imageName}`;
-      this.comercio.fechaCreacion = this.commonAdapterService.dateToJHILocalDate(this.comercio.fechaCreacion);
-      this.comercioService.update(this.comercio).subscribe((httpResponse) => {
-        console.log(httpResponse.body);
-      });
+    this.dialog.open(CargaImagenesComponent).afterClosed().subscribe((imageName: string) => {
+      if (imageName) {
+        this.comercio.logoUrl = `/api/images/${imageName}`;
+        this.comercio.fechaCreacion = this.commonAdapterService.dateToJHILocalDate(this.comercio.fechaCreacion);
+        this.comercioService.update(this.comercio).subscribe((httpResponse) => {
+          console.log(httpResponse.body);
+        });
+      }
     });
   }
 

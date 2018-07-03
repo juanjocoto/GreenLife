@@ -1,4 +1,5 @@
-.logo-container{
+@import '../../../../content/scss/green-life-variables';
+.logo-container {
     width: 100%;
 }
 
@@ -9,4 +10,9 @@
     height: auto;
     width: auto;
     margin: 0 auto;
+}
+
+.row h2,
+.row mat-icon {
+    color: $config-green-color;
 }
