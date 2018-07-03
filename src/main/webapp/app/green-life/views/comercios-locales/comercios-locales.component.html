@@ -1,0 +1,46 @@
+<div class="title-bar-config">
+    <div class="col-md-auto" *ngIf="comercio != null">
+        <h1>
+            <span class="title-bar-config-icon icon"><span class="iconImg"></span></span>
+            Locales {{comercio.razonSocial}}
+        </h1>
+    </div>
+</div>
+
+<div class="container" *ngIf="locales != null">
+    <div class="row">
+        <div class="col mr-0">
+            <div class="map-container">
+                <agm-map
+                    [latitude]="lat"
+                    [longitude]="long"
+                    [zoom]="zoom">
+                    <agm-marker
+                        *ngFor="let local of locales"
+                        [latitude]="local.latitud"
+                        [longitude]="local.latitude"
+                        [markerDraggable]="false"
+                        (markerClick)="loadCurrentLocal(local.id)">
+                        <agm-info-window>
+                            <h6 class="titleMarker">{{local.nombre}}</h6>
+                            <p class="textMarker"><i class="fa fa-phone"></i> {{local.telefono}}</p>
+                            <p class="textMarker"><i class="fa fa-map-marker"></i> {{local.direccion}}</p>
+                            <p class="textMarker"><i class="fa fa-clock-o"></i> {{local.horario}}</p>
+                        </agm-info-window>
+                    </agm-marker>
+                </agm-map>
+            </div>
+        </div>
+        <div class="col-md-6 info-section ml-0" *ngIf="currentLocal != null">
+            <h2 class="info-local-title">{{currentLocal.nombre}}</h2>
+            <hr class="mat-divider">
+            <h5 class="info-local-subtitle"><i class="fa fa-phone"></i> {{currentLocal.telefono}}</h5>
+            <h5 class="info-local-subtitle"><i class="fa fa-map-marker"></i> {{currentLocal.direccion}}</h5>
+            <h5 class="info-local-subtitle"><i class="fa fa-clock-o"></i> {{currentLocal.horario}}</h5>
+
+            <button class="btn btnDelete">Eliminar</button>
+            <button class="btn btnModificar">Modificar</button>
+            <button class="btn btnAdd">Agregar</button>
+        </div>
+    </div>
+</div>
