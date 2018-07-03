@@ -7,6 +7,8 @@ import { CargaImagenesComponent } from '../../dialogos/carga-imagenes/carga-imag
 import { Comercio } from '../../../entities/comercio';
 import { ComercioService } from '../../../entities/comercio/comercio.service';
 import { CommonAdapterService } from '../../shared/services/common-adapter.service';
+import { ConfirmacionDialogComponent } from '../../dialogos/confirmacion-dialog/confirmacion-dialog.component';
+import { Location } from '@angular/common';
 import { SERVER_API_URL } from '../../../app.constants';
 
 @Component({
@@ -25,7 +27,8 @@ export class ComercioEditarComponent implements OnInit {
     private comercioService: ComercioService,
     private commonAdapterService: CommonAdapterService,
     private snackBar: MatSnackBar,
-    private dialog: MatDialog
+    private dialog: MatDialog,
+    private location: Location
   ) { }
 
   ngOnInit() {
@@ -85,6 +88,20 @@ export class ComercioEditarComponent implements OnInit {
         }
       });
     }
+  }
+
+  eliminar() {
+    console.log('click');
+    const ref = this.dialog.open(ConfirmacionDialogComponent);
+    ref.componentInstance.texto = `¿Desea eliminar el comercio ${this.comercio.razonSocial}?`;
+    ref.afterClosed().subscribe((result) => {
+      if (result) {
+        this.comercioService.delete(this.comercio.id).subscribe((httpResponse) => {
+          // console.log(httpResponse.body);
+          this.location.back();
+        });
+      }
+    });
   }
 
 }

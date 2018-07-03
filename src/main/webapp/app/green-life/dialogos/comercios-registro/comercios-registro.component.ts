@@ -1,10 +1,12 @@
-import { Comercio, TipoComercio } from '../../../entities/comercio/comercio.model';
 import { Component, Input, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
+import { Comercio } from '../../../entities/comercio/comercio.model';
 import { ComercioService } from '../../../entities/comercio/comercio.service';
 import { CommonAdapterService } from '../../shared/services/common-adapter.service';
 import { Etiqueta } from '../../../entities/etiqueta/etiqueta.model';
+import { MatDialogRef } from '@angular/material';
+import { Router } from '@angular/router';
 import { Usuario } from '../../../entities/usuario/usuario.model';
 
 @Component({
@@ -22,7 +24,9 @@ export class ComerciosRegistroComponent implements OnInit {
 
   constructor(private formBuilder: FormBuilder,
     private comercioService: ComercioService,
-    private commonAdapterService: CommonAdapterService) { }
+    private commonAdapterService: CommonAdapterService,
+    private router: Router,
+    public dialogRef: MatDialogRef<ComerciosRegistroComponent>) { }
 
   ngOnInit() {
     this.newComercioForm = this.formBuilder.group({
@@ -48,10 +52,10 @@ export class ComerciosRegistroComponent implements OnInit {
       comercio.fechaCreacion = this.commonAdapterService.dateToJHILocalDate(new Date());
       comercio.etiquetas = this.etiquetas;
 
-      this.comercioService.create(comercio).subscribe((resul) => {
-        console.log(resul);
+      this.comercioService.create(comercio).subscribe((httpResponse) => {
+        this.router.navigate(['/app/comercios/' + httpResponse.body.id + '/editar']);
+        this.dialogRef.close();
       });
     }
   }
-
 }
