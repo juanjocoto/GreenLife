@@ -38,6 +38,8 @@ export class ComercioEditarComponent implements OnInit {
 
         console.log(this.comercio);
 
+        this.comercio.fechaCreacion = this.commonAdapterService.dateToJHILocalDate(this.comercio.fechaCreacion);
+
         this.comercioForm.get('razonSocial').setValue(this.comercio.razonSocial);
         this.comercioForm.get('nombreComercial').setValue(this.comercio.nombreComercial);
         this.comercioForm.get('cedJuridica').setValue(this.comercio.cedJuridica);
@@ -73,11 +75,13 @@ export class ComercioEditarComponent implements OnInit {
     console.log(this.comercioForm.valid);
     if (this.comercioForm.valid) {
 
+      // this.comercio.fechaCreacion = new Date(this.comercio.fechaCreacion);
+
       this.comercio.razonSocial = this.comercioForm.get('razonSocial').value;
       this.comercio.nombreComercial = this.comercioForm.get('nombreComercial').value;
       this.comercio.cedJuridica = this.comercioForm.get('cedJuridica').value;
       this.comercio.tipo = this.comercioForm.get('tipo').value;
-      this.comercio.fechaCreacion = this.commonAdapterService.dateToJHILocalDate(this.comercio.fechaCreacion);
+      // this.comercio.fechaCreacion = this.commonAdapterService.dateToJHILocalDate(this.comercio.fechaCreacion);
 
       this.comercioService.update(this.comercio).subscribe((httpResponse) => {
         console.log(httpResponse);
