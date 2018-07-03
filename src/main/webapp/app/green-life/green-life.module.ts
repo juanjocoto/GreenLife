@@ -38,6 +38,7 @@ import { ConvertidorFechaPipe } from './shared/pipes/convertidor-fecha.pipe';
 import { FooterGreenlifeComponent } from './layout/footer-greenlife/footer-greenlife.component';
 import { LandingComponent } from './views/landing/landing.component';
 import { ListaComerciosComponent } from './fragments/lista-comercios/lista-comercios.component';
+import { LocalEliminarComponent } from './dialogos/local-eliminar/local-eliminar.component';
 import { LocalRegistroComponent } from './views/local-registro/local-registro.component';
 import { LoginComponent } from './dialogos/login/login.component';
 import { NavbarGreenlifeComponent } from './layout/navbar-greenlife/navbar-greenlife.component';
@@ -107,7 +108,8 @@ import { ValidadorNumeroDirective } from './shared/directives/validador-numero.d
     CategoriasComponent,
     CategoriasRegistroComponent,
     CargaImagenesComponent,
-    ConfirmacionDialogComponent
+    ConfirmacionDialogComponent,
+    LocalEliminarComponent
 
   ],
   entryComponents: [
@@ -115,7 +117,8 @@ import { ValidadorNumeroDirective } from './shared/directives/validador-numero.d
     ComerciosRegistroComponent,
     CategoriasRegistroComponent,
     CargaImagenesComponent,
-    ConfirmacionDialogComponent
+    ConfirmacionDialogComponent,
+    LocalEliminarComponent
   ],
   providers: [
     CommonAdapterService,
