@@ -1,0 +1,26 @@
+<mat-form-field class="example-chip-list">
+  <mat-chip-list #chipList>
+    <mat-chip
+      *ngFor="let etiqueta of model"
+      [selectable]="selectable"
+      [removable]="removable"
+      (removed)="remove(etiqueta)">
+      {{etiqueta.nombre}}
+      <mat-icon matChipRemove *ngIf="removable">cancel</mat-icon>
+    </mat-chip>
+    <input
+      [placeholder]="placeholder"
+      #etiquetaInput
+      [formControl]="etiquetaCtrl"
+      [matAutocomplete]="auto"
+      [matChipInputFor]="chipList"
+      [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
+      [matChipInputAddOnBlur]="addOnBlur"
+      (matChipInputTokenEnd)="add($event)">
+  </mat-chip-list>
+  <mat-autocomplete #auto="matAutocomplete" (optionSelected)="selected($event)">
+    <mat-option *ngFor="let etiqueta of etiquetasFiltradas | async" [value]="etiqueta">
+      {{etiqueta.nombre}}
+    </mat-option>
+  </mat-autocomplete>
+</mat-form-field>

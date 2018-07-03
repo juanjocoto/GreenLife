@@ -1,36 +1,44 @@
 import {
-  MatButtonModule,
-  MatButtonToggleModule,
-  MatCardModule,
-  MatDatepickerModule,
-  MatDialogModule,
-  MatFormFieldModule,
-  MatGridListModule,
-  MatIconModule,
-  MatInputModule,
-  MatListModule,
-  MatMenuModule,
-  MatNativeDateModule,
-  MatPaginatorModule,
-  MatSelectModule,
-  MatSortModule,
-  MatTableModule,
-  MatTabsModule,
-  MatToolbarModule
+   MatAutocompleteModule,
+   MatButtonModule,
+   MatButtonToggleModule,
+   MatCardModule,
+   MatChipsModule,
+   MatDatepickerModule,
+   MatDialogModule,
+   MatFormFieldModule,
+   MatGridListModule,
+   MatIconModule,
+   MatInputModule,
+   MatListModule,
+   MatMenuModule,
+   MatNativeDateModule,
+   MatPaginatorModule,
+   MatSelectModule,
+   MatSnackBarModule,
+   MatSortModule,
+   MatTableModule,
+   MatTabsModule,
+   MatToolbarModule
 } from '@angular/material';
 
 import { AgmCoreModule } from '@agm/core';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { BrowserModule } from '@angular/platform-browser';
+import { CargaImagenesComponent } from './dialogos/carga-imagenes/carga-imagenes.component';
+import { ComercioEditarComponent } from './views/comercio-editar/comercio-editar.component';
 import { ComerciosProductosComponent } from './views/comercios-productos/comercios-productos.component';
 import { ComerciosRegistroComponent } from './dialogos/comercios-registro/comercios-registro.component';
 import { CommonAdapterService } from './shared/services/common-adapter.service';
 import { CommonModule } from '@angular/common';
-import { LocalRegistroComponent } from './views/local-registro/local-registro.component';
+import { ConfirmacionDialogComponent } from './dialogos/confirmacion-dialog/confirmacion-dialog.component';
 import { ConvertidorFechaPipe } from './shared/pipes/convertidor-fecha.pipe';
 import { FooterGreenlifeComponent } from './layout/footer-greenlife/footer-greenlife.component';
 import { LandingComponent } from './views/landing/landing.component';
 import { ListaComerciosComponent } from './fragments/lista-comercios/lista-comercios.component';
+import { LocalEliminarComponent } from './dialogos/local-eliminar/local-eliminar.component';
+import { LocalModificarComponent } from './views/local-modificar/local-modificar.component';
+import { LocalRegistroComponent } from './views/local-registro/local-registro.component';
 import { LoginComponent } from './dialogos/login/login.component';
 import { NavbarGreenlifeComponent } from './layout/navbar-greenlife/navbar-greenlife.component';
 import { NgModule } from '@angular/core';
@@ -38,6 +46,7 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { ReactiveFormsModule } from '@angular/forms';
 import { RootComponent } from './root/root.component';
 import { RouterModule } from '@angular/router';
+import { SelectorEtiquetasComponent } from './fragments/selector-etiquetas/selector-etiquetas.component';
 import { UsuarioModificarComponent } from './views/usuario-modificar/usuario-modificar.component';
 import { UsuarioPerfilComponent } from './views/usuario-perfil/usuario-perfil.component';
 import { UsuarioRegistroComponent } from './views/usuario-registro/usuario-registro.component';
@@ -75,7 +84,10 @@ import { ComerciosLocalesComponent } from './views/comercios-locales/comercios-l
     MatTableModule,
     MatSortModule,
     MatSelectModule,
-    MatTabsModule
+    MatTabsModule,
+    MatAutocompleteModule,
+    MatChipsModule,
+    MatSnackBarModule
   ],
   declarations: [
     LandingComponent,
@@ -93,19 +105,27 @@ import { ComerciosLocalesComponent } from './views/comercios-locales/comercios-l
     ComerciosRegistroComponent,
     UsuarioModificarComponent,
     ListaComerciosComponent,
+    ComercioEditarComponent,
+    SelectorEtiquetasComponent,
     CategoriasComponent,
     CategoriasRegistroComponent,
+    CargaImagenesComponent,
+    ConfirmacionDialogComponent,
+    LocalModificarComponent,
+    LocalEliminarComponent,
     ComerciosLocalesComponent
-
   ],
   entryComponents: [
     LoginComponent,
     ComerciosRegistroComponent,
-    CategoriasRegistroComponent
+    CategoriasRegistroComponent,
+    CargaImagenesComponent,
+    ConfirmacionDialogComponent,
+    LocalEliminarComponent
   ],
-  providers: [CommonAdapterService,
+  providers: [
+    CommonAdapterService,
     CategoriasComponent,
-    CategoriasRegistroComponent
   ],
 })
 export class GreenLifeModule { }

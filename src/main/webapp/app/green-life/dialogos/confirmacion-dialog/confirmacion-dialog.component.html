@@ -1,0 +1,9 @@
+<h1 mat-dialog-title>Confitmación</h1>
+<mat-dialog-content>
+  {{texto}}
+</mat-dialog-content>
+<mat-dialog-actions>
+  <button mat-dialog-close class="btn btn-danger">Cancelar</button>
+  <div class="spacer"></div>
+  <button [mat-dialog-close]="true" class="btn btn-success">Eliminar</button>
+</mat-dialog-actions>

@@ -69,3 +69,12 @@ $custom-typography: mat-typography-config( $font-family: 'Lato, sans-serif');
     background-color: $warning-color !important;
     border-color: $warning-color !important;
 }
+
+.mat-icon-button:focus,
+.mat-button:focus {
+    outline: unset;
+}
+
+.green-life-form mat-form-field {
+    width: 100%;
+}
