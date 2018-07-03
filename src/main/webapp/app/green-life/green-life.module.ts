@@ -33,6 +33,7 @@ import { ComerciosProductosComponent } from './views/comercios-productos/comerci
 import { ComerciosRegistroComponent } from './dialogos/comercios-registro/comercios-registro.component';
 import { CommonAdapterService } from './shared/services/common-adapter.service';
 import { CommonModule } from '@angular/common';
+import { ConfirmacionDialogComponent } from './dialogos/confirmacion-dialog/confirmacion-dialog.component';
 import { ConvertidorFechaPipe } from './shared/pipes/convertidor-fecha.pipe';
 import { FooterGreenlifeComponent } from './layout/footer-greenlife/footer-greenlife.component';
 import { LandingComponent } from './views/landing/landing.component';
@@ -105,14 +106,16 @@ import { ValidadorNumeroDirective } from './shared/directives/validador-numero.d
     SelectorEtiquetasComponent,
     CategoriasComponent,
     CategoriasRegistroComponent,
-    CargaImagenesComponent
+    CargaImagenesComponent,
+    ConfirmacionDialogComponent
 
   ],
   entryComponents: [
     LoginComponent,
     ComerciosRegistroComponent,
     CategoriasRegistroComponent,
-    CargaImagenesComponent
+    CargaImagenesComponent,
+    ConfirmacionDialogComponent
   ],
   providers: [
     CommonAdapterService,
