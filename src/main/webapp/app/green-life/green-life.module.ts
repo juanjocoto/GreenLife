@@ -45,6 +45,7 @@ import { UsuarioRolesComponent } from './views/usuario-roles/usuario-roles.compo
 import { ValidadorNumeroDirective } from './shared/directives/validador-numero.directive';
 import { CategoriasComponent } from './views/categorias/categorias.component';
 import { CategoriasRegistroComponent } from './dialogos/categorias-registro/categorias-registro.component';
+import { LocalEliminarComponent } from './dialogos/local-eliminar/local-eliminar.component';
 
 @NgModule({
   imports: [
@@ -93,13 +94,15 @@ import { CategoriasRegistroComponent } from './dialogos/categorias-registro/cate
     UsuarioModificarComponent,
     ListaComerciosComponent,
     CategoriasComponent,
-    CategoriasRegistroComponent
+    CategoriasRegistroComponent,
+    LocalEliminarComponent
 
   ],
   entryComponents: [
     LoginComponent,
     ComerciosRegistroComponent,
-    CategoriasRegistroComponent
+    CategoriasRegistroComponent,
+    LocalEliminarComponent
   ],
   providers: [CommonAdapterService,
     CategoriasComponent,
