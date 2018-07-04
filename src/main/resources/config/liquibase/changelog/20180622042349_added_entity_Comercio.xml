@@ -42,6 +42,10 @@
                 <constraints nullable="true" />
             </column>
 
+            <column name="logo_url" type="varchar(500)">
+                <constraints nullable="true" />
+            </column>
+
             <column name="dueno_id" type="bigint">
                 <constraints nullable="true" />
             </column>
