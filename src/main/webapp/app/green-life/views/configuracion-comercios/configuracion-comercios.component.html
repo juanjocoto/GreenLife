@@ -1,0 +1,40 @@
+<body>
+<div class="container">
+    <div class="table-wrapper">
+        <div class="table-title">
+            <div class="row">
+                <div class="col-sm-6">
+                    <h2>Mis comercios</h2>
+                </div>
+                <div class="col-sm-6">
+                    <a class="btn btn-success" data-toggle="modal" (click)="agregarComercio()"><i class="material-icons">&#xE147;</i> <span>Nuevo comercio</span></a>
+                </div>
+            </div>
+        </div>
+        <table class="table table-striped table-hover">
+            <thead>
+            <tr>
+                <th>Cédula jurídica</th>
+                <th>Razón social</th>
+                <th>Nombre comercial</th>
+                <th>Tipo</th>
+                <th>Fecha de creación</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr *ngFor="let comercio of comercios">
+                <td>{{comercio.cedJuridica}}</td>
+                <td>{{comercio.razonSocial}}</td>
+                <td>{{comercio.nombreComercial}}</td>
+                <td>{{comercio.tipo}}</td>
+                <td>{{comercio.fechaCreacion | date}}</td>
+                <td>
+                    <a class="edit" data-toggle="modal" (click)="modificarComercio()"><i class="material-icons" data-toggle="tooltip" title="Editar">&#xE254;</i></a>
+                    <a class="delete" data-toggle="modal" (click)="eliminarComercio()"><i class="material-icons" data-toggle="tooltip" title="Eliminar">&#xE872;</i></a>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+</body>
