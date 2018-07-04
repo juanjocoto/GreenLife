@@ -1,10 +1,14 @@
 import {
+  MatAutocompleteModule,
   MatButtonModule,
   MatButtonToggleModule,
   MatCardModule,
+  MatCheckboxModule,
+  MatChipsModule,
   MatDatepickerModule,
   MatDialogModule,
-  MatFormFieldModule,
+  MatDividerModule,
+  MatExpansionModule,
   MatGridListModule,
   MatIconModule,
   MatInputModule,
@@ -12,13 +16,24 @@ import {
   MatMenuModule,
   MatNativeDateModule,
   MatPaginatorModule,
+  MatProgressBarModule,
+  MatProgressSpinnerModule,
+  MatRadioModule,
+  MatRippleModule,
   MatSelectModule,
+  MatSidenavModule,
+  MatSliderModule,
+  MatSlideToggleModule,
+  MatSnackBarModule,
   MatSortModule,
+  MatStepperModule,
+  MatFormFieldModule,
   MatTableModule,
   MatTabsModule,
-  MatToolbarModule
+  MatToolbarModule,
+  MatTooltipModule
 } from '@angular/material';
-
+import { CdkTableModule } from '@angular/cdk/table';
 import { AgmCoreModule } from '@agm/core';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { BrowserModule } from '@angular/platform-browser';
@@ -56,25 +71,41 @@ import { CategoriasRegistroComponent } from './dialogos/categorias-registro/cate
     AgmCoreModule.forRoot({
       apiKey: 'AIzaSyAKK8_ZbHnWx9CD9b4NZFGRKe8rMw83wmI'
     }),
-    MatMenuModule,
+    ReactiveFormsModule,
+    CdkTableModule,
+    MatAutocompleteModule,
     MatButtonModule,
     MatButtonToggleModule,
-    MatToolbarModule,
     MatCardModule,
-    MatGridListModule,
-    MatListModule,
-    MatFormFieldModule,
-    MatInputModule,
-    ReactiveFormsModule,
+    MatCheckboxModule,
+    MatChipsModule,
+    MatStepperModule,
     MatDatepickerModule,
-    MatNativeDateModule,
-    MatIconModule,
     MatDialogModule,
+    MatDividerModule,
+    MatExpansionModule,
+    MatGridListModule,
+    MatIconModule,
+    MatInputModule,
+    MatListModule,
+    MatMenuModule,
+    MatNativeDateModule,
     MatPaginatorModule,
-    MatTableModule,
-    MatSortModule,
+    MatProgressBarModule,
+    MatProgressSpinnerModule,
+    MatRadioModule,
+    MatRippleModule,
     MatSelectModule,
-    MatTabsModule
+    MatSidenavModule,
+    MatSliderModule,
+    MatSlideToggleModule,
+    MatSnackBarModule,
+    MatSortModule,
+    MatTableModule,
+    MatTabsModule,
+    MatToolbarModule,
+    MatTooltipModule,
+    MatFormFieldModule
   ],
   declarations: [
     LandingComponent,
@@ -101,7 +132,8 @@ import { CategoriasRegistroComponent } from './dialogos/categorias-registro/cate
     ComerciosRegistroComponent,
     CategoriasRegistroComponent
   ],
-  providers: [CommonAdapterService,
+  providers: [
+    CommonAdapterService,
     CategoriasComponent,
     CategoriasRegistroComponent
   ],

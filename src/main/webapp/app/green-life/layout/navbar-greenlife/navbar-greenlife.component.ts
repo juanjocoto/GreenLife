@@ -17,21 +17,13 @@ export class NavbarGreenlifeComponent implements OnInit {
   constructor(private dialog: MatDialog, private router: Router, private loginService: LoginService ) {
     this.router.events.forEach((event) => {
       if (event instanceof NavigationStart) {
-        if (event.url === '/app' || event.url === '/') {
-          this.inicio = true;
-        } else {
-          this.inicio = false;
-        }
+        (event.url === '/app' || event.url === '/') ? this.inicio = true : this.inicio = false;
       }
     });
   }
 
   ngOnInit() {
-    if (this.router.url === '/app' || this.router.url === '/') {
-      this.inicio = true;
-    } else {
-      this.inicio = false;
-    }
+    (this.router.url === '/app' || this.router.url === '/') ? this.inicio = true : this.inicio = false;
   }
 
   toggleCollapse() {
