@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { CategoriaAlimentacion } from '../../../entities/categoria-alimentacion';
 import { CategoriaAlimentacionService } from '../../../entities/categoria-alimentacion/categoria-alimentacion.service';
+import {CategoriasModificarComponent} from "../categorias-modificar/categorias-modificar.component";
+import {MatDialogRef} from "@angular/material";
 
 @Component({
   selector: 'jhi-categorias-registro',
@@ -14,7 +16,8 @@ export class CategoriasRegistroComponent implements OnInit {
   categoria: CategoriaAlimentacion;
 
   constructor(private formBuilder: FormBuilder,
-  private categoriaService: CategoriaAlimentacionService) { }
+  private categoriaService: CategoriaAlimentacionService,
+  public dialogRef: MatDialogRef<CategoriasModificarComponent>) { }
 
   ngOnInit() {
       this.categoriaForm = this.formBuilder.group({
@@ -31,6 +34,7 @@ export class CategoriasRegistroComponent implements OnInit {
 
           this.categoriaService.create(categoria).subscribe((resul) => {
               console.log(resul);
+              this.dialogRef.close();
           });
       }
   }

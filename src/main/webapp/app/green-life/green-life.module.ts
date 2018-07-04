@@ -47,6 +47,7 @@ import { CategoriasComponent } from './views/categorias/categorias.component';
 import { CategoriasRegistroComponent } from './dialogos/categorias-registro/categorias-registro.component';
 import { LocalEliminarComponent } from './dialogos/local-eliminar/local-eliminar.component';
 import { LocalModificarComponent } from './views/local-modificar/local-modificar.component';
+import {CategoriasModificarComponent} from './dialogos/categorias-modificar/categorias-modificar.component';
 
 @NgModule({
   imports: [
@@ -97,17 +98,17 @@ import { LocalModificarComponent } from './views/local-modificar/local-modificar
     CategoriasComponent,
     CategoriasRegistroComponent,
     LocalModificarComponent,
-    LocalEliminarComponent
+    LocalEliminarComponent,
+    CategoriasModificarComponent
   ],
   entryComponents: [
     LoginComponent,
     ComerciosRegistroComponent,
     CategoriasRegistroComponent,
-    LocalEliminarComponent
+    LocalEliminarComponent,
+    CategoriasModificarComponent
   ],
-  providers: [CommonAdapterService,
-    CategoriasComponent,
-    CategoriasRegistroComponent
+  providers: [CommonAdapterService
   ],
 })
 export class GreenLifeModule { }
