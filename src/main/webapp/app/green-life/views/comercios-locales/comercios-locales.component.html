@@ -1,5 +1,5 @@
 <div class="title-bar-config">
-    <div class="col-md-auto" *ngIf="comercio != null">
+    <div class="col-md-auto" *ngIf="comercio">
         <h1>
             <span class="title-bar-config-icon icon"><span class="iconImg"></span></span>
             Locales {{comercio.razonSocial}}
@@ -7,9 +7,12 @@
     </div>
 </div>
 
-<div class="container" *ngIf="locales != null">
+<div class="container" *ngIf="locales">
     <div class="row">
-        <div class="col mr-0">
+        <div class="col-md-auto p-0">
+            <button class="btn btnAdd" (click)="addLocal()"><i class="fa fa-plus"></i>Agregar local</button>
+        </div>
+        <div class="col p-0">
             <div class="map-container">
                 <agm-map
                     [latitude]="lat"
@@ -31,16 +34,14 @@
                 </agm-map>
             </div>
         </div>
-        <div class="col-md-6 info-section ml-0" *ngIf="currentLocal != null">
+        <div class="col-md-4 info-section ml-0" *ngIf="currentLocal">
             <h2 class="info-local-title">{{currentLocal.nombre}}</h2>
-            <hr class="mat-divider">
             <h5 class="info-local-subtitle"><i class="fa fa-phone"></i> {{currentLocal.telefono}}</h5>
             <h5 class="info-local-subtitle"><i class="fa fa-map-marker"></i> {{currentLocal.direccion}}</h5>
             <h5 class="info-local-subtitle"><i class="fa fa-clock-o"></i> {{currentLocal.horario}}</h5>
 
-            <button class="btn btnDelete">Eliminar</button>
-            <button class="btn btnModificar">Modificar</button>
-            <button class="btn btnAdd">Agregar</button>
+            <button class="btn btnDelete" data-toggle="modal" (click)="deleteLocal()">Eliminar</button>
+            <button class="btn btnModificar" (click)="editLocal()">Modificar</button>
         </div>
     </div>
 </div>

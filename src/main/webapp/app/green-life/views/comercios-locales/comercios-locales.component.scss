@@ -4,12 +4,15 @@
     background: url("../../../../content/images/localSymbolic.png") no-repeat center center;
 }
 
+.main-container {
+    margin: 0;
+}
+
 .title-bar-config {
     margin-bottom: 0;
 }
 
 .info-section {
-    border-radius: 6px;
     box-shadow:  0 1px 3px rgba(50,50,93,.11), 0 1px 3px rgba(0,0,0,.08);
 }
 
@@ -42,9 +45,14 @@ agm-info-window {
 
 // Info local styles
 .info-local-title {
-    color: $config-green-color;
+    color: white;
     font-weight: 700;
-    padding: 20px 0 0 0;
+    margin: 30px 0 35px 0;
+    padding: 15px 0;
+    background: #6AABAD;
+    text-align: center;
+    border-radius: 6px;
+    box-shadow:  0 1px 3px rgba(50,50,93,.11), 0 1px 3px rgba(0,0,0,.08);
 }
 
 .info-local-subtitle {
@@ -54,25 +62,26 @@ agm-info-window {
 
     .fa {
         padding: 0 10px 0 0;
-        color: $config-green-color;
+        color: $config-dark-gray-color;
     }
-}
-
-.mat-divider {
-    background: $config-green-color;
 }
 
 .btnAdd {
     color: #FFFFFF;
-    background: $config-green-color;
+    background: $config-dark-gray-color;
+    font-weight: 700;
     box-shadow:  0 1px 3px rgba(50,50,93,.11), 0 1px 3px rgba(0,0,0,.08);
     float: right;
-    margin: 50px 10px 0 0;
+    margin: 30px 0 0 0;
+
+    .fa {
+        padding: 0 10px 0 0;
+    }
 }
 
 .btnModificar {
     color: #FFFFFF;
-    background: $config-dark-gray-color;
+    background: $config-green-color;
     box-shadow:  0 1px 3px rgba(50,50,93,.11), 0 1px 3px rgba(0,0,0,.08);
     float: right;
     margin: 50px 10px 0 0;

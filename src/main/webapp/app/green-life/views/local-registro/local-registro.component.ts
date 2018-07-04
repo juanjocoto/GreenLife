@@ -1,24 +1,30 @@
-import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import {Component, OnInit} from '@angular/core';
+import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {HttpResponse} from '@angular/common/http';
-import {ActivatedRoute} from '@angular/router';
-import { MouseEvent } from '@agm/core';
-import { CommonAdapterService } from '../../shared/services/common-adapter.service';
+import {ActivatedRoute, Router} from '@angular/router';
+import {MouseEvent} from '@agm/core';
+import {CommonAdapterService} from '../../shared/services/common-adapter.service';
+import {CargaImagenesComponent} from '../../dialogos/carga-imagenes/carga-imagenes.component';
 import {Local, LocalService} from '../../../entities/local';
 import {Comercio, ComercioService} from '../../../entities/comercio';
 import {Fotografia, FotografiaService} from '../../../entities/fotografia';
+import {SERVER_API_URL} from '../../../app.constants';
+import {MatDialog} from '@angular/material';
 
 @Component({
-  selector: 'jhi-local-registro',
-  templateUrl: './local-registro.component.html',
-  styleUrls: [
-      'local-registro.component.scss'
-  ]
+    selector: 'jhi-local-registro',
+    templateUrl: './local-registro.component.html',
+    styleUrls: [
+        'local-registro.component.scss'
+    ]
 })
 export class LocalRegistroComponent implements OnInit {
 
     formLocales: FormGroup;
     comercio: Comercio;
+    newLocal: Local;
+    newFachada: Fotografia;
+    hostPath = SERVER_API_URL;
 
     // Google Maps default configuration
     zoom = 7.5;
@@ -31,81 +37,104 @@ export class LocalRegistroComponent implements OnInit {
         long: this.long
     };
 
-  constructor(
-      private formBuilder: FormBuilder,
-      private route: ActivatedRoute,
-      private commonAdapterService: CommonAdapterService,
-      private localService: LocalService,
-      private comercioService: ComercioService,
-      private fotografiaService: FotografiaService
-  ) { }
+    constructor(
+        private formBuilder: FormBuilder,
+        private route: ActivatedRoute,
+        private router: Router,
+        private commonAdapterService: CommonAdapterService,
+        private dialog: MatDialog,
+        private localService: LocalService,
+        private comercioService: ComercioService,
+        private fotografiaService: FotografiaService
+    ) {
+    }
 
-  ngOnInit() {
-      this.formLocales = this.formBuilder.group({
-          nombre: ['', [
-              Validators.required
-          ]],
-          telefono: ['', [
-              Validators.required,
-              Validators.minLength(8),
-              Validators.maxLength(8)
-          ]],
-          direccion: ['', [
-              Validators.required
-          ]],
-          horaApertura: ['', [
-              Validators.required
-          ]],
-          horaCierre: ['', [
-              Validators.required
-          ]]
-      });
+    ngOnInit() {
+        this.formLocales = this.formBuilder.group({
+            nombre: ['', [
+                Validators.required
+            ]],
+            telefono: ['', [
+                Validators.required,
+                Validators.minLength(8),
+                Validators.maxLength(8)
+            ]],
+            direccion: ['', [
+                Validators.required
+            ]],
+            horaApertura: ['', [
+                Validators.required
+            ]],
+            horaCierre: ['', [
+                Validators.required
+            ]]
+        });
 
-      this.route.params.subscribe((params) => {
-          this.loadComercio(params['comercioId']);
-      });
-  }
+        this.route.params.subscribe((params) => {
+            this.loadComercio(params['comercioId']);
+        });
 
-  createLocal() {
-      const newLocal = new Local();
+        this.newLocal = new Local();
+        this.newFachada = new Fotografia();
+    }
 
-      newLocal.nombre = this.formLocales.get('nombre').value;
-      newLocal.telefono = this.formLocales.get('telefono').value;
-      newLocal.direccion = this.formLocales.get('direccion').value;
-      newLocal.horario = this.formatHorario(
-          this.formLocales.get('horaApertura').value,
-          this.formLocales.get('horaCierre').value
-      );
-      newLocal.latitud = this.marker.lat;
-      newLocal.latitude = this.marker.long;
-      newLocal.comercioId = this.comercio.id;
-      newLocal.comercioRazonSocial = this.comercio.razonSocial;
+    createLocal() {
+        this.newLocal.nombre = this.formLocales.get('nombre').value;
+        this.newLocal.telefono = this.formLocales.get('telefono').value;
+        this.newLocal.direccion = this.formLocales.get('direccion').value;
+        this.newLocal.horario = this.formatHorario(
+            this.formLocales.get('horaApertura').value,
+            this.formLocales.get('horaCierre').value
+        );
+        this.newLocal.latitud = this.marker.lat;
+        this.newLocal.latitude = this.marker.long;
+        this.newLocal.comercioId = this.comercio.id;
+        this.newLocal.comercioRazonSocial = this.comercio.razonSocial;
 
-      if (this.formLocales.valid) {
-          newLocal.fechaCreacion = this.commonAdapterService.dateToJHILocalDate(new Date());
+        if (this.formLocales.valid) {
+            this.newLocal.fechaCreacion = this.commonAdapterService.dateToJHILocalDate(new Date());
 
-          this.localService.create(newLocal).subscribe((result) => {
-          });
+            this.localService.create(this.newLocal).subscribe((result) => {
+                this.formLocales.reset();
+                this.router.navigate(['app/comercios/' + this.comercio.id + '/locales']);
+            });
+        }
+    }
 
-          this.formLocales.reset();
-      }
-  }
+    private loadComercio(id) {
+        this.comercioService.find(id).subscribe((comercioResponse: HttpResponse<Comercio>) => {
+            this.comercio = comercioResponse.body;
+        });
+    }
 
-  private loadComercio(id) {
-      this.comercioService.find(id).subscribe((comercioResponse: HttpResponse<Comercio>) => {
-          this.comercio = comercioResponse.body;
-      });
-  }
+    private formatHorario(horaApertura: string, horaCierre: string): string {
+        return horaApertura + ' a ' + horaCierre;
+    }
 
-  private formatHorario(horaApertura: string, horaCierre: string): string {
-      return horaApertura + ' a ' + horaCierre;
-  }
+    cancel() {
+        this.formLocales.reset();
+        this.router.navigate(['app/comercios/' + this.comercio.id + '/locales']);
+    }
 
-  // Google Maps methods
-  markerDragEnd($event: MouseEvent) {
-      this.marker.lat = $event.coords.lat;
-      this.marker.long = $event.coords.lng;
-  }
+    openImageDialog() {
+        this.dialog.open(CargaImagenesComponent).afterClosed().subscribe((imageName: string) => {
+            if (imageName) {
+                this.newFachada.comercioId = this.comercio.id;
+                this.newFachada.urlImage = `/api/images/${imageName}`;
+
+                this.fotografiaService.create(this.newFachada).subscribe((httpResponse) => {
+                    this.newLocal.fachadaId = httpResponse.body.id;
+                    console.log(httpResponse.body);
+                });
+            }
+        });
+    }
+
+    // Google Maps methods
+    markerDragEnd($event: MouseEvent) {
+        this.marker.lat = $event.coords.lat;
+        this.marker.long = $event.coords.lng;
+    }
 
 }
 
