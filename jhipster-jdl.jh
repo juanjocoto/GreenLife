@@ -44,6 +44,7 @@ entity Comercio {
 	razonSocial String required maxlength(50)
 	nombreComercial String required maxlength(50)
     tipo TipoComercio
+    logoUrl String maxlength(500)
 }
 enum TipoComercio {
 	RESTAURANTE,
