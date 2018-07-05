@@ -1,25 +1,26 @@
 import {
-   MatAutocompleteModule,
-   MatButtonModule,
-   MatButtonToggleModule,
-   MatCardModule,
-   MatChipsModule,
-   MatDatepickerModule,
-   MatDialogModule,
-   MatFormFieldModule,
-   MatGridListModule,
-   MatIconModule,
-   MatInputModule,
-   MatListModule,
-   MatMenuModule,
-   MatNativeDateModule,
-   MatPaginatorModule,
-   MatSelectModule,
-   MatSnackBarModule,
-   MatSortModule,
-   MatTableModule,
-   MatTabsModule,
-   MatToolbarModule
+  MAT_DATE_LOCALE,
+  MatAutocompleteModule,
+  MatButtonModule,
+  MatButtonToggleModule,
+  MatCardModule,
+  MatChipsModule,
+  MatDatepickerModule,
+  MatDialogModule,
+  MatFormFieldModule,
+  MatGridListModule,
+  MatIconModule,
+  MatInputModule,
+  MatListModule,
+  MatMenuModule,
+  MatNativeDateModule,
+  MatPaginatorModule,
+  MatSelectModule,
+  MatSnackBarModule,
+  MatSortModule,
+  MatTableModule,
+  MatTabsModule,
+  MatToolbarModule
 } from '@angular/material';
 
 import { AgmCoreModule } from '@agm/core';
@@ -35,6 +36,7 @@ import { CommonAdapterService } from './shared/services/common-adapter.service';
 import { CommonModule } from '@angular/common';
 import { ConfirmacionDialogComponent } from './dialogos/confirmacion-dialog/confirmacion-dialog.component';
 import { ConvertidorFechaPipe } from './shared/pipes/convertidor-fecha.pipe';
+import { DummyComponent } from './views/dummy/dummy.component';
 import { FooterGreenlifeComponent } from './layout/footer-greenlife/footer-greenlife.component';
 import { LandingComponent } from './views/landing/landing.component';
 import { ListaComerciosComponent } from './fragments/lista-comercios/lista-comercios.component';
@@ -111,7 +113,8 @@ import { ValidadorNumeroDirective } from './shared/directives/validador-numero.d
     CargaImagenesComponent,
     ConfirmacionDialogComponent,
     LocalModificarComponent,
-    LocalEliminarComponent
+    LocalEliminarComponent,
+    DummyComponent
   ],
   entryComponents: [
     LoginComponent,
@@ -124,6 +127,7 @@ import { ValidadorNumeroDirective } from './shared/directives/validador-numero.d
   providers: [
     CommonAdapterService,
     CategoriasComponent,
+    { provide: MAT_DATE_LOCALE, useValue: 'es-CR' }
   ],
 })
 export class GreenLifeModule { }

@@ -1,6 +1,7 @@
 import { CategoriasComponent } from './views/categorias/categorias.component';
 import { ComercioEditarComponent } from './views/comercio-editar/comercio-editar.component';
 import { ComerciosProductosComponent } from './views/comercios-productos/comercios-productos.component';
+import { DummyComponent } from './views/dummy/dummy.component';
 import { LandingComponent } from './views/landing/landing.component';
 import { LocalRegistroComponent } from './views/local-registro/local-registro.component';
 import { Route } from '@angular/router';
@@ -16,5 +17,6 @@ export const greenLifeRoutes: Route[] = [
     { path: 'comercios/:comercioId/editar', component: ComercioEditarComponent },
     { path: 'modificar/:login', component: UsuarioModificarComponent },
     { path: 'comercios/:comercioId/locales', component: LocalRegistroComponent },
-    { path: 'comercios/:comercioId/categorias', component: CategoriasComponent}
+    { path: 'comercios/:comercioId/categorias', component: CategoriasComponent },
+    { path: 'dummy', component: DummyComponent }
 ];
