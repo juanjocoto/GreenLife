@@ -38,8 +38,6 @@ import { AgmCoreModule } from '@agm/core';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { BrowserModule } from '@angular/platform-browser';
 import { CargaImagenesComponent } from './dialogos/carga-imagenes/carga-imagenes.component';
-import { CategoriasComponent } from './views/categorias/categorias.component';
-import { CategoriasRegistroComponent } from './dialogos/categorias-registro/categorias-registro.component';
 import { ComercioEditarComponent } from './views/comercio-editar/comercio-editar.component';
 import { ComerciosProductosComponent } from './views/comercios-productos/comercios-productos.component';
 import { ComerciosRegistroComponent } from './dialogos/comercios-registro/comercios-registro.component';
@@ -66,6 +64,9 @@ import { UsuarioPerfilComponent } from './views/usuario-perfil/usuario-perfil.co
 import { UsuarioRegistroComponent } from './views/usuario-registro/usuario-registro.component';
 import { UsuarioRolesComponent } from './views/usuario-roles/usuario-roles.component';
 import { ValidadorNumeroDirective } from './shared/directives/validador-numero.directive';
+import { CategoriasComponent } from './views/categorias/categorias.component';
+import { CategoriasRegistroComponent } from './dialogos/categorias-registro/categorias-registro.component';
+import { ComerciosLocalesComponent } from './views/comercios-locales/comercios-locales.component';
 
 @NgModule({
   imports: [
@@ -136,7 +137,8 @@ import { ValidadorNumeroDirective } from './shared/directives/validador-numero.d
     CargaImagenesComponent,
     ConfirmacionDialogComponent,
     LocalModificarComponent,
-    LocalEliminarComponent
+    LocalEliminarComponent,
+    ComerciosLocalesComponent
   ],
   entryComponents: [
     LoginComponent,

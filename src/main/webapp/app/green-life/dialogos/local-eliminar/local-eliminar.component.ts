@@ -1,5 +1,6 @@
 import {Component, OnInit, Inject} from '@angular/core';
 import {HttpResponse} from '@angular/common/http';
+import {Router} from '@angular/router';
 import {Local, LocalService} from '../../../entities/local';
 import {MatDialogRef, MAT_DIALOG_DATA} from '@angular/material';
 
@@ -18,6 +19,7 @@ export class LocalEliminarComponent implements OnInit {
 
     constructor(
         private localService: LocalService,
+        private router: Router,
         public dialogRef: MatDialogRef<LocalEliminarComponent>,
         @Inject(MAT_DIALOG_DATA) public data: any
     ) {}
@@ -29,6 +31,9 @@ export class LocalEliminarComponent implements OnInit {
     deleteLocal() {
         this.localService.delete(this.local.id).subscribe((localResponse: HttpResponse<Local>) => {
             this.dialogRef.close();
+            this.router.navigateByUrl('/', {skipLocationChange: true}).then(() =>
+                this.router.navigate(['app/comercios/' + this.data.comercioId + '/locales'])
+            );
         });
     }
 
