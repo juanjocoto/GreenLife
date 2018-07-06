@@ -6,6 +6,7 @@ import { DiaEntrega } from '../../../entities/dia-entrega/dia-entrega.model';
 import { DiaEntregaService } from '../../../entities/dia-entrega/dia-entrega.service';
 import { Pedido } from '../../../entities/pedido';
 import { PedidoService } from '../../../entities/pedido/pedido.service';
+import { ProductoService } from './../../../entities/producto/producto.service';
 import { Suscripcion } from '../../../entities/suscripcion/suscripcion.model';
 
 @Component({
@@ -21,12 +22,18 @@ export class PedidoCrearDialogComponent implements OnInit {
 
   constructor(private accountService: AccountService,
     private pedidoService: PedidoService,
-    private diaEntregaService: DiaEntregaService
+    private diaEntregaService: DiaEntregaService,
+    private productoService: ProductoService
   ) { }
 
   ngOnInit() {
     this.diaEntregaService.getAll().subscribe((httpResponse) => {
       this.diasEntrega = httpResponse.body;
+    });
+
+    this.productoService.findByComercio(this.suscripcion.comercioId).subscribe((httpResponse) => {
+      const productos = httpResponse.body;
+      console.log(productos);
     });
   }
 
