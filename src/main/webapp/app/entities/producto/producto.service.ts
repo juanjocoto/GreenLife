@@ -35,6 +35,11 @@ export class ProductoService {
             .map((res: EntityResponseType) => this.convertResponse(res));
     }
 
+    findByComercio(id: number): Observable<HttpResponse<Producto[]>> {
+        return this.http.get<Producto[]>(`${this.resourceUrl}/comercio/${id}`, { observe: 'response'})
+            .map((res: HttpResponse<Producto[]>) => this.convertArrayResponse(res));
+    }
+
     query(req?: any): Observable<HttpResponse<Producto[]>> {
         const options = createRequestOption(req);
         return this.http.get<Producto[]>(this.resourceUrl, { params: options, observe: 'response' })
