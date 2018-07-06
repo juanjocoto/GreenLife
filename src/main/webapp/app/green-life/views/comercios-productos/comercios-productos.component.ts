@@ -1,8 +1,9 @@
 import { Component, AfterViewInit, ViewChild } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Producto, ProductoService } from '../../../entities/producto';
-import { MatPaginator, MatSort, MatTableDataSource } from '@angular/material';
+import { MatPaginator, MatSort, MatTableDataSource, MatDialog, MatSnackBar } from '@angular/material';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { ConfirmacionDialogComponent } from '../../dialogos/confirmacion-dialog/confirmacion-dialog.component';
 
 @Component({
   selector: 'jhi-comercios-productos',
@@ -11,17 +12,32 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 })
 export class ComerciosProductosComponent implements AfterViewInit {
 
-  displayedColumns = ['id', 'nombre', 'precio', 'delete'];
+  displayedColumns = ['nombre', 'precio', 'delete'];
   dataSource: MatTableDataSource<Producto> = new MatTableDataSource<Producto>([]);
+  formulario: FormGroup;
+  productoSeleccionado: Producto;
+  productoId = -1;
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
 
-  constructor(private route: ActivatedRoute, private productosService: ProductoService, private formBuilder: FormBuilder) {
-    this.route.params.subscribe((params) => {
-      this.productosService.findByComercio(params['comercioId']).subscribe((resul) => {
-        this.dataSource = new MatTableDataSource<Producto>(resul.body);
-      });
+  constructor(
+    private route: ActivatedRoute,
+    private productosService: ProductoService,
+    private formBuilder: FormBuilder,
+    private dialog: MatDialog,
+    private snackBar: MatSnackBar) {
+    this.obtenerProductos();
+    this.formulario = this.formBuilder.group({
+      nombre: ['', [
+        Validators.required,
+      ]],
+      descripcion: ['', [
+        Validators.required
+      ]],
+      precio: ['', [
+        Validators.required
+      ]]
     });
   }
 
@@ -31,8 +47,99 @@ export class ComerciosProductosComponent implements AfterViewInit {
   }
 
   applyFilter(filterValue: string) {
-    filterValue = filterValue.trim(); // Remove whitespace
-    filterValue = filterValue.toLowerCase(); // Datasource defaults to lowercase matches
+    filterValue = filterValue.trim();
+    filterValue = filterValue.toLowerCase();
     this.dataSource.filter = filterValue;
+  }
+
+  seleccionarProducto(producto) {
+    this.productoSeleccionado = producto;
+    this.productoId = producto.id;
+    this.formulario.patchValue({
+      nombre: producto.nombre,
+      descripcion: producto.descripcion,
+      precio: producto.precio,
+    });
+  }
+
+  agregarProducto() {
+    const ref = this.dialog.open(ConfirmacionDialogComponent);
+    ref.componentInstance.texto = `¿Desea agregar un nuevo producto?`;
+    ref.afterClosed().subscribe((result) => {
+      if (result) {
+        const productoNuevo: Producto = new Producto();
+        productoNuevo.nombre = this.formulario.controls['nombre'].value;
+        productoNuevo.descripcion = this.formulario.controls['descripcion'].value;
+        productoNuevo.precio = this.formulario.controls['precio'].value;
+        this.productosService.update(productoNuevo).subscribe((resul) => {
+          if (resul.status === 200) {
+            this.snackBar.open('El producto ha sido agregado', undefined, { duration: 2000 });
+            this.obtenerProductos();
+          } else {
+            this.snackBar.open('Se generó un error', undefined, { duration: 2000 });
+          }
+          this.cancelar();
+        });
+      }
+    });
+  }
+
+  obtenerProductos() {
+    this.route.params.subscribe((params) => {
+      this.productosService.findByComercio(params['comercioId']).subscribe((resul) => {
+        console.log(resul.body);
+        this.dataSource = new MatTableDataSource<Producto>(resul.body);
+      });
+    });
+  }
+
+  actualizarProducto() {
+    const ref = this.dialog.open(ConfirmacionDialogComponent);
+    ref.componentInstance.texto = `¿Desea actualizar el producto ${this.productoSeleccionado.nombre}?`;
+    ref.afterClosed().subscribe((result) => {
+      if (result) {
+        const productoNuevo = this.productoSeleccionado;
+        productoNuevo.nombre = this.formulario.controls['nombre'].value;
+        productoNuevo.descripcion = this.formulario.controls['descripcion'].value;
+        productoNuevo.precio = this.formulario.controls['precio'].value;
+        this.productosService.update(productoNuevo).subscribe((resul) => {
+          if (resul.status === 200) {
+            this.snackBar.open('El producto ha sido actualizado', undefined, { duration: 2000 });
+            this.obtenerProductos();
+          } else {
+            this.snackBar.open('Se generó un error', undefined, { duration: 2000 });
+          }
+          this.cancelar();
+        });
+      }
+    });
+  }
+
+  eliminarProducto(producto) {
+    const ref = this.dialog.open(ConfirmacionDialogComponent);
+    ref.componentInstance.texto = `¿Desea eliminar el producto ${producto.nombre}?`;
+    ref.afterClosed().subscribe((result) => {
+      if (result) {
+        this.productosService.delete(producto.id).subscribe((resul) => {
+          if (resul.status === 200) {
+            this.snackBar.open('El producto ha sido eliminado', undefined, { duration: 2000 });
+          } else {
+            this.snackBar.open('Se generó un error', undefined, { duration: 2000 });
+          }
+          this.obtenerProductos();
+          this.cancelar();
+        });
+      }
+    });
+  }
+
+  cancelar() {
+    this.productoSeleccionado = null;
+    this.productoId = -1;
+    this.formulario.patchValue({
+      nombre: '',
+      descripcion: '',
+      precio: '',
+    });
   }
 }
