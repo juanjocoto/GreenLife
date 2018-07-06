@@ -27,12 +27,33 @@ p {
     box-shadow:  0 1px 3px rgba(50,50,93,.11), 0 1px 3px rgba(0,0,0,.08);
 }
 
+.form-container {
+    padding-top: 30px;
+}
+
+mat-icon {
+    color: $config-green-color;
+}
+
 agm-map {
     height: 400px;
 }
 
 mat-form-field {
     width: 100%;
+}
+
+.logo-container {
+    width: 100%;
+}
+
+.logo-container img {
+    display: block;
+    max-width: 350px;
+    max-height: 250px;
+    height: auto;
+    width: auto;
+    margin: 0 auto;
 }
 
 .ng-invalid:not(form) {

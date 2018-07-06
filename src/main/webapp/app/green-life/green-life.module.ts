@@ -1,33 +1,43 @@
 import {
-   MatAutocompleteModule,
-   MatButtonModule,
-   MatButtonToggleModule,
-   MatCardModule,
-   MatChipsModule,
-   MatDatepickerModule,
-   MatDialogModule,
-   MatFormFieldModule,
-   MatGridListModule,
-   MatIconModule,
-   MatInputModule,
-   MatListModule,
-   MatMenuModule,
-   MatNativeDateModule,
-   MatPaginatorModule,
-   MatSelectModule,
-   MatSnackBarModule,
-   MatSortModule,
-   MatTableModule,
-   MatTabsModule,
-   MatToolbarModule
+  MatCheckboxModule,
+  MatDividerModule,
+  MatExpansionModule,
+  MatProgressBarModule,
+  MatProgressSpinnerModule,
+  MatRadioModule,
+  MatRippleModule,
+  MatSidenavModule,
+  MatSliderModule,
+  MatSlideToggleModule,
+  MatStepperModule,
+  MatTooltipModule,
+  MatAutocompleteModule,
+  MatButtonModule,
+  MatButtonToggleModule,
+  MatCardModule,
+  MatChipsModule,
+  MatDatepickerModule,
+  MatDialogModule,
+  MatFormFieldModule,
+  MatGridListModule,
+  MatIconModule,
+  MatInputModule,
+  MatListModule,
+  MatMenuModule,
+  MatNativeDateModule,
+  MatPaginatorModule,
+  MatSelectModule,
+  MatSnackBarModule,
+  MatSortModule,
+  MatTableModule,
+  MatTabsModule,
+  MatToolbarModule
 } from '@angular/material';
-
+import { CdkTableModule } from '@angular/cdk/table';
 import { AgmCoreModule } from '@agm/core';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { BrowserModule } from '@angular/platform-browser';
 import { CargaImagenesComponent } from './dialogos/carga-imagenes/carga-imagenes.component';
-import { CategoriasComponent } from './views/categorias/categorias.component';
-import { CategoriasRegistroComponent } from './dialogos/categorias-registro/categorias-registro.component';
 import { ComercioEditarComponent } from './views/comercio-editar/comercio-editar.component';
 import { ComerciosProductosComponent } from './views/comercios-productos/comercios-productos.component';
 import { ComerciosRegistroComponent } from './dialogos/comercios-registro/comercios-registro.component';
@@ -55,6 +65,9 @@ import { UsuarioRegistroComponent } from './views/usuario-registro/usuario-regis
 import { UsuarioRolesComponent } from './views/usuario-roles/usuario-roles.component';
 import { ValidadorNumeroDirective } from './shared/directives/validador-numero.directive';
 import { SuscripcionCrearComponent } from './views/suscripcion-crear/suscripcion-crear.component';
+import { CategoriasComponent } from './views/categorias/categorias.component';
+import { CategoriasRegistroComponent } from './dialogos/categorias-registro/categorias-registro.component';
+import { ComerciosLocalesComponent } from './views/comercios-locales/comercios-locales.component';
 
 @NgModule({
   imports: [
@@ -66,28 +79,41 @@ import { SuscripcionCrearComponent } from './views/suscripcion-crear/suscripcion
     AgmCoreModule.forRoot({
       apiKey: 'AIzaSyAKK8_ZbHnWx9CD9b4NZFGRKe8rMw83wmI'
     }),
-    MatMenuModule,
+    ReactiveFormsModule,
+    CdkTableModule,
+    MatAutocompleteModule,
     MatButtonModule,
     MatButtonToggleModule,
-    MatToolbarModule,
     MatCardModule,
-    MatGridListModule,
-    MatListModule,
-    MatFormFieldModule,
-    MatInputModule,
-    ReactiveFormsModule,
-    MatDatepickerModule,
-    MatNativeDateModule,
-    MatIconModule,
-    MatDialogModule,
-    MatPaginatorModule,
-    MatTableModule,
-    MatSortModule,
-    MatSelectModule,
-    MatTabsModule,
-    MatAutocompleteModule,
+    MatCheckboxModule,
     MatChipsModule,
-    MatSnackBarModule
+    MatStepperModule,
+    MatDatepickerModule,
+    MatDialogModule,
+    MatDividerModule,
+    MatExpansionModule,
+    MatGridListModule,
+    MatIconModule,
+    MatInputModule,
+    MatListModule,
+    MatMenuModule,
+    MatNativeDateModule,
+    MatPaginatorModule,
+    MatProgressBarModule,
+    MatProgressSpinnerModule,
+    MatRadioModule,
+    MatRippleModule,
+    MatSelectModule,
+    MatSidenavModule,
+    MatSliderModule,
+    MatSlideToggleModule,
+    MatSnackBarModule,
+    MatSortModule,
+    MatTableModule,
+    MatTabsModule,
+    MatToolbarModule,
+    MatTooltipModule,
+    MatFormFieldModule
   ],
   declarations: [
     LandingComponent,
@@ -113,6 +139,7 @@ import { SuscripcionCrearComponent } from './views/suscripcion-crear/suscripcion
     ConfirmacionDialogComponent,
     LocalModificarComponent,
     LocalEliminarComponent,
+    ComerciosLocalesComponent,
     SuscripcionCrearComponent
   ],
   entryComponents: [

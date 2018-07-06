@@ -25,7 +25,7 @@ export class LocalModificarComponent implements OnInit {
     horaCierre: string;
 
     // Google Maps default configuration
-    zoom = 16;
+    zoom = 11;
     // Default Latitude and Longitude (San Jose, Costa Rica)
     lat = 9.935354;
     long = -84.082753;
@@ -48,9 +48,8 @@ export class LocalModificarComponent implements OnInit {
     ngOnInit() {
         this.route.params.subscribe((params) => {
             this.loadComercio(params['comercioId']);
+            this.loadLocal(params['localId']);
         });
-
-        this.loadLocal(this.localId);
     }
 
     editLocal() {
@@ -71,6 +70,7 @@ export class LocalModificarComponent implements OnInit {
 
             this.localService.update(this.local).subscribe((result) => {
                 this.formLocales.reset();
+                this.router.navigate(['app/comercios/' + this.comercio.id + '/locales']);
             });
         }
     }
@@ -124,11 +124,17 @@ export class LocalModificarComponent implements OnInit {
         this.horaCierre = horario.substring(8, 13);
     }
 
+    cancel() {
+        this.formLocales.reset();
+        this.router.navigate(['app/comercios/' + this.comercio.id + '/locales']);
+    }
+
     // Google Maps methods
     markerDragEnd($event: MouseEvent) {
         this.marker.lat = $event.coords.lat;
         this.marker.long = $event.coords.lng;
     }
+
 }
 
 // Google Maps marker interface

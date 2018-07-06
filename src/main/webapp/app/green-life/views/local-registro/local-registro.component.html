@@ -1,15 +1,15 @@
 <div class="title-bar-config">
-    <div class="col-md-auto">
+    <div class="col-md-auto" *ngIf="comercio">
         <h1>
             <span class="title-bar-config-icon icon"><span class="iconImg"></span></span>
-            Locales del comercio
+            Locales {{comercio.razonSocial}}
         </h1>
     </div>
 </div>
 
 <div class="container">
     <div class="row config-section">
-        <div class="col pr-md-5">
+        <div class="col-md-5">
             <h3>Locales</h3>
             <mat-tab-group class="tab-container">
                 <mat-tab label="Mapa de locales">
@@ -29,8 +29,15 @@
                 </mat-tab>
             </mat-tab-group>
         </div>
-        <div class="col">
+        <div class="col-md-6 ml-5">
             <h3>Información del local</h3>
+            <div class="logo-container">
+                <img *ngIf="comercio && newLocal.fachadaId" [src]="hostPath + newFachada.urlImage" alt="">
+                <img *ngIf="!(newLocal && newLocal.fachadaId)" src="http://s1.iconbird.com/ico/0912/MetroUIDock/w512h5121347464853ImageGoogleDocs.png" alt="">
+            </div>
+            <button mat-icon-button (click)="openImageDialog()">
+                <mat-icon>edit</mat-icon>
+            </button>
             <div class="form-container">
                 <form [formGroup]="formLocales">
                     <mat-form-field>
@@ -61,7 +68,7 @@
                     </mat-form-field>
                     <button class="btn btnPrimary" (click)="createLocal()">Crear</button>
                 </form>
-                <button class="btn btnSecondary" (click)="this.formLocales.reset()">Cancelar</button>
+                <button class="btn btnSecondary" (click)="cancel()">Cancelar</button>
             </div>
         </div>
     </div>
