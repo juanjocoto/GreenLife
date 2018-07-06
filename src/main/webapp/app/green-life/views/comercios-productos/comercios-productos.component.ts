@@ -1,7 +1,7 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, AfterViewInit, ViewChild } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Producto, ProductoService } from '../../../entities/producto';
-import { MatPaginator, MatTableDataSource } from '@angular/material';
+import { MatPaginator, MatSort, MatTableDataSource } from '@angular/material';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 @Component({
@@ -9,57 +9,30 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
   templateUrl: './comercios-productos.component.html',
   styleUrls: ['comercios-productos.component.scss']
 })
-export class ComerciosProductosComponent implements OnInit {
-
-  @ViewChild(MatPaginator) paginator: MatPaginator;
+export class ComerciosProductosComponent implements AfterViewInit {
 
   displayedColumns = ['id', 'nombre', 'precio', 'delete'];
-  dataSource;
-  selectedRowIndex = -1;
-  productoSeleccionado = {nombre: '', descripcion: '', precio: ''};
-  formulario: FormGroup;
+  dataSource: MatTableDataSource<Producto> = new MatTableDataSource<Producto>([]);
+
+  @ViewChild(MatPaginator) paginator: MatPaginator;
+  @ViewChild(MatSort) sort: MatSort;
 
   constructor(private route: ActivatedRoute, private productosService: ProductoService, private formBuilder: FormBuilder) {
-    this.getProductos();
-  }
-
-  ngOnInit() {
-    this.formulario = this.formBuilder.group({
-      nombre: ['', [
-        Validators.required,
-      ]],
-      descripcion: ['', [
-        Validators.required
-      ]],
-      precio: ['', [
-        Validators.required
-      ]]
-    });
-
-  }
-
-  getProductos() {
     this.route.params.subscribe((params) => {
-      this.productosService.findByComercio(params['comercioId']).subscribe((productos) => {
-        console.log(productos.body);
-        this.dataSource = new MatTableDataSource(productos.body);
-        this.dataSource.paginator = this.paginator;
+      this.productosService.findByComercio(params['comercioId']).subscribe((resul) => {
+        this.dataSource = new MatTableDataSource<Producto>(resul.body);
       });
     });
   }
 
-  selectRow(row) {
-      this.selectedRowIndex = row.id;
-      this.productoSeleccionado = row;
+  ngAfterViewInit() {
+    this.dataSource.paginator = this.paginator;
+    this.dataSource.sort = this.sort;
   }
 
-  delete(row) {
-      console.log(row);
+  applyFilter(filterValue: string) {
+    filterValue = filterValue.trim(); // Remove whitespace
+    filterValue = filterValue.toLowerCase(); // Datasource defaults to lowercase matches
+    this.dataSource.filter = filterValue;
   }
-
-  cancelar() {
-    this.productoSeleccionado = {nombre: '', descripcion: '', precio: ''};
-    this.selectedRowIndex = -1;
-  }
-
 }

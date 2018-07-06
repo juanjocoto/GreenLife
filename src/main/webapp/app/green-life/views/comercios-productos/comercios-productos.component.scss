@@ -1,19 +1,23 @@
 .iconImg {
     background: url("../../../../content/images/productosLocales.png") no-repeat center center;
 }
-.delete {
-    cursor: pointer;
+.example-container {
+    display: flex;
+    flex-direction: column;
+    min-width: 300px;
 }
-.highlight{
-    background-color: #e6e9ea;
-    font-weight: bold;
+
+.example-header {
+    min-height: 64px;
+    padding: 8px 24px 0;
 }
-mat-form-field {
+
+.mat-form-field {
+    font-size: 14px;
     width: 100%;
 }
-.ng-invalid:not(form) {
-    border-left: 0px solid red;
-}
-form {
-    padding-bottom: 30px;
+
+.mat-table {
+    overflow: auto;
+    max-height: 500px;
 }
