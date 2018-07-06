@@ -6,6 +6,7 @@ import { DiaEntrega } from '../../../entities/dia-entrega/dia-entrega.model';
 import { DiaEntregaService } from '../../../entities/dia-entrega/dia-entrega.service';
 import { Pedido } from '../../../entities/pedido';
 import { PedidoService } from '../../../entities/pedido/pedido.service';
+import { Suscripcion } from '../../../entities/suscripcion/suscripcion.model';
 
 @Component({
   selector: 'jhi-pedido-crear-dialog',
@@ -14,7 +15,7 @@ import { PedidoService } from '../../../entities/pedido/pedido.service';
 })
 export class PedidoCrearDialogComponent implements OnInit {
 
-  @Input() comercio: Comercio;
+  @Input() suscripcion: Suscripcion;
 
   diasEntrega: DiaEntrega[];
 
@@ -32,8 +33,11 @@ export class PedidoCrearDialogComponent implements OnInit {
   crear() {
     this.accountService.get().subscribe((httpResponse) => {
       const pedido = new Pedido();
-      pedido.diasEntregaId = undefined;
       pedido.localId = undefined;
+      pedido.suscripcionId = this.suscripcion.id;
+      pedido.lineas = [];
+      pedido.localId = undefined;
+      pedido.diasEntregaId = 0;
       // pedido.
       console.log(httpResponse.body);
 

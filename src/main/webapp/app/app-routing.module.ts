@@ -1,11 +1,11 @@
 import { Route, RouterModule } from '@angular/router';
 import { errorRoute, navbarRoute } from './layouts';
 
+import { AuthGuard } from './green-life/shared/guards/auth.guard';
 import { DEBUG_INFO_ENABLED } from './app.constants';
 import { NgModule } from '@angular/core';
 import { RootComponent } from './green-life/root/root.component';
 import { greenLifeRoutes } from './green-life/green-life.routes';
-import { AuthGuard } from './green-life/shared/guards/auth.guard';
 
 const LAYOUT_ROUTES: Route[] = [
     { path: '', redirectTo: 'app', pathMatch: 'full' },
@@ -13,7 +13,7 @@ const LAYOUT_ROUTES: Route[] = [
         path: 'app',
         component: RootComponent,
         children: greenLifeRoutes,
-        canActivate: [ AuthGuard ],
+        // canActivate: [ AuthGuard ],
         canActivateChild: [ AuthGuard ]
     },
     navbarRoute,
