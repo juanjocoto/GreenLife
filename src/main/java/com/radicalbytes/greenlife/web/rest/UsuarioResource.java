@@ -77,9 +77,7 @@ public class UsuarioResource {
      */
     @PostMapping("/usuarios")
     @Timed
-    @Secured(AuthoritiesConstants.ANONYMOUS)
-    public ResponseEntity<UsuarioDTO> createUsuario(@Valid @RequestBody UsuarioDTO usuarioDTO)
-            throws URISyntaxException {
+    public ResponseEntity<UsuarioDTO> createUsuario(@RequestBody UsuarioDTO usuarioDTO) throws URISyntaxException {
         log.debug("REST request to save Usuario : {}", usuarioDTO);
         if (usuarioDTO.getId() != null) {
             throw new BadRequestAlertException("A new usuario cannot already have an ID", ENTITY_NAME, "idexists");
@@ -104,8 +102,7 @@ public class UsuarioResource {
      */
     @PutMapping("/usuarios")
     @Timed
-    public ResponseEntity<UsuarioDTO> updateUsuario(@Valid @RequestBody UsuarioDTO usuarioDTO)
-            throws URISyntaxException {
+    public ResponseEntity<UsuarioDTO> updateUsuario(@RequestBody UsuarioDTO usuarioDTO) throws URISyntaxException {
         log.debug("REST request to update Usuario : {}", usuarioDTO);
         if (usuarioDTO.getId() == null) {
             return createUsuario(usuarioDTO);
