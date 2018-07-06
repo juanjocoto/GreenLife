@@ -174,14 +174,12 @@ entity CobroMensualidad {
 }
 
 relationship OneToOne {
-    // Usuario{foto} to Fotografia,
     Usuario{userDetail} to User,
     Local{fachada} to Fotografia,
     CadenaEntrega{previo} to CadenaEntrega,
     CadenaOrdenRecoleccion{previo} to CadenaOrdenRecoleccion,
     CobroMensualidad{pago} to Pago,
-    CobroSuscripcion{pago} to Pago,
-    Pedido{lineas} to LineaProducto
+    CobroSuscripcion{pago} to Pago
 }
 relationship ManyToOne {
     ResenaCliente{cliente} to Usuario,
@@ -196,31 +194,33 @@ relationship ManyToOne {
     LineaEntrega{producto} to Producto
 }
 relationship OneToMany {
+    Entrega{cadena} to CadenaEntrega,
+    Entrega{lineas} to LineaEntrega,
+    Evento{fotos} to Fotografia,
+    CentroAcopio{fotos} to Fotografia,
     Comercio{resenasClientes} to ResenaCliente,
     Comercio{resenasPropias} to ResenaComercio,
     Comercio{productos(nombre)} to Producto,
     Comercio{locales(nombre)} to Local{comercio(razonSocial)},
     Comercio{suscriptores} to Suscripcion,
     Comercio{fotos} to Fotografia,
+    Comercio{contratos} to Contrato,
     Usuario{resenasComercio} to ResenaComercio,
     Usuario{suscripciones} to Suscripcion,
     Usuario{solicitudesRecoleccion} to OrdenRecoleccion{solicitante},
     Usuario{ordenes} to OrdenRecoleccion{recolector},
-    Suscripcion{pedidos} to Pedido,
     Usuario{publicaciones} to Publicacion,
     Usuario{comentarios} to ComentarioPublicacion,
     Usuario{comercios(razonSocial)} to Comercio{dueno},
+    OrdenRecoleccion{estado} to CadenaOrdenRecoleccion,
     Publicacion{comentarios} to ComentarioPublicacion,
-    Evento{fotos} to Fotografia,
-    CentroAcopio{fotos} to Fotografia,
     Patrocinador{fotos} to Fotografia,
     Publicacion{fotos} to Fotografia,
     Producto{fotos} to Fotografia,
-    Entrega{cadena} to CadenaEntrega,
-    Entrega{lineas} to LineaEntrega,
     Pedido{entregas} to Entrega,
-    OrdenRecoleccion{estado} to CadenaOrdenRecoleccion,
-    Comercio{contratos} to Contrato,
+    Pedido{lineas} to LineaProducto,
+    Pedido{lineas} to LineaProducto,
+    Suscripcion{pedidos} to Pedido,
     Suscripcion{historicoEntregas} to Entrega
 }
 relationship ManyToMany {

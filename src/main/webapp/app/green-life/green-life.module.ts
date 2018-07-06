@@ -150,7 +150,8 @@ import { ValidadorNumeroDirective } from './shared/directives/validador-numero.d
     CategoriasRegistroComponent,
     CargaImagenesComponent,
     ConfirmacionDialogComponent,
-    LocalEliminarComponent
+    LocalEliminarComponent,
+    PedidoCrearDialogComponent
   ],
   providers: [
     CommonAdapterService,
