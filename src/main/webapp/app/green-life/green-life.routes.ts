@@ -20,7 +20,7 @@ export const greenLifeRoutes: Route[] = [
     { path: 'comercios/:comercioId/locales', component: ComerciosLocalesComponent },
     { path: 'comercios/:comercioId/local/agregar', component: LocalRegistroComponent },
     { path: 'comercios/:comercioId/local/editar/:localId', component: LocalModificarComponent },
-    { path: 'comercios/:comercioId/categorias', component: CategoriasComponent}
+    { path: 'comercios/:comercioId/categorias', component: CategoriasComponent},
     { path: 'comercios/:comercioId/locales', component: LocalRegistroComponent },
     { path: 'comercios/:comercioId/productos', component: ComerciosProductosComponent },
     { path: 'modificar/:login', component: UsuarioModificarComponent },
