@@ -9,6 +9,7 @@ import { GreenlifeTestModule } from '../../../test.module';
 import { LineaProductoDialogComponent } from '../../../../../../main/webapp/app/entities/linea-producto/linea-producto-dialog.component';
 import { LineaProductoService } from '../../../../../../main/webapp/app/entities/linea-producto/linea-producto.service';
 import { LineaProducto } from '../../../../../../main/webapp/app/entities/linea-producto/linea-producto.model';
+import { PedidoService } from '../../../../../../main/webapp/app/entities/pedido';
 import { ProductoService } from '../../../../../../main/webapp/app/entities/producto';
 
 describe('Component Tests', () => {
@@ -25,6 +26,7 @@ describe('Component Tests', () => {
                 imports: [GreenlifeTestModule],
                 declarations: [LineaProductoDialogComponent],
                 providers: [
+                    PedidoService,
                     ProductoService,
                     LineaProductoService
                 ]

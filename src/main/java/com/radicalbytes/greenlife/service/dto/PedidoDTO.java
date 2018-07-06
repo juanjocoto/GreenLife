@@ -18,8 +18,6 @@ public class PedidoDTO implements Serializable {
 
     private Long suscripcionId;
 
-    private Long lineasId;
-
     private Long diasEntregaId;
 
     private String diasEntregaNombre;
@@ -50,14 +48,6 @@ public class PedidoDTO implements Serializable {
 
     public void setSuscripcionId(Long suscripcionId) {
         this.suscripcionId = suscripcionId;
-    }
-
-    public Long getLineasId() {
-        return lineasId;
-    }
-
-    public void setLineasId(Long lineaProductoId) {
-        this.lineasId = lineaProductoId;
     }
 
     public Long getDiasEntregaId() {

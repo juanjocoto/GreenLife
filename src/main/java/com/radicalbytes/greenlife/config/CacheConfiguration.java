@@ -104,6 +104,7 @@ public class CacheConfiguration {
             cm.createCache(com.radicalbytes.greenlife.domain.Usuario.class.getName() + ".ordenes", jcacheConfiguration);
             cm.createCache(com.radicalbytes.greenlife.domain.Usuario.class.getName() + ".comercios", jcacheConfiguration);
             cm.createCache(com.radicalbytes.greenlife.domain.Usuario.class.getName() + ".resenasComercios", jcacheConfiguration);
+            cm.createCache(com.radicalbytes.greenlife.domain.Pedido.class.getName() + ".lineas", jcacheConfiguration);
             // jhipster-needle-ehcache-add-entry
         };
     }

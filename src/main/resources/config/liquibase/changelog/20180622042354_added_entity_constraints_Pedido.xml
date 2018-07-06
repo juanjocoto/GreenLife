@@ -14,12 +14,6 @@
                                  referencedColumnNames="id"
                                  referencedTableName="suscripcion"/>
 
-        <addForeignKeyConstraint baseColumnNames="lineas_id"
-                                 baseTableName="pedido"
-                                 constraintName="fk_pedido_lineas_id"
-                                 referencedColumnNames="id"
-                                 referencedTableName="linea_producto"/>
-
         <addForeignKeyConstraint baseColumnNames="dias_entrega_id"
                                  baseTableName="pedido"
                                  constraintName="fk_pedido_dias_entrega_id"

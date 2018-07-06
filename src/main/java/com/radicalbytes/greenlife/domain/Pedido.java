@@ -35,14 +35,15 @@ public class Pedido implements Serializable {
     @ManyToOne
     private Suscripcion suscripcion;
 
-    @OneToOne
-    @JoinColumn(unique = true)
-    private LineaProducto lineas;
-
     @OneToMany(mappedBy = "pedido")
     @JsonIgnore
     @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
     private Set<Entrega> entregases = new HashSet<>();
+
+    @OneToMany(mappedBy = "pedido")
+    @JsonIgnore
+    @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
+    private Set<LineaProducto> lineas = new HashSet<>();
 
     @ManyToOne
     private DiaEntrega diasEntrega;
@@ -85,19 +86,6 @@ public class Pedido implements Serializable {
         this.suscripcion = suscripcion;
     }
 
-    public LineaProducto getLineas() {
-        return lineas;
-    }
-
-    public Pedido lineas(LineaProducto lineaProducto) {
-        this.lineas = lineaProducto;
-        return this;
-    }
-
-    public void setLineas(LineaProducto lineaProducto) {
-        this.lineas = lineaProducto;
-    }
-
     public Set<Entrega> getEntregases() {
         return entregases;
     }
@@ -121,6 +109,31 @@ public class Pedido implements Serializable {
 
     public void setEntregases(Set<Entrega> entregas) {
         this.entregases = entregas;
+    }
+
+    public Set<LineaProducto> getLineas() {
+        return lineas;
+    }
+
+    public Pedido lineas(Set<LineaProducto> lineaProductos) {
+        this.lineas = lineaProductos;
+        return this;
+    }
+
+    public Pedido addLineas(LineaProducto lineaProducto) {
+        this.lineas.add(lineaProducto);
+        lineaProducto.setPedido(this);
+        return this;
+    }
+
+    public Pedido removeLineas(LineaProducto lineaProducto) {
+        this.lineas.remove(lineaProducto);
+        lineaProducto.setPedido(null);
+        return this;
+    }
+
+    public void setLineas(Set<LineaProducto> lineaProductos) {
+        this.lineas = lineaProductos;
     }
 
     public DiaEntrega getDiasEntrega() {

@@ -219,7 +219,6 @@ relationship OneToMany {
     Producto{fotos} to Fotografia,
     Pedido{entregas} to Entrega,
     Pedido{lineas} to LineaProducto,
-    Pedido{lineas} to LineaProducto,
     Suscripcion{pedidos} to Pedido,
     Suscripcion{historicoEntregas} to Entrega
 }

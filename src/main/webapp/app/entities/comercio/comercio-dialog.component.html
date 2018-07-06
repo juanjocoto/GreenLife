@@ -43,7 +43,7 @@
                 </small>
                 <small class="form-text text-danger"
                    [hidden]="!editForm.controls.cedJuridica?.errors?.maxlength">
-                    Este campo no puede contener mas de 10 caracteres.
+                   Este campo no puede contener mas de 10 caracteres.
                 </small>
             </div>
         </div>
@@ -58,7 +58,7 @@
                 </small>
                 <small class="form-text text-danger"
                    [hidden]="!editForm.controls.razonSocial?.errors?.maxlength">
-                    Este campo no puede contener mas de 50 caracteres.
+                   Este campo no puede contener mas de 50 caracteres.
                 </small>
             </div>
         </div>
@@ -73,7 +73,7 @@
                 </small>
                 <small class="form-text text-danger"
                    [hidden]="!editForm.controls.nombreComercial?.errors?.maxlength">
-                    Este campo no puede contener meas de 50 caracteres.
+                   Este campo no puede contener meas de 50 caracteres.
                 </small>
             </div>
         </div>
@@ -83,6 +83,17 @@
                 <option value="RESTAURANTE">RESTAURANTE</option>
                 <option value="TIENDA">TIENDA</option>
             </select>
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" for="field_logoUrl">Logo Url</label>
+            <input type="text" class="form-control" name="logoUrl" id="field_logoUrl"
+                [(ngModel)]="comercio.logoUrl" maxlength="500"/>
+            <div [hidden]="!(editForm.controls.logoUrl?.dirty && editForm.controls.logoUrl?.invalid)">
+                <small class="form-text text-danger"
+                   [hidden]="!editForm.controls.logoUrl?.errors?.maxlength">
+                   Este campo no puede ser mas grande de 500 caracteres.
+                </small>
+            </div>
         </div>
 
         <div class="form-group">

@@ -16,6 +16,8 @@ public class LineaProductoDTO implements Serializable {
     @NotNull
     private Integer cantidad;
 
+    private Long pedidoId;
+
     private Long productoId;
 
     public Long getId() {
@@ -32,6 +34,14 @@ public class LineaProductoDTO implements Serializable {
 
     public void setCantidad(Integer cantidad) {
         this.cantidad = cantidad;
+    }
+
+    public Long getPedidoId() {
+        return pedidoId;
+    }
+
+    public void setPedidoId(Long pedidoId) {
+        this.pedidoId = pedidoId;
     }
 
     public Long getProductoId() {
