@@ -13,10 +13,10 @@ export const greenLifeRoutes: Route[] = [
     { path: '', component: LandingComponent },
     { path: 'registrarse', component: UsuarioRegistroComponent },
     { path: 'usuario/:login', component: UsuarioPerfilComponent },
+    { path: 'usuario/:login/editar', component: UsuarioModificarComponent },
     { path: 'comercios/:comercioId/productos', component: ComerciosProductosComponent },
     { path: 'comercios/:comercioId/editar', component: ComercioEditarComponent },
-    { path: 'modificar/:login', component: UsuarioModificarComponent },
     { path: 'comercios/:comercioId/locales', component: LocalRegistroComponent },
     { path: 'comercios/:comercioId/categorias', component: CategoriasComponent },
-    { path: 'dummy', component: DummyComponent }
+    { path: 'dummy', component: DummyComponent },
 ];
