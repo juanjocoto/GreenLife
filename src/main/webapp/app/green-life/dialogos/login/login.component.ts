@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-
+import { MatDialog } from '@angular/material';
 import { LoginService } from '../../../shared';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'jhi-login',
@@ -14,7 +15,7 @@ export class LoginComponent implements OnInit {
   msgError = 'Error al ingresar al sistema, verifique sus datos nuevamente';
   formulario: FormGroup;
 
-  constructor(private loginService: LoginService, private formBuilder: FormBuilder) { }
+  constructor(private dialog: MatDialog, private loginService: LoginService, private formBuilder: FormBuilder, private route: Router) { }
 
   ngOnInit() {
     this.formulario = this.formBuilder.group({
@@ -34,6 +35,7 @@ export class LoginComponent implements OnInit {
       rememberMe: false
     }).then(() => {
       this.isValid = true;
+      this.dialog.closeAll();
     }).catch(() => {
       this.isValid = false;
     });

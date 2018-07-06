@@ -1,3 +1,59 @@
-<p>
-  comercios-productos works!
-</p>
+<div class="row title-bar-config">
+  <div class="col-md-8">
+      <h1>
+          <span class="title-bar-config-icon icon"><span class="iconImg"></span></span>
+          Productos del Comercio
+      </h1>
+  </div>
+</div>
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-6">
+            <div class="producto-header">
+                <mat-form-field>
+                    <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Filter">
+                </mat-form-field>
+            </div>
+            <div class="producto-container mat-elevation-z8">
+                <mat-table [dataSource]="dataSource" matSort>
+
+                    <ng-container matColumnDef="nombre">
+                        <mat-header-cell *matHeaderCellDef mat-sort-header> Nombre </mat-header-cell>
+                        <mat-cell *matCellDef="let row"> {{row.nombre}} </mat-cell>
+                    </ng-container>
+
+                    <ng-container matColumnDef="precio">
+                        <mat-header-cell *matHeaderCellDef mat-sort-header> Precio </mat-header-cell>
+                        <mat-cell *matCellDef="let row"> {{row.precio}} </mat-cell>
+                    </ng-container>
+
+                    <ng-container matColumnDef="delete">
+                        <mat-header-cell *matHeaderCellDef mat-sort-header><i class="material-icons">delete_outline</i></mat-header-cell>
+                        <mat-cell *matCellDef="let row"><i class="material-icons delete" (click)="eliminarProducto(row)">delete_outline</i></mat-cell>
+                    </ng-container>
+
+                    <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+                    <mat-row *matRowDef="let row; columns: displayedColumns;" (click)="seleccionarProducto(row)" [ngClass]="{'highlight': productoId == row.id }"></mat-row>
+                </mat-table>
+                <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]"></mat-paginator>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <h1 class="sub-title">Producto</h1>
+            <form [formGroup]="formulario">
+                <mat-form-field>
+                    <input matInput placeholder="Nombre" formControlName="nombre">
+                </mat-form-field>
+                <mat-form-field>
+                    <input matInput placeholder="Descripción" formControlName="descripcion">
+                </mat-form-field>
+                <mat-form-field>
+                    <input matInput placeholder="Precio" formControlName="precio">
+                </mat-form-field>
+                <button type="button" class="btn btn-secondary" id="btnCancelar" (click)="cancelar()">Cancelar</button>
+                <button type="submit" class="btn btn-success" id="btnAgregar" [disabled]="!formulario.valid ||  productoId !== -1" (click)="agregarProducto()">Agregar</button>
+                <button type="submit" class="btn btn-success" (click)="actualizarProducto()" [disabled]="!formulario.valid ||  productoId == -1">Guardar</button>
+            </form>
+        </div>
+    </div>
+</div>
