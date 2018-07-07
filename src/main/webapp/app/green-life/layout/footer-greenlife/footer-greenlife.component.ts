@@ -11,7 +11,7 @@ import { AccountService } from '../../../shared';
 })
 export class FooterGreenlifeComponent implements OnInit {
 
-  configuracion = false;
+  configuracion = true;
 
   constructor(private router: Router ) { }
 

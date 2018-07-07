@@ -12,8 +12,8 @@ import { LoginComponent } from '../../dialogos/login/login.component';
 export class NavbarGreenlifeComponent implements OnInit {
 
   collapse = false;
-  configuracion = false;
-  isAuth = false;
+  configuracion = true;
+  isAuth = true;
 
   constructor(private dialog: MatDialog, private router: Router, private loginService: LoginService, private auth: AccountService) { }
 
