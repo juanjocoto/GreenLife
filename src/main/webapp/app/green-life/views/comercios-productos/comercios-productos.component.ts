@@ -4,6 +4,7 @@ import { Producto, ProductoService } from '../../../entities/producto';
 import { MatPaginator, MatSort, MatTableDataSource, MatDialog, MatSnackBar } from '@angular/material';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ConfirmacionDialogComponent } from '../../dialogos/confirmacion-dialog/confirmacion-dialog.component';
+import { CommonAdapterService } from '../../shared/services/common-adapter.service';
 
 @Component({
   selector: 'jhi-comercios-productos',
@@ -26,7 +27,8 @@ export class ComerciosProductosComponent implements AfterViewInit {
     private productosService: ProductoService,
     private formBuilder: FormBuilder,
     private dialog: MatDialog,
-    private snackBar: MatSnackBar) {
+    private snackBar: MatSnackBar,
+    private commonAdapter: CommonAdapterService) {
     this.obtenerProductos();
     this.formulario = this.formBuilder.group({
       nombre: ['', [
@@ -87,7 +89,6 @@ export class ComerciosProductosComponent implements AfterViewInit {
   obtenerProductos() {
     this.route.params.subscribe((params) => {
       this.productosService.findByComercio(params['comercioId']).subscribe((resul) => {
-        console.log(resul.body);
         this.dataSource = new MatTableDataSource<Producto>(resul.body);
       });
     });
@@ -102,6 +103,7 @@ export class ComerciosProductosComponent implements AfterViewInit {
         productoNuevo.nombre = this.formulario.controls['nombre'].value;
         productoNuevo.descripcion = this.formulario.controls['descripcion'].value;
         productoNuevo.precio = this.formulario.controls['precio'].value;
+        productoNuevo.fechaCreacion = this.commonAdapter.dateToJHILocalDate(this.productoSeleccionado.fechaCreacion);
         this.productosService.update(productoNuevo).subscribe((resul) => {
           if (resul.status === 200) {
             this.snackBar.open('El producto ha sido actualizado', undefined, { duration: 2000 });

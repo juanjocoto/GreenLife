@@ -1,20 +1,16 @@
-import { Route, RouterModule } from '@angular/router';
-import { errorRoute, navbarRoute } from './layouts';
-
-import { DEBUG_INFO_ENABLED } from './app.constants';
 import { NgModule } from '@angular/core';
-import { RootComponent } from './green-life/root/root.component';
+import { Route, RouterModule } from '@angular/router';
 import { greenLifeRoutes } from './green-life/green-life.routes';
+import { RootComponent } from './green-life/root/root.component';
 import { AuthGuard } from './green-life/shared/guards/auth.guard';
+import { errorRoute, navbarRoute } from './layouts';
 
 const LAYOUT_ROUTES: Route[] = [
     { path: '', redirectTo: 'app', pathMatch: 'full' },
     {
         path: 'app',
         component: RootComponent,
-        children: greenLifeRoutes,
-        canActivate: [ AuthGuard ],
-        canActivateChild: [ AuthGuard ]
+        children: greenLifeRoutes
     },
     navbarRoute,
     ...errorRoute
