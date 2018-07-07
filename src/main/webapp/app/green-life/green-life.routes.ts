@@ -9,6 +9,7 @@ import { UsuarioRegistroComponent } from './views/usuario-registro/usuario-regis
 import {ComerciosLocalesComponent} from './views/comercios-locales/comercios-locales.component';
 import {LocalRegistroComponent} from './views/local-registro/local-registro.component';
 import {LocalModificarComponent} from './views/local-modificar/local-modificar.component';
+import {SuscripcionCrearComponent} from './views/suscripcion-crear/suscripcion-crear.component';
 
 export const greenLifeRoutes: Route[] = [
     { path: '', component: LandingComponent },
@@ -24,4 +25,5 @@ export const greenLifeRoutes: Route[] = [
     { path: 'comercios/:comercioId/locales', component: LocalRegistroComponent },
     { path: 'comercios/:comercioId/productos', component: ComerciosProductosComponent },
     { path: 'modificar/:login', component: UsuarioModificarComponent },
+    { path: 'cliente/:login/suscripcion/comercio/:comercioId', component: SuscripcionCrearComponent }
 ];
