@@ -12,14 +12,14 @@ import { UsuarioPerfilComponent } from './views/usuario-perfil/usuario-perfil.co
 import { UsuarioRegistroComponent } from './views/usuario-registro/usuario-registro.component';
 
 export const greenLifeRoutes: Route[] = [
-    { path: '', component: LandingComponent, data: { validar: true }, canActivate: [] },
-    { path: 'registrarse', component: UsuarioRegistroComponent, canActivate: [] },
-    { path: 'usuario/:login', component: UsuarioPerfilComponent, canActivate: [AuthGuard] },
-    { path: 'usuario/:login/editar', component: UsuarioModificarComponent, canActivate: [AuthGuard] },
-    { path: 'comercios/:comercioId/productos', component: ComerciosProductosComponent, canActivate: [AuthGuard] },
-    { path: 'comercios/:comercioId/editar', component: ComercioEditarComponent, canActivate: [AuthGuard] },
-    { path: 'comercios/:comercioId/locales', component: LocalRegistroComponent, canActivate: [AuthGuard] },
-    { path: 'comercios/:comercioId/categorias', component: CategoriasComponent, canActivate: [AuthGuard] },
-    { path: 'suscripciones/:suscripcionId/pedido/crear', component: PedidoCrearComponent, canActivate: [AuthGuard] },
-    { path: 'dummy', component: DummyComponent, canActivate: [] },
+    { path: '', component: LandingComponent, data: { configuracion: false }, canActivate: [] },
+    { path: 'registrarse', component: UsuarioRegistroComponent, data: { configuracion: false }, canActivate: [] },
+    { path: 'usuario/:login', component: UsuarioPerfilComponent, data: { configuracion: false }, canActivate: [AuthGuard] },
+    { path: 'usuario/:login/editar', component: UsuarioModificarComponent, data: { configuracion: true }, canActivate: [AuthGuard] },
+    { path: 'comercios/:comercioId/productos', component: ComerciosProductosComponent, data: { configuracion: true }, canActivate: [AuthGuard] },
+    { path: 'comercios/:comercioId/editar', component: ComercioEditarComponent, data: { configuracion: true }, canActivate: [AuthGuard] },
+    { path: 'comercios/:comercioId/locales', component: LocalRegistroComponent, data: { configuracion: true }, canActivate: [AuthGuard] },
+    { path: 'comercios/:comercioId/categorias', component: CategoriasComponent, data: { configuracion: true }, canActivate: [AuthGuard] },
+    { path: 'suscripciones/:suscripcionId/pedido/crear', data: { configuracion: false }, component: PedidoCrearComponent, canActivate: [AuthGuard] },
+    { path: 'dummy', component: DummyComponent, data: { configuracion: false }, canActivate: [] }
 ];

@@ -52,7 +52,7 @@
                 </mat-form-field>
                 <button type="button" class="btn btn-secondary" id="btnCancelar" (click)="cancelar()">Cancelar</button>
                 <button type="submit" class="btn btn-success" id="btnAgregar" [disabled]="!formulario.valid ||  productoId !== -1" (click)="agregarProducto()">Agregar</button>
-                <button type="submit" class="btn btn-success" (click)="actualizarProducto()" [disabled]="!formulario.valid ||  productoId == -1">Guardar</button>
+                <button type="submit" class="btn btn-success" (click)="actualizarProducto()" [disabled]="!formulario.valid ||  productoId == -1">Actualizar</button>
             </form>
         </div>
     </div>

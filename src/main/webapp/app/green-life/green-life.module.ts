@@ -43,6 +43,7 @@ import { CategoriasComponent } from './views/categorias/categorias.component';
 import { CategoriasRegistroComponent } from './dialogos/categorias-registro/categorias-registro.component';
 import { CdkTableModule } from '@angular/cdk/table';
 import { ComercioEditarComponent } from './views/comercio-editar/comercio-editar.component';
+import { ComerciosLocalesComponent } from './views/comercios-locales/comercios-locales.component';
 import { ComerciosProductosComponent } from './views/comercios-productos/comercios-productos.component';
 import { ComerciosRegistroComponent } from './dialogos/comercios-registro/comercios-registro.component';
 import { CommonAdapterService } from './shared/services/common-adapter.service';
@@ -145,7 +146,8 @@ import { ValidadorNumeroDirective } from './shared/directives/validador-numero.d
     LocalEliminarComponent,
     DummyComponent,
     PedidoCrearDialogComponent,
-    PedidoCrearComponent
+    PedidoCrearComponent,
+    ComerciosLocalesComponent
   ],
   entryComponents: [
     LoginComponent,
