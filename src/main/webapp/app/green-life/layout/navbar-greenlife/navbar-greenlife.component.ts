@@ -22,13 +22,10 @@ export class NavbarGreenlifeComponent implements OnInit {
       if (event instanceof RoutesRecognized) {
         const data = event.state.root.firstChild.firstChild.data;
         this.configuracion = data.configuracion as boolean;
-        console.log('configuracion: ' + this.configuracion);
         this.auth.get().subscribe((resul) => {
           this.isAuth = true;
-          console.log('auth: ' + this.isAuth);
         }, () => {
           this.isAuth = false;
-          console.log('auth: ' + this.isAuth);
         });
       }
     });

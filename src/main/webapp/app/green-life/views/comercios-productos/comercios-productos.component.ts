@@ -18,6 +18,7 @@ export class ComerciosProductosComponent implements AfterViewInit {
   formulario: FormGroup;
   productoSeleccionado: Producto;
   productoId = -1;
+  comercioId = -1;
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
@@ -73,8 +74,10 @@ export class ComerciosProductosComponent implements AfterViewInit {
         productoNuevo.nombre = this.formulario.controls['nombre'].value;
         productoNuevo.descripcion = this.formulario.controls['descripcion'].value;
         productoNuevo.precio = this.formulario.controls['precio'].value;
+        productoNuevo.comercioId = this.comercioId;
+        productoNuevo.fechaCreacion = this.commonAdapter.dateToJHILocalDate(new Date());
         this.productosService.update(productoNuevo).subscribe((resul) => {
-          if (resul.status === 200) {
+          if (resul.status === 201) {
             this.snackBar.open('El producto ha sido agregado', undefined, { duration: 2000 });
             this.obtenerProductos();
           } else {
@@ -88,6 +91,7 @@ export class ComerciosProductosComponent implements AfterViewInit {
 
   obtenerProductos() {
     this.route.params.subscribe((params) => {
+      this.comercioId = params['comercioId'];
       this.productosService.findByComercio(params['comercioId']).subscribe((resul) => {
         this.dataSource = new MatTableDataSource<Producto>(resul.body);
       });
