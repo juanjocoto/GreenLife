@@ -12,6 +12,7 @@
             <mat-form-field>
                 <input matInput formControlName="apellido">
             </mat-form-field>
+            <label>Fecha de nacimiento</label>
             <mat-form-field>
                 <input matInput [matDatepicker]="picker" formControlName="fechaNacimiento">
                 <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
@@ -35,19 +36,30 @@
             <mat-form-field>
                 <input matInput formControlName="direccion">
             </mat-form-field>
-            <label>Latitud</label>
+            <div class="col pr-md-5">
+                <mat-tab-group class="tab-container">
+                    <mat-tab label="Ubicación en el mapa">
+                        <div class="map-container">
+                            <agm-map
+                                [latitude]="lat"
+                                [longitude]="long"
+                                [zoom]="zoom">
+                                <agm-marker
+                                    [latitude]="lat"
+                                    [longitude]="long"
+                                    [markerDraggable]="true"
+                                    (dragEnd)="markerDragEnd($event)">
+                                </agm-marker>
+                            </agm-map>
+                        </div>
+                    </mat-tab>
+                </mat-tab-group>
+            </div>
             <mat-form-field>
-                <input matInput formControlName="latitud">
-                <mat-error *ngIf="formulario.get('latitud').invalid">
-                    Ingresa coordenadas en grados decimales. Ejemplo: 41.40338
-                </mat-error>
+                <input matInput [readonly]="true" [value]="marker.lat" placeholder="Latitud">
             </mat-form-field>
-            <label>Longitud</label>
             <mat-form-field>
-                <input matInput formControlName="longitud">
-                <mat-error *ngIf="formulario.get('longitud').invalid">
-                    Ingresa coordenadas en grados decimales. Ejemplo: 41.40338
-                </mat-error>
+                <input matInput [readonly]="true" [value]="marker.long" placeholder="Longitud">
             </mat-form-field>
             <label>Correo eletrónico</label>
             <mat-form-field>
@@ -62,7 +74,8 @@
             </mat-form-field>
             <div style="display:flex">
                 <div style="flex:1 1"></div>
-                <button class="btn" (click)="modificarUsuario()">Editar</button>
+                <button class="btn btnPrimary" (click)="eliminarUsuario()">Desactivar cuenta</button>
+                <button class="btn btnSecondary" (click)="modificarUsuario()">Editar</button>
             </div>
         </form>
     </div>

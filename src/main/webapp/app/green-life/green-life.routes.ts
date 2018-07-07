@@ -23,5 +23,5 @@ export const greenLifeRoutes: Route[] = [
     { path: 'comercios/:comercioId/categorias', component: CategoriasComponent},
     { path: 'comercios/:comercioId/locales', component: LocalRegistroComponent },
     { path: 'comercios/:comercioId/productos', component: ComerciosProductosComponent },
-    { path: 'modificar/:login', component: UsuarioModificarComponent },
+    { path: 'usuario/:login/modificar', component: UsuarioModificarComponent },
 ];
