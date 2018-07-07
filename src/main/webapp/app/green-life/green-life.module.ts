@@ -51,6 +51,7 @@ import { ConfirmacionDialogComponent } from './dialogos/confirmacion-dialog/conf
 import { ConvertidorFechaPipe } from './shared/pipes/convertidor-fecha.pipe';
 import { DummyComponent } from './views/dummy/dummy.component';
 import { FooterGreenlifeComponent } from './layout/footer-greenlife/footer-greenlife.component';
+import { HorasEntregaService } from './shared/services/horas-entrega.service';
 import { LandingComponent } from './views/landing/landing.component';
 import { ListaComerciosComponent } from './fragments/lista-comercios/lista-comercios.component';
 import { LocalEliminarComponent } from './dialogos/local-eliminar/local-eliminar.component';
@@ -60,6 +61,7 @@ import { LoginComponent } from './dialogos/login/login.component';
 import { NavbarGreenlifeComponent } from './layout/navbar-greenlife/navbar-greenlife.component';
 import { NgModule } from '@angular/core';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { PedidoCrearComponent } from './views/pedido-crear/pedido-crear.component';
 import { PedidoCrearDialogComponent } from './dialogos/pedido-crear-dialog/pedido-crear-dialog.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { RootComponent } from './root/root.component';
@@ -142,7 +144,8 @@ import { ValidadorNumeroDirective } from './shared/directives/validador-numero.d
     LocalModificarComponent,
     LocalEliminarComponent,
     DummyComponent,
-    PedidoCrearDialogComponent
+    PedidoCrearDialogComponent,
+    PedidoCrearComponent
   ],
   entryComponents: [
     LoginComponent,
@@ -156,6 +159,7 @@ import { ValidadorNumeroDirective } from './shared/directives/validador-numero.d
   providers: [
     CommonAdapterService,
     CategoriasComponent,
+    HorasEntregaService,
     { provide: MAT_DATE_LOCALE, useValue: 'es-CR' }
   ],
 })
