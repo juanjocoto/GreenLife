@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { Router, NavigationStart } from '@angular/router';
+import { Router, NavigationStart, RoutesRecognized } from '@angular/router';
+import { AccountService } from '../../../shared';
 
 @Component({
   selector: 'jhi-footer-greenlife',
@@ -10,25 +11,16 @@ import { Router, NavigationStart } from '@angular/router';
 })
 export class FooterGreenlifeComponent implements OnInit {
 
-  inicio = true;
+  configuracion = false;
 
-  constructor(private router: Router ) {
-    this.router.events.forEach((event) => {
-      if (event instanceof NavigationStart) {
-        if (event.url === '/app' || event.url === '/') {
-          this.inicio = true;
-        } else {
-          this.inicio = false;
-        }
-      }
-    });
-  }
+  constructor(private router: Router ) { }
 
   ngOnInit() {
-    if (this.router.url === '/app' || this.router.url === '/') {
-      this.inicio = true;
-    } else {
-      this.inicio = false;
-    }
+    this.router.events.subscribe((event) => {
+      if (event instanceof RoutesRecognized) {
+        const data = event.state.root.firstChild.firstChild.data;
+        this.configuracion = data.configuracion as boolean;
+      }
+    });
   }
 }

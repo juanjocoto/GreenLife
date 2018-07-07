@@ -36,6 +36,7 @@ export class LoginComponent implements OnInit {
     }).then(() => {
       this.isValid = true;
       this.dialog.closeAll();
+      this.route.navigate(['']);
     }).catch(() => {
       this.isValid = false;
     });

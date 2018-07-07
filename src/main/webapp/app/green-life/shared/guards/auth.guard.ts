@@ -1,19 +1,23 @@
 import { Injectable } from '@angular/core';
-import { CanActivate, CanActivateChild, Router } from '@angular/router';
+import { ActivatedRouteSnapshot, CanActivate, RouterStateSnapshot } from '@angular/router';
+import { Observable } from '../../../../../../../node_modules/rxjs';
 import { AccountService } from '../../../shared';
 
 @Injectable()
-export class AuthGuard implements CanActivate, CanActivateChild  {
+export class AuthGuard implements CanActivate {
 
-  constructor(private auth: AccountService, private route: Router) { }
+  constructor(private auth: AccountService) { }
 
-  canActivate(): boolean {
-    this.auth.get().subscribe(() => { }, () => { this.route.navigate(['/']); });
-    return true;
-  }
-
-  canActivateChild(): boolean {
-    this.auth.get().subscribe(() => { }, () => { this.route.navigate(['/']); });
-    return true;
+  canActivate(next: ActivatedRouteSnapshot,
+    state: RouterStateSnapshot) {
+    return this.auth.get().map((httpResponse) => {
+      const account = httpResponse.body;
+      return true;
+    }).catch((err) => {
+      return new Observable<boolean>((observer) => {
+        console.log('error');
+        observer.next(false);
+      });
+    });
   }
 }
