@@ -4,8 +4,8 @@
         <span class="navbar-toggler-icon"></span>
     </button>
     <div class="w-100 order-1 order-md-0"></div>
-    <div class="navbar-collapse collapse mx-auto order-0 dual-collapse2" id="main-link" [class.show]="collapse" [class.inicio]="inicio">
-        <ul class="navbar-nav ml-auto" [class.hidden]="inicio">
+    <div class="navbar-collapse collapse mx-auto order-0 dual-collapse2" id="main-link" [class.show]="collapse" [class.inicio]="!configuracion">
+        <ul class="navbar-nav ml-auto" [class.hidden]="!isAuth">
             <!--Opcion Alimentacion -->
             <li class="nav-item dropdown" ngbDropdown>
                 <a class="nav-link dropdown-toggle" ngbDropdownToggle>Alimentación</a>
@@ -45,7 +45,7 @@
         </ul>
     </div>
     <div class="navbar-collapse collapse w-100 order-3 dual-collapse2" [class.show]="collapse">
-        <ul class="navbar-nav ml-auto" [class.hidden]="!inicio" id="button-area">
+        <ul class="navbar-nav ml-auto" [class.hidden]="isAuth" id="button-area">
             <li class="nav-item">
                 <a routerLink="/app/registrarse" class="btn btn-link btnRegistrarse">Registrarse</a>
             </li>
@@ -53,7 +53,7 @@
                 <button type="button" class="btn btn-link btnIniciarSesion" (click)="openDialog()">Iniciar Sesión</button>
             </li>
         </ul>
-        <ul class="navbar-nav ml-auto" [class.hidden]="inicio" id="user-config">
+        <ul class="navbar-nav ml-auto" [class.hidden]="!isAuth" id="user-config">
             <li class="nav-item dropdown" ngbDropdown >
                 <a class="nav-link dropdown-toggle" ngbDropdownToggle><span class="user-img"></span> <span class="text">Usuario</span></a>
                 <div class="dropdown-menu" ngbDropdownMenu>
