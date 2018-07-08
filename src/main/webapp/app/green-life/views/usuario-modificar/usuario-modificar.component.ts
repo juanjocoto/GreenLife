@@ -11,9 +11,9 @@ import {MouseEvent} from '@agm/core';
 import {ConfirmacionDialogComponent} from '../../dialogos/confirmacion-dialog/confirmacion-dialog.component';
 
 @Component({
-  selector: 'jhi-usuario-modificar',
-  templateUrl: './usuario-modificar.component.html',
-  styleUrls: ['./usuario-modificar.component.scss']
+    selector: 'jhi-usuario-modificar',
+    templateUrl: './usuario-modificar.component.html',
+    styleUrls: ['./usuario-modificar.component.scss']
 })
 export class UsuarioModificarComponent implements OnInit {
 
@@ -32,94 +32,98 @@ export class UsuarioModificarComponent implements OnInit {
         long: this.long
     };
 
-  constructor(
-      private usuarioService: UsuarioService,
-      private userService: UserService,
-      private route: ActivatedRoute,
-      private formBuilder: FormBuilder,
-      private dialog: MatDialog,
-      private loginService: LoginService,
-      private router: Router) { }
+    constructor(
+        private usuarioService: UsuarioService,
+        private userService: UserService,
+        private route: ActivatedRoute,
+        private formBuilder: FormBuilder,
+        private dialog: MatDialog,
+        private loginService: LoginService,
+        private router: Router) { }
 
-  ngOnInit() {
-      this.getUser();
-  }
+    ngOnInit() {
+        this.getUser();
+    }
 
-  getUser(): void {
-      this.route.params.subscribe((params) => {
-          const usuario = this.usuarioService.findByUserLogin(params.login);
-          const user = this.userService.find(params.login);
+    getUser(): void {
+        this.route.params.subscribe((params) => {
+            const usuario = this.usuarioService.findByUserLogin(params.login);
+            const user = this.userService.find(params.login);
 
-          Observable.zip(usuario, user).subscribe((resul) => {
-              this.usuario = resul[0].body;
-              this.user = resul[1].body;
+            Observable.zip(usuario, user).subscribe((resul) => {
+                this.usuario = resul[0].body;
+                this.user = resul[1].body;
 
-              this.formulario = this.formBuilder.group({
-                  apellido: [this.user.lastName, [
-                      Validators.required,
-                  ]],
-                  nombre: [this.user.firstName, [
-                      Validators.required
-                  ]],
-                  fechaNacimiento: [this.usuario.fechaNacimiento, [
-                      Validators.required,
-                  ]],
-                  cedula: [this.usuario.cedula, [
-                      Validators.required,
-                      Validators.minLength(9),
-                      Validators.maxLength(9)
-                  ]],
-                  telefono: [this.usuario.telefono, [
-                      Validators.minLength(8),
-                      Validators.maxLength(8)
-                  ]],
-                  direccion: [this.usuario.direccion, [
-                  ]],
-                  correo: [this.user.email, [
-                      Validators.required,
-                      Validators.email
-                  ]],
-                  usuario: [this.user.login, [
-                      Validators.required
-                  ]]
-              });
-          });
-      });
-  }
+                this.formulario = this.formBuilder.group({
+                    apellido: [this.user.lastName, [
+                        Validators.required,
+                    ]],
+                    nombre: [this.user.firstName, [
+                        Validators.required
+                    ]],
+                    fechaNacimiento: [this.usuario.fechaNacimiento, [
+                        Validators.required,
+                    ]],
+                    cedula: [this.usuario.cedula, [
+                        Validators.required,
+                        Validators.minLength(9),
+                        Validators.maxLength(9)
+                    ]],
+                    telefono: [this.usuario.telefono, [
+                        Validators.minLength(8),
+                        Validators.maxLength(8)
+                    ]],
+                    direccion: [this.usuario.direccion, [
+                    ]],
+                    correo: [this.user.email, [
+                        Validators.required,
+                        Validators.email
+                    ]],
+                    latitud: [this.usuario.latitud, [
+                    ]],
+                    longitud: [this.usuario.longitud, [
+                    ]],
+                    usuario: [this.user.login, [
+                        Validators.required
+                    ]]
+                });
+            });
+        });
+    }
 
-  modificarUsuario() {
+    modificarUsuario() {
 
-      this.user.firstName = this.formulario.get('nombre').value;
-      this.user.lastName = this.formulario.get('apellido').value;
-      this.user.email = this.formulario.get('correo').value;
-      this.user.login = this.formulario.get('usuario').value;
+        this.user.firstName = this.formulario.get('nombre').value;
+        this.user.lastName = this.formulario.get('apellido').value;
+        this.user.email = this.formulario.get('correo').value;
+        this.user.login = this.formulario.get('usuario').value;
 
-      this.usuario.cedula = this.formulario.get('cedula').value;
-      this.usuario.telefono = this.formulario.get('telefono').value;
-      this.usuario.direccion = this.formulario.get('direccion').value;
-      this.usuario.latitud = this.marker.lat;
-      this.usuario.longitud = this.marker.long;
-      this.usuario.fechaNacimiento = this.convertirFecha(new Date(this.formulario.get('fechaNacimiento').value));
+        this.usuario.cedula = this.formulario.get('cedula').value;
+        this.usuario.telefono = this.formulario.get('telefono').value;
+        this.usuario.direccion = this.formulario.get('direccion').value;
+        this.usuario.latitud = this.marker.lat;
+        this.usuario.longitud = this.marker.long;
+        this.usuario.fechaNacimiento = this.convertirFecha(new Date(this.formulario.get('fechaNacimiento').value));
 
-      if (this.formulario.valid) {
-          this.userService.update(this.user).subscribe((result) => {
-              console.log(result);
-              this.usuario.fechaCreacion = this.convertirFecha(new Date());
+        if (this.formulario.valid) {
+            this.userService.update(this.user).subscribe((result) => {
+                console.log(result);
+                this.usuario.fechaCreacion = this.convertirFecha(new Date());
 
-              this.usuarioService.update(this.usuario).subscribe((resuld) => {
-                  console.log(resuld);
-              });
-          });
-      }
-  }
+                this.usuarioService.update(this.usuario).subscribe((resuld) => {
+                    console.log(resuld);
+                });
+            });
+        }
+    }
 
-  private convertirFecha(value: Date, args?: any): any {
+    private convertirFecha(value: Date, args?: any): any {
         return {
             year: value.getFullYear(),
             month: value.getMonth() + 1,
             day: value.getDay()
         };
-  }
+    }
 
     eliminarUsuario() {
         const res = this.dialog.open(ConfirmacionDialogComponent);

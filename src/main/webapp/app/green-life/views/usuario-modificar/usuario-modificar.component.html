@@ -41,12 +41,12 @@
                     <mat-tab label="Ubicación en el mapa">
                         <div class="map-container">
                             <agm-map
-                                [latitude]="lat"
-                                [longitude]="long"
+                                [latitude]="usuario.latitud"
+                                [longitude]="usuario.longitud"
                                 [zoom]="zoom">
                                 <agm-marker
-                                    [latitude]="lat"
-                                    [longitude]="long"
+                                    [latitude]="usuario.latitud"
+                                    [longitude]="usuario.longitud"
                                     [markerDraggable]="true"
                                     (dragEnd)="markerDragEnd($event)">
                                 </agm-marker>
@@ -56,10 +56,10 @@
                 </mat-tab-group>
             </div>
             <mat-form-field>
-                <input matInput [readonly]="true" [value]="marker.lat" placeholder="Latitud">
+                <input matInput [value]="marker.lat" [readonly]="true" placeholder="Latitud" formControlName="latitud">
             </mat-form-field>
             <mat-form-field>
-                <input matInput [readonly]="true" [value]="marker.long" placeholder="Longitud">
+                <input matInput [value]="marker.long" [readonly]="true" placeholder="Longitud" formControlName="longitud">
             </mat-form-field>
             <label>Correo eletrónico</label>
             <mat-form-field>
