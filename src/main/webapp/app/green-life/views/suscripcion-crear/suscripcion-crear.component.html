@@ -1,0 +1,42 @@
+<div class="container-fluid title-bar" *ngIf="comercio">
+    <div class="row">
+        <div class="col">
+            <h2 id="title-">Suscríbete al comercio</h2>
+            <hr class="divider">
+            <h1>{{comercio.nombreComercial}}</h1>
+        </div>
+    </div>
+</div>
+
+<div class="container main-container" *ngIf="cliente && clienteDetail && comercio">
+    <div class="row">
+        <div class="col">
+            <h3 id="subtitle">Suscríbete ahora y recibe pedidos personalizados de este comercio</h3>
+            <p class="info-text">*La suscripción se completa hasta que sea aprobada por el comercio.</p>
+            <div class="card mx-auto">
+                <div class="card-body">
+                    <h4 class="card-title">Pedidos</h4>
+                    <h5 class="card-subtitle">Crea pedidos personalizados de tus productos favoritos y recíbelos en los días que más se ajusten a tus necesidades.</h5>
+                    <div class="img-container text-center">
+                        <img src="../../../../content/images/alimentacion.png" alt="Productos saludables" height="75px">
+                        <img src="../../../../content/images/entregas.png" alt="Pedidos a domicilio" height="105px">
+                        <img src="../../../../content/images/grocery.png" alt="Productos saludables" height="75px">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col text-center">
+            <h4 class="subtitle-body">Si deseas puedes agregar detalles adicionales a la suscripción:</h4>
+            <div class="form-container">
+                <form [formGroup]="formSuscripcion">
+                    <mat-form-field>
+                        <textarea matInput matTextareaAutosize matAutosizeMinRows="5" matAutosizeMaxRows="5" placeholder="" formControlName="detalle"> </textarea>
+                    </mat-form-field>
+                </form>
+            </div>
+            <button class="btn btnSuscribirse" (click)="createSuscripcion()">Suscribirse</button>
+        </div>
+    </div>
+</div>
