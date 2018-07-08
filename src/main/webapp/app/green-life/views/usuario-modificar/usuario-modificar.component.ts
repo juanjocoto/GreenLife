@@ -141,7 +141,7 @@ export class UsuarioModificarComponent implements OnInit {
         });
     }
 
-    // Google Maps methods
+    // Google Maps method
     markerDragEnd($event: MouseEvent) {
         this.marker.lat = $event.coords.lat;
         this.marker.long = $event.coords.lng;
