@@ -20,6 +20,6 @@ export const greenLifeRoutes: Route[] = [
     { path: 'comercios/:comercioId/editar', component: ComercioEditarComponent, data: { configuracion: true }, canActivate: [AuthGuard] },
     { path: 'comercios/:comercioId/locales', component: LocalRegistroComponent, data: { configuracion: true }, canActivate: [AuthGuard] },
     { path: 'comercios/:comercioId/categorias', component: CategoriasComponent, data: { configuracion: true }, canActivate: [AuthGuard] },
-    { path: 'suscripciones/:suscripcionId/pedido/crear', data: { configuracion: false }, component: PedidoCrearComponent, canActivate: [AuthGuard] },
+    { path: 'suscripciones/:suscripcionId/pedido/crear', component: PedidoCrearComponent, data: { configuracion: false }, canActivate: [AuthGuard] },
     { path: 'dummy', component: DummyComponent, data: { configuracion: false }, canActivate: [] }
 ];
