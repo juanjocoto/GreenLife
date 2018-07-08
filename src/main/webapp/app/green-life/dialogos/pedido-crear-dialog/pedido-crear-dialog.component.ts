@@ -21,7 +21,6 @@ export class PedidoCrearDialogComponent implements OnInit {
   diasEntrega: DiaEntrega[];
 
   constructor(private accountService: AccountService,
-    private pedidoService: PedidoService,
     private diaEntregaService: DiaEntregaService,
     private productoService: ProductoService
   ) { }

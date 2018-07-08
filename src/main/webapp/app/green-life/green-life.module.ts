@@ -1,3 +1,4 @@
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import {
   MAT_DATE_LOCALE,
   MatAutocompleteModule,
@@ -42,6 +43,7 @@ import { CargaImagenesComponent } from './dialogos/carga-imagenes/carga-imagenes
 import { CategoriasComponent } from './views/categorias/categorias.component';
 import { CategoriasRegistroComponent } from './dialogos/categorias-registro/categorias-registro.component';
 import { CdkTableModule } from '@angular/cdk/table';
+import { ColonPipe } from './shared/pipes/colon.pipe';
 import { ComercioEditarComponent } from './views/comercio-editar/comercio-editar.component';
 import { ComerciosLocalesComponent } from './views/comercios-locales/comercios-locales.component';
 import { ComerciosProductosComponent } from './views/comercios-productos/comercios-productos.component';
@@ -64,7 +66,6 @@ import { NgModule } from '@angular/core';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { PedidoCrearComponent } from './views/pedido-crear/pedido-crear.component';
 import { PedidoCrearDialogComponent } from './dialogos/pedido-crear-dialog/pedido-crear-dialog.component';
-import { ReactiveFormsModule } from '@angular/forms';
 import { RootComponent } from './root/root.component';
 import { RouterModule } from '@angular/router';
 import { SelectorEtiquetasComponent } from './fragments/selector-etiquetas/selector-etiquetas.component';
@@ -76,6 +77,7 @@ import { ValidadorNumeroDirective } from './shared/directives/validador-numero.d
 
 @NgModule({
   imports: [
+    FormsModule,
     RouterModule,
     CommonModule,
     BrowserModule,
@@ -118,7 +120,8 @@ import { ValidadorNumeroDirective } from './shared/directives/validador-numero.d
     MatTabsModule,
     MatToolbarModule,
     MatTooltipModule,
-    MatFormFieldModule
+    MatFormFieldModule,
+    MatTableModule
   ],
   declarations: [
     LandingComponent,
@@ -131,6 +134,7 @@ import { ValidadorNumeroDirective } from './shared/directives/validador-numero.d
     ValidadorNumeroDirective,
     UsuarioRolesComponent,
     ConvertidorFechaPipe,
+    ColonPipe,
     ComerciosProductosComponent,
     LocalRegistroComponent,
     ComerciosRegistroComponent,
@@ -147,7 +151,7 @@ import { ValidadorNumeroDirective } from './shared/directives/validador-numero.d
     DummyComponent,
     PedidoCrearDialogComponent,
     PedidoCrearComponent,
-    ComerciosLocalesComponent
+    ComerciosLocalesComponent,
   ],
   entryComponents: [
     LoginComponent,
