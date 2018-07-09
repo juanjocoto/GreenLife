@@ -69,6 +69,7 @@ import { PedidoCrearDialogComponent } from './dialogos/pedido-crear-dialog/pedid
 import { RootComponent } from './root/root.component';
 import { RouterModule } from '@angular/router';
 import { SelectorEtiquetasComponent } from './fragments/selector-etiquetas/selector-etiquetas.component';
+import { SuscripcionCrearComponent } from './views/suscripcion-crear/suscripcion-crear.component';
 import { UsuarioModificarComponent } from './views/usuario-modificar/usuario-modificar.component';
 import { UsuarioPerfilComponent } from './views/usuario-perfil/usuario-perfil.component';
 import { UsuarioRegistroComponent } from './views/usuario-registro/usuario-registro.component';
@@ -152,6 +153,7 @@ import { ValidadorNumeroDirective } from './shared/directives/validador-numero.d
     PedidoCrearDialogComponent,
     PedidoCrearComponent,
     ComerciosLocalesComponent,
+    SuscripcionCrearComponent
   ],
   entryComponents: [
     LoginComponent,
