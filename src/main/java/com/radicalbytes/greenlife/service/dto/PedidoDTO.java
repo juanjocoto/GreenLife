@@ -1,11 +1,10 @@
 package com.radicalbytes.greenlife.service.dto;
 
 
-import javax.validation.constraints.*;
 import java.io.Serializable;
-import java.util.HashSet;
-import java.util.Set;
 import java.util.Objects;
+
+import javax.validation.constraints.NotNull;
 
 /**
  * A DTO for the Pedido entity.
@@ -18,8 +17,6 @@ public class PedidoDTO implements Serializable {
     private String hora;
 
     private Long suscripcionId;
-
-    private Long lineasId;
 
     private Long diasEntregaId;
 
@@ -51,14 +48,6 @@ public class PedidoDTO implements Serializable {
 
     public void setSuscripcionId(Long suscripcionId) {
         this.suscripcionId = suscripcionId;
-    }
-
-    public Long getLineasId() {
-        return lineasId;
-    }
-
-    public void setLineasId(Long lineaProductoId) {
-        this.lineasId = lineaProductoId;
     }
 
     public Long getDiasEntregaId() {

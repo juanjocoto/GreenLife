@@ -1,12 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
+import { CommonAdapterService } from '../../shared/services/common-adapter.service';
 import { Register } from './../../../account/register/register.service';
 import { Router } from '@angular/router';
 import { User } from '../../../shared';
 import { Usuario } from '../../../entities/usuario';
 import { UsuarioService } from './../../../entities/usuario/usuario.service';
-import { CommonAdapterService } from '../../shared/services/common-adapter.service';
 
 @Component({
   selector: 'jhi-usuario-registro',
@@ -17,12 +17,18 @@ export class UsuarioRegistroComponent implements OnInit {
 
   formulario: FormGroup;
 
+  maxDate: Date;
+
   constructor(private formBuilder: FormBuilder,
     private registerService: Register,
     private usuarioService: UsuarioService,
     private router: Router,
     private commonAdapterService: CommonAdapterService
-  ) { }
+  ) {
+    const date = new Date();
+    date.setFullYear(date.getFullYear() - 18);
+    this.maxDate = date;
+  }
 
   ngOnInit() {
     this.formulario = this.formBuilder.group({

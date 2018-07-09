@@ -8,17 +8,15 @@
             "otherEntityField": "id"
         },
         {
-            "relationshipType": "one-to-one",
-            "relationshipName": "lineas",
-            "otherEntityName": "lineaProducto",
-            "otherEntityField": "id",
-            "ownerSide": true,
+            "relationshipType": "one-to-many",
+            "relationshipName": "entregas",
+            "otherEntityName": "entrega",
             "otherEntityRelationshipName": "pedido"
         },
         {
             "relationshipType": "one-to-many",
-            "relationshipName": "entregas",
-            "otherEntityName": "entrega",
+            "relationshipName": "lineas",
+            "otherEntityName": "lineaProducto",
             "otherEntityRelationshipName": "pedido"
         },
         {
