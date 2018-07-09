@@ -10,7 +10,6 @@ import { Pedido } from './pedido.model';
 import { PedidoPopupService } from './pedido-popup.service';
 import { PedidoService } from './pedido.service';
 import { Suscripcion, SuscripcionService } from '../suscripcion';
-import { LineaProducto, LineaProductoService } from '../linea-producto';
 import { DiaEntrega, DiaEntregaService } from '../dia-entrega';
 import { Local, LocalService } from '../local';
 
@@ -25,8 +24,6 @@ export class PedidoDialogComponent implements OnInit {
 
     suscripcions: Suscripcion[];
 
-    lineas: LineaProducto[];
-
     diaentregas: DiaEntrega[];
 
     locals: Local[];
@@ -36,7 +33,6 @@ export class PedidoDialogComponent implements OnInit {
         private jhiAlertService: JhiAlertService,
         private pedidoService: PedidoService,
         private suscripcionService: SuscripcionService,
-        private lineaProductoService: LineaProductoService,
         private diaEntregaService: DiaEntregaService,
         private localService: LocalService,
         private eventManager: JhiEventManager
@@ -47,19 +43,6 @@ export class PedidoDialogComponent implements OnInit {
         this.isSaving = false;
         this.suscripcionService.query()
             .subscribe((res: HttpResponse<Suscripcion[]>) => { this.suscripcions = res.body; }, (res: HttpErrorResponse) => this.onError(res.message));
-        this.lineaProductoService
-            .query({filter: 'pedido-is-null'})
-            .subscribe((res: HttpResponse<LineaProducto[]>) => {
-                if (!this.pedido.lineasId) {
-                    this.lineas = res.body;
-                } else {
-                    this.lineaProductoService
-                        .find(this.pedido.lineasId)
-                        .subscribe((subRes: HttpResponse<LineaProducto>) => {
-                            this.lineas = [subRes.body].concat(res.body);
-                        }, (subRes: HttpErrorResponse) => this.onError(subRes.message));
-                }
-            }, (res: HttpErrorResponse) => this.onError(res.message));
         this.diaEntregaService.query()
             .subscribe((res: HttpResponse<DiaEntrega[]>) => { this.diaentregas = res.body; }, (res: HttpErrorResponse) => this.onError(res.message));
         this.localService.query()
@@ -101,10 +84,6 @@ export class PedidoDialogComponent implements OnInit {
     }
 
     trackSuscripcionById(index: number, item: Suscripcion) {
-        return item.id;
-    }
-
-    trackLineaProductoById(index: number, item: LineaProducto) {
         return item.id;
     }
 

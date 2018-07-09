@@ -24,6 +24,10 @@
         <dd>
             <span>{{comercio.tipo}}</span>
         </dd>
+        <dt><span>Logo Url</span></dt>
+        <dd>
+            <span>{{comercio.logoUrl}}</span>
+        </dd>
         <dt><span>Etiquetas</span></dt>
         <dd>
             <span *ngFor="let etiquetas of comercio.etiquetas; let last = last">
@@ -47,7 +51,7 @@
     <button type="submit"
             (click)="previousState()"
             class="btn btn-info">
-        <span class="fa fa-arrow-left"></span>&nbsp;<span> Regresar</span>
+        <span class="fa fa-arrow-left"></span>&nbsp;<span> Back</span>
     </button>
 
     <button type="button"
@@ -55,6 +59,6 @@
             replaceUrl="true"
             queryParamsHandling="merge"
             class="btn btn-primary">
-        <span class="fa fa-pencil"></span>&nbsp;<span> Editar</span>
+        <span class="fa fa-pencil"></span>&nbsp;<span> Edit</span>
     </button>
 </div>

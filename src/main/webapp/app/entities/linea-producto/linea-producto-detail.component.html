@@ -8,6 +8,12 @@
         <dd>
             <span>{{lineaProducto.cantidad}}</span>
         </dd>
+        <dt><span>Pedido</span></dt>
+        <dd>
+            <div *ngIf="lineaProducto.pedidoId">
+                <a [routerLink]="['/pedido', lineaProducto.pedidoId]">{{lineaProducto.pedidoId}}</a>
+            </div>
+        </dd>
         <dt><span>Producto</span></dt>
         <dd>
             <div *ngIf="lineaProducto.productoId">

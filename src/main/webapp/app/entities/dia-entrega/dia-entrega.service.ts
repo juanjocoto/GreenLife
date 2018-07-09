@@ -1,9 +1,9 @@
-import { Injectable } from '@angular/core';
 import { HttpClient, HttpResponse } from '@angular/common/http';
-import { Observable } from 'rxjs/Observable';
-import { SERVER_API_URL } from '../../app.constants';
 
 import { DiaEntrega } from './dia-entrega.model';
+import { Injectable } from '@angular/core';
+import { Observable } from 'rxjs/Observable';
+import { SERVER_API_URL } from '../../app.constants';
 import { createRequestOption } from '../../shared';
 
 export type EntityResponseType = HttpResponse<DiaEntrega>;
@@ -11,7 +11,7 @@ export type EntityResponseType = HttpResponse<DiaEntrega>;
 @Injectable()
 export class DiaEntregaService {
 
-    private resourceUrl =  SERVER_API_URL + 'api/dia-entregas';
+    private resourceUrl = SERVER_API_URL + 'api/dia-entregas';
     private resourceSearchUrl = SERVER_API_URL + 'api/_search/dia-entregas';
 
     constructor(private http: HttpClient) { }
@@ -29,8 +29,13 @@ export class DiaEntregaService {
     }
 
     find(id: number): Observable<EntityResponseType> {
-        return this.http.get<DiaEntrega>(`${this.resourceUrl}/${id}`, { observe: 'response'})
+        return this.http.get<DiaEntrega>(`${this.resourceUrl}/${id}`, { observe: 'response' })
             .map((res: EntityResponseType) => this.convertResponse(res));
+    }
+
+    getAll(): Observable<HttpResponse<DiaEntrega[]>> {
+        return this.http.get<DiaEntrega[]>(this.resourceUrl, { observe: 'response' })
+            .map((res: HttpResponse<DiaEntrega[]>) => this.convertArrayResponse(res));
     }
 
     query(req?: any): Observable<HttpResponse<DiaEntrega[]>> {
@@ -40,7 +45,7 @@ export class DiaEntregaService {
     }
 
     delete(id: number): Observable<HttpResponse<any>> {
-        return this.http.delete<any>(`${this.resourceUrl}/${id}`, { observe: 'response'});
+        return this.http.delete<any>(`${this.resourceUrl}/${id}`, { observe: 'response' });
     }
 
     search(req?: any): Observable<HttpResponse<DiaEntrega[]>> {
@@ -51,7 +56,7 @@ export class DiaEntregaService {
 
     private convertResponse(res: EntityResponseType): EntityResponseType {
         const body: DiaEntrega = this.convertItemFromServer(res.body);
-        return res.clone({body});
+        return res.clone({ body });
     }
 
     private convertArrayResponse(res: HttpResponse<DiaEntrega[]>): HttpResponse<DiaEntrega[]> {
@@ -60,7 +65,7 @@ export class DiaEntregaService {
         for (let i = 0; i < jsonResponse.length; i++) {
             body.push(this.convertItemFromServer(jsonResponse[i]));
         }
-        return res.clone({body});
+        return res.clone({ body });
     }
 
     /**
