@@ -72,6 +72,7 @@ export class PedidoCrearComponent implements OnInit {
         this.suscripcion = httpResponse.body;
         this.productoService.findByComercio(this.suscripcion.comercioId)
           .subscribe((productoResponse) => this.productos = productoResponse.body);
+        this.pedido.suscripcionId = this.suscripcion.id;
       });
     });
 
@@ -122,7 +123,6 @@ export class PedidoCrearComponent implements OnInit {
   }
 
   private refreshTables() {
-
     this.productos = [...this.productos];
     this.listaLineas = [...this.listaLineas];
   }
