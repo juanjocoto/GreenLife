@@ -8,6 +8,7 @@ import { LocalRegistroComponent } from './views/local-registro/local-registro.co
 import { UsuarioModificarComponent } from './views/usuario-modificar/usuario-modificar.component';
 import { UsuarioPerfilComponent } from './views/usuario-perfil/usuario-perfil.component';
 import { UsuarioRegistroComponent } from './views/usuario-registro/usuario-registro.component';
+import {SuscripcionesClienteComponent} from './views/suscripciones-cliente/suscripciones-cliente.component';
 
 export const greenLifeRoutes: Route[] = [
     { path: '', component: LandingComponent, data: { configuracion: false }, canActivate: [] },
@@ -17,5 +18,6 @@ export const greenLifeRoutes: Route[] = [
     { path: 'comercios/:comercioId/productos', component: ComerciosProductosComponent, data: { configuracion: true }, canActivate: [ AuthGuard ] },
     { path: 'comercios/:comercioId/editar', component: ComercioEditarComponent, data: { configuracion: true }, canActivate: [ AuthGuard ] },
     { path: 'comercios/:comercioId/locales', component: LocalRegistroComponent, data: { configuracion: true }, canActivate: [ AuthGuard ] },
-    { path: 'comercios/:comercioId/categorias', component: CategoriasComponent, data: { configuracion: true }, canActivate: [ AuthGuard ] }
+    { path: 'comercios/:comercioId/categorias', component: CategoriasComponent, data: { configuracion: true }, canActivate: [ AuthGuard ] },
+    { path: 'usuario/:login/suscripciones', component: SuscripcionesClienteComponent, data: { configuracion: false }, canActivate: [ AuthGuard ] }
 ];

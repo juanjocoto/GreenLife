@@ -67,6 +67,7 @@ import { ValidadorNumeroDirective } from './shared/directives/validador-numero.d
 import { CategoriasComponent } from './views/categorias/categorias.component';
 import { CategoriasRegistroComponent } from './dialogos/categorias-registro/categorias-registro.component';
 import { ComerciosLocalesComponent } from './views/comercios-locales/comercios-locales.component';
+import { SuscripcionesClienteComponent } from './views/suscripciones-cliente/suscripciones-cliente.component';
 
 @NgModule({
   imports: [
@@ -138,7 +139,8 @@ import { ComerciosLocalesComponent } from './views/comercios-locales/comercios-l
     ConfirmacionDialogComponent,
     LocalModificarComponent,
     LocalEliminarComponent,
-    ComerciosLocalesComponent
+    ComerciosLocalesComponent,
+    SuscripcionesClienteComponent
   ],
   entryComponents: [
     LoginComponent,
