@@ -2,11 +2,13 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 import { ActivatedRoute } from '@angular/router';
+import { ConfirmacionDialogComponent } from '../../dialogos/confirmacion-dialog/confirmacion-dialog.component';
 import { DiaEntrega } from '../../../entities/dia-entrega/dia-entrega.model';
 import { DiaEntregaService } from '../../../entities/dia-entrega';
 import { HorasEntregaService } from '../../shared/services/horas-entrega.service';
 import { LineaProducto } from '../../../entities/linea-producto/linea-producto.model';
 import { LineaProductoService } from '../../../entities/linea-producto';
+import { MatDialog } from '@angular/material';
 import { Observable } from 'rxjs/Rx';
 import { Pedido } from '../../../entities/pedido';
 import { PedidoService } from '../../../entities/pedido/pedido.service';
@@ -49,7 +51,8 @@ export class PedidoModificarComponent implements OnInit {
     private horasEntregaService: HorasEntregaService,
     private pedidoService: PedidoService,
     private lineaProductoService: LineaProductoService,
-    private formBuilder: FormBuilder) { }
+    private formBuilder: FormBuilder,
+    private dialog: MatDialog) { }
 
   ngOnInit() {
 
@@ -120,7 +123,7 @@ export class PedidoModificarComponent implements OnInit {
     // (<HTMLFontElement>this.form.nativeElement).
     if (this.formulario.valid && this.listaLineas && this.listaLineas.length > 0) {
 
-      const lineas = this.listaLineas.filter((linea) => linea.cantidad > 1).map((linea) => {
+      const lineas = this.listaLineas.filter((linea) => linea.cantidad > 0).map((linea) => {
         return {
           id: linea.id,
           cantidad: linea.cantidad,
@@ -151,6 +154,24 @@ export class PedidoModificarComponent implements OnInit {
     } else {
       this.formulario.updateValueAndValidity();
     }
+  }
+
+  eliminar() {
+    const dialogRef = this.dialog.open(ConfirmacionDialogComponent);
+    dialogRef.componentInstance.texto = '¿Desea eliminar este pedido?';
+    dialogRef.afterClosed().subscribe((resul) => {
+      if (resul) {
+        const lineas = this.listaLineas.filter((linea) => linea.id);
+        if (lineas.length > 0) {
+          this.lineaProductoService.deleteMany(lineas).subscribe((lineResponse) => {
+            console.log(lineResponse);
+            this.pedidoService.delete(this.pedido.id).subscribe((response) => console.log(response));
+          });
+        } else {
+          this.pedidoService.delete(this.pedido.id).subscribe((response) => console.log(response));
+        }
+      }
+    });
   }
 
   private filterProductList() {
