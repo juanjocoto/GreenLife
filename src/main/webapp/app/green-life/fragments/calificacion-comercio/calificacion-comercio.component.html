@@ -1,0 +1,9 @@
+<div>
+    <h4>¿Cuéntanos qué te pareció?</h4>
+    <a *ngFor="let item of estrellas; let i=index" (click)="setEstrella(i)">
+        <i *ngIf="item"><img src="../../../../content/images/empty star.png" class="star" /></i>
+        <i *ngIf="!item"><img src="../../../../content/images/star.png" class="star" /></i>
+    </a>
+    <br>
+    <button class="btn" (click)="agregar()">Agregar</button>
+</div>
