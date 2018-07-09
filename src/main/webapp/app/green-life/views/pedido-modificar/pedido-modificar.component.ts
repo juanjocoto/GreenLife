@@ -120,7 +120,7 @@ export class PedidoModificarComponent implements OnInit {
     // (<HTMLFontElement>this.form.nativeElement).
     if (this.formulario.valid && this.listaLineas && this.listaLineas.length > 0) {
 
-      const lineas = this.listaLineas.filter((linea) => linea.cantidad > 1).map((linea) => {
+      const lineas = this.listaLineas.filter((linea) => linea.cantidad > 0).map((linea) => {
         return {
           id: linea.id,
           cantidad: linea.cantidad,
