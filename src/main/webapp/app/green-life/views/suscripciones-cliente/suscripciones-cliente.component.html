@@ -14,25 +14,24 @@
             <div class="img-container text-center">
                 <img src="../../../../content/images/comcercio.png" alt="Comercios suscrito" height="140px">
             </div>
-            <h2 id="subtitle">Comercios suscritos<span class="badge badge-primary">{{suscripciones.length}}</span></h2>
+            <h2 id="subtitle">Comercios suscritos<span class="badge badge-vista-usuario">{{suscripciones.length}}</span></h2>
             <p class="info-text"><i class="fa fa-comment pr-3"></i>Recuerda que antes de cancelar una suscripción, deberás cancelar los pagos pendientes que tenga la suscripción.</p>
         </div>
     </div>
     <div class="row container-suscripciones">
         <div class="col-lg-4 col-sm-6 container-suscripcion" *ngFor="let suscripcion of suscripciones">
-            <div class="card">
-                <h5 class="card-header">{{suscripcion.comercio.nombreComercial}}
-                    <span class="badge badge-secondary float-right">0</span>
-                    <span class="float-right card-header-subtitle">Pedidos</span>
-                    <a class="float-right"><i class="fa fa-plus-square"></i></a>
+            <div class="card card-green-life">
+                <h5 class="card-header card-header-green-life">{{suscripcion.comercio.nombreComercial}}
+                    <span class="badge card-badge-green-life float-right">0</span>
+                    <span class="float-right card-header-subtitle-green-life">Pedidos</span>
                 </h5>
                 <div class="card-body">
-                    <h6 class="card-title">{{suscripcion.comercio.tipo | titlecase}}</h6>
-                    <p class="card-text">Estado: {{suscripcion.suscripcion.estado | titlecase}} </p>
-                    <p class="card-text">Corte de pago: {{suscripcion.suscripcion.fechaCobro | date:'dd'}} de cada mes.</p>
-                    <p class="card-text">Suscrito desde: {{suscripcion.suscripcion.fechaCreacion | date}}.</p>
-                    <button class="btn btn-sm btn-cancelar-suscripcion"><i class="fa fa-ban"></i>Cancelar</button>
-                    <button class="btn btn-sm btn-pagar-suscripcion"><i class="fa fa-paypal"></i>Pagar</button>
+                    <h6 class="card-title card-title-green-life">{{suscripcion.comercio.tipo | titlecase}}</h6>
+                    <p class="card-text card-text-green-life">Estado: {{suscripcion.suscripcion.estado | titlecase}} </p>
+                    <p class="card-text card-text-green-life">Corte de pago: {{suscripcion.suscripcion.fechaCobro | date:'dd'}} de cada mes.</p>
+                    <p class="card-text card-text-green-life">Suscrito desde: {{suscripcion.suscripcion.fechaCreacion | date}}.</p>
+                    <button class="btn btn-sm btn-secondary-card-green-life"><i class="fa fa-ban"></i>Cancelar</button>
+                    <button class="btn btn-sm btn-primary-card-green-life"><i class="fa fa-paypal"></i>Pagar</button>
                 </div>
             </div>
         </div>
