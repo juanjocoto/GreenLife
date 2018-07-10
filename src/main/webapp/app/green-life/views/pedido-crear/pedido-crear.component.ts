@@ -72,6 +72,7 @@ export class PedidoCrearComponent implements OnInit {
         this.suscripcion = httpResponse.body;
         this.productoService.findByComercio(this.suscripcion.comercioId)
           .subscribe((productoResponse) => this.productos = productoResponse.body);
+        this.pedido.suscripcionId = this.suscripcion.id;
       });
     });
 
@@ -105,7 +106,7 @@ export class PedidoCrearComponent implements OnInit {
       this.pedidoService.create(this.pedido).subscribe((httpResponse) => {
         this.pedido.id = httpResponse.body.id;
         console.log(httpResponse.body);
-        this.lineaProductoService.createMany(this.listaLineas.filter((linea) => linea.cantidad > 1).map((linea) => {
+        this.lineaProductoService.createMany(this.listaLineas.filter((linea) => linea.cantidad > 0).map((linea) => {
           return {
             id: linea.id,
             cantidad: linea.cantidad,
@@ -122,7 +123,6 @@ export class PedidoCrearComponent implements OnInit {
   }
 
   private refreshTables() {
-
     this.productos = [...this.productos];
     this.listaLineas = [...this.listaLineas];
   }
