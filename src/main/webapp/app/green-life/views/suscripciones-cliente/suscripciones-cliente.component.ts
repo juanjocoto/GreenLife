@@ -37,6 +37,10 @@ export class SuscripcionesClienteComponent implements OnInit {
         });
     }
 
+    crearPedido(suscripcionId) {
+        this.router.navigate(['app/suscripciones/' + suscripcionId + '/pedido']);
+    }
+
     private loadUsuario(login) {
         this.usuarioService.findByUserLogin(login).subscribe((usuarioResponse: HttpResponse<Usuario>) => {
             this.cliente = usuarioResponse.body;

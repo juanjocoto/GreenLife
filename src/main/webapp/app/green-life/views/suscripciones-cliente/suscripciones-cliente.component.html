@@ -22,8 +22,8 @@
         <div class="col-lg-4 col-sm-6 container-suscripcion" *ngFor="let suscripcion of suscripciones">
             <div class="card card-green-life">
                 <h5 class="card-header card-header-green-life">{{suscripcion.comercio.nombreComercial}}
-                    <span class="badge card-badge-green-life float-right">0</span>
-                    <span class="float-right card-header-subtitle-green-life">Pedidos</span>
+                    <!--<span class="badge card-badge-green-life float-right">0</span>-->
+                    <a class="card-header-subtitle-green-life" (click)="crearPedido(suscripcion.suscripcion.id)">Ver Pedidos</a>
                 </h5>
                 <div class="card-body">
                     <h6 class="card-title card-title-green-life">{{suscripcion.comercio.tipo | titlecase}}</h6>
