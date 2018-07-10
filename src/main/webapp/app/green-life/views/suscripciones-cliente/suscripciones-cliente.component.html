@@ -23,14 +23,16 @@
             <div class="card card-green-life">
                 <h5 class="card-header card-header-green-life">{{suscripcion.comercio.nombreComercial}}
                     <!--<span class="badge card-badge-green-life float-right">0</span>-->
-                    <a class="card-header-subtitle-green-life" (click)="crearPedido(suscripcion.suscripcion.id)">Ver Pedidos</a>
+                    <a class="card-header-subtitle-green-life" (click)="loadPedidos(suscripcion.suscripcion.id)">Ver Pedidos</a>
                 </h5>
                 <div class="card-body">
                     <h6 class="card-title card-title-green-life">{{suscripcion.comercio.tipo | titlecase}}</h6>
-                    <p class="card-text card-text-green-life">Estado: {{suscripcion.suscripcion.estado | titlecase}} </p>
+                    <p class="card-text card-text-green-life">Estado: {{suscripcion.suscripcion.estado | titlecase}}. </p>
                     <p class="card-text card-text-green-life">Corte de pago: {{suscripcion.suscripcion.fechaCobro | date:'dd'}} de cada mes.</p>
                     <p class="card-text card-text-green-life">Suscrito desde: {{suscripcion.suscripcion.fechaCreacion | date}}.</p>
-                    <button class="btn btn-sm btn-secondary-card-green-life"><i class="fa fa-ban"></i>Cancelar</button>
+                    <button class="btn btn-sm btn-secondary-card-green-life" (click)="cancelarSuscripcion(suscripcion.suscripcion.id, suscripcion.comercio.nombreComercial)">
+                        <i class="fa fa-ban"></i>Cancelar
+                    </button>
                     <button class="btn btn-sm btn-primary-card-green-life"><i class="fa fa-paypal"></i>Pagar</button>
                 </div>
             </div>

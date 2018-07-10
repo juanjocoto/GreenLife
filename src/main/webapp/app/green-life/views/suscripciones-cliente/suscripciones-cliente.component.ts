@@ -1,7 +1,10 @@
 import {Component, OnInit} from '@angular/core';
 import {HttpResponse} from '@angular/common/http';
 import {Router, ActivatedRoute} from '@angular/router';
+import { Location } from '@angular/common';
 import {CommonAdapterService} from '../../shared/services/common-adapter.service';
+import {MatDialog} from '@angular/material';
+import {ConfirmacionDialogComponent} from '../../dialogos/confirmacion-dialog/confirmacion-dialog.component';
 import {Suscripcion, SuscripcionService} from '../../../entities/suscripcion';
 import {Comercio, ComercioService} from '../../../entities/comercio';
 import {Usuario, UsuarioService} from '../../../entities/usuario';
@@ -23,7 +26,9 @@ export class SuscripcionesClienteComponent implements OnInit {
     constructor(
         private router: Router,
         private route: ActivatedRoute,
+        private location: Location,
         private commonAdapterService: CommonAdapterService,
+        private cancelarSuscripcionDialog: MatDialog,
         private suscripcionService: SuscripcionService,
         private comercioService: ComercioService,
         private usuarioService: UsuarioService,
@@ -37,7 +42,19 @@ export class SuscripcionesClienteComponent implements OnInit {
         });
     }
 
-    crearPedido(suscripcionId) {
+    cancelarSuscripcion(suscripcionId, comercioNombreComercial) {
+        const ref = this.cancelarSuscripcionDialog.open(ConfirmacionDialogComponent);
+        ref.componentInstance.texto = `¿Desea cancelar la suscripción del comercio ${comercioNombreComercial}?`;
+        ref.afterClosed().subscribe((result) => {
+            if (result) {
+                this.suscripcionService.delete(suscripcionId).subscribe((httpResponse) => {
+                    this.refreshPage();
+                });
+            }
+        });
+    }
+
+    loadPedidos(suscripcionId) {
         this.router.navigate(['app/suscripciones/' + suscripcionId + '/pedido']);
     }
 
@@ -63,6 +80,11 @@ export class SuscripcionesClienteComponent implements OnInit {
                 }
             });
         });
+    }
+
+    private refreshPage() {
+        this.router.navigateByUrl('/', {skipLocationChange: true}).then(() =>
+            this.router.navigate(['app/usuario/' +  this.clienteDetail.login + '/suscripciones']));
     }
 
 }
