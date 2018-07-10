@@ -29,6 +29,13 @@ export class LineaProductoService {
             .map((res: HttpResponse<LineaProducto[]>) => this.convertArrayResponse(res));
     }
 
+    updateMany(lineasProducto: LineaProducto[]): Observable<HttpResponse<LineaProducto[]>> {
+        const copy = lineasProducto.map((linea) => this.convert(linea));
+        // linea-productos-bulk
+        return this.http.put<LineaProducto[]>(this.resourceUrl + '/bulk', copy, { observe: 'response' })
+            .map((res: HttpResponse<LineaProducto[]>) => this.convertArrayResponse(res));
+    }
+
     update(lineaProducto: LineaProducto): Observable<EntityResponseType> {
         const copy = this.convert(lineaProducto);
         return this.http.put<LineaProducto>(this.resourceUrl, copy, { observe: 'response' })
@@ -40,6 +47,11 @@ export class LineaProductoService {
             .map((res: EntityResponseType) => this.convertResponse(res));
     }
 
+    findByPedidoId(pedidoId: number): Observable<HttpResponse<LineaProducto[]>> {
+        return this.http.get<LineaProducto[]>(`${this.resourceUrl}/pedido/${pedidoId}`, { observe: 'response' })
+            .map((res: HttpResponse<LineaProducto[]>) => this.convertArrayResponse(res));
+    }
+
     query(req?: any): Observable<HttpResponse<LineaProducto[]>> {
         const options = createRequestOption(req);
         return this.http.get<LineaProducto[]>(this.resourceUrl, { params: options, observe: 'response' })
@@ -48,6 +60,21 @@ export class LineaProductoService {
 
     delete(id: number): Observable<HttpResponse<any>> {
         return this.http.delete<any>(`${this.resourceUrl}/${id}`, { observe: 'response' });
+    }
+
+    deleteMany(lineasProducto: LineaProducto[]): Observable<HttpResponse<any>> {
+        if (lineasProducto.length < 1) {
+            throw new Error('no lineas');
+        }
+        let idsString = '';
+
+        for (const linea of lineasProducto) {
+            idsString += `${linea.id}-`;
+        }
+
+        idsString = idsString.slice(0, -1);
+
+        return this.http.delete<any>(`${this.resourceUrl}/${idsString}/bulk`, { observe: 'response' });
     }
 
     search(req?: any): Observable<HttpResponse<LineaProducto[]>> {

@@ -65,7 +65,7 @@ import { NavbarGreenlifeComponent } from './layout/navbar-greenlife/navbar-green
 import { NgModule } from '@angular/core';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { PedidoCrearComponent } from './views/pedido-crear/pedido-crear.component';
-import { PedidoCrearDialogComponent } from './dialogos/pedido-crear-dialog/pedido-crear-dialog.component';
+import { PedidoModificarComponent } from './views/pedido-modificar/pedido-modificar.component';
 import { RootComponent } from './root/root.component';
 import { RouterModule } from '@angular/router';
 import { SelectorEtiquetasComponent } from './fragments/selector-etiquetas/selector-etiquetas.component';
@@ -151,10 +151,11 @@ import { AuthService } from './shared/services/auth.service';
     LocalModificarComponent,
     LocalEliminarComponent,
     DummyComponent,
-    PedidoCrearDialogComponent,
     PedidoCrearComponent,
+    PedidoModificarComponent,
     ComerciosLocalesComponent,
-    SuscripcionCrearComponent
+    SuscripcionCrearComponent,
+
   ],
   entryComponents: [
     LoginComponent,
@@ -162,8 +163,7 @@ import { AuthService } from './shared/services/auth.service';
     CategoriasRegistroComponent,
     CargaImagenesComponent,
     ConfirmacionDialogComponent,
-    LocalEliminarComponent,
-    PedidoCrearDialogComponent
+    LocalEliminarComponent
   ],
   providers: [
     CommonAdapterService,

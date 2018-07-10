@@ -8,6 +8,7 @@ import { LandingComponent } from './views/landing/landing.component';
 import { LocalModificarComponent } from './views/local-modificar/local-modificar.component';
 import { LocalRegistroComponent } from './views/local-registro/local-registro.component';
 import { PedidoCrearComponent } from './views/pedido-crear/pedido-crear.component';
+import { PedidoModificarComponent } from './views/pedido-modificar/pedido-modificar.component';
 import { Route } from '@angular/router';
 import { SuscripcionCrearComponent } from './views/suscripcion-crear/suscripcion-crear.component';
 import { UsuarioModificarComponent } from './views/usuario-modificar/usuario-modificar.component';
@@ -27,5 +28,6 @@ export const greenLifeRoutes: Route[] = [
     { path: 'comercios/:comercioId/categorias', component: CategoriasComponent, data: { configuracion: true }, canActivate: [AuthGuard] },
     { path: 'suscripciones/:suscripcionId/pedido/crear', component: PedidoCrearComponent, data: { configuracion: false }, canActivate: [AuthGuard] },
     { path: 'dummy', component: DummyComponent, data: { configuracion: false }, canActivate: [] },
-    { path: 'cliente/:login/suscripcion/comercio/:comercioId', component: SuscripcionCrearComponent, data: { configuracion: false }, canActivate: [AuthGuard] }
+    { path: 'cliente/:login/suscripcion/comercio/:comercioId', component: SuscripcionCrearComponent, data: { configuracion: false }, canActivate: [AuthGuard] },
+    { path: 'pedido/:pedidoId/editar', component: PedidoModificarComponent, data: { configuracion: false }, canActivate: [AuthGuard] }
 ];
