@@ -17,7 +17,7 @@ import { UsuarioRegistroComponent } from './views/usuario-registro/usuario-regis
 export const greenLifeRoutes: Route[] = [
     { path: '', component: LandingComponent, data: { configuracion: false }, canActivate: [] },
     { path: 'registrarse', component: UsuarioRegistroComponent, data: { configuracion: false }, canActivate: [] },
-    { path: 'usuario/:login', component: UsuarioPerfilComponent, data: { configuracion: false }, canActivate: [AuthGuard] },
+    { path: 'usuario/:login', component: UsuarioPerfilComponent, data: { configuracion: true }, canActivate: [AuthGuard] },
     { path: 'usuario/:login/editar', component: UsuarioModificarComponent, data: { configuracion: true }, canActivate: [AuthGuard] },
     { path: 'comercios/:comercioId/productos', component: ComerciosProductosComponent, data: { configuracion: true }, canActivate: [AuthGuard] },
     { path: 'comercios/:comercioId/editar', component: ComercioEditarComponent, data: { configuracion: true }, canActivate: [AuthGuard] },
