@@ -75,6 +75,7 @@ import { UsuarioPerfilComponent } from './views/usuario-perfil/usuario-perfil.co
 import { UsuarioRegistroComponent } from './views/usuario-registro/usuario-registro.component';
 import { UsuarioRolesComponent } from './views/usuario-roles/usuario-roles.component';
 import { ValidadorNumeroDirective } from './shared/directives/validador-numero.directive';
+import { AuthService } from './shared/services/auth.service';
 import { SuscripcionesClienteComponent } from './views/suscripciones-cliente/suscripciones-cliente.component';
 
 @NgModule({
@@ -170,6 +171,7 @@ import { SuscripcionesClienteComponent } from './views/suscripciones-cliente/sus
     CommonAdapterService,
     CategoriasComponent,
     HorasEntregaService,
+    AuthService,
     { provide: MAT_DATE_LOCALE, useValue: 'es-CR' }
   ],
 })
