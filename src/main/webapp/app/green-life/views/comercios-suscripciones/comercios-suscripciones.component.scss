@@ -1,0 +1,152 @@
+@import '../../../../content/scss/green-life-variables';
+
+.main-container {
+    padding: 15px 0 75px 0;
+}
+
+.title-bar {
+    text-align: center;
+}
+
+.divider {
+    background: #FFFFFF;
+    max-width: 200px;
+    -webkit-box-shadow: 0 1px 3px rgba(50,50,93,.11), 0 1px 3px rgba(0,0,0,.08);
+    -moz-box-shadow: 0 1px 3px rgba(50,50,93,.11), 0 1px 3px rgba(0,0,0,.08);
+    box-shadow: 0 1px 3px rgba(50,50,93,.11), 0 1px 3px rgba(0,0,0,.08);
+}
+
+#subtitle {
+    margin: 10px 0 0 0;
+    text-align: center;
+    color: $config-dark-gray-color;
+    font-weight: 300;
+}
+
+.info-text {
+    padding: 12px 0 35px 0;
+    text-align: center;
+    font-size: 17px;
+    color: $green-color;
+}
+
+.img-container img{
+    margin: 25px 0 10px 0;
+}
+
+.subtitle-body {
+    font-weight: 300;
+    padding: 15px 0 0 0;
+}
+
+.badge-primary {
+    margin: 0 0 0 12px;
+    border-radius: 6px;
+    -webkit-box-shadow: 0 1px 3px rgba(50,50,93,.11), 0 1px 3px rgba(0,0,0,.08);
+    -moz-box-shadow: 0 1px 3px rgba(50,50,93,.11), 0 1px 3px rgba(0,0,0,.08);
+    box-shadow: 0 1px 3px rgba(50,50,93,.11), 0 1px 3px rgba(0,0,0,.08);
+    color: #FFFFFF;
+    background: $config-dark-gray-color;
+}
+
+.container-suscripciones {
+    overflow-y: scroll;
+    white-space: nowrap;
+    max-height: 615px;
+}
+
+.container-suscripcion {
+    padding: 20px 25px;
+}
+
+.card {
+    color: $config-dark-gray-color;
+    border: none;
+    border-radius: 6px;
+    -webkit-box-shadow: 0 1px 3px rgba(50,50,93,.11), 0 1px 3px rgba(0,0,0,.08);
+    -moz-box-shadow: 0 1px 3px rgba(50,50,93,.11), 0 1px 3px rgba(0,0,0,.08);
+    box-shadow: 0 1px 3px rgba(50,50,93,.11), 0 1px 3px rgba(0,0,0,.08);
+}
+
+.card-header {
+    color: #FFFFFF;
+    background: $green-color;
+    border: none;
+    border-radius: 6px;
+    -webkit-box-shadow: 0 1px 3px rgba(50,50,93,.11), 0 1px 3px rgba(0,0,0,.08);
+    -moz-box-shadow: 0 1px 3px rgba(50,50,93,.11), 0 1px 3px rgba(0,0,0,.08);
+    box-shadow: 0 1px 3px rgba(50,50,93,.11), 0 1px 3px rgba(0,0,0,.08);
+
+    .fa {
+        padding: 0 7px 0 0;
+        font-size: 17px;
+    }
+}
+
+.card-header-subtitle {
+    margin-top: 2px;
+    font-size: 17px;
+}
+
+.badge-secondary {
+    margin: 0 0 0 12px;
+    border-radius: 6px;
+    -webkit-box-shadow: 0 1px 3px rgba(50,50,93,.11), 0 1px 3px rgba(0,0,0,.08);
+    -moz-box-shadow: 0 1px 3px rgba(50,50,93,.11), 0 1px 3px rgba(0,0,0,.08);
+    box-shadow: 0 1px 3px rgba(50,50,93,.11), 0 1px 3px rgba(0,0,0,.08);
+    color: $green-color;
+    background: #FFFFFF;
+}
+
+.card-title {
+    color: $green-color;
+    font-size: 18px;
+    font-weight: 700;
+}
+
+.card-text {
+    margin: 0 0 7px 0;
+    font-size: 17px;
+}
+
+.btn-cancelar-suscripcion, .btn-pagar-suscripcion {
+    margin: 20px 0 0 0;
+    font-size: 16px;
+    border-radius: 6px;
+    -webkit-box-shadow: 0 1px 3px rgba(50,50,93,.11), 0 1px 3px rgba(0,0,0,.08);
+    -moz-box-shadow: 0 1px 3px rgba(50,50,93,.11), 0 1px 3px rgba(0,0,0,.08);
+    box-shadow: 0 1px 3px rgba(50,50,93,.11), 0 1px 3px rgba(0,0,0,.08);
+
+    .fa {
+        padding: 0 8px 0 0;
+    }
+}
+
+.btn-cancelar-suscripcion {
+    float: right;
+    color: #FFFFFF;
+    background: $warning-color;
+}
+
+.btn-pagar-suscripcion {
+    float: left;
+    color: #FFFFFF;
+    background:  $config-dark-gray-color;
+}
+
+// no-sucripcion section
+.title-no-suscripcion {
+    padding: 30px 0 15px 0;
+    font-weight: 300;
+    color: $config-dark-gray-color;
+}
+
+.subtitle-no-suscripcion {
+    color: $green-color;
+    font-weight: 300;
+    padding: 10px 0 40px 0;
+}
+
+.img-container-no-suscripcion {
+    padding: 10px 0 10px 0;
+}
