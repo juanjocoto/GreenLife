@@ -138,6 +138,7 @@ public class LineaProductoResource {
 
     @PutMapping("/linea-productos/bulk")
     @Timed
+    @Transactional
     public ResponseEntity<List<LineaProductoDTO>> updateMultiLineaProducto(
             @Valid @RequestBody List<LineaProductoDTO> lineaProductoDTOList) throws URISyntaxException {
         List<LineaProductoDTO> results = new ArrayList<LineaProductoDTO>();
@@ -154,8 +155,7 @@ public class LineaProductoResource {
             }
         }
 
-        return ResponseEntity.ok()
-                .headers(HeaderUtil.createEntityCreationAlert(ENTITY_NAME, "")).body(results);
+        return ResponseEntity.ok().headers(HeaderUtil.createEntityCreationAlert(ENTITY_NAME, "")).body(results);
     }
 
     /**

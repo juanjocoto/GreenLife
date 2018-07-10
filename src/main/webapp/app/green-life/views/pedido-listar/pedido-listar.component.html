@@ -1,11 +1,27 @@
+<div class="container-fluid title-bar">
+  <div class="row">
+    <div class="col">
+      <h2 id="title-">{{clienteDetail.firstName + ' ' + clienteDetail.lastName}}</h2>
+      <hr class="divider">
+      <h1>Suscripciones</h1>
+    </div>
+  </div>
+</div>
+
 <div class="container">
   <div class="row">
-    <div class="card col-lg-4 col-sm-6" *ngFor="let pedido of pedidos">
-      <div class="card-text">Día de entrega: {{pedido.diasEntregaNombre}}</div>
-      <div class="card-text">Hora de entrega: {{pedido.hora}}</div>
+    <div class="col-lg-4 col-sm-6 card-container" *ngFor="let pedido of pedidos">
+      <div class="card pedidos">
+        <a mat-icon-button [routerLink]="pedido.id">
+          <mat-icon>edit</mat-icon>
+        </a>
+        <div class="card-text">Día de entrega: {{pedido.diasEntregaNombre}}</div>
+        <div class="card-text">Hora de entrega: {{pedido.hora}}</div>
+        <div class="card-text">Número de lineas: {{pedido.lineas.length}}</div>
 
-      <div class="card-text">Monto Total: {{getMontoTotal(pedido.lineas)|colon}}</div>
-      {{pedido | json}}
+        <div class="card-text">Monto Total: {{getMontoTotal(pedido.lineas)|colon}}</div>
+        <!-- {{pedido | json}} -->
+      </div>
     </div>
   </div>
 </div>
