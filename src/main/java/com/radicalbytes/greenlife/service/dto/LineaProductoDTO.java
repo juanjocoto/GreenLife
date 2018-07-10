@@ -20,11 +20,27 @@ public class LineaProductoDTO implements Serializable {
 
     private Long productoId;
 
+    private ProductoDTO producto;
+
     public Long getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    /**
+	 * @return the producto
+	 */
+	public ProductoDTO getProducto() {
+		return producto;
+	}
+
+	/**
+	 * @param producto the producto to set
+	 */
+	public void setProducto(ProductoDTO producto) {
+		this.producto = producto;
+	}
+
+	public void setId(Long id) {
         this.id = id;
     }
 

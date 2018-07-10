@@ -76,6 +76,7 @@ import { UsuarioRegistroComponent } from './views/usuario-registro/usuario-regis
 import { UsuarioRolesComponent } from './views/usuario-roles/usuario-roles.component';
 import { ValidadorNumeroDirective } from './shared/directives/validador-numero.directive';
 import { AuthService } from './shared/services/auth.service';
+import { PedidoListarComponent } from './views/pedido-listar/pedido-listar.component';
 
 @NgModule({
   imports: [
@@ -155,6 +156,7 @@ import { AuthService } from './shared/services/auth.service';
     PedidoModificarComponent,
     ComerciosLocalesComponent,
     SuscripcionCrearComponent,
+    PedidoListarComponent,
 
   ],
   entryComponents: [

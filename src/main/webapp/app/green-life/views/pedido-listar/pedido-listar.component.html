@@ -1,0 +1,11 @@
+<div class="container">
+  <div class="row">
+    <div class="card col-lg-4 col-sm-6" *ngFor="let pedido of pedidos">
+      <div class="card-text">Día de entrega: {{pedido.diasEntregaNombre}}</div>
+      <div class="card-text">Hora de entrega: {{pedido.hora}}</div>
+
+      <div class="card-text">Monto Total: {{getMontoTotal(pedido.lineas)|colon}}</div>
+      {{pedido | json}}
+    </div>
+  </div>
+</div>
