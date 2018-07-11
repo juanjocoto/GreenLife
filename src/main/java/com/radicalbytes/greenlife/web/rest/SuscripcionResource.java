@@ -158,6 +158,16 @@ public class SuscripcionResource {
             .collect(Collectors.toList());
     }
 
+    @GetMapping("/suscripcions/usuario/{id}")
+    @Timed
+    @Transactional
+    public ResponseEntity<List<SuscripcionDTO>> getSuscripcionByUsuario(@PathVariable Long id) {
+        log.debug("REST request to get Suscripcion : {}", id);
+        List<Suscripcion> suscripciones = suscripcionRepository.findAllByUsuario_id(id);
+        List<SuscripcionDTO> suscripcionesDTO = suscripcionMapper.toDto(suscripciones);
+        return ResponseUtil.wrapOrNotFound(Optional.ofNullable(suscripcionesDTO));
+    }
+
     @GetMapping("/suscripcions/comercio/{id}")
     @Timed
     @Transactional
