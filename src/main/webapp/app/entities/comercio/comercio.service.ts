@@ -51,6 +51,11 @@ export class ComercioService {
             .map((res: HttpResponse<Comercio[]>) => this.convertArrayResponse(res));
     }
 
+    findComerciosByDueno(id: number): Observable<HttpResponse<Comercio[]>> {
+        return this.http.get<Comercio[]>(`${this.resourceUrl}/usuario/${id}`, { observe: 'response'})
+            .map((res: HttpResponse<Comercio[]>) => this.convertArrayResponse(res));
+    }
+
     private convertResponse(res: EntityResponseType): EntityResponseType {
         const body: Comercio = this.convertItemFromServer(res.body);
         return res.clone({body});
