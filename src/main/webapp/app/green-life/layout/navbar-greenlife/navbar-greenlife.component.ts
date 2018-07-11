@@ -1,3 +1,4 @@
+import { Component, OnInit } from '@angular/core';
 import {MatDialog} from '@angular/material';
 import {ActivatedRoute, Router, RoutesRecognized} from '@angular/router';
 import {AccountService, LoginService, User, UserService} from '../../../shared';
@@ -68,9 +69,5 @@ export class NavbarGreenlifeComponent implements OnInit {
         this.userService.find(login).subscribe((userResponse: HttpResponse<User>) => {
             this.currentUser = userResponse.body;
         });
-    }
-
-    loadCurrentComercio() {
-
     }
 }
