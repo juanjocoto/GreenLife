@@ -81,7 +81,7 @@ import { UsuarioRolesComponent } from './views/usuario-roles/usuario-roles.compo
 import { ValidadorNumeroDirective } from './shared/directives/validador-numero.directive';
 import {CategoriasModificarComponent} from './dialogos/categorias-modificar/categorias-modificar.component';
 import { ConfiguracionComerciosComponent } from './views/configuracion-comercios/configuracion-comercios.component';
-import { CalificacionComercioComponent } from './fragments/calificacion-comercio/calificacion-comercio.component';
+import {CalificacionComercioComponent} from './dialogos/calificacion-comercio/calificacion-comercio.component';
 
 @NgModule({
   imports: [

@@ -1,11 +1,11 @@
 import { Component, OnInit } from '@angular/core';
-import {ResenaComercio, ResenaComercioService} from '../../../entities/resena-comercio';
+import {ResenaComercio, ResenaComercioService} from '../../../entities/resena-comercio/index';
 import {CommonAdapterService, JHILocalDate} from '../../shared/services/common-adapter.service';
 import {Router, ActivatedRoute} from '@angular/router';
 import {HttpResponse} from '@angular/common/http';
-import {Comercio, ComercioService} from '../../../entities/comercio';
-import {Usuario, UsuarioService} from '../../../entities/usuario';
-import {UserService} from '../../../shared';
+import {Comercio, ComercioService} from '../../../entities/comercio/index';
+import {Usuario, UsuarioService} from '../../../entities/usuario/index';
+import {UserService} from '../../../shared/index';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 
 @Component({
