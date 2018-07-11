@@ -2,7 +2,7 @@
 
 .title {
     background: $config-green-color;
-    color: #fff;
+    color: #FFFFFF;
     padding: 20px;
     margin: 0 0 20px;
 }
@@ -12,10 +12,38 @@
     width: 800px;
 }
 
+.tab-container {
+    border-radius: 6px;
+    box-shadow:  0 1px 3px rgba(50,50,93,.11), 0 1px 3px rgba(0,0,0,.08);
+    margin-top: 20px;
+    margin-bottom: 30px;
+}
+
+agm-map {
+    height: 300px;
+    width: 800px;
+}
+
 mat-form-field {
     width: 100%;
 }
 
 .ng-invalid:not(form) {
     border-left: unset;
+}
+
+.btnPrimary {
+    color: #FFFFFF;
+    background: $warning-color;
+    box-shadow:  0 1px 3px rgba(50,50,93,.11), 0 1px 3px rgba(0,0,0,.08);
+    float: right;
+    margin: 20px 20px 0 10px;
+}
+
+.btnSecondary {
+    color: #FFFFFF;
+    background: $config-green-color;
+    box-shadow:  0 1px 3px rgba(50,50,93,.11), 0 1px 3px rgba(0,0,0,.08);
+    float: right;
+    margin: 20px 10px 0 0;
 }
