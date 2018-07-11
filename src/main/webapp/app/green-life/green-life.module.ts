@@ -37,6 +37,7 @@ import {
 } from '@angular/material';
 
 import { AgmCoreModule } from '@agm/core';
+import { AuthService } from './shared/services/auth.service';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { BrowserModule } from '@angular/platform-browser';
 import { CargaImagenesComponent } from './dialogos/carga-imagenes/carga-imagenes.component';
@@ -65,18 +66,19 @@ import { NavbarGreenlifeComponent } from './layout/navbar-greenlife/navbar-green
 import { NgModule } from '@angular/core';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { PedidoCrearComponent } from './views/pedido-crear/pedido-crear.component';
+import { PedidoListarComponent } from './views/pedido-listar/pedido-listar.component';
 import { PedidoModificarComponent } from './views/pedido-modificar/pedido-modificar.component';
 import { RootComponent } from './root/root.component';
 import { RouterModule } from '@angular/router';
 import { SelectorEtiquetasComponent } from './fragments/selector-etiquetas/selector-etiquetas.component';
+import { SnackBarService } from './shared/services/snack-bar.service';
 import { SuscripcionCrearComponent } from './views/suscripcion-crear/suscripcion-crear.component';
+import { SuscripcionesClienteComponent } from './views/suscripciones-cliente/suscripciones-cliente.component';
 import { UsuarioModificarComponent } from './views/usuario-modificar/usuario-modificar.component';
 import { UsuarioPerfilComponent } from './views/usuario-perfil/usuario-perfil.component';
 import { UsuarioRegistroComponent } from './views/usuario-registro/usuario-registro.component';
 import { UsuarioRolesComponent } from './views/usuario-roles/usuario-roles.component';
 import { ValidadorNumeroDirective } from './shared/directives/validador-numero.directive';
-import { AuthService } from './shared/services/auth.service';
-import { SuscripcionesClienteComponent } from './views/suscripciones-cliente/suscripciones-cliente.component';
 
 @NgModule({
   imports: [
@@ -156,6 +158,7 @@ import { SuscripcionesClienteComponent } from './views/suscripciones-cliente/sus
     PedidoModificarComponent,
     ComerciosLocalesComponent,
     SuscripcionCrearComponent,
+    PedidoListarComponent,
     SuscripcionesClienteComponent
   ],
   entryComponents: [
@@ -171,6 +174,7 @@ import { SuscripcionesClienteComponent } from './views/suscripciones-cliente/sus
     CategoriasComponent,
     HorasEntregaService,
     AuthService,
+    SnackBarService,
     { provide: MAT_DATE_LOCALE, useValue: 'es-CR' }
   ],
 })

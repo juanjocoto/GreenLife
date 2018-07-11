@@ -8,6 +8,7 @@ import { DiaEntregaService } from '../../../entities/dia-entrega';
 import { HorasEntregaService } from '../../shared/services/horas-entrega.service';
 import { LineaProducto } from '../../../entities/linea-producto/linea-producto.model';
 import { LineaProductoService } from '../../../entities/linea-producto';
+import { Location } from '@angular/common';
 import { MatDialog } from '@angular/material';
 import { Observable } from 'rxjs/Rx';
 import { Pedido } from '../../../entities/pedido';
@@ -52,7 +53,9 @@ export class PedidoModificarComponent implements OnInit {
     private pedidoService: PedidoService,
     private lineaProductoService: LineaProductoService,
     private formBuilder: FormBuilder,
-    private dialog: MatDialog) { }
+    private dialog: MatDialog,
+    private location: Location
+  ) { }
 
   ngOnInit() {
 
@@ -120,7 +123,6 @@ export class PedidoModificarComponent implements OnInit {
   }
 
   guardar() {
-    // (<HTMLFontElement>this.form.nativeElement).
     if (this.formulario.valid && this.listaLineas && this.listaLineas.length > 0) {
 
       const lineas = this.listaLineas.filter((linea) => linea.cantidad > 0).map((linea) => {
@@ -131,7 +133,6 @@ export class PedidoModificarComponent implements OnInit {
           productoId: linea.productoId
         };
       });
-
       let observable;
       if (this.deletedLineas.length > 0) {
         observable = Observable.zip(
@@ -148,6 +149,7 @@ export class PedidoModificarComponent implements OnInit {
 
       observable.subscribe((result) => {
         console.log(result);
+        this.location.back();
       }, (err) => {
         console.log(err);
       });
@@ -165,10 +167,10 @@ export class PedidoModificarComponent implements OnInit {
         if (lineas.length > 0) {
           this.lineaProductoService.deleteMany(lineas).subscribe((lineResponse) => {
             console.log(lineResponse);
-            this.pedidoService.delete(this.pedido.id).subscribe((response) => console.log(response));
+            this.pedidoService.delete(this.pedido.id).subscribe((response) => this.location.back());
           });
         } else {
-          this.pedidoService.delete(this.pedido.id).subscribe((response) => console.log(response));
+          this.pedidoService.delete(this.pedido.id).subscribe((response) => this.location.back());
         }
       }
     });
