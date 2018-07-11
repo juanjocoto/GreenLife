@@ -135,6 +135,28 @@ public class LineaProductoResource {
                 .body(result);
     }
 
+    @PutMapping("/linea-productos/bulk")
+    @Timed
+    public ResponseEntity<List<LineaProductoDTO>> updateMultiLineaProducto(
+            @Valid @RequestBody List<LineaProductoDTO> lineaProductoDTOList) throws URISyntaxException {
+        List<LineaProductoDTO> results = new ArrayList<LineaProductoDTO>();
+        for (LineaProductoDTO lineaProductoDTO : lineaProductoDTOList) {
+            log.debug("REST request to save LineaProducto : {}", lineaProductoDTO);
+            if (lineaProductoDTO.getId() == null) {
+                results.add(createLineaProducto(lineaProductoDTO).getBody());
+            } else {
+                LineaProducto lineaProducto = lineaProductoMapper.toEntity(lineaProductoDTO);
+                lineaProducto = lineaProductoRepository.save(lineaProducto);
+                LineaProductoDTO result = lineaProductoMapper.toDto(lineaProducto);
+                lineaProductoSearchRepository.save(lineaProducto);
+                results.add(result);
+            }
+        }
+
+        return ResponseEntity.ok()
+                .headers(HeaderUtil.createEntityCreationAlert(ENTITY_NAME, "")).body(results);
+    }
+
     /**
      * GET /linea-productos : get all the lineaProductos.
      *
@@ -146,6 +168,14 @@ public class LineaProductoResource {
     public List<LineaProductoDTO> getAllLineaProductos() {
         log.debug("REST request to get all LineaProductos");
         List<LineaProducto> lineaProductos = lineaProductoRepository.findAll();
+        return lineaProductoMapper.toDto(lineaProductos);
+    }
+
+    @GetMapping("/linea-productos/pedido/{pedidoId}")
+    @Timed
+    public List<LineaProductoDTO> getLineaProductosByPedidoId(@PathVariable long pedidoId) {
+        log.debug("REST request to get all LineaProductos");
+        List<LineaProducto> lineaProductos = lineaProductoRepository.findAllByPedido_id(pedidoId);
         return lineaProductoMapper.toDto(lineaProductos);
     }
 
@@ -178,6 +208,21 @@ public class LineaProductoResource {
         lineaProductoRepository.delete(id);
         lineaProductoSearchRepository.delete(id);
         return ResponseEntity.ok().headers(HeaderUtil.createEntityDeletionAlert(ENTITY_NAME, id.toString())).build();
+    }
+
+    @DeleteMapping("/linea-productos/{ids}/bulk")
+    @Timed
+    public ResponseEntity<Void> deleteMultipleLineaProducto(@PathVariable String ids) {
+        String[] idsArray = ids.split("-");
+
+        String deletedIds = "";
+        for (String id : idsArray) {
+            log.debug("REST request to delete LineaProducto : {}", id);
+            lineaProductoRepository.delete(Long.parseLong(id));
+            lineaProductoSearchRepository.delete(Long.parseLong(id));
+            deletedIds += id + " ";
+        }
+        return ResponseEntity.ok().headers(HeaderUtil.createEntityDeletionAlert(ENTITY_NAME, deletedIds)).build();
     }
 
     /**

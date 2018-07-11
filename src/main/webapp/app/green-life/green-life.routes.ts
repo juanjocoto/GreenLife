@@ -8,6 +8,7 @@ import { LandingComponent } from './views/landing/landing.component';
 import { LocalModificarComponent } from './views/local-modificar/local-modificar.component';
 import { LocalRegistroComponent } from './views/local-registro/local-registro.component';
 import { PedidoCrearComponent } from './views/pedido-crear/pedido-crear.component';
+import { PedidoModificarComponent } from './views/pedido-modificar/pedido-modificar.component';
 import { Route } from '@angular/router';
 import { SuscripcionCrearComponent } from './views/suscripcion-crear/suscripcion-crear.component';
 import { UsuarioModificarComponent } from './views/usuario-modificar/usuario-modificar.component';
@@ -18,7 +19,7 @@ import {SuscripcionesComercioComponent} from './views/suscripciones-comercio/sus
 export const greenLifeRoutes: Route[] = [
     { path: '', component: LandingComponent, data: { configuracion: false }, canActivate: [] },
     { path: 'registrarse', component: UsuarioRegistroComponent, data: { configuracion: false }, canActivate: [] },
-    { path: 'usuario/:login', component: UsuarioPerfilComponent, data: { configuracion: false }, canActivate: [AuthGuard] },
+    { path: 'usuario/:login', component: UsuarioPerfilComponent, data: { configuracion: true }, canActivate: [AuthGuard] },
     { path: 'usuario/:login/editar', component: UsuarioModificarComponent, data: { configuracion: true }, canActivate: [AuthGuard] },
     { path: 'comercios/:comercioId/productos', component: ComerciosProductosComponent, data: { configuracion: true }, canActivate: [AuthGuard] },
     { path: 'comercios/:comercioId/editar', component: ComercioEditarComponent, data: { configuracion: true }, canActivate: [AuthGuard] },
@@ -29,5 +30,6 @@ export const greenLifeRoutes: Route[] = [
     { path: 'suscripciones/:suscripcionId/pedido/crear', component: PedidoCrearComponent, data: { configuracion: false }, canActivate: [AuthGuard] },
     { path: 'dummy', component: DummyComponent, data: { configuracion: false }, canActivate: [] },
     { path: 'cliente/:login/suscripcion/comercio/:comercioId', component: SuscripcionCrearComponent, data: { configuracion: false }, canActivate: [AuthGuard] },
-    { path: 'comercios/:comercioId/suscripciones', component: SuscripcionesComercioComponent}
+    { path: 'pedido/:pedidoId/editar', component: PedidoModificarComponent, data: { configuracion: false }, canActivate: [AuthGuard] },
+    { path: 'comercios/:comercioId/suscripciones', component: SuscripcionesComercioComponent, data: { configuracion: true }, canActivate: [AuthGuard] }
 ];

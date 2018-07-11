@@ -65,7 +65,7 @@ import { NavbarGreenlifeComponent } from './layout/navbar-greenlife/navbar-green
 import { NgModule } from '@angular/core';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { PedidoCrearComponent } from './views/pedido-crear/pedido-crear.component';
-import { PedidoCrearDialogComponent } from './dialogos/pedido-crear-dialog/pedido-crear-dialog.component';
+import { PedidoModificarComponent } from './views/pedido-modificar/pedido-modificar.component';
 import { RootComponent } from './root/root.component';
 import { RouterModule } from '@angular/router';
 import { SelectorEtiquetasComponent } from './fragments/selector-etiquetas/selector-etiquetas.component';
@@ -75,6 +75,7 @@ import { UsuarioPerfilComponent } from './views/usuario-perfil/usuario-perfil.co
 import { UsuarioRegistroComponent } from './views/usuario-registro/usuario-registro.component';
 import { UsuarioRolesComponent } from './views/usuario-roles/usuario-roles.component';
 import { ValidadorNumeroDirective } from './shared/directives/validador-numero.directive';
+import { AuthService } from './shared/services/auth.service';
 import { SuscripcionesComercioComponent } from './views/suscripciones-comercio/suscripciones-comercio.component';
 
 @NgModule({
@@ -151,11 +152,12 @@ import { SuscripcionesComercioComponent } from './views/suscripciones-comercio/s
     LocalModificarComponent,
     LocalEliminarComponent,
     DummyComponent,
-    PedidoCrearDialogComponent,
     PedidoCrearComponent,
+    PedidoModificarComponent,
     ComerciosLocalesComponent,
     SuscripcionCrearComponent,
     SuscripcionesComercioComponent
+
   ],
   entryComponents: [
     LoginComponent,
@@ -163,13 +165,13 @@ import { SuscripcionesComercioComponent } from './views/suscripciones-comercio/s
     CategoriasRegistroComponent,
     CargaImagenesComponent,
     ConfirmacionDialogComponent,
-    LocalEliminarComponent,
-    PedidoCrearDialogComponent
+    LocalEliminarComponent
   ],
   providers: [
     CommonAdapterService,
     CategoriasComponent,
     HorasEntregaService,
+    AuthService,
     { provide: MAT_DATE_LOCALE, useValue: 'es-CR' }
   ],
 })
