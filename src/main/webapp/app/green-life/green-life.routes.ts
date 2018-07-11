@@ -13,6 +13,7 @@ import { SuscripcionCrearComponent } from './views/suscripcion-crear/suscripcion
 import { UsuarioModificarComponent } from './views/usuario-modificar/usuario-modificar.component';
 import { UsuarioPerfilComponent } from './views/usuario-perfil/usuario-perfil.component';
 import { UsuarioRegistroComponent } from './views/usuario-registro/usuario-registro.component';
+import {SuscripcionesComercioComponent} from './views/suscripciones-comercio/suscripciones-comercio.component';
 
 export const greenLifeRoutes: Route[] = [
     { path: '', component: LandingComponent, data: { configuracion: false }, canActivate: [] },
@@ -27,5 +28,6 @@ export const greenLifeRoutes: Route[] = [
     { path: 'comercios/:comercioId/categorias', component: CategoriasComponent, data: { configuracion: true }, canActivate: [AuthGuard] },
     { path: 'suscripciones/:suscripcionId/pedido/crear', component: PedidoCrearComponent, data: { configuracion: false }, canActivate: [AuthGuard] },
     { path: 'dummy', component: DummyComponent, data: { configuracion: false }, canActivate: [] },
-    { path: 'cliente/:login/suscripcion/comercio/:comercioId', component: SuscripcionCrearComponent, data: { configuracion: false }, canActivate: [AuthGuard] }
+    { path: 'cliente/:login/suscripcion/comercio/:comercioId', component: SuscripcionCrearComponent, data: { configuracion: false }, canActivate: [AuthGuard] },
+    { path: 'comercios/:comercioId/suscripciones', component: SuscripcionesComercioComponent}
 ];

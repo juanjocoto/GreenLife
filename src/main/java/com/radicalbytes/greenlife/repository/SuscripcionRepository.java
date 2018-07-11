@@ -5,7 +5,7 @@ import org.springframework.stereotype.Repository;
 
 import org.springframework.data.jpa.repository.*;
 
-
+import java.util.List;
 /**
  * Spring Data JPA repository for the Suscripcion entity.
  */
@@ -13,4 +13,5 @@ import org.springframework.data.jpa.repository.*;
 @Repository
 public interface SuscripcionRepository extends JpaRepository<Suscripcion, Long> {
 
+    List<Suscripcion> findAllByComercio_id(Long id);
 }

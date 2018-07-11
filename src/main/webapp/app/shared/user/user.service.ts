@@ -24,6 +24,10 @@ export class UserService {
         return this.http.get<User>(`${this.resourceUrl}/${login}`, { observe: 'response' });
     }
 
+    findById(id: number): Observable<HttpResponse<User>> {
+        return this.http.get<User>(`${this.resourceUrl}/${id}`, { observe: 'response' });
+    }
+
     query(req?: any): Observable<HttpResponse<User[]>> {
         const options = createRequestOption(req);
         return this.http.get<User[]>(this.resourceUrl, { params: options, observe: 'response' });
