@@ -4,6 +4,14 @@
     right: 0
 }
 
+.card .btn-danger {
+    margin: 10px 0 0;
+}
+
+.card .btn-danger mat-icon {
+    vertical-align: bottom;
+}
+
 .card-container {
     margin: 10px 0;
 }
@@ -12,51 +20,10 @@
     text-align: center;
 }
 
-.divider {
-    background: #FFFFFF;
-    max-width: 200px;
-    -webkit-box-shadow: 0 1px 3px rgba(50, 50, 93, .11), 0 1px 3px rgba(0, 0, 0, .08);
-    -moz-box-shadow: 0 1px 3px rgba(50, 50, 93, .11), 0 1px 3px rgba(0, 0, 0, .08);
-    box-shadow: 0 1px 3px rgba(50, 50, 93, .11), 0 1px 3px rgba(0, 0, 0, .08);
+a.btn {
+    color: white;
 }
 
-#subtitle {
-    margin: 10px 0 0 0;
-    text-align: center;
-    color: $config-dark-gray-color;
-    font-weight: 300;
-}
-
-.card-header-subtitle {
-    margin-top: 2px;
-    font-size: 17px;
-}
-
-.badge-secondary {
-    margin: 0 0 0 12px;
-    border-radius: 6px;
-    -webkit-box-shadow: 0 1px 3px rgba(50, 50, 93, .11), 0 1px 3px rgba(0, 0, 0, .08);
-    -moz-box-shadow: 0 1px 3px rgba(50, 50, 93, .11), 0 1px 3px rgba(0, 0, 0, .08);
-    box-shadow: 0 1px 3px rgba(50, 50, 93, .11), 0 1px 3px rgba(0, 0, 0, .08);
-    color: $green-color;
-    background: #FFFFFF;
-}
-
-.card-title {
-    color: $green-color;
-    font-size: 18px;
-    font-weight: 700;
-}
-
-.card {
-    color: $config-dark-gray-color;
-    border: none;
-    border-radius: 6px;
-    -webkit-box-shadow: 0 1px 3px rgba(50, 50, 93, .11), 0 1px 3px rgba(0, 0, 0, .08);
-    -moz-box-shadow: 0 1px 3px rgba(50, 50, 93, .11), 0 1px 3px rgba(0, 0, 0, .08);
-    box-shadow: 0 1px 3px rgba(50, 50, 93, .11), 0 1px 3px rgba(0, 0, 0, .08);
-}
-
-.card.pedidos {
-    padding: 10px;
+a.btn mat-icon {
+    vertical-align: bottom;
 }

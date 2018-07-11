@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
+import { MatDialog, MatSnackBar } from '@angular/material';
 
 import { AccountService } from '../../../shared/auth/account.service';
 import { ActivatedRoute } from '@angular/router';
+import { ConfirmacionDialogComponent } from '../../dialogos/confirmacion-dialog/confirmacion-dialog.component';
 import { LineaProducto } from './../../../entities/linea-producto/linea-producto.model';
 import { LineaProductoService } from '../../../entities/linea-producto';
 import { Observable } from 'rxjs';
@@ -23,7 +25,9 @@ export class PedidoListarComponent implements OnInit {
     private route: ActivatedRoute,
     private pedidoService: PedidoService,
     private lineaService: LineaProductoService,
-    private auth: AccountService
+    private auth: AccountService,
+    private dialog: MatDialog,
+    private snackBar: MatSnackBar
   ) { }
 
   ngOnInit() {
@@ -53,6 +57,24 @@ export class PedidoListarComponent implements OnInit {
       return 0;
     }
     return lineas.map((linea: any) => linea.cantidad * linea.producto.precio).reduce((acumulado, valor) => acumulado + valor);
+  }
+
+  showDeleteDialog(pedido: Pedido) {
+    const dialogRef = this.dialog.open(ConfirmacionDialogComponent);
+    dialogRef.componentInstance.texto = '¿Desea eliminar el pedido?';
+    dialogRef.afterClosed().subscribe((response) => {
+      if (response) {
+        const lineas = pedido.lineas.filter((linea) => linea.id);
+        this.lineaService.deleteMany(lineas).subscribe((lineResponse) => {
+          console.log(lineResponse);
+          this.pedidoService.delete(pedido.id).subscribe(() => {
+            this.snackBar.open('El pedido fué eliminado', undefined, { duration: 2000 });
+            const index = this.pedidos.indexOf(pedido);
+            this.pedidos.splice(index, 1);
+          });
+        });
+      }
+    });
   }
 
 }

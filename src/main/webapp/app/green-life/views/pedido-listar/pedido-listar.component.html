@@ -7,20 +7,21 @@
     </div>
   </div>
 </div>
-
 <div class="container">
+  <a class="btn btn-success" routerLink="crear"><mat-icon>add</mat-icon>Crear Pedido</a>
   <div class="row">
     <div class="col-lg-4 col-sm-6 card-container" *ngFor="let pedido of pedidos">
-      <div class="card pedidos">
+      <div class="card pedidos card-green-life">
         <a mat-icon-button [routerLink]="pedido.id">
           <mat-icon>edit</mat-icon>
         </a>
-        <div class="card-text">Día de entrega: {{pedido.diasEntregaNombre}}</div>
-        <div class="card-text">Hora de entrega: {{pedido.hora}}</div>
-        <div class="card-text">Número de lineas: {{pedido.lineas.length}}</div>
-
-        <div class="card-text">Monto Total: {{getMontoTotal(pedido.lineas)|colon}}</div>
-        <!-- {{pedido | json}} -->
+        <div class="card-body">
+          <div class="card-text">Día de entrega: {{pedido.diasEntregaNombre}}</div>
+          <div class="card-text">Hora de entrega: {{pedido.hora}}</div>
+          <div class="card-text">Monto Total: {{getMontoTotal(pedido.lineas)|colon}}</div>
+          <button (click)="showDeleteDialog(pedido)" class="btn btn-sm btn-danger">
+            <mat-icon>delete_outline</mat-icon> Eliminar</button>
+        </div>
       </div>
     </div>
   </div>

@@ -1,3 +1,4 @@
+import { ActivatedRoute, Router, RoutesRecognized } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
 
 import { MatDialog } from '@angular/material';
@@ -5,18 +6,34 @@ import { MatDialog } from '@angular/material';
 @Component({
   selector: 'jhi-root',
   templateUrl: './root.component.html',
-  styles: [`
-    .main-container{
-      margin: 57px 0px 20px;
-      min-height: calc(100vh - 345px - 52px);
-    }
-  `]
+  styleUrls: ['./root.component.scss']
 })
 export class RootComponent implements OnInit {
 
-  constructor(private dialog: MatDialog) { }
+  class = '';
+
+  constructor(
+    private route: ActivatedRoute,
+    private router: Router
+  ) {
+    if (this.route.firstChild.data['value']['configuracion']) {
+      this.class = 'main-container';
+    } else {
+      this.class = 'main-container-slim';
+    }
+  }
 
   ngOnInit() {
+    this.router.events.subscribe((event) => {
+      if (event instanceof RoutesRecognized) {
+        const data = event.state.root.firstChild.firstChild.data;
+        if (data && data.configuracion) {
+          this.class = 'main-container';
+        } else {
+          this.class = 'main-container-slim';
+        }
+      }
+    });
   }
 
 }

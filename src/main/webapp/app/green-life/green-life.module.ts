@@ -71,6 +71,7 @@ import { PedidoModificarComponent } from './views/pedido-modificar/pedido-modifi
 import { RootComponent } from './root/root.component';
 import { RouterModule } from '@angular/router';
 import { SelectorEtiquetasComponent } from './fragments/selector-etiquetas/selector-etiquetas.component';
+import { SnackBarService } from './shared/services/snack-bar.service';
 import { SuscripcionCrearComponent } from './views/suscripcion-crear/suscripcion-crear.component';
 import { SuscripcionesClienteComponent } from './views/suscripciones-cliente/suscripciones-cliente.component';
 import { UsuarioModificarComponent } from './views/usuario-modificar/usuario-modificar.component';
@@ -173,6 +174,7 @@ import { ValidadorNumeroDirective } from './shared/directives/validador-numero.d
     CategoriasComponent,
     HorasEntregaService,
     AuthService,
+    SnackBarService,
     { provide: MAT_DATE_LOCALE, useValue: 'es-CR' }
   ],
 })
