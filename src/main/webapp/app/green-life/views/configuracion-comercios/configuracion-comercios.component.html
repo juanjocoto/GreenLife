@@ -23,14 +23,17 @@
             </thead>
             <tbody>
             <tr *ngFor="let comercio of comercios">
-                <td>{{comercio.cedJuridica}}</td>
-                <td>{{comercio.razonSocial}}</td>
-                <td>{{comercio.nombreComercial}}</td>
-                <td>{{comercio.tipo}}</td>
-                <td>{{comercio.fechaCreacion | date}}</td>
+                <td>{{comercio.comercio.cedJuridica}}</td>
+                <td>{{comercio.comercio.razonSocial}}</td>
+                <td>{{comercio.comercio.nombreComercial}}</td>
+                <td>{{comercio.comercio.tipo}}</td>
+                <td>{{comercio.comercio.fechaCreacion | date}}</td>
                 <td>
-                    <a class="edit" data-toggle="modal" (click)="modificarComercio()"><i class="material-icons" data-toggle="tooltip" title="Editar">&#xE254;</i></a>
-                    <a class="delete" data-toggle="modal" (click)="eliminarComercio()"><i class="material-icons" data-toggle="tooltip" title="Eliminar">&#xE872;</i></a>
+                    <a class="edit" data-toggle="modal" [routerLink]="'/app/comercios/' + comercio.comercio.id + '/editar'"><i class="material-icons" data-toggle="tooltip" title="Editar">&#xE254;</i></a>
+                    <a class="delete" data-toggle="modal" (click)="eliminarComercio(comercio.comercio)"><i class="material-icons" data-toggle="tooltip" title="Eliminar">&#xE872;</i></a>
+                    <a [routerLink]="'/app/comercios/' + comercio.comercio.id + '/locales'"><i class="material-icons">store_mall_directory</i></a>
+                    <a [routerLink]="'/app/comercios/' + comercio.comercio.id + '/categorias'"><i class="material-icons">ballot</i></a>
+                    <a [routerLink]="'/app/comercios/' + comercio.comercio.id + '/suscripciones'"><i class="material-icons">local_shipping</i></a>
                 </td>
             </tr>
             </tbody>

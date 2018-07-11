@@ -32,6 +32,6 @@ export const greenLifeRoutes: Route[] = [
     { path: 'dummy', component: DummyComponent, data: { configuracion: false }, canActivate: [] },
     { path: 'usuario/:login/suscripcion/comercio/:comercioId', component: SuscripcionCrearComponent, data: { configuracion: false }, canActivate: [AuthGuard] },
     { path: 'usuario/:login/suscripciones', component: SuscripcionesClienteComponent, data: { configuracion: false }, canActivate: [ AuthGuard ] },
-    { path: 'pedido/:pedidoId/editar', component: PedidoModificarComponent, data: { configuracion: false }, canActivate: [AuthGuard] }
-    { path: 'comercios/:login', component: ConfiguracionComerciosComponent}
+    { path: 'pedido/:pedidoId/editar', component: PedidoModificarComponent, data: { configuracion: false }, canActivate: [AuthGuard] },
+    { path: 'usuario/:login/comercios', component: ConfiguracionComerciosComponent}
 ];

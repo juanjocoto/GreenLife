@@ -157,7 +157,7 @@ import { ConfiguracionComerciosComponent } from './views/configuracion-comercios
     PedidoModificarComponent,
     ComerciosLocalesComponent,
     SuscripcionCrearComponent,
-    SuscripcionesClienteComponent
+    SuscripcionesClienteComponent,
     ConfiguracionComerciosComponent
   ],
   entryComponents: [
