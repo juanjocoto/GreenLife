@@ -32,13 +32,6 @@
             </select>
         </div>
         <div class="form-group">
-            <label class="form-control-label" for="field_lineas">Lineas</label>
-            <select class="form-control" id="field_lineas" name="lineas" [(ngModel)]="pedido.lineasId">
-                <option [ngValue]="null"></option>
-                <option [ngValue]="lineaProductoOption.id" *ngFor="let lineaProductoOption of lineas; trackBy: trackLineaProductoById">{{lineaProductoOption.id}}</option>
-            </select>
-        </div>
-        <div class="form-group">
             <label class="form-control-label" for="field_diasEntrega">Dias Entrega</label>
             <select class="form-control" id="field_diasEntrega" name="diasEntrega" [(ngModel)]="pedido.diasEntregaId" >
                 <option [ngValue]="null"></option>

@@ -29,9 +29,7 @@
             <column name="suscripcion_id" type="bigint">
                 <constraints nullable="true" />
             </column>
-            <column name="lineas_id" type="bigint">
-                <constraints unique="true" nullable="true" />
-            </column>
+
             <column name="dias_entrega_id" type="bigint">
                 <constraints nullable="true" />
             </column>

@@ -35,6 +35,7 @@ describe('LineaProducto e2e test', () => {
         lineaProductoComponentsPage.clickOnCreateButton();
         lineaProductoDialogPage.setCantidadInput('5');
         expect(lineaProductoDialogPage.getCantidadInput()).toMatch('5');
+        lineaProductoDialogPage.pedidoSelectLastOption();
         lineaProductoDialogPage.productoSelectLastOption();
         lineaProductoDialogPage.save();
         expect(lineaProductoDialogPage.getSaveButton().isPresent()).toBeFalsy();
@@ -63,6 +64,7 @@ export class LineaProductoDialogPage {
     saveButton = element(by.css('.modal-footer .btn.btn-primary'));
     closeButton = element(by.css('button.close'));
     cantidadInput = element(by.css('input#field_cantidad'));
+    pedidoSelect = element(by.css('select#field_pedido'));
     productoSelect = element(by.css('select#field_producto'));
 
     getModalTitle() {
@@ -75,6 +77,22 @@ export class LineaProductoDialogPage {
 
     getCantidadInput = function() {
         return this.cantidadInput.getAttribute('value');
+    };
+
+    pedidoSelectLastOption = function() {
+        this.pedidoSelect.all(by.tagName('option')).last().click();
+    };
+
+    pedidoSelectOption = function(option) {
+        this.pedidoSelect.sendKeys(option);
+    };
+
+    getPedidoSelect = function() {
+        return this.pedidoSelect;
+    };
+
+    getPedidoSelectedOption = function() {
+        return this.pedidoSelect.element(by.css('option:checked')).getText();
     };
 
     productoSelectLastOption = function() {

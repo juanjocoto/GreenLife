@@ -26,6 +26,10 @@
                 <constraints nullable="false" />
             </column>
 
+            <column name="pedido_id" type="bigint">
+                <constraints nullable="true" />
+            </column>
+
             <column name="producto_id" type="bigint">
                 <constraints nullable="true" />
             </column>

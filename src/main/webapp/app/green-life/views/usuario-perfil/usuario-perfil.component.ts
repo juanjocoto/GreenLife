@@ -1,12 +1,13 @@
+import { ActivatedRoute, Router } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
-import { MatDialog } from '@angular/material';
-import { ActivatedRoute } from '@angular/router';
-import { Observable } from 'rxjs/Rx';
-import { Usuario } from '../../../entities/usuario';
-import { User } from '../../../shared';
+
 import { ComerciosRegistroComponent } from '../../dialogos/comercios-registro/comercios-registro.component';
-import { UsuarioService } from './../../../entities/usuario/usuario.service';
+import { MatDialog } from '@angular/material';
+import { Observable } from 'rxjs/Rx';
+import { User } from '../../../shared';
 import { UserService } from './../../../shared/user/user.service';
+import { Usuario } from '../../../entities/usuario';
+import { UsuarioService } from './../../../entities/usuario/usuario.service';
 
 @Component({
   selector: 'jhi-usuario-perfil',
@@ -22,6 +23,7 @@ export class UsuarioPerfilComponent implements OnInit {
     private usuarioService: UsuarioService,
     private userService: UserService,
     private route: ActivatedRoute,
+    private router: Router,
     private matDialog: MatDialog
   ) { }
 
@@ -42,7 +44,9 @@ export class UsuarioPerfilComponent implements OnInit {
     const ref = this.matDialog.open(ComerciosRegistroComponent);
 
     ref.afterClosed().subscribe((resul) => {
-      console.log(resul);
+      if (resul) {
+        this.router.navigate([`/app/comercios/${resul}/editar`]);
+      }
     });
 
     ref.componentInstance.dueno = this.usuario;

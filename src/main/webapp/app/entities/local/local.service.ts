@@ -51,6 +51,11 @@ export class LocalService {
             .map((res: HttpResponse<Local[]>) => this.convertArrayResponse(res));
     }
 
+    findByComercio(id: number): Observable<HttpResponse<Local[]>> {
+        return this.http.get<Local[]>(`${this.resourceUrl}/comercios/${id}`, { observe: 'response'})
+            .map((res: HttpResponse<Local[]>) => this.convertArrayResponse(res));
+    }
+
     private convertResponse(res: EntityResponseType): EntityResponseType {
         const body: Local = this.convertItemFromServer(res.body);
         return res.clone({body});

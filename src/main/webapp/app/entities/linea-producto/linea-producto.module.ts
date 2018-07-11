@@ -15,7 +15,7 @@ import {
 import { CMS_PATH } from '../../app.constants';
 import { GreenlifeSharedModule } from '../../shared';
 import { RouterModule } from '@angular/router';
-import { lineaEntregaRoute } from './../linea-entrega/linea-entrega.route';
+import { lineaEntregaRoute } from '../linea-entrega';
 
 lineaEntregaRoute.forEach((a) => a.path = `${CMS_PATH}/${a.path}`);
 

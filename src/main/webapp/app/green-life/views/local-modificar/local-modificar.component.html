@@ -1,5 +1,5 @@
 <div class="title-bar-config">
-    <div class="col-md-auto" *ngIf="comercio != null">
+    <div class="col-md-auto" *ngIf="comercio">
         <h1>
             <span class="title-bar-config-icon icon"><span class="iconImg"></span></span>
             Locales {{comercio.razonSocial}}
@@ -8,7 +8,7 @@
 </div>
 
 <div class="container">
-    <div class="row config-section" *ngIf="local != null">
+    <div class="row config-section" *ngIf="local">
         <div class="col pr-md-5">
             <h3>Locales</h3>
             <mat-tab-group class="tab-container">
@@ -61,7 +61,7 @@
                     </mat-form-field>
                     <button class="btn btnPrimary" (click)="editLocal()">Modificar</button>
                 </form>
-                <button class="btn btnSecondary" (click)="this.formLocales.reset()">Cancelar</button>
+                <button class="btn btnSecondary" (click)="cancel()">Cancelar</button>
             </div>
         </div>
     </div>

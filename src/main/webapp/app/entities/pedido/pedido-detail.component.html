@@ -14,12 +14,6 @@
                 <a [routerLink]="['/suscripcion', pedido.suscripcionId]">{{pedido.suscripcionId}}</a>
             </div>
         </dd>
-        <dt><span>Lineas</span></dt>
-        <dd>
-            <div *ngIf="pedido.lineasId">
-                <a [routerLink]="['/linea-producto', pedido.lineasId]">{{pedido.lineasId}}</a>
-            </div>
-        </dd>
         <dt><span>Dias Entrega</span></dt>
         <dd>
             <div *ngIf="pedido.diasEntregaId">
