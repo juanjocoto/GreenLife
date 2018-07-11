@@ -1,0 +1,85 @@
+@import '../../../../content/scss/green-life-variables';
+
+.main-container {
+    padding: 15px 0 75px 0;
+}
+
+.title-bar {
+    text-align: center;
+}
+
+.divider {
+    background: #FFFFFF;
+    max-width: 200px;
+    -webkit-box-shadow: 0 1px 3px rgba(50,50,93,.11), 0 1px 3px rgba(0,0,0,.08);
+    -moz-box-shadow: 0 1px 3px rgba(50,50,93,.11), 0 1px 3px rgba(0,0,0,.08);
+    box-shadow: 0 1px 3px rgba(50,50,93,.11), 0 1px 3px rgba(0,0,0,.08);
+}
+
+#subtitle {
+    margin: 25px 0 5px 0;
+    text-align: center;
+    color: $config-dark-gray-color;
+    font-weight: 300;
+}
+
+.info-text {
+    text-align: center;
+    font-size: 17px;
+    color: $green-color;
+}
+
+.card {
+    margin: 45px 0 10px 0;
+    color: $config-dark-gray-color;
+    border-color: #FFFFFF;
+    border-radius: 6px;
+    -webkit-box-shadow: 0 1px 3px rgba(50,50,93,.11), 0 1px 3px rgba(0,0,0,.08);
+    -moz-box-shadow: 0 1px 3px rgba(50,50,93,.11), 0 1px 3px rgba(0,0,0,.08);
+    box-shadow: 0 1px 3px rgba(50,50,93,.11), 0 1px 3px rgba(0,0,0,.08);
+}
+
+.card-title {
+    padding: 3px 0;
+    color: #FFFFFF;
+    border-radius: 6px;
+    background: $green-color;
+    text-align: center;
+}
+
+.card-subtitle {
+    text-align: center;
+    margin: 30px 0;
+    font-weight: 300;
+}
+
+.img-container img{
+    padding: 0 50px;
+}
+
+mat-form-field {
+    width: 50%;
+    font-size: 19px;
+    font-weight: 300;
+}
+
+.subtitle-body {
+    font-weight: 300;
+    padding: 50px 0 0 0;
+}
+
+.btnSuscribirse {
+    margin: 25px 0;
+    width: 400px;
+    font-size: 20px;
+    font-weight: 700;
+    color: #FFFFFF;
+    background: $green-color;
+    border: none;
+    border-radius: 6px;
+    -webkit-box-shadow: 0 1px 3px rgba(50,50,93,.11), 0 1px 3px rgba(0,0,0,.08);
+    -moz-box-shadow: 0 1px 3px rgba(50,50,93,.11), 0 1px 3px rgba(0,0,0,.08);
+    box-shadow: 0 1px 3px rgba(50,50,93,.11), 0 1px 3px rgba(0,0,0,.08);
+}
+
+

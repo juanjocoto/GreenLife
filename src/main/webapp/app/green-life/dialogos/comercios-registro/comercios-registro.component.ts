@@ -1,9 +1,12 @@
-import { Component, OnInit, Input } from '@angular/core';
-import { FormGroup, FormBuilder, Validators } from '@angular/forms';
-import { Comercio, TipoComercio } from '../../../entities/comercio/comercio.model';
-import { Usuario } from '../../../entities/usuario/usuario.model';
+import { Component, Input, OnInit } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+
+import { Comercio } from '../../../entities/comercio/comercio.model';
 import { ComercioService } from '../../../entities/comercio/comercio.service';
 import { CommonAdapterService } from '../../shared/services/common-adapter.service';
+import { Etiqueta } from '../../../entities/etiqueta/etiqueta.model';
+import { MatDialogRef } from '@angular/material';
+import { Usuario } from '../../../entities/usuario/usuario.model';
 
 @Component({
   selector: 'jhi-comercios-registro',
@@ -12,13 +15,16 @@ import { CommonAdapterService } from '../../shared/services/common-adapter.servi
 })
 export class ComerciosRegistroComponent implements OnInit {
 
+  etiquetas: Etiqueta[] = [];
+
   @Input() dueno: Usuario;
 
   newComercioForm: FormGroup;
 
   constructor(private formBuilder: FormBuilder,
     private comercioService: ComercioService,
-    private commonAdapterService: CommonAdapterService) { }
+    private commonAdapterService: CommonAdapterService,
+    public dialogRef: MatDialogRef<ComerciosRegistroComponent>) { }
 
   ngOnInit() {
     this.newComercioForm = this.formBuilder.group({
@@ -42,11 +48,12 @@ export class ComerciosRegistroComponent implements OnInit {
       comercio.cedJuridica = this.newComercioForm.get('cedJuridica').value;
       comercio.duenoId = this.dueno.id;
       comercio.fechaCreacion = this.commonAdapterService.dateToJHILocalDate(new Date());
+      comercio.etiquetas = this.etiquetas;
 
-      this.comercioService.create(comercio).subscribe((resul) => {
-        console.log(resul);
+      this.comercioService.create(comercio).subscribe((httpResponse) => {
+        // this.router.navigate(['/app/comercios/' + httpResponse.body.id + '/editar']);
+        this.dialogRef.close(httpResponse.body.id);
       });
     }
   }
-
 }

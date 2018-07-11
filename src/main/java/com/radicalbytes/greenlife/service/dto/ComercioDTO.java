@@ -33,6 +33,9 @@ public class ComercioDTO implements Serializable {
 
     private TipoComercio tipo;
 
+    @Size(max = 500)
+    private String logoUrl;
+
     private Set<EtiquetaDTO> etiquetas = new HashSet<>();
 
     private Set<CategoriaAlimentacionDTO> categorias = new HashSet<>();
@@ -85,6 +88,14 @@ public class ComercioDTO implements Serializable {
 
     public void setTipo(TipoComercio tipo) {
         this.tipo = tipo;
+    }
+
+    public String getLogoUrl() {
+        return logoUrl;
+    }
+
+    public void setLogoUrl(String logoUrl) {
+        this.logoUrl = logoUrl;
     }
 
     public Set<EtiquetaDTO> getEtiquetas() {
@@ -141,6 +152,7 @@ public class ComercioDTO implements Serializable {
             ", razonSocial='" + getRazonSocial() + "'" +
             ", nombreComercial='" + getNombreComercial() + "'" +
             ", tipo='" + getTipo() + "'" +
+            ", logoUrl='" + getLogoUrl() + "'" +
             "}";
     }
 }

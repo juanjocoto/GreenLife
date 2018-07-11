@@ -15,6 +15,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import javax.transaction.Transactional;
 import javax.validation.Valid;
 import java.net.URI;
 import java.net.URISyntaxException;
@@ -155,6 +156,16 @@ public class LocalResource {
             .stream(localSearchRepository.search(queryStringQuery(query)).spliterator(), false)
             .map(localMapper::toDto)
             .collect(Collectors.toList());
+    }
+
+    @GetMapping("/locals/comercios/{id}")
+    @Timed
+    @Transactional
+    public ResponseEntity<List<LocalDTO>> getLocalByComercio(@PathVariable Long id) {
+        log.debug("REST request to get Local : {}", id);
+        List<Local> locales = localRepository.findAllByComercio_id(id);
+        List<LocalDTO> localesDTO = localMapper.toDto(locales);
+        return ResponseUtil.wrapOrNotFound(Optional.ofNullable(localesDTO));
     }
 
 }

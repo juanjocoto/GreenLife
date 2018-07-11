@@ -54,6 +54,10 @@ public class Comercio implements Serializable {
     @Column(name = "tipo")
     private TipoComercio tipo;
 
+    @Size(max = 500)
+    @Column(name = "logo_url", length = 500)
+    private String logoUrl;
+
     @OneToMany(mappedBy = "comercio")
     @JsonIgnore
     @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
@@ -178,6 +182,19 @@ public class Comercio implements Serializable {
 
     public void setTipo(TipoComercio tipo) {
         this.tipo = tipo;
+    }
+
+    public String getLogoUrl() {
+        return logoUrl;
+    }
+
+    public Comercio logoUrl(String logoUrl) {
+        this.logoUrl = logoUrl;
+        return this;
+    }
+
+    public void setLogoUrl(String logoUrl) {
+        this.logoUrl = logoUrl;
     }
 
     public Set<ResenaCliente> getResenasClientes() {
@@ -444,6 +461,7 @@ public class Comercio implements Serializable {
             ", razonSocial='" + getRazonSocial() + "'" +
             ", nombreComercial='" + getNombreComercial() + "'" +
             ", tipo='" + getTipo() + "'" +
+            ", logoUrl='" + getLogoUrl() + "'" +
             "}";
     }
 }

@@ -6,11 +6,11 @@ export class CommonAdapterService {
   constructor() { }
 
   dateToJHILocalDate(date: Date) {
-    return {
-      year: date.getFullYear(),
-      month: date.getMonth() + 1,
-      day: date.getDay()
-    };
+    return new JHILocalDate(date.getFullYear(), date.getMonth() + 1, date.getDay());
   }
 
+}
+
+export class JHILocalDate {
+  constructor(public year: number, public month: number, public day: number) { }
 }

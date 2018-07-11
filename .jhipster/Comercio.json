@@ -107,6 +107,14 @@
             "fieldName": "tipo",
             "fieldType": "TipoComercio",
             "fieldValues": "RESTAURANTE,TIENDA"
+        },
+        {
+            "fieldName": "logoUrl",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "maxlength"
+            ],
+            "fieldValidateRulesMaxlength": 500
         }
     ],
     "changelogDate": "20180622042349",

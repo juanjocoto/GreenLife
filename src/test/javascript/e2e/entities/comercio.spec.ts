@@ -42,6 +42,8 @@ describe('Comercio e2e test', () => {
         comercioDialogPage.setNombreComercialInput('nombreComercial');
         expect(comercioDialogPage.getNombreComercialInput()).toMatch('nombreComercial');
         comercioDialogPage.tipoSelectLastOption();
+        comercioDialogPage.setLogoUrlInput('logoUrl');
+        expect(comercioDialogPage.getLogoUrlInput()).toMatch('logoUrl');
         // comercioDialogPage.etiquetasSelectLastOption();
         // comercioDialogPage.categoriasSelectLastOption();
         comercioDialogPage.duenoSelectLastOption();
@@ -76,6 +78,7 @@ export class ComercioDialogPage {
     razonSocialInput = element(by.css('input#field_razonSocial'));
     nombreComercialInput = element(by.css('input#field_nombreComercial'));
     tipoSelect = element(by.css('select#field_tipo'));
+    logoUrlInput = element(by.css('input#field_logoUrl'));
     etiquetasSelect = element(by.css('select#field_etiquetas'));
     categoriasSelect = element(by.css('select#field_categorias'));
     duenoSelect = element(by.css('select#field_dueno'));
@@ -127,6 +130,14 @@ export class ComercioDialogPage {
     tipoSelectLastOption = function() {
         this.tipoSelect.all(by.tagName('option')).last().click();
     };
+    setLogoUrlInput = function(logoUrl) {
+        this.logoUrlInput.sendKeys(logoUrl);
+    };
+
+    getLogoUrlInput = function() {
+        return this.logoUrlInput.getAttribute('value');
+    };
+
     etiquetasSelectLastOption = function() {
         this.etiquetasSelect.all(by.tagName('option')).last().click();
     };

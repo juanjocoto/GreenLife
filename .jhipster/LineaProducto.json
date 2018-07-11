@@ -2,6 +2,12 @@
     "fluentMethods": true,
     "relationships": [
         {
+            "relationshipName": "pedido",
+            "otherEntityName": "pedido",
+            "relationshipType": "many-to-one",
+            "otherEntityField": "id"
+        },
+        {
             "relationshipType": "many-to-one",
             "relationshipName": "producto",
             "otherEntityName": "producto",

@@ -1,9 +1,9 @@
-import { Injectable } from '@angular/core';
 import { HttpClient, HttpResponse } from '@angular/common/http';
-import { Observable } from 'rxjs/Observable';
-import { SERVER_API_URL } from '../../app.constants';
 
 import { Etiqueta } from './etiqueta.model';
+import { Injectable } from '@angular/core';
+import { Observable } from 'rxjs/Observable';
+import { SERVER_API_URL } from '../../app.constants';
 import { createRequestOption } from '../../shared';
 
 export type EntityResponseType = HttpResponse<Etiqueta>;
@@ -11,7 +11,7 @@ export type EntityResponseType = HttpResponse<Etiqueta>;
 @Injectable()
 export class EtiquetaService {
 
-    private resourceUrl =  SERVER_API_URL + 'api/etiquetas';
+    private resourceUrl = SERVER_API_URL + 'api/etiquetas';
     private resourceSearchUrl = SERVER_API_URL + 'api/_search/etiquetas';
 
     constructor(private http: HttpClient) { }
@@ -29,7 +29,7 @@ export class EtiquetaService {
     }
 
     find(id: number): Observable<EntityResponseType> {
-        return this.http.get<Etiqueta>(`${this.resourceUrl}/${id}`, { observe: 'response'})
+        return this.http.get<Etiqueta>(`${this.resourceUrl}/${id}`, { observe: 'response' })
             .map((res: EntityResponseType) => this.convertResponse(res));
     }
 
@@ -40,7 +40,7 @@ export class EtiquetaService {
     }
 
     delete(id: number): Observable<HttpResponse<any>> {
-        return this.http.delete<any>(`${this.resourceUrl}/${id}`, { observe: 'response'});
+        return this.http.delete<any>(`${this.resourceUrl}/${id}`, { observe: 'response' });
     }
 
     search(req?: any): Observable<HttpResponse<Etiqueta[]>> {
@@ -49,9 +49,14 @@ export class EtiquetaService {
             .map((res: HttpResponse<Etiqueta[]>) => this.convertArrayResponse(res));
     }
 
+    getAll(): Observable<HttpResponse<Etiqueta[]>> {
+        return this.http.get<Etiqueta[]>(this.resourceUrl, { observe: 'response' })
+            .map((res: HttpResponse<Etiqueta[]>) => this.convertArrayResponse(res));
+    }
+
     private convertResponse(res: EntityResponseType): EntityResponseType {
         const body: Etiqueta = this.convertItemFromServer(res.body);
-        return res.clone({body});
+        return res.clone({ body });
     }
 
     private convertArrayResponse(res: HttpResponse<Etiqueta[]>): HttpResponse<Etiqueta[]> {
@@ -60,7 +65,7 @@ export class EtiquetaService {
         for (let i = 0; i < jsonResponse.length; i++) {
             body.push(this.convertItemFromServer(jsonResponse[i]));
         }
-        return res.clone({body});
+        return res.clone({ body });
     }
 
     /**

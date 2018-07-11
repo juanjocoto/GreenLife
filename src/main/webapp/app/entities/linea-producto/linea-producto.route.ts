@@ -1,14 +1,14 @@
-import { Routes } from '@angular/router';
-
-import { UserRouteAccessService } from '../../shared';
+import { CMS_PATH } from '../../app.constants';
 import { LineaProductoComponent } from './linea-producto.component';
+import { LineaProductoDeletePopupComponent } from './linea-producto-delete-dialog.component';
 import { LineaProductoDetailComponent } from './linea-producto-detail.component';
 import { LineaProductoPopupComponent } from './linea-producto-dialog.component';
-import { LineaProductoDeletePopupComponent } from './linea-producto-delete-dialog.component';
+import { Routes } from '@angular/router';
+import { UserRouteAccessService } from '../../shared';
 
 export const lineaProductoRoute: Routes = [
     {
-        path: 'linea-producto',
+        path: `${CMS_PATH}/linea-producto`,
         component: LineaProductoComponent,
         data: {
             authorities: ['ROLE_USER'],
@@ -16,7 +16,7 @@ export const lineaProductoRoute: Routes = [
         },
         canActivate: [UserRouteAccessService]
     }, {
-        path: 'linea-producto/:id',
+        path: `${CMS_PATH}/linea-producto/:id`,
         component: LineaProductoDetailComponent,
         data: {
             authorities: ['ROLE_USER'],

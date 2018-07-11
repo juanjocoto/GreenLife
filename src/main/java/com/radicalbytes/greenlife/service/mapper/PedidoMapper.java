@@ -8,11 +8,10 @@ import org.mapstruct.*;
 /**
  * Mapper for the entity Pedido and its DTO PedidoDTO.
  */
-@Mapper(componentModel = "spring", uses = {SuscripcionMapper.class, LineaProductoMapper.class, DiaEntregaMapper.class, LocalMapper.class})
+@Mapper(componentModel = "spring", uses = {SuscripcionMapper.class, DiaEntregaMapper.class, LocalMapper.class})
 public interface PedidoMapper extends EntityMapper<PedidoDTO, Pedido> {
 
     @Mapping(source = "suscripcion.id", target = "suscripcionId")
-    @Mapping(source = "lineas.id", target = "lineasId")
     @Mapping(source = "diasEntrega.id", target = "diasEntregaId")
     @Mapping(source = "diasEntrega.nombre", target = "diasEntregaNombre")
     @Mapping(source = "local.id", target = "localId")
@@ -20,8 +19,8 @@ public interface PedidoMapper extends EntityMapper<PedidoDTO, Pedido> {
     PedidoDTO toDto(Pedido pedido);
 
     @Mapping(source = "suscripcionId", target = "suscripcion")
-    @Mapping(source = "lineasId", target = "lineas")
     @Mapping(target = "entregases", ignore = true)
+    @Mapping(target = "lineas", ignore = true)
     @Mapping(source = "diasEntregaId", target = "diasEntrega")
     @Mapping(source = "localId", target = "local")
     Pedido toEntity(PedidoDTO pedidoDTO);

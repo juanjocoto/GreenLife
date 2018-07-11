@@ -13,6 +13,7 @@ export class Comercio implements BaseEntity {
         public razonSocial?: string,
         public nombreComercial?: string,
         public tipo?: TipoComercio,
+        public logoUrl?: string,
         public resenasClientes?: BaseEntity[],
         public resenasPropias?: BaseEntity[],
         public productos?: BaseEntity[],
