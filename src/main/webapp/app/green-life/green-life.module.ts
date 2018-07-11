@@ -79,6 +79,7 @@ import { UsuarioPerfilComponent } from './views/usuario-perfil/usuario-perfil.co
 import { UsuarioRegistroComponent } from './views/usuario-registro/usuario-registro.component';
 import { UsuarioRolesComponent } from './views/usuario-roles/usuario-roles.component';
 import { ValidadorNumeroDirective } from './shared/directives/validador-numero.directive';
+import {CategoriasModificarComponent} from './dialogos/categorias-modificar/categorias-modificar.component';
 
 @NgModule({
   imports: [
@@ -159,7 +160,8 @@ import { ValidadorNumeroDirective } from './shared/directives/validador-numero.d
     ComerciosLocalesComponent,
     SuscripcionCrearComponent,
     PedidoListarComponent,
-    SuscripcionesClienteComponent
+    SuscripcionesClienteComponent,
+    CategoriasModificarComponent
   ],
   entryComponents: [
     LoginComponent,
@@ -167,7 +169,8 @@ import { ValidadorNumeroDirective } from './shared/directives/validador-numero.d
     CategoriasRegistroComponent,
     CargaImagenesComponent,
     ConfirmacionDialogComponent,
-    LocalEliminarComponent
+    LocalEliminarComponent,
+    CategoriasModificarComponent
   ],
   providers: [
     CommonAdapterService,
