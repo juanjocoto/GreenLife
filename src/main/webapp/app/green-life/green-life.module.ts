@@ -76,11 +76,8 @@ import { UsuarioRegistroComponent } from './views/usuario-registro/usuario-regis
 import { UsuarioRolesComponent } from './views/usuario-roles/usuario-roles.component';
 import { ValidadorNumeroDirective } from './shared/directives/validador-numero.directive';
 import { AuthService } from './shared/services/auth.service';
-<<<<<<< HEAD
 import { ComerciosSuscripcionesComponent } from './views/comercios-suscripciones/comercios-suscripciones.component';
-=======
 import { SuscripcionesClienteComponent } from './views/suscripciones-cliente/suscripciones-cliente.component';
->>>>>>> 6bfb6ffe192be988d510d5b8ae4253ad2e3f97d3
 
 @NgModule({
   imports: [
@@ -160,11 +157,8 @@ import { SuscripcionesClienteComponent } from './views/suscripciones-cliente/sus
     PedidoModificarComponent,
     ComerciosLocalesComponent,
     SuscripcionCrearComponent,
-<<<<<<< HEAD
-    ComerciosSuscripcionesComponent
-=======
+    ComerciosSuscripcionesComponent,
     SuscripcionesClienteComponent
->>>>>>> 6bfb6ffe192be988d510d5b8ae4253ad2e3f97d3
   ],
   entryComponents: [
     LoginComponent,
