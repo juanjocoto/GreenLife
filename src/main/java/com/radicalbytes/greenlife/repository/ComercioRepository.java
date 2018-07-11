@@ -19,4 +19,5 @@ public interface ComercioRepository extends JpaRepository<Comercio, Long> {
     @Query("select comercio from Comercio comercio left join fetch comercio.etiquetas left join fetch comercio.categorias where comercio.id =:id")
     Comercio findOneWithEagerRelationships(@Param("id") Long id);
 
+    List<Comercio> findAllByDueno_id(Long id);
 }

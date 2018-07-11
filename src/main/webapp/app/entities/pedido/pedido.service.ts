@@ -1,9 +1,9 @@
-import { Injectable } from '@angular/core';
 import { HttpClient, HttpResponse } from '@angular/common/http';
-import { Observable } from 'rxjs/Observable';
-import { SERVER_API_URL } from '../../app.constants';
 
+import { Injectable } from '@angular/core';
+import { Observable } from 'rxjs/Observable';
 import { Pedido } from './pedido.model';
+import { SERVER_API_URL } from '../../app.constants';
 import { createRequestOption } from '../../shared';
 
 export type EntityResponseType = HttpResponse<Pedido>;
@@ -11,7 +11,7 @@ export type EntityResponseType = HttpResponse<Pedido>;
 @Injectable()
 export class PedidoService {
 
-    private resourceUrl =  SERVER_API_URL + 'api/pedidos';
+    private resourceUrl = SERVER_API_URL + 'api/pedidos';
     private resourceSearchUrl = SERVER_API_URL + 'api/_search/pedidos';
 
     constructor(private http: HttpClient) { }
@@ -29,8 +29,15 @@ export class PedidoService {
     }
 
     find(id: number): Observable<EntityResponseType> {
-        return this.http.get<Pedido>(`${this.resourceUrl}/${id}`, { observe: 'response'})
+        return this.http.get<Pedido>(`${this.resourceUrl}/${id}`, { observe: 'response' })
             .map((res: EntityResponseType) => this.convertResponse(res));
+    }
+
+    findBySuscripcionId(suscripcionId: number): Observable<HttpResponse<Pedido[]>>;
+    findBySuscripcionId(suscripcionId: string): Observable<HttpResponse<Pedido[]>>;
+    findBySuscripcionId(suscripcionId: number | string): Observable<HttpResponse<Pedido[]>> {
+        return this.http.get<Pedido[]>(`${this.resourceUrl}/suscripcion/${suscripcionId}`, { observe: 'response' })
+            .map((res: HttpResponse<Pedido[]>) => this.convertArrayResponse(res));
     }
 
     query(req?: any): Observable<HttpResponse<Pedido[]>> {
@@ -40,7 +47,7 @@ export class PedidoService {
     }
 
     delete(id: number): Observable<HttpResponse<any>> {
-        return this.http.delete<any>(`${this.resourceUrl}/${id}`, { observe: 'response'});
+        return this.http.delete<any>(`${this.resourceUrl}/${id}`, { observe: 'response' });
     }
 
     search(req?: any): Observable<HttpResponse<Pedido[]>> {
@@ -56,7 +63,7 @@ export class PedidoService {
 
     private convertResponse(res: EntityResponseType): EntityResponseType {
         const body: Pedido = this.convertItemFromServer(res.body);
-        return res.clone({body});
+        return res.clone({ body });
     }
 
     private convertArrayResponse(res: HttpResponse<Pedido[]>): HttpResponse<Pedido[]> {
@@ -65,7 +72,7 @@ export class PedidoService {
         for (let i = 0; i < jsonResponse.length; i++) {
             body.push(this.convertItemFromServer(jsonResponse[i]));
         }
-        return res.clone({body});
+        return res.clone({ body });
     }
 
     /**

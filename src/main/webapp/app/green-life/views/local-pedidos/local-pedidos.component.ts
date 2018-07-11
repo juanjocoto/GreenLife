@@ -69,12 +69,12 @@ export class LocalPedidosComponent implements OnInit {
   }
 
   obtenerPedidosPorUsuario(usuario) {
+    this.dataPedidos = [];
     this.listaPedidos.forEach((pedido) => {
       if (usuario.id === pedido.usuario.id) {
         this.dataPedidos.push(pedido);
       }
     });
-    console.log(this.dataPedidos);
   }
 
 }

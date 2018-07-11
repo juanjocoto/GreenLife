@@ -60,9 +60,15 @@ $custom-typography: mat-typography-config( $font-family: 'Lato, sans-serif');
     flex: 1 1;
 }
 
-$box-shadow: 0 1px 3px rgba(50,50,93,.11), 0 1px 3px rgba(0,0,0,.08);
+$box-shadow: 0 1px 3px rgba(50,
+50,
+93,
+.11),
+0 1px 3px rgba(0,
+0,
+0,
+.08);
 $border-radius: 6px;
-
 .btn-success {
     background-color: $green-color !important;
     border-color: $green-color !important;
@@ -100,7 +106,7 @@ $border-radius: 6px;
 }
 
 // Green Life Cards Styles
-.card-green-life{
+.card-green-life {
     color: $config-dark-gray-color;
     border: none;
     border-radius: $border-radius;
@@ -109,7 +115,8 @@ $border-radius: 6px;
     box-shadow: $box-shadow;
 }
 
-.card-header-green-life {
+.card-header-green-life,
+.card-green-life .card-header {
     color: #FFFFFF;
     background: $green-color;
     border: none;
@@ -119,24 +126,28 @@ $border-radius: 6px;
     box-shadow: $box-shadow;
 }
 
-.card-header-subtitle-green-life {
+.card-header-subtitle-green-life,
+.card-green-life .card-header-subtitle {
     float: right;
     margin-top: 2px;
     font-size: 17px;
 }
 
-.card-title-green-life {
+.card-title-green-life,
+.card-green-life .card-title {
     color: $green-color;
     font-size: 18px;
     font-weight: 700;
 }
 
-.card-text-green-life {
+.card-text-green-life,
+.card-green-life .card-text {
     margin: 0 0 7px 0;
     font-size: 17px;
 }
 
-.card-badge-green-life {
+.card-badge-green-life,
+.card-green-life .card-badge {
     margin: 0 0 0 12px;
     border-radius: $border-radius;
     -webkit-box-shadow: $box-shadow;
@@ -146,14 +157,14 @@ $border-radius: 6px;
     background: #FFFFFF;
 }
 
-.btn-primary-card-green-life, .btn-secondary-card-green-life {
+.btn-primary-card-green-life,
+.btn-secondary-card-green-life {
     margin: 20px 0 0 0;
     font-size: 16px;
     border-radius: $border-radius;
     -webkit-box-shadow: $box-shadow;
     -moz-box-shadow: $box-shadow;
     box-shadow: $box-shadow;
-
     .fa {
         padding: 0 8px 0 0;
     }
@@ -162,7 +173,7 @@ $border-radius: 6px;
 .btn-primary-card-green-life {
     float: left;
     color: #FFFFFF;
-    background:  $config-dark-gray-color;
+    background: $config-dark-gray-color;
 }
 
 .btn-secondary-card-green-life {
@@ -170,10 +181,17 @@ $border-radius: 6px;
     color: #FFFFFF;
     background: $warning-color;
 }
+
 // Green Life Cards Styles
-
-
 .green-life-accordion .mat-expansion-panel-body {
     max-height: 615px !important;
     overflow: scroll !important;
+}
+
+.divider {
+    background: #FFFFFF;
+    max-width: 200px;
+    -webkit-box-shadow: 0 1px 3px rgba(50, 50, 93, .11), 0 1px 3px rgba(0, 0, 0, .08);
+    -moz-box-shadow: 0 1px 3px rgba(50, 50, 93, .11), 0 1px 3px rgba(0, 0, 0, .08);
+    box-shadow: 0 1px 3px rgba(50, 50, 93, .11), 0 1px 3px rgba(0, 0, 0, .08);
 }

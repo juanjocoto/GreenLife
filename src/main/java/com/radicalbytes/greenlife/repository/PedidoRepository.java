@@ -1,5 +1,7 @@
 package com.radicalbytes.greenlife.repository;
 
+import java.util.List;
+
 import com.radicalbytes.greenlife.domain.Pedido;
 import org.springframework.stereotype.Repository;
 
@@ -13,4 +15,7 @@ import java.util.List;
 @Repository
 public interface PedidoRepository extends JpaRepository<Pedido, Long> {
     List<Pedido> findAllByLocal_id(Long id);
+
+	List<Pedido> findAllBySuscripcion_id(Long id);
+
 }

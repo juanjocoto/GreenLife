@@ -15,6 +15,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import javax.transaction.Transactional;
 import javax.validation.Valid;
 import java.net.URI;
 import java.net.URISyntaxException;
@@ -110,7 +111,7 @@ public class ComercioResource {
         log.debug("REST request to get all Comercios");
         List<Comercio> comercios = comercioRepository.findAllWithEagerRelationships();
         return comercioMapper.toDto(comercios);
-        }
+    }
 
     /**
      * GET  /comercios/:id : get the "id" comercio.
@@ -159,4 +160,13 @@ public class ComercioResource {
             .collect(Collectors.toList());
     }
 
+    @GetMapping("/comercios/usuario/{id}")
+    @Timed
+    @Transactional
+    public ResponseEntity<List<ComercioDTO>> getComercioByUsuario(@PathVariable Long id) {
+        log.debug("REST request to get Comercio : {}", id);
+        List<Comercio> comercios = comercioRepository.findAllByDueno_id(id);
+        List<ComercioDTO> comerciosDTO = comercioMapper.toDto(comercios);
+        return ResponseUtil.wrapOrNotFound(Optional.ofNullable(comerciosDTO));
+    }
 }
