@@ -32,7 +32,6 @@ export class NavbarGreenlifeComponent implements OnInit {
 
     ngOnInit() {
         this.router.events.subscribe((event) => {
-            console.log(event);
             if (event instanceof RoutesRecognized) {
                 const data = event.state.root.firstChild.firstChild.data;
                 this.configuracion = data.configuracion as boolean;
@@ -69,7 +68,10 @@ export class NavbarGreenlifeComponent implements OnInit {
     private loadCurrentUser(login) {
         this.userService.find(login).subscribe((userResponse: HttpResponse<User>) => {
             this.currentUser = userResponse.body;
-            console.log(userResponse.body);
         });
+    }
+
+    loadCurrentComercio() {
+
     }
 }
