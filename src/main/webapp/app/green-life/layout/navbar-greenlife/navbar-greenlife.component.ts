@@ -1,4 +1,3 @@
-import {Component, OnInit} from '@angular/core';
 import {MatDialog} from '@angular/material';
 import {ActivatedRoute, Router, RoutesRecognized} from '@angular/router';
 import {AccountService, LoginService, User, UserService} from '../../../shared';
