@@ -2,8 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { CategoriaAlimentacion } from '../../../entities/categoria-alimentacion';
 import { CategoriaAlimentacionService } from '../../../entities/categoria-alimentacion/categoria-alimentacion.service';
-import {CategoriasModificarComponent} from "../categorias-modificar/categorias-modificar.component";
-import {MatDialogRef} from "@angular/material";
+import {CategoriasModificarComponent} from '../categorias-modificar/categorias-modificar.component';
+import {MatDialogRef} from '@angular/material';
 
 @Component({
   selector: 'jhi-categorias-registro',

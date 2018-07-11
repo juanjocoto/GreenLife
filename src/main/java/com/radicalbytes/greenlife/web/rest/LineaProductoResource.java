@@ -10,6 +10,7 @@ import java.util.Optional;
 import java.util.stream.Collectors;
 import java.util.stream.StreamSupport;
 
+import javax.transaction.Transactional;
 import javax.validation.Valid;
 
 import com.codahale.metrics.annotation.Timed;
@@ -137,6 +138,7 @@ public class LineaProductoResource {
 
     @PutMapping("/linea-productos/bulk")
     @Timed
+    @Transactional
     public ResponseEntity<List<LineaProductoDTO>> updateMultiLineaProducto(
             @Valid @RequestBody List<LineaProductoDTO> lineaProductoDTOList) throws URISyntaxException {
         List<LineaProductoDTO> results = new ArrayList<LineaProductoDTO>();
@@ -153,8 +155,7 @@ public class LineaProductoResource {
             }
         }
 
-        return ResponseEntity.ok()
-                .headers(HeaderUtil.createEntityCreationAlert(ENTITY_NAME, "")).body(results);
+        return ResponseEntity.ok().headers(HeaderUtil.createEntityCreationAlert(ENTITY_NAME, "")).body(results);
     }
 
     /**
@@ -173,6 +174,7 @@ public class LineaProductoResource {
 
     @GetMapping("/linea-productos/pedido/{pedidoId}")
     @Timed
+    @Transactional
     public List<LineaProductoDTO> getLineaProductosByPedidoId(@PathVariable long pedidoId) {
         log.debug("REST request to get all LineaProductos");
         List<LineaProducto> lineaProductos = lineaProductoRepository.findAllByPedido_id(pedidoId);
