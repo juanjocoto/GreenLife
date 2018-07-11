@@ -65,7 +65,7 @@ import { NavbarGreenlifeComponent } from './layout/navbar-greenlife/navbar-green
 import { NgModule } from '@angular/core';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { PedidoCrearComponent } from './views/pedido-crear/pedido-crear.component';
-import { PedidoCrearDialogComponent } from './dialogos/pedido-crear-dialog/pedido-crear-dialog.component';
+import { PedidoModificarComponent } from './views/pedido-modificar/pedido-modificar.component';
 import { RootComponent } from './root/root.component';
 import { RouterModule } from '@angular/router';
 import { SelectorEtiquetasComponent } from './fragments/selector-etiquetas/selector-etiquetas.component';
@@ -76,7 +76,11 @@ import { UsuarioRegistroComponent } from './views/usuario-registro/usuario-regis
 import { UsuarioRolesComponent } from './views/usuario-roles/usuario-roles.component';
 import { ValidadorNumeroDirective } from './shared/directives/validador-numero.directive';
 import { AuthService } from './shared/services/auth.service';
+<<<<<<< HEAD
 import { ComerciosSuscripcionesComponent } from './views/comercios-suscripciones/comercios-suscripciones.component';
+=======
+import { SuscripcionesClienteComponent } from './views/suscripciones-cliente/suscripciones-cliente.component';
+>>>>>>> 6bfb6ffe192be988d510d5b8ae4253ad2e3f97d3
 
 @NgModule({
   imports: [
@@ -152,11 +156,15 @@ import { ComerciosSuscripcionesComponent } from './views/comercios-suscripciones
     LocalModificarComponent,
     LocalEliminarComponent,
     DummyComponent,
-    PedidoCrearDialogComponent,
     PedidoCrearComponent,
+    PedidoModificarComponent,
     ComerciosLocalesComponent,
     SuscripcionCrearComponent,
+<<<<<<< HEAD
     ComerciosSuscripcionesComponent
+=======
+    SuscripcionesClienteComponent
+>>>>>>> 6bfb6ffe192be988d510d5b8ae4253ad2e3f97d3
   ],
   entryComponents: [
     LoginComponent,
@@ -164,8 +172,7 @@ import { ComerciosSuscripcionesComponent } from './views/comercios-suscripciones
     CategoriasRegistroComponent,
     CargaImagenesComponent,
     ConfirmacionDialogComponent,
-    LocalEliminarComponent,
-    PedidoCrearDialogComponent
+    LocalEliminarComponent
   ],
   providers: [
     CommonAdapterService,
