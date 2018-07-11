@@ -12,6 +12,7 @@ import { PedidoListarComponent } from './views/pedido-listar/pedido-listar.compo
 import { PedidoModificarComponent } from './views/pedido-modificar/pedido-modificar.component';
 import { Route } from '@angular/router';
 import { SuscripcionCrearComponent } from './views/suscripcion-crear/suscripcion-crear.component';
+import { SuscripcionesClienteComponent } from './views/suscripciones-cliente/suscripciones-cliente.component';
 import { UsuarioModificarComponent } from './views/usuario-modificar/usuario-modificar.component';
 import { UsuarioPerfilComponent } from './views/usuario-perfil/usuario-perfil.component';
 import { UsuarioRegistroComponent } from './views/usuario-registro/usuario-registro.component';
@@ -31,5 +32,6 @@ export const greenLifeRoutes: Route[] = [
     { path: 'suscripciones/:suscripcionId/pedido', component: PedidoListarComponent, data: { configuracion: false }, canActivate: [AuthGuard] },
     { path: 'suscripciones/:suscripcionId/pedido/:pedidoId', component: PedidoModificarComponent, data: { configuracion: false }, canActivate: [AuthGuard] },
     { path: 'dummy', component: DummyComponent, data: { configuracion: false }, canActivate: [] },
-    { path: 'cliente/:login/suscripcion/comercio/:comercioId', component: SuscripcionCrearComponent, data: { configuracion: false }, canActivate: [AuthGuard] }
+    { path: 'usuario/:login/suscripcion/comercio/:comercioId', component: SuscripcionCrearComponent, data: { configuracion: false }, canActivate: [AuthGuard] },
+    { path: 'usuario/:login/suscripciones', component: SuscripcionesClienteComponent, data: { configuracion: false }, canActivate: [AuthGuard] }
 ];

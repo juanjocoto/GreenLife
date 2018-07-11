@@ -54,7 +54,7 @@ export class SuscripcionCrearComponent implements OnInit {
 
         this.suscripcionService.create(newSuscripcion).subscribe((result) => {
             this.formSuscripcion.reset();
-            this.router.navigate(['/']);
+            this.router.navigate(['app/usuario/' + this.clienteDetail.login + '/suscripciones']);
         });
     }
 
