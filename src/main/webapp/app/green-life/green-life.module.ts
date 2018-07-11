@@ -169,12 +169,14 @@ import { ConfiguracionComerciosComponent } from './views/configuracion-comercios
     LoginComponent,
     ComerciosRegistroComponent,
     CategoriasRegistroComponent,
-    CategoriasModificarComponent
+    CategoriasModificarComponent,
+    ConfirmacionDialogComponent,
+    LocalEliminarComponent,
   ],
   providers: [
-      CargaImagenesComponent,
-      ConfirmacionDialogComponent,
-      LocalEliminarComponent,
+    CargaImagenesComponent,
+    ConfirmacionDialogComponent,
+    LocalEliminarComponent,
     CommonAdapterService,
     CategoriasComponent,
     HorasEntregaService,

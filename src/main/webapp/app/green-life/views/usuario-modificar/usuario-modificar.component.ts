@@ -9,6 +9,7 @@ import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import { MatDialog } from '@angular/material';
 import {MouseEvent} from '@agm/core';
 import {ConfirmacionDialogComponent} from '../../dialogos/confirmacion-dialog/confirmacion-dialog.component';
+import { Location } from '@angular/common';
 
 @Component({
     selector: 'jhi-usuario-modificar',
@@ -39,7 +40,8 @@ export class UsuarioModificarComponent implements OnInit {
         private formBuilder: FormBuilder,
         private dialog: MatDialog,
         private loginService: LoginService,
-        private router: Router) { }
+        private router: Router,
+        private location: Location) { }
 
     ngOnInit() {
         this.getUser();
@@ -117,6 +119,7 @@ export class UsuarioModificarComponent implements OnInit {
 
                 this.usuarioService.update(this.usuario).subscribe((resuld) => {
                     console.log(resuld);
+                    this.location.back();
                 });
             });
         }

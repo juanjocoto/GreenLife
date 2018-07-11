@@ -40,6 +40,10 @@ export class UsuarioPerfilComponent implements OnInit {
     });
   }
 
+  modificarUsuario() {
+      this.router.navigate(['app/usuario/' + this.user.login + '/editar']);
+  }
+
   openComercioDialog() {
     const ref = this.matDialog.open(ComerciosRegistroComponent);
 
