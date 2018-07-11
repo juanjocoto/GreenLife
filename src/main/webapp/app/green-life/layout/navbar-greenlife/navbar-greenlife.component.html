@@ -57,7 +57,8 @@
             <li class="nav-item dropdown" ngbDropdown >
                 <a class="nav-link dropdown-toggle" ngbDropdownToggle><span class="user-img"></span> <span class="text">Usuario</span></a>
                 <div class="dropdown-menu" ngbDropdownMenu>
-                    <a class="dropdown-item" (click)="cerrarSesion()">Cerrar Sesión</a>
+                    <a class="dropdown-item" [routerLink]="'usuario/' + usuarioId">Mi perfil</a>
+                    <a class="dropdown-item" (click)="cerrarSesion()">Cerrar sesión</a>
                 </div>
             </li>
         </ul>

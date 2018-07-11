@@ -10,7 +10,6 @@ import { PedidoDialogComponent } from '../../../../../../main/webapp/app/entitie
 import { PedidoService } from '../../../../../../main/webapp/app/entities/pedido/pedido.service';
 import { Pedido } from '../../../../../../main/webapp/app/entities/pedido/pedido.model';
 import { SuscripcionService } from '../../../../../../main/webapp/app/entities/suscripcion';
-import { LineaProductoService } from '../../../../../../main/webapp/app/entities/linea-producto';
 import { DiaEntregaService } from '../../../../../../main/webapp/app/entities/dia-entrega';
 import { LocalService } from '../../../../../../main/webapp/app/entities/local';
 
@@ -29,7 +28,6 @@ describe('Component Tests', () => {
                 declarations: [PedidoDialogComponent],
                 providers: [
                     SuscripcionService,
-                    LineaProductoService,
                     DiaEntregaService,
                     LocalService,
                     PedidoService

@@ -33,8 +33,8 @@ public class FileSystemStorageService implements StorageService {
         UUID uuid = UUID.randomUUID();
         String fileId = String.valueOf(uuid);
 
-        // this.rootLocation = "C:\\green-life-images\\";
-        this.rootLocation = "/home/leo/Pictures/green-life-images";
+        this.rootLocation = "C:\\green-life-images\\";
+        // this.rootLocation = "/home/leo/Pictures/green-life-images";
 
         try {
             if (file.isEmpty()) {

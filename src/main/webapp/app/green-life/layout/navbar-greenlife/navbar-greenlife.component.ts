@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material';
+import { ActivatedRoute, Router, RoutesRecognized } from '@angular/router';
+import { AccountService, LoginService } from '../../../shared';
 import { LoginComponent } from '../../dialogos/login/login.component';
 import { Router, NavigationStart } from '@angular/router';
 import { LoginService } from '../../../shared';
@@ -12,18 +14,37 @@ import { LoginService } from '../../../shared';
 export class NavbarGreenlifeComponent implements OnInit {
 
   collapse = false;
-  inicio = true;
+  configuracion = true;
+  isAuth = true;
+  usuarioId = '';
 
-  constructor(private dialog: MatDialog, private router: Router, private loginService: LoginService ) {
-    this.router.events.forEach((event) => {
-      if (event instanceof NavigationStart) {
-        (event.url === '/app' || event.url === '/') ? this.inicio = true : this.inicio = false;
+  constructor(private dialog: MatDialog, private router: Router,
+    private loginService: LoginService, private auth: AccountService,
+    private route: ActivatedRoute) {
+      this.verificarSesion();
+      if (!this.route.firstChild.data['value']['configuracion']) {
+        this.configuracion = false;
+      }
+    }
+
+  ngOnInit() {
+    this.router.events.subscribe((event) => {
+      console.log(event);
+      if (event instanceof RoutesRecognized) {
+        const data = event.state.root.firstChild.firstChild.data;
+        this.configuracion = data.configuracion as boolean;
+        this.verificarSesion();
       }
     });
   }
 
-  ngOnInit() {
-    (this.router.url === '/app' || this.router.url === '/') ? this.inicio = true : this.inicio = false;
+  private verificarSesion() {
+    this.auth.get().subscribe((resul) => {
+      this.isAuth = true;
+      this.usuarioId = resul.body['login'];
+    }, () => {
+      this.isAuth = false;
+    });
   }
 
   toggleCollapse() {
