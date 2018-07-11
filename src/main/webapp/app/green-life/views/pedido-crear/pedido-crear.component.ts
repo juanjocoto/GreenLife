@@ -7,11 +7,13 @@ import { DiaEntregaService } from '../../../entities/dia-entrega/dia-entrega.ser
 import { HorasEntregaService } from '../../shared/services/horas-entrega.service';
 import { LineaProducto } from '../../../entities/linea-producto';
 import { LineaProductoService } from '../../../entities/linea-producto/linea-producto.service';
+import { Location } from '@angular/common';
 import { Observable } from 'rxjs/Rx';
 import { Pedido } from '../../../entities/pedido';
 import { PedidoService } from '../../../entities/pedido/pedido.service';
 import { Producto } from '../../../entities/producto/producto.model';
 import { ProductoService } from '../../../entities/producto/producto.service';
+import { SnackBarService } from '../../shared/services/snack-bar.service';
 import { Suscripcion } from '../../../entities/suscripcion';
 import { SuscripcionService } from '../../../entities/suscripcion/suscripcion.service';
 
@@ -52,7 +54,9 @@ export class PedidoCrearComponent implements OnInit {
     private horasEntregaService: HorasEntregaService,
     private pedidoService: PedidoService,
     private lineaProductoService: LineaProductoService,
-    private formBuilder: FormBuilder
+    private formBuilder: FormBuilder,
+    private location: Location,
+    private snackBarService: SnackBarService
   ) {
   }
 
@@ -114,7 +118,8 @@ export class PedidoCrearComponent implements OnInit {
             productoId: linea.productoId
           };
         })).subscribe((response) => {
-          console.log(response);
+          this.location.back();
+          this.snackBarService.show('El pedido fue creado');
         });
       });
     } else {

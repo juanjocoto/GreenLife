@@ -1,8 +1,9 @@
-import { Component, OnInit } from '@angular/core';
-import { MatDialog } from '@angular/material';
-import { ActivatedRoute, Router, RoutesRecognized } from '@angular/router';
 import { AccountService, LoginService } from '../../../shared';
+import { ActivatedRoute, Router, RoutesRecognized } from '@angular/router';
+import { Component, OnInit } from '@angular/core';
+
 import { LoginComponent } from '../../dialogos/login/login.component';
+import { MatDialog } from '@angular/material';
 
 @Component({
   selector: 'jhi-navbar-greenlife',
@@ -27,7 +28,7 @@ export class NavbarGreenlifeComponent implements OnInit {
 
   ngOnInit() {
     this.router.events.subscribe((event) => {
-      console.log(event);
+      // console.log(event);
       if (event instanceof RoutesRecognized) {
         const data = event.state.root.firstChild.firstChild.data;
         this.configuracion = data.configuracion as boolean;
