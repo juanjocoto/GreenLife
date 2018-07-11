@@ -15,6 +15,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import javax.transaction.Transactional;
 import javax.validation.Valid;
 import java.net.URI;
 import java.net.URISyntaxException;
@@ -155,6 +156,16 @@ public class SuscripcionResource {
             .stream(suscripcionSearchRepository.search(queryStringQuery(query)).spliterator(), false)
             .map(suscripcionMapper::toDto)
             .collect(Collectors.toList());
+    }
+
+    @GetMapping("/suscripcions/usuario/{id}")
+    @Timed
+    @Transactional
+    public ResponseEntity<List<SuscripcionDTO>> getSuscripcionByUsuario(@PathVariable Long id) {
+        log.debug("REST request to get Suscripcion : {}", id);
+        List<Suscripcion> suscripciones = suscripcionRepository.findAllByUsuario_id(id);
+        List<SuscripcionDTO> suscripcionesDTO = suscripcionMapper.toDto(suscripciones);
+        return ResponseUtil.wrapOrNotFound(Optional.ofNullable(suscripcionesDTO));
     }
 
 }

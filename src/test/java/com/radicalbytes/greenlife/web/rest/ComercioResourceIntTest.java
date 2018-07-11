@@ -59,6 +59,9 @@ public class ComercioResourceIntTest {
     private static final TipoComercio DEFAULT_TIPO = TipoComercio.RESTAURANTE;
     private static final TipoComercio UPDATED_TIPO = TipoComercio.TIENDA;
 
+    private static final String DEFAULT_LOGO_URL = "AAAAAAAAAA";
+    private static final String UPDATED_LOGO_URL = "BBBBBBBBBB";
+
     @Autowired
     private ComercioRepository comercioRepository;
 
@@ -107,7 +110,8 @@ public class ComercioResourceIntTest {
             .cedJuridica(DEFAULT_CED_JURIDICA)
             .razonSocial(DEFAULT_RAZON_SOCIAL)
             .nombreComercial(DEFAULT_NOMBRE_COMERCIAL)
-            .tipo(DEFAULT_TIPO);
+            .tipo(DEFAULT_TIPO)
+            .logoUrl(DEFAULT_LOGO_URL);
         return comercio;
     }
 
@@ -138,6 +142,7 @@ public class ComercioResourceIntTest {
         assertThat(testComercio.getRazonSocial()).isEqualTo(DEFAULT_RAZON_SOCIAL);
         assertThat(testComercio.getNombreComercial()).isEqualTo(DEFAULT_NOMBRE_COMERCIAL);
         assertThat(testComercio.getTipo()).isEqualTo(DEFAULT_TIPO);
+        assertThat(testComercio.getLogoUrl()).isEqualTo(DEFAULT_LOGO_URL);
 
         // Validate the Comercio in Elasticsearch
         Comercio comercioEs = comercioSearchRepository.findOne(testComercio.getId());
@@ -255,7 +260,8 @@ public class ComercioResourceIntTest {
             .andExpect(jsonPath("$.[*].cedJuridica").value(hasItem(DEFAULT_CED_JURIDICA.toString())))
             .andExpect(jsonPath("$.[*].razonSocial").value(hasItem(DEFAULT_RAZON_SOCIAL.toString())))
             .andExpect(jsonPath("$.[*].nombreComercial").value(hasItem(DEFAULT_NOMBRE_COMERCIAL.toString())))
-            .andExpect(jsonPath("$.[*].tipo").value(hasItem(DEFAULT_TIPO.toString())));
+            .andExpect(jsonPath("$.[*].tipo").value(hasItem(DEFAULT_TIPO.toString())))
+            .andExpect(jsonPath("$.[*].logoUrl").value(hasItem(DEFAULT_LOGO_URL.toString())));
     }
 
     @Test
@@ -273,7 +279,8 @@ public class ComercioResourceIntTest {
             .andExpect(jsonPath("$.cedJuridica").value(DEFAULT_CED_JURIDICA.toString()))
             .andExpect(jsonPath("$.razonSocial").value(DEFAULT_RAZON_SOCIAL.toString()))
             .andExpect(jsonPath("$.nombreComercial").value(DEFAULT_NOMBRE_COMERCIAL.toString()))
-            .andExpect(jsonPath("$.tipo").value(DEFAULT_TIPO.toString()));
+            .andExpect(jsonPath("$.tipo").value(DEFAULT_TIPO.toString()))
+            .andExpect(jsonPath("$.logoUrl").value(DEFAULT_LOGO_URL.toString()));
     }
 
     @Test
@@ -301,7 +308,8 @@ public class ComercioResourceIntTest {
             .cedJuridica(UPDATED_CED_JURIDICA)
             .razonSocial(UPDATED_RAZON_SOCIAL)
             .nombreComercial(UPDATED_NOMBRE_COMERCIAL)
-            .tipo(UPDATED_TIPO);
+            .tipo(UPDATED_TIPO)
+            .logoUrl(UPDATED_LOGO_URL);
         ComercioDTO comercioDTO = comercioMapper.toDto(updatedComercio);
 
         restComercioMockMvc.perform(put("/api/comercios")
@@ -318,6 +326,7 @@ public class ComercioResourceIntTest {
         assertThat(testComercio.getRazonSocial()).isEqualTo(UPDATED_RAZON_SOCIAL);
         assertThat(testComercio.getNombreComercial()).isEqualTo(UPDATED_NOMBRE_COMERCIAL);
         assertThat(testComercio.getTipo()).isEqualTo(UPDATED_TIPO);
+        assertThat(testComercio.getLogoUrl()).isEqualTo(UPDATED_LOGO_URL);
 
         // Validate the Comercio in Elasticsearch
         Comercio comercioEs = comercioSearchRepository.findOne(testComercio.getId());
@@ -381,7 +390,8 @@ public class ComercioResourceIntTest {
             .andExpect(jsonPath("$.[*].cedJuridica").value(hasItem(DEFAULT_CED_JURIDICA.toString())))
             .andExpect(jsonPath("$.[*].razonSocial").value(hasItem(DEFAULT_RAZON_SOCIAL.toString())))
             .andExpect(jsonPath("$.[*].nombreComercial").value(hasItem(DEFAULT_NOMBRE_COMERCIAL.toString())))
-            .andExpect(jsonPath("$.[*].tipo").value(hasItem(DEFAULT_TIPO.toString())));
+            .andExpect(jsonPath("$.[*].tipo").value(hasItem(DEFAULT_TIPO.toString())))
+            .andExpect(jsonPath("$.[*].logoUrl").value(hasItem(DEFAULT_LOGO_URL.toString())));
     }
 
     @Test

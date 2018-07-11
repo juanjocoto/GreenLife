@@ -45,10 +45,6 @@ public class Comercio implements Serializable {
     @Column(name = "razon_social", length = 50, nullable = false)
     private String razonSocial;
 
-    @Size(max = 500)
-    @Column(name = "logo_url", length = 500, nullable = true)
-    private String logoUrl;
-
     @NotNull
     @Size(max = 50)
     @Column(name = "nombre_comercial", length = 50, nullable = false)
@@ -57,6 +53,10 @@ public class Comercio implements Serializable {
     @Enumerated(EnumType.STRING)
     @Column(name = "tipo")
     private TipoComercio tipo;
+
+    @Size(max = 500)
+    @Column(name = "logo_url", length = 500)
+    private String logoUrl;
 
     @OneToMany(mappedBy = "comercio")
     @JsonIgnore
@@ -95,19 +95,22 @@ public class Comercio implements Serializable {
 
     @ManyToMany
     @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
-    @JoinTable(name = "comercio_etiquetas", joinColumns = @JoinColumn(name = "comercios_id", referencedColumnName = "id"), inverseJoinColumns = @JoinColumn(name = "etiquetas_id", referencedColumnName = "id"))
+    @JoinTable(name = "comercio_etiquetas",
+               joinColumns = @JoinColumn(name="comercios_id", referencedColumnName="id"),
+               inverseJoinColumns = @JoinColumn(name="etiquetas_id", referencedColumnName="id"))
     private Set<Etiqueta> etiquetas = new HashSet<>();
 
     @ManyToMany
     @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
-    @JoinTable(name = "comercio_categorias", joinColumns = @JoinColumn(name = "comercios_id", referencedColumnName = "id"), inverseJoinColumns = @JoinColumn(name = "categorias_id", referencedColumnName = "id"))
+    @JoinTable(name = "comercio_categorias",
+               joinColumns = @JoinColumn(name="comercios_id", referencedColumnName="id"),
+               inverseJoinColumns = @JoinColumn(name="categorias_id", referencedColumnName="id"))
     private Set<CategoriaAlimentacion> categorias = new HashSet<>();
 
     @ManyToOne
     private Usuario dueno;
 
-    // jhipster-needle-entity-add-field - JHipster will add fields here, do not
-    // remove
+    // jhipster-needle-entity-add-field - JHipster will add fields here, do not remove
     public Long getId() {
         return id;
     }
@@ -151,19 +154,6 @@ public class Comercio implements Serializable {
         return this;
     }
 
-    public void setLogoUrl(String logoUrl) {
-        this.logoUrl = logoUrl;
-    }
-
-    public String getLogoUrl() {
-        return this.logoUrl;
-    }
-
-    public Comercio logoUrl(String logoUrl) {
-        this.logoUrl = logoUrl;
-        return this;
-    }
-
     public void setRazonSocial(String razonSocial) {
         this.razonSocial = razonSocial;
     }
@@ -192,6 +182,19 @@ public class Comercio implements Serializable {
 
     public void setTipo(TipoComercio tipo) {
         this.tipo = tipo;
+    }
+
+    public String getLogoUrl() {
+        return logoUrl;
+    }
+
+    public Comercio logoUrl(String logoUrl) {
+        this.logoUrl = logoUrl;
+        return this;
+    }
+
+    public void setLogoUrl(String logoUrl) {
+        this.logoUrl = logoUrl;
     }
 
     public Set<ResenaCliente> getResenasClientes() {
@@ -427,8 +430,7 @@ public class Comercio implements Serializable {
     public void setDueno(Usuario usuario) {
         this.dueno = usuario;
     }
-    // jhipster-needle-entity-add-getters-setters - JHipster will add getters and
-    // setters here, do not remove
+    // jhipster-needle-entity-add-getters-setters - JHipster will add getters and setters here, do not remove
 
     @Override
     public boolean equals(Object o) {
@@ -452,8 +454,14 @@ public class Comercio implements Serializable {
 
     @Override
     public String toString() {
-        return "Comercio{" + "id=" + getId() + ", fechaCreacion='" + getFechaCreacion() + "'" + ", cedJuridica='"
-                + getCedJuridica() + "'" + ", razonSocial='" + getRazonSocial() + "'" + ", nombreComercial='"
-                + getNombreComercial() + "'" + ", tipo='" + getTipo() + "'" + "}";
+        return "Comercio{" +
+            "id=" + getId() +
+            ", fechaCreacion='" + getFechaCreacion() + "'" +
+            ", cedJuridica='" + getCedJuridica() + "'" +
+            ", razonSocial='" + getRazonSocial() + "'" +
+            ", nombreComercial='" + getNombreComercial() + "'" +
+            ", tipo='" + getTipo() + "'" +
+            ", logoUrl='" + getLogoUrl() + "'" +
+            "}";
     }
 }

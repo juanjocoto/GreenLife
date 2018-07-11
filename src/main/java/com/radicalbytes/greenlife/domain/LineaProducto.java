@@ -30,6 +30,9 @@ public class LineaProducto implements Serializable {
     private Integer cantidad;
 
     @ManyToOne
+    private Pedido pedido;
+
+    @ManyToOne
     private Producto producto;
 
     // jhipster-needle-entity-add-field - JHipster will add fields here, do not remove
@@ -52,6 +55,19 @@ public class LineaProducto implements Serializable {
 
     public void setCantidad(Integer cantidad) {
         this.cantidad = cantidad;
+    }
+
+    public Pedido getPedido() {
+        return pedido;
+    }
+
+    public LineaProducto pedido(Pedido pedido) {
+        this.pedido = pedido;
+        return this;
+    }
+
+    public void setPedido(Pedido pedido) {
+        this.pedido = pedido;
     }
 
     public Producto getProducto() {

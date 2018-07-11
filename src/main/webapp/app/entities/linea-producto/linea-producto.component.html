@@ -3,8 +3,8 @@
         <span>Linea Productos</span>
         <button class="btn btn-primary float-right jh-create-entity create-linea-producto" [routerLink]="['/', { outlets: { popup: ['linea-producto-new'] } }]">
             <span class="fa fa-plus"></span>
-            <span class="hidden-sm-down" >
-            Crear nueva Linea Producto
+            <span class="hidden-sm-down">
+                Crear nueva Linea Producto
             </span>
         </button>
     </h2>
@@ -28,49 +28,57 @@
     <div class="table-responsive" *ngIf="lineaProductos">
         <table class="table table-striped">
             <thead>
-            <tr>
-            <th><span>ID</span></th>
-            <th><span>Cantidad</span></th>
-            <th><span>Producto</span></th>
-            <th></th>
-            </tr>
+                <tr>
+                    <th>
+                        <span>ID</span>
+                    </th>
+                    <th>
+                        <span>Cantidad</span>
+                    </th>
+                    <th>
+                        <span>Pedido</span>
+                    </th>
+                    <th>
+                        <span>Producto</span>
+                    </th>
+                    <th></th>
+                </tr>
             </thead>
             <tbody>
-            <tr *ngFor="let lineaProducto of lineaProductos ;trackBy: trackId">
-                <td><a [routerLink]="['../linea-producto', lineaProducto.id ]">{{lineaProducto.id}}</a></td>
-                <td>{{lineaProducto.cantidad}}</td>
-                <td>
-                    <div *ngIf="lineaProducto.productoId">
-                        <a [routerLink]="['../producto', lineaProducto.productoId  ]" >{{lineaProducto.productoId}}</a>
-                    </div>
-                </td>
-                <td class="text-right">
-                    <div class="btn-group flex-btn-group-container">
-                        <button type="submit"
-                                [routerLink]="['../linea-producto', lineaProducto.id ]"
-                                class="btn btn-info btn-sm">
-                            <span class="fa fa-eye"></span>
-                            <span class="d-none d-md-inline">Ver</span>
-                        </button>
-                        <button type="submit"
-                                [routerLink]="['/', { outlets: { popup: 'linea-producto/'+ lineaProducto.id + '/edit'} }]"
-                                replaceUrl="true"
-                                queryParamsHandling="merge"
-                                class="btn btn-primary btn-sm">
-                            <span class="fa fa-pencil"></span>
-                            <span class="d-none d-md-inline">Editar</span>
-                        </button>
-                        <button type="submit"
-                                [routerLink]="['/', { outlets: { popup: 'linea-producto/'+ lineaProducto.id + '/delete'} }]"
-                                replaceUrl="true"
-                                queryParamsHandling="merge"
-                                class="btn btn-danger btn-sm">
-                            <span class="fa fa-remove"></span>
-                            <span class="d-none d-md-inline">Eliminar</span>
-                        </button>
-                    </div>
-                </td>
-            </tr>
+                <tr *ngFor="let lineaProducto of lineaProductos ;trackBy: trackId">
+                    <td>
+                        <a [routerLink]="['../linea-producto', lineaProducto.id ]">{{lineaProducto.id}}</a>
+                    </td>
+                    <td>{{lineaProducto.cantidad}}</td>
+                    <td>
+                        <div *ngIf="lineaProducto.pedidoId">
+                            <a [routerLink]="['../pedido', lineaProducto.pedidoId  ]">{{lineaProducto.pedidoId}}</a>
+                        </div>
+                    </td>
+                    <td>
+                        <div *ngIf="lineaProducto.productoId">
+                            <a [routerLink]="['../producto', lineaProducto.productoId  ]">{{lineaProducto.productoId}}</a>
+                        </div>
+                    </td>
+                    <td class="text-right">
+                        <div class="btn-group flex-btn-group-container">
+                            <button type="submit" [routerLink]="['../linea-producto', lineaProducto.id ]" class="btn btn-info btn-sm">
+                                <span class="fa fa-eye"></span>
+                                <span class="d-none d-md-inline">Ver</span>
+                            </button>
+                            <button type="submit" [routerLink]="['/', { outlets: { popup: 'linea-producto/'+ lineaProducto.id + '/edit'} }]" replaceUrl="true"
+                                queryParamsHandling="merge" class="btn btn-primary btn-sm">
+                                <span class="fa fa-pencil"></span>
+                                <span class="d-none d-md-inline">Editar</span>
+                            </button>
+                            <button type="submit" [routerLink]="['/', { outlets: { popup: 'linea-producto/'+ lineaProducto.id + '/delete'} }]" replaceUrl="true"
+                                queryParamsHandling="merge" class="btn btn-danger btn-sm">
+                                <span class="fa fa-remove"></span>
+                                <span class="d-none d-md-inline">Eliminar</span>
+                            </button>
+                        </div>
+                    </td>
+                </tr>
             </tbody>
         </table>
     </div>

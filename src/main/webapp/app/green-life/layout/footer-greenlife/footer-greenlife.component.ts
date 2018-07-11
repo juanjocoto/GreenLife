@@ -1,19 +1,20 @@
+import { ActivatedRoute, Router, RoutesRecognized } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
-import { Router, NavigationStart, RoutesRecognized } from '@angular/router';
-import { AccountService } from '../../../shared';
 
 @Component({
   selector: 'jhi-footer-greenlife',
   templateUrl: './footer-greenlife.component.html',
-  styleUrls: [
-      'footer-greenlife.scss'
-  ]
+  styleUrls: ['footer-greenlife.component.scss']
 })
 export class FooterGreenlifeComponent implements OnInit {
 
   configuracion = true;
 
-  constructor(private router: Router ) { }
+  constructor(private router: Router, private route: ActivatedRoute) {
+    if (!this.route.firstChild.data['value']['configuracion']) {
+      this.configuracion = false;
+    }
+  }
 
   ngOnInit() {
     this.router.events.subscribe((event) => {

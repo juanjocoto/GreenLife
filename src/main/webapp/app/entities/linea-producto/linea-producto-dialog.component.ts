@@ -9,6 +9,7 @@ import { JhiEventManager, JhiAlertService } from 'ng-jhipster';
 import { LineaProducto } from './linea-producto.model';
 import { LineaProductoPopupService } from './linea-producto-popup.service';
 import { LineaProductoService } from './linea-producto.service';
+import { Pedido, PedidoService } from '../pedido';
 import { Producto, ProductoService } from '../producto';
 
 @Component({
@@ -20,12 +21,15 @@ export class LineaProductoDialogComponent implements OnInit {
     lineaProducto: LineaProducto;
     isSaving: boolean;
 
+    pedidos: Pedido[];
+
     productos: Producto[];
 
     constructor(
         public activeModal: NgbActiveModal,
         private jhiAlertService: JhiAlertService,
         private lineaProductoService: LineaProductoService,
+        private pedidoService: PedidoService,
         private productoService: ProductoService,
         private eventManager: JhiEventManager
     ) {
@@ -33,6 +37,8 @@ export class LineaProductoDialogComponent implements OnInit {
 
     ngOnInit() {
         this.isSaving = false;
+        this.pedidoService.query()
+            .subscribe((res: HttpResponse<Pedido[]>) => { this.pedidos = res.body; }, (res: HttpErrorResponse) => this.onError(res.message));
         this.productoService.query()
             .subscribe((res: HttpResponse<Producto[]>) => { this.productos = res.body; }, (res: HttpErrorResponse) => this.onError(res.message));
     }
@@ -69,6 +75,10 @@ export class LineaProductoDialogComponent implements OnInit {
 
     private onError(error: any) {
         this.jhiAlertService.error(error.message, null, null);
+    }
+
+    trackPedidoById(index: number, item: Pedido) {
+        return item.id;
     }
 
     trackProductoById(index: number, item: Producto) {

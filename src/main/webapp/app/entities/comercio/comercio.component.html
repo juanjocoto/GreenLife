@@ -4,7 +4,7 @@
         <button class="btn btn-primary float-right jh-create-entity create-comercio" [routerLink]="['/', { outlets: { popup: ['comercio-new'] } }]">
             <span class="fa fa-plus"></span>
             <span class="hidden-sm-down" >
-            Crear nuevo Comercio
+                Crear nuevo Comercio
             </span>
         </button>
     </h2>
@@ -35,6 +35,7 @@
             <th><span>Razon Social</span></th>
             <th><span>Nombre Comercial</span></th>
             <th><span>Tipo</span></th>
+            <th><span>Logo Url</span></th>
             <th><span>Etiquetas</span></th>
             <th><span>Categorias</span></th>
             <th><span>Dueno</span></th>
@@ -49,6 +50,7 @@
                 <td>{{comercio.razonSocial}}</td>
                 <td>{{comercio.nombreComercial}}</td>
                 <td>{{comercio.tipo}}</td>
+                <td>{{comercio.logoUrl}}</td>
                 <td>
                     <span *ngFor="let etiquetas of comercio.etiquetas; let last = last">
                             <a class="form-control-static" [routerLink]="['../etiqueta', etiquetas?.id ]">{{etiquetas.nombre}}</a>{{last ? '' : ', '}}

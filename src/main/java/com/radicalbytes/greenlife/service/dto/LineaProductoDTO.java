@@ -1,11 +1,10 @@
 package com.radicalbytes.greenlife.service.dto;
 
 
-import javax.validation.constraints.*;
 import java.io.Serializable;
-import java.util.HashSet;
-import java.util.Set;
 import java.util.Objects;
+
+import javax.validation.constraints.NotNull;
 
 /**
  * A DTO for the LineaProducto entity.
@@ -17,13 +16,31 @@ public class LineaProductoDTO implements Serializable {
     @NotNull
     private Integer cantidad;
 
+    private Long pedidoId;
+
     private Long productoId;
+
+    private ProductoDTO producto;
 
     public Long getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    /**
+	 * @return the producto
+	 */
+	public ProductoDTO getProducto() {
+		return producto;
+	}
+
+	/**
+	 * @param producto the producto to set
+	 */
+	public void setProducto(ProductoDTO producto) {
+		this.producto = producto;
+	}
+
+	public void setId(Long id) {
         this.id = id;
     }
 
@@ -33,6 +50,14 @@ public class LineaProductoDTO implements Serializable {
 
     public void setCantidad(Integer cantidad) {
         this.cantidad = cantidad;
+    }
+
+    public Long getPedidoId() {
+        return pedidoId;
+    }
+
+    public void setPedidoId(Long pedidoId) {
+        this.pedidoId = pedidoId;
     }
 
     public Long getProductoId() {

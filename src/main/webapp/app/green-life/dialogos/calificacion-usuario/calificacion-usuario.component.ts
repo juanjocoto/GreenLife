@@ -6,11 +6,12 @@ import {Comercio, ComercioService} from '../../../entities/comercio';
 import {Usuario, UsuarioService} from '../../../entities/usuario';
 import {HttpResponse} from '@angular/common/http';
 import {CommonAdapterService, JHILocalDate} from '../../shared/services/common-adapter.service';
+import {FormBuilder, FormGroup} from '@angular/forms';
 
 @Component({
   selector: 'jhi-calificacion-usuario',
   templateUrl: './calificacion-usuario.component.html',
-  styles: []
+    styleUrls: ['calificacion-usuario.component.scss']
 })
 export class CalificacionUsuarioComponent implements OnInit {
 
@@ -18,6 +19,7 @@ export class CalificacionUsuarioComponent implements OnInit {
     clasificacion: number;
     comercio: Comercio;
     usuario: Usuario;
+    calificacionForm: FormGroup;
 
     constructor(
         private route: ActivatedRoute,
@@ -25,13 +27,18 @@ export class CalificacionUsuarioComponent implements OnInit {
         private usuarioService: UsuarioService,
         private resenaClienteService: ResenaClienteService,
         private comercioService: ComercioService,
-        private commonAdapterService: CommonAdapterService
+        private commonAdapterService: CommonAdapterService,
+        private formBuilder: FormBuilder
     ) { }
 
   ngOnInit() {
         this.route.params.subscribe((params) => {
-            this.loadCliente(params['usuarioId']);
+            this.loadCliente(params['login']);
             this.loadComercio(params['comercioId']);
+
+            this.calificacionForm = this.formBuilder.group({
+                comentario: ['', []]
+            });
         });
   }
 
@@ -50,7 +57,7 @@ export class CalificacionUsuarioComponent implements OnInit {
       const resenaCliente = new ResenaCliente();
       resenaCliente.calificacion = this.clasificacion;
       resenaCliente.fechaCreacion = this.commonAdapterService.dateToJHILocalDate(new Date());
-      resenaCliente.comentario = '';
+      resenaCliente.comentario = this.calificacionForm.get('comentario').value;
       resenaCliente.comercioId = this.comercio.id;
       resenaCliente.clienteId = this.usuario.id;
 
@@ -59,9 +66,9 @@ export class CalificacionUsuarioComponent implements OnInit {
       });
   }
 
-    private loadCliente(id) {
-        this.usuarioService.find(id).subscribe((usuarioResponse: HttpResponse<Usuario>) => {
-           this.usuario = usuarioResponse.body;
+    private loadCliente(login) {
+        this.usuarioService.findByUserLogin(login).subscribe((usuarioResponse: HttpResponse<Usuario>) => {
+            this.usuario = usuarioResponse.body;
         });
     }
 

@@ -36,7 +36,6 @@ describe('Pedido e2e test', () => {
         pedidoDialogPage.setHoraInput('hora');
         expect(pedidoDialogPage.getHoraInput()).toMatch('hora');
         pedidoDialogPage.suscripcionSelectLastOption();
-        pedidoDialogPage.lineasSelectLastOption();
         pedidoDialogPage.diasEntregaSelectLastOption();
         pedidoDialogPage.localSelectLastOption();
         pedidoDialogPage.save();
@@ -67,7 +66,6 @@ export class PedidoDialogPage {
     closeButton = element(by.css('button.close'));
     horaInput = element(by.css('input#field_hora'));
     suscripcionSelect = element(by.css('select#field_suscripcion'));
-    lineasSelect = element(by.css('select#field_lineas'));
     diasEntregaSelect = element(by.css('select#field_diasEntrega'));
     localSelect = element(by.css('select#field_local'));
 
@@ -97,22 +95,6 @@ export class PedidoDialogPage {
 
     getSuscripcionSelectedOption = function() {
         return this.suscripcionSelect.element(by.css('option:checked')).getText();
-    };
-
-    lineasSelectLastOption = function() {
-        this.lineasSelect.all(by.tagName('option')).last().click();
-    };
-
-    lineasSelectOption = function(option) {
-        this.lineasSelect.sendKeys(option);
-    };
-
-    getLineasSelect = function() {
-        return this.lineasSelect;
-    };
-
-    getLineasSelectedOption = function() {
-        return this.lineasSelect.element(by.css('option:checked')).getText();
     };
 
     diasEntregaSelectLastOption = function() {

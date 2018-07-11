@@ -6,7 +6,6 @@ import { ComercioService } from '../../../entities/comercio/comercio.service';
 import { CommonAdapterService } from '../../shared/services/common-adapter.service';
 import { Etiqueta } from '../../../entities/etiqueta/etiqueta.model';
 import { MatDialogRef } from '@angular/material';
-import { Router } from '@angular/router';
 import { Usuario } from '../../../entities/usuario/usuario.model';
 
 @Component({
@@ -25,7 +24,6 @@ export class ComerciosRegistroComponent implements OnInit {
   constructor(private formBuilder: FormBuilder,
     private comercioService: ComercioService,
     private commonAdapterService: CommonAdapterService,
-    private router: Router,
     public dialogRef: MatDialogRef<ComerciosRegistroComponent>) { }
 
   ngOnInit() {
@@ -53,8 +51,8 @@ export class ComerciosRegistroComponent implements OnInit {
       comercio.etiquetas = this.etiquetas;
 
       this.comercioService.create(comercio).subscribe((httpResponse) => {
-        this.router.navigate(['/app/comercios/' + httpResponse.body.id + '/editar']);
-        this.dialogRef.close();
+        // this.router.navigate(['/app/comercios/' + httpResponse.body.id + '/editar']);
+        this.dialogRef.close(httpResponse.body);
       });
     }
   }

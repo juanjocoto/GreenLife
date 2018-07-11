@@ -7,7 +7,7 @@
                     <h2>Categorías</h2>
                 </div>
                 <div class="col-sm-6">
-                    <a class="btn btn-success" data-toggle="modal" (click)="agregarCategoria()"><i class="material-icons">&#xE147;</i> <span>Agregar categoría</span></a>
+                    <a class="btn btn-success" data-toggle="modal" (click)="agregarCategoria()"><i class="material-icons">&#xE147;</i> <span>Nueva categoría</span></a>
                 </div>
             </div>
         </div>
@@ -24,7 +24,7 @@
                 <td>{{categoria.nombre}}</td>
                 <td>{{categoria.descripcion}}</td>
                 <td>
-                    <a class="edit" data-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="Editar">&#xE254;</i></a>
+                    <a class="edit" data-toggle="modal" (click)="modificarCategoria(categoria)"><i class="material-icons" data-toggle="tooltip" title="Editar">&#xE254;</i></a>
                     <a class="delete" data-toggle="modal" (click)="eliminarCategoria(categoria)"><i class="material-icons" data-toggle="tooltip" title="Eliminar">&#xE872;</i></a>
                 </td>
             </tr>
