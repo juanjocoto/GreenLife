@@ -51,6 +51,11 @@ export class SuscripcionService {
             .map((res: HttpResponse<Suscripcion[]>) => this.convertArrayResponse(res));
     }
 
+    findSuscripcionesByUsuario(id: number): Observable<HttpResponse<Suscripcion[]>> {
+        return this.http.get<Suscripcion[]>(`${this.resourceUrl}/usuario/${id}`, { observe: 'response'})
+            .map((res: HttpResponse<Suscripcion[]>) => this.convertArrayResponse(res));
+    }
+
     private convertResponse(res: EntityResponseType): EntityResponseType {
         const body: Suscripcion = this.convertItemFromServer(res.body);
         return res.clone({body});
