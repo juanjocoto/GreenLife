@@ -15,6 +15,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import javax.transaction.Transactional;
 import javax.validation.Valid;
 import java.net.URI;
 import java.net.URISyntaxException;
@@ -123,6 +124,16 @@ public class PedidoResource {
         Pedido pedido = pedidoRepository.findOne(id);
         PedidoDTO pedidoDTO = pedidoMapper.toDto(pedido);
         return ResponseUtil.wrapOrNotFound(Optional.ofNullable(pedidoDTO));
+    }
+
+    @GetMapping("/pedidos/local/{id}")
+    @Timed
+    @Transactional
+    public ResponseEntity<List<PedidoDTO>> getProductoByComercio(@PathVariable Long id) {
+        log.debug("REST request to get Producto : {}", id);
+        List<Pedido> pedidos = pedidoRepository.findAllByLocal_id(id);
+        List<PedidoDTO> pedidosDTO = pedidoMapper.toDto(pedidos);
+        return ResponseUtil.wrapOrNotFound(Optional.ofNullable(pedidosDTO));
     }
 
     /**

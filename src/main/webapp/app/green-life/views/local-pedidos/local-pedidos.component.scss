@@ -49,6 +49,19 @@
     background: $config-dark-gray-color;
 }
 
+.badge {
+    display: inline-block;
+    padding: 0px 6px;
+    font-size: 46px;
+    font-weight: 700;
+    line-height: inherit;
+    text-align: center;
+    white-space: nowrap;
+    vertical-align: baseline;
+    border-radius: 6px;
+    margin-left: 10px;
+}
+
 .container-suscripciones {
     overflow-y: scroll;
     white-space: nowrap;
