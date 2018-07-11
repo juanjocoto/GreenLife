@@ -6,11 +6,12 @@ import {HttpResponse} from '@angular/common/http';
 import {Comercio, ComercioService} from '../../../entities/comercio';
 import {Usuario, UsuarioService} from '../../../entities/usuario';
 import {UserService} from '../../../shared';
+import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 
 @Component({
-  selector: 'jhi-calificacion-comercio',
-  templateUrl: './calificacion-comercio.component.html',
-  styles: []
+    selector: 'jhi-calificacion-comercio',
+    templateUrl: './calificacion-comercio.component.html',
+    styles: []
 })
 export class CalificacionComercioComponent implements OnInit {
 
@@ -18,6 +19,7 @@ export class CalificacionComercioComponent implements OnInit {
     clasificacion: number;
     usuario: Usuario;
     comercio: Comercio;
+    calificacionForm: FormGroup;
 
     constructor(
         private commonAdapterService: CommonAdapterService,
@@ -25,15 +27,20 @@ export class CalificacionComercioComponent implements OnInit {
         private comercioService: ComercioService,
         private usuarioService: UsuarioService,
         private userService: UserService,
-        private resenaComercioService: ResenaComercioService
+        private resenaComercioService: ResenaComercioService,
+        private formBuilder: FormBuilder
     ) { }
 
-  ngOnInit() {
+    ngOnInit() {
         this.route.params.subscribe((params) => {
             this.loadCliente(params['login']);
             this.loadComercio(params['comercioId']);
+
+            this.calificacionForm = this.formBuilder.group({
+                comentario: ['', []]
+            });
         });
-  }
+    }
 
     setEstrella(data: any): void {
         this.clasificacion = data + 1;
@@ -50,7 +57,7 @@ export class CalificacionComercioComponent implements OnInit {
         const resenaComercio = new ResenaComercio();
         resenaComercio.calificacion = this.clasificacion;
         resenaComercio.fechaCreacion = this.commonAdapterService.dateToJHILocalDate(new Date());
-        resenaComercio.comentario = '';
+        resenaComercio.comentario = this.calificacionForm.get('comentario').value;
         resenaComercio.comercioId = this.comercio.id;
         resenaComercio.usuarioId = this.usuario.id;
 

@@ -1,0 +1,29 @@
+@import '../../../../content/scss/green-life-variables';
+.card.pedidos a {
+    position: absolute;
+    right: 0
+}
+
+.card .btn-danger {
+    margin: 10px 0 0;
+}
+
+.card .btn-danger mat-icon {
+    vertical-align: bottom;
+}
+
+.card-container {
+    margin: 10px 0;
+}
+
+.title-bar {
+    text-align: center;
+}
+
+a.btn {
+    color: white;
+}
+
+a.btn mat-icon {
+    vertical-align: bottom;
+}

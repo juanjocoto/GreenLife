@@ -1,0 +1,98 @@
+<div class="title-bar">
+  <h1>Modificación de pedido</h1>
+</div>
+<div class="container">
+  <div class="row">
+    <div class="col-md-6">
+      <mat-card>
+        <mat-card-title>
+          Info Pedido
+        </mat-card-title>
+        <mat-card-content>
+          <form [formGroup]="formulario" class="green-life-form" #pedidoForm>
+            <mat-form-field>
+              <mat-select placeholder="Día de la semana" formControlName="dia" [(value)]="pedido.diasEntregaId">
+                <mat-option *ngFor="let dia of diasEntrega" [value]="dia.id">
+                  {{dia.nombre}}
+                </mat-option>
+              </mat-select>
+            </mat-form-field>
+            <mat-form-field>
+              <mat-select placeholder="Hora de entrega" formControlName="hora" [(value)]="pedido.hora">
+                <mat-option *ngFor="let hora of horasEntrega" [value]="hora">{{hora}}</mat-option>
+              </mat-select>
+            </mat-form-field>
+          </form>
+          <mat-table [dataSource]="listaLineas">
+            <ng-container matColumnDef="nombre">
+              <mat-header-cell *matHeaderCellDef> Nombre </mat-header-cell>
+              <mat-cell *matCellDef="let element"> {{element.producto.nombre}} </mat-cell>
+            </ng-container>
+            <ng-container matColumnDef="cantidad">
+              <mat-header-cell *matHeaderCellDef> Cantidad </mat-header-cell>
+              <mat-cell *matCellDef="let element">
+                <!-- <mat-icon>remove</mat-icon> -->
+                <mat-form-field>
+                  <input jhiValidadorNumero [minValue]="1" matInput type="number" min="1" [(model)]="element.cantidad">
+                </mat-form-field>
+                <!-- <mat-icon>add</mat-icon> -->
+              </mat-cell>
+            </ng-container>
+            <ng-container matColumnDef="total">
+              <mat-header-cell *matHeaderCellDef> Total Linea </mat-header-cell>
+              <mat-cell *matCellDef="let element"> {{(element.cantidad * element.producto.precio)| colon}} </mat-cell>
+            </ng-container>
+            <ng-container matColumnDef="accion">
+              <mat-header-cell *matHeaderCellDef> </mat-header-cell>
+              <mat-cell *matCellDef="let element">
+                <button mat-icon-button (click)="removerLinea(element)">
+                  <mat-icon>delete</mat-icon>
+                </button>
+              </mat-cell>
+            </ng-container>
+            <mat-header-row *matHeaderRowDef="lineasTableColumns"></mat-header-row>
+            <mat-row *matRowDef="let row; columns: lineasTableColumns;"></mat-row>
+          </mat-table>
+          <h4 class="total">Monto Total: {{montoTotalPedido | colon}}</h4>
+        </mat-card-content>
+        <mat-card-actions>
+          <button class="btn btn-danger" (click)="eliminar()">Eliminar</button>
+          <button class="btn btn-success" [disabled]="!(this.formulario.valid && this.listaLineas && this.listaLineas.length > 0)"
+            style="float:right" (click)="guardar()">Guardar</button>
+          <div style="clear:both"></div>
+        </mat-card-actions>
+      </mat-card>
+
+    </div>
+    <div class="col-md-6">
+      <mat-card>
+        <mat-card-title>
+          Lista de productos
+        </mat-card-title>
+        <mat-card-content>
+          <mat-table [dataSource]="productos">
+            <ng-container matColumnDef="nombre">
+              <mat-header-cell *matHeaderCellDef> Nombre </mat-header-cell>
+              <mat-cell *matCellDef="let element"> {{element.nombre}} </mat-cell>
+            </ng-container>
+            <ng-container matColumnDef="costo">
+              <mat-header-cell *matHeaderCellDef> Costo </mat-header-cell>
+              <mat-cell *matCellDef="let element"> {{element.precio | colon}} </mat-cell>
+            </ng-container>
+            <ng-container matColumnDef="accion">
+              <mat-header-cell *matHeaderCellDef> </mat-header-cell>
+              <mat-cell *matCellDef="let element">
+                <button mat-icon-button (click)="agregarLinea(element)">
+                  <mat-icon>add</mat-icon>
+                </button>
+              </mat-cell>
+            </ng-container>
+            <mat-header-row *matHeaderRowDef="productosTableColumns"></mat-header-row>
+            <mat-row *matRowDef="let row; columns: productosTableColumns;"></mat-row>
+          </mat-table>
+        </mat-card-content>
+      </mat-card>
+    </div>
+
+  </div>
+</div>

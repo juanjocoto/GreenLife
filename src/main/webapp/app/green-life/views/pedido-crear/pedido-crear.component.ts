@@ -7,11 +7,13 @@ import { DiaEntregaService } from '../../../entities/dia-entrega/dia-entrega.ser
 import { HorasEntregaService } from '../../shared/services/horas-entrega.service';
 import { LineaProducto } from '../../../entities/linea-producto';
 import { LineaProductoService } from '../../../entities/linea-producto/linea-producto.service';
+import { Location } from '@angular/common';
 import { Observable } from 'rxjs/Rx';
 import { Pedido } from '../../../entities/pedido';
 import { PedidoService } from '../../../entities/pedido/pedido.service';
 import { Producto } from '../../../entities/producto/producto.model';
 import { ProductoService } from '../../../entities/producto/producto.service';
+import { SnackBarService } from '../../shared/services/snack-bar.service';
 import { Suscripcion } from '../../../entities/suscripcion';
 import { SuscripcionService } from '../../../entities/suscripcion/suscripcion.service';
 
@@ -52,7 +54,9 @@ export class PedidoCrearComponent implements OnInit {
     private horasEntregaService: HorasEntregaService,
     private pedidoService: PedidoService,
     private lineaProductoService: LineaProductoService,
-    private formBuilder: FormBuilder
+    private formBuilder: FormBuilder,
+    private location: Location,
+    private snackBarService: SnackBarService
   ) {
   }
 
@@ -72,6 +76,7 @@ export class PedidoCrearComponent implements OnInit {
         this.suscripcion = httpResponse.body;
         this.productoService.findByComercio(this.suscripcion.comercioId)
           .subscribe((productoResponse) => this.productos = productoResponse.body);
+        this.pedido.suscripcionId = this.suscripcion.id;
       });
     });
 
@@ -105,7 +110,7 @@ export class PedidoCrearComponent implements OnInit {
       this.pedidoService.create(this.pedido).subscribe((httpResponse) => {
         this.pedido.id = httpResponse.body.id;
         console.log(httpResponse.body);
-        this.lineaProductoService.createMany(this.listaLineas.filter((linea) => linea.cantidad > 1).map((linea) => {
+        this.lineaProductoService.createMany(this.listaLineas.filter((linea) => linea.cantidad > 0).map((linea) => {
           return {
             id: linea.id,
             cantidad: linea.cantidad,
@@ -113,7 +118,8 @@ export class PedidoCrearComponent implements OnInit {
             productoId: linea.productoId
           };
         })).subscribe((response) => {
-          console.log(response);
+          this.location.back();
+          this.snackBarService.show('El pedido fue creado');
         });
       });
     } else {
@@ -122,7 +128,6 @@ export class PedidoCrearComponent implements OnInit {
   }
 
   private refreshTables() {
-
     this.productos = [...this.productos];
     this.listaLineas = [...this.listaLineas];
   }
