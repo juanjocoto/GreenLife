@@ -178,8 +178,7 @@ import { ValidadorNumeroDirective } from './shared/directives/validador-numero.d
     CategoriasModificarComponent,
     ConfirmacionDialogComponent,
     LocalEliminarComponent,
-    CargaImagenesComponent,
-    LocalEliminarComponent
+    CargaImagenesComponent
   ],
   providers: [
     CommonAdapterService,

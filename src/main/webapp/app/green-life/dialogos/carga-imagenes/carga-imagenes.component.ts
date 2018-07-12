@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 import { MatDialogRef } from '@angular/material';
 import { SERVER_API_URL } from '../../../app.constants';
+import { SnackBarService } from './../../shared/services/snack-bar.service';
 
 @Component({
   selector: 'jhi-carga-imagenes',
@@ -17,8 +18,11 @@ export class CargaImagenesComponent implements OnInit {
   @ViewChild('form') form: ElementRef;
   imageForm: FormGroup;
 
-  constructor(private fb: FormBuilder,
-    public dialogRef: MatDialogRef<CargaImagenesComponent>) { }
+  constructor(
+    private fb: FormBuilder,
+    private dialogRef: MatDialogRef<CargaImagenesComponent>,
+    private snackBarService: SnackBarService
+  ) { }
 
   ngOnInit() {
     this.imageForm = this.fb.group({
@@ -41,6 +45,7 @@ export class CargaImagenesComponent implements OnInit {
 
         if (result.status === 'ok') {
           this.dialogRef.close(result.imageName);
+          this.snackBarService.show('La imagen se almacenó con exito');
         } else {
           // this.showSnackBar(`No se pudo almacenar la imagen ${this.fileToUpload}`);
           // this.fileToUpload = undefined;

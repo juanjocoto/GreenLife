@@ -1,7 +1,7 @@
-import { Injectable } from '@angular/core';
 import { HttpClient, HttpResponse } from '@angular/common/http';
-import { Observable } from 'rxjs/Observable';
 
+import { Injectable } from '@angular/core';
+import { Observable } from 'rxjs/Observable';
 import { SERVER_API_URL } from '../../app.constants';
 import { User } from './user.model';
 import { createRequestOption } from '../model/request-util';
@@ -39,6 +39,15 @@ export class UserService {
 
     authorities(): Observable<string[]> {
         return this.http.get<string[]>(SERVER_API_URL + 'api/users/authorities');
+    }
+
+    registerComerciante(): Observable<HttpResponse<User>> {
+        // throw new Error("Method not implemented.");
+
+        const options = createRequestOption({ value: true });
+
+        return this.http.put<User>(`${this.resourceUrl}/register/comerciante`, undefined, { params: options, observe: 'response' });
+        // /users/register/comerciante
     }
 
 }
