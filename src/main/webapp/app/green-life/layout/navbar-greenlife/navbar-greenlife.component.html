@@ -6,12 +6,20 @@
     <div class="w-100 order-1 order-md-0"></div>
 
     <div class="navbar-collapse collapse mx-auto order-0 dual-collapse2" id="main-link" [class.show]="collapse" [class.inicio]="!configuracion">
-        <ul class="navbar-nav ml-auto" [class.hidden]="!isAuth" *ngIf="currentUser && currentUser.authorities.includes('ROLE_COMERCIO');else vistaCliente">
+        <ul class="navbar-nav ml-auto" [class.hidden]="!isAuth" *ngIf="currentUser">
             <!--Opcion Comercios-->
-            <li class="nav-item">
+            <li class="nav-item" *ngIf="roles.includes('ROLE_COMERCIO')">
                 <a class="nav-link" [routerLink]="'usuario/' + usuarioId + '/comercios'">Comercios</a>
             </li>
-            <!--Opcion Alimentacion -->
+            <!--Opcion Suscripciones-->
+            <li class="nav-item">
+                <a class="nav-link" [routerLink]="'usuario/' + usuarioId + '/suscripciones'">Suscripciones</a>
+            </li>
+            <!--Opcion Mantenimineto-->
+            <li class="nav-item" *ngIf="roles.includes('ROLE_ADMIN')">
+                <a class="nav-link" routerLink="configuracion/aplicacion">Mantenimiento</a>
+            </li>
+            <!--Opcion Alimentacion
             <li class="nav-item dropdown" ngbDropdown>
                 <a class="nav-link dropdown-toggle" ngbDropdownToggle>Alimentación</a>
                 <div class="dropdown-menu" ngbDropdownMenu>
@@ -23,7 +31,8 @@
                     <a class="dropdown-item">Celiaquía</a>
                 </div>
             </li>
-            <!--Opcion Social-->
+            -->
+            <!--Opcion Social
             <li class="nav-item dropdown" ngbDropdown>
                 <a class="nav-link dropdown-toggle" ngbDropdownToggle>Social</a>
                 <div class="dropdown-menu" ngbDropdownMenu>
@@ -31,7 +40,8 @@
                     <a class="dropdown-item">Blog</a>
                 </div>
             </li>
-            <!--Opcion Reciclaje-->
+            -->
+            <!--Opcion Reciclaje
             <li class="nav-item dropdown" ngbDropdown>
                 <a class="nav-link dropdown-toggle" ngbDropdownToggle>Reciclaje</a>
                 <div class="dropdown-menu" ngbDropdownMenu>
@@ -39,48 +49,8 @@
                     <a class="dropdown-item">Acerca del reciclaje</a>
                 </div>
             </li>
+            -->
         </ul>
-
-        <ng-template #vistaCliente>
-            <ul class="navbar-nav ml-auto" [class.hidden]="!isAuth">
-                <!--Opcion Comercios-->
-                <li class="nav-item">
-                    <a class="nav-link">Comercios</a>
-                </li>
-                <!--Opcion Suscripciones-->
-                <li class="nav-item">
-                    <a class="nav-link" [routerLink]="'usuario/' + usuarioId + '/suscripciones'">Suscripciones</a>
-                </li>
-                <!--Opcion Alimentacion -->
-                <li class="nav-item dropdown" ngbDropdown>
-                    <a class="nav-link dropdown-toggle" ngbDropdownToggle>Alimentación</a>
-                    <div class="dropdown-menu" ngbDropdownMenu>
-                        <a class="dropdown-item">Vegetarianismo</a>
-                        <a class="dropdown-item">Veganismo</a>
-                        <a class="dropdown-item">Frugivorismo</a>
-                        <a class="dropdown-item">Intolerancia a la lactosa</a>
-                        <a class="dropdown-item">Diabetes</a>
-                        <a class="dropdown-item">Celiaquía</a>
-                    </div>
-                </li>
-                <!--Opcion Social-->
-                <li class="nav-item dropdown" ngbDropdown>
-                    <a class="nav-link dropdown-toggle" ngbDropdownToggle>Social</a>
-                    <div class="dropdown-menu" ngbDropdownMenu>
-                        <a class="dropdown-item">Eventos</a>
-                        <a class="dropdown-item">Blog</a>
-                    </div>
-                </li>
-                <!--Opcion Reciclaje-->
-                <li class="nav-item dropdown" ngbDropdown>
-                    <a class="nav-link dropdown-toggle" ngbDropdownToggle>Reciclaje</a>
-                    <div class="dropdown-menu" ngbDropdownMenu>
-                        <a class="dropdown-item">Acerca del reciclaje</a>
-                        <a class="dropdown-item">Servicio de Recolección</a>
-                    </div>
-                </li>
-            </ul>
-        </ng-template>
     </div>
 
     <div class="navbar-collapse collapse w-100 order-3 dual-collapse2" [class.show]="collapse">
@@ -97,6 +67,8 @@
                 <a class="nav-link dropdown-toggle" ngbDropdownToggle><span class="user-img"></span> <span class="text">Usuario</span></a>
                 <div class="dropdown-menu" ngbDropdownMenu>
                     <a class="dropdown-item" [routerLink]="'usuario/' + usuarioId">Mi perfil</a>
+                    <a class="dropdown-item" [routerLink]="'usuario/' + currentUser.login + '/comercios'" *ngIf="roles.includes('ROLE_COMERCIO')">Mis Comercios</a>
+                    <a class="dropdown-item" *ngIf="!roles.includes('ROLE_COMERCIO')">Reg. Comerciante</a>
                     <a class="dropdown-item" (click)="cerrarSesion()">Cerrar sesión</a>
                 </div>
             </li>

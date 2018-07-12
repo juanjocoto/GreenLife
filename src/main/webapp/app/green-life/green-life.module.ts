@@ -37,6 +37,7 @@ import {
 } from '@angular/material';
 
 import { AgmCoreModule } from '@agm/core';
+import { AuthAdminGuard } from './shared/guards/auth.admin.guard';
 import { AuthService } from './shared/services/auth.service';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { BrowserModule } from '@angular/platform-browser';
@@ -52,6 +53,7 @@ import { ComerciosProductosComponent } from './views/comercios-productos/comerci
 import { ComerciosRegistroComponent } from './dialogos/comercios-registro/comercios-registro.component';
 import { CommonAdapterService } from './shared/services/common-adapter.service';
 import { CommonModule } from '@angular/common';
+import { ConfiguracionAplicacionComponent } from './views/configuracion-aplicacion/configuracion-aplicacion.component';
 import { ConfiguracionComerciosComponent } from './views/configuracion-comercios/configuracion-comercios.component';
 import { ConfirmacionDialogComponent } from './dialogos/confirmacion-dialog/confirmacion-dialog.component';
 import { ConvertidorFechaPipe } from './shared/pipes/convertidor-fecha.pipe';
@@ -77,6 +79,7 @@ import { SelectorEtiquetasComponent } from './fragments/selector-etiquetas/selec
 import { SnackBarService } from './shared/services/snack-bar.service';
 import { SuscripcionCrearComponent } from './views/suscripcion-crear/suscripcion-crear.component';
 import { SuscripcionesClienteComponent } from './views/suscripciones-cliente/suscripciones-cliente.component';
+import { SuscripcionesComercioComponent } from './views/suscripciones-comercio/suscripciones-comercio.component';
 import { UsuarioModificarComponent } from './views/usuario-modificar/usuario-modificar.component';
 import { UsuarioPerfilComponent } from './views/usuario-perfil/usuario-perfil.component';
 import { UsuarioRegistroComponent } from './views/usuario-registro/usuario-registro.component';
@@ -164,7 +167,9 @@ import { ValidadorNumeroDirective } from './shared/directives/validador-numero.d
     LocalPedidosComponent,
     CategoriasModificarComponent,
     PedidoListarComponent,
-    ConfiguracionComerciosComponent
+    ConfiguracionComerciosComponent,
+    ConfiguracionAplicacionComponent,
+    SuscripcionesComercioComponent
   ],
   entryComponents: [
     LoginComponent,
@@ -181,6 +186,7 @@ import { ValidadorNumeroDirective } from './shared/directives/validador-numero.d
     CategoriasComponent,
     HorasEntregaService,
     AuthService,
+    AuthAdminGuard,
     SnackBarService,
     { provide: MAT_DATE_LOCALE, useValue: 'es-CR' }
   ],
