@@ -171,7 +171,7 @@ import {CalificacionComercioComponent} from './dialogos/calificacion-comercio/ca
     PedidoListarComponent,
     ConfiguracionComerciosComponent,
     ConfiguracionAplicacionComponent,
-    SuscripcionesComercioComponent
+    SuscripcionesComercioComponent,
     CalificacionComercioComponent
   ],
   entryComponents: [
