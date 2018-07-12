@@ -1,5 +1,6 @@
 import { Route } from '@angular/router';
 import { AuthGuard } from './shared/guards/auth.guard';
+import { AuthAdminGuard } from './shared/guards/auth.admin.guard';
 import { CategoriasComponent } from './views/categorias/categorias.component';
 import { ComercioEditarComponent } from './views/comercio-editar/comercio-editar.component';
 import { ComerciosLocalesComponent } from './views/comercios-locales/comercios-locales.component';
@@ -18,12 +19,14 @@ import { UsuarioModificarComponent } from './views/usuario-modificar/usuario-mod
 import { UsuarioPerfilComponent } from './views/usuario-perfil/usuario-perfil.component';
 import { UsuarioRegistroComponent } from './views/usuario-registro/usuario-registro.component';
 import { ConfiguracionComerciosComponent } from './views/configuracion-comercios/configuracion-comercios.component';
+import { ConfiguracionAplicacionComponent } from './views/configuracion-aplicacion/configuracion-aplicacion.component';
 
 export const greenLifeRoutes: Route[] = [
     { path: '', component: LandingComponent, data: { configuracion: false }, canActivate: [] },
     { path: 'registrarse', component: UsuarioRegistroComponent, data: { configuracion: false }, canActivate: [] },
     { path: 'usuario/:login', component: UsuarioPerfilComponent, data: { configuracion: true }, canActivate: [AuthGuard] },
     { path: 'usuario/:login/editar', component: UsuarioModificarComponent, data: { configuracion: true }, canActivate: [AuthGuard] },
+    { path: 'configuracion/aplicacion', component: ConfiguracionAplicacionComponent, data: { configuracion: true }, canActivate: [AuthAdminGuard] },
     { path: 'comercios/:comercioId/productos', component: ComerciosProductosComponent, data: { configuracion: true }, canActivate: [AuthGuard] },
     { path: 'comercios/:comercioId/editar', component: ComercioEditarComponent, data: { configuracion: true }, canActivate: [AuthGuard] },
     { path: 'comercios/:comercioId/locales', component: ComerciosLocalesComponent, data: { configuracion: true }, canActivate: [AuthGuard] },

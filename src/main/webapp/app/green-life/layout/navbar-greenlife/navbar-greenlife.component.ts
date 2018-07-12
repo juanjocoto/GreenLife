@@ -17,6 +17,7 @@ export class NavbarGreenlifeComponent implements OnInit {
     isAuth = true;
     usuarioId = '';
     currentUser: User;
+    roles = [];
 
     constructor(private dialog: MatDialog,
                 private router: Router,
@@ -68,6 +69,7 @@ export class NavbarGreenlifeComponent implements OnInit {
     private loadCurrentUser(login) {
         this.userService.find(login).subscribe((userResponse: HttpResponse<User>) => {
             this.currentUser = userResponse.body;
+            this.roles = userResponse.body.authorities;
         });
     }
 }

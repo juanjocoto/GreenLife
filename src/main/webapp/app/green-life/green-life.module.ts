@@ -82,6 +82,8 @@ import { SuscripcionesClienteComponent } from './views/suscripciones-cliente/sus
 import { LocalPedidosComponent } from './views/local-pedidos/local-pedidos.component';
 import { CategoriasModificarComponent } from './dialogos/categorias-modificar/categorias-modificar.component';
 import { ConfiguracionComerciosComponent } from './views/configuracion-comercios/configuracion-comercios.component';
+import { ConfiguracionAplicacionComponent } from './views/configuracion-aplicacion/configuracion-aplicacion.component';
+import { AuthAdminGuard } from './shared/guards/auth.admin.guard';
 
 @NgModule({
   imports: [
@@ -165,7 +167,8 @@ import { ConfiguracionComerciosComponent } from './views/configuracion-comercios
     LocalPedidosComponent,
     CategoriasModificarComponent,
     PedidoListarComponent,
-    ConfiguracionComerciosComponent
+    ConfiguracionComerciosComponent,
+    ConfiguracionAplicacionComponent
   ],
   entryComponents: [
     LoginComponent,
@@ -183,6 +186,7 @@ import { ConfiguracionComerciosComponent } from './views/configuracion-comercios
     CategoriasComponent,
     HorasEntregaService,
     AuthService,
+    AuthAdminGuard,
     SnackBarService,
     { provide: MAT_DATE_LOCALE, useValue: 'es-CR' }
   ],
