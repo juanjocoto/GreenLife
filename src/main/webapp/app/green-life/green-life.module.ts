@@ -73,13 +73,14 @@ import { RouterModule } from '@angular/router';
 import { SelectorEtiquetasComponent } from './fragments/selector-etiquetas/selector-etiquetas.component';
 import { SnackBarService } from './shared/services/snack-bar.service';
 import { SuscripcionCrearComponent } from './views/suscripcion-crear/suscripcion-crear.component';
-import { SuscripcionesClienteComponent } from './views/suscripciones-cliente/suscripciones-cliente.component';
 import { UsuarioModificarComponent } from './views/usuario-modificar/usuario-modificar.component';
 import { UsuarioPerfilComponent } from './views/usuario-perfil/usuario-perfil.component';
 import { UsuarioRegistroComponent } from './views/usuario-registro/usuario-registro.component';
 import { UsuarioRolesComponent } from './views/usuario-roles/usuario-roles.component';
 import { ValidadorNumeroDirective } from './shared/directives/validador-numero.directive';
-import {CategoriasModificarComponent} from './dialogos/categorias-modificar/categorias-modificar.component';
+import { SuscripcionesClienteComponent } from './views/suscripciones-cliente/suscripciones-cliente.component';
+import { LocalPedidosComponent } from './views/local-pedidos/local-pedidos.component';
+import { CategoriasModificarComponent } from './dialogos/categorias-modificar/categorias-modificar.component';
 import { ConfiguracionComerciosComponent } from './views/configuracion-comercios/configuracion-comercios.component';
 import {CalificacionUsuarioComponent} from './dialogos/calificacion-usuario/calificacion-usuario.component';
 
@@ -162,6 +163,7 @@ import {CalificacionUsuarioComponent} from './dialogos/calificacion-usuario/cali
     ComerciosLocalesComponent,
     SuscripcionCrearComponent,
     SuscripcionesClienteComponent,
+    LocalPedidosComponent,
     CategoriasModificarComponent,
     PedidoListarComponent,
     ConfiguracionComerciosComponent,
@@ -171,12 +173,15 @@ import {CalificacionUsuarioComponent} from './dialogos/calificacion-usuario/cali
     LoginComponent,
     ComerciosRegistroComponent,
     CategoriasRegistroComponent,
-    CategoriasModificarComponent
+    CategoriasModificarComponent,
+    ConfirmacionDialogComponent,
+    LocalEliminarComponent,
+    CalificacionUsuarioComponent,
   ],
   providers: [
-      CargaImagenesComponent,
-      ConfirmacionDialogComponent,
-      LocalEliminarComponent,
+    CargaImagenesComponent,
+    ConfirmacionDialogComponent,
+    LocalEliminarComponent,
     CommonAdapterService,
     CategoriasComponent,
     HorasEntregaService,
