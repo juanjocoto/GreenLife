@@ -84,6 +84,7 @@ import { CategoriasModificarComponent } from './dialogos/categorias-modificar/ca
 import { ConfiguracionComerciosComponent } from './views/configuracion-comercios/configuracion-comercios.component';
 import { ConfiguracionAplicacionComponent } from './views/configuracion-aplicacion/configuracion-aplicacion.component';
 import { AuthAdminGuard } from './shared/guards/auth.admin.guard';
+import { SuscripcionesComercioComponent } from './views/suscripciones-comercio/suscripciones-comercio.component';
 
 @NgModule({
   imports: [
@@ -168,7 +169,8 @@ import { AuthAdminGuard } from './shared/guards/auth.admin.guard';
     CategoriasModificarComponent,
     PedidoListarComponent,
     ConfiguracionComerciosComponent,
-    ConfiguracionAplicacionComponent
+    ConfiguracionAplicacionComponent,
+    SuscripcionesComercioComponent
   ],
   entryComponents: [
     LoginComponent,
