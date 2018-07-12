@@ -166,7 +166,7 @@ import { SuscripcionesComercioComponent } from './views/suscripciones-comercio/s
     LocalPedidosComponent,
     CategoriasModificarComponent,
     PedidoListarComponent,
-    ConfiguracionComerciosComponent
+    ConfiguracionComerciosComponent,
     SuscripcionesComercioComponent
   ],
   entryComponents: [
