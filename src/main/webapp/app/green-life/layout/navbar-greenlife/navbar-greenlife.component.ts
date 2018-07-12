@@ -1,9 +1,11 @@
+import { AccountService, LoginService, User, UserService } from '../../../shared';
+import { ActivatedRoute, Router, RoutesRecognized } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
-import {MatDialog} from '@angular/material';
-import {ActivatedRoute, Router, RoutesRecognized} from '@angular/router';
-import {AccountService, LoginService, User, UserService} from '../../../shared';
-import {LoginComponent} from '../../dialogos/login/login.component';
-import {HttpResponse} from '@angular/common/http';
+
+import { ConfirmacionDialogComponent } from '../../dialogos/confirmacion-dialog/confirmacion-dialog.component';
+import { HttpResponse } from '@angular/common/http';
+import { LoginComponent } from '../../dialogos/login/login.component';
+import { MatDialog } from '@angular/material';
 
 @Component({
     selector: 'jhi-navbar-greenlife',
@@ -19,12 +21,14 @@ export class NavbarGreenlifeComponent implements OnInit {
     currentUser: User;
     roles = [];
 
-    constructor(private dialog: MatDialog,
-                private router: Router,
-                private loginService: LoginService,
-                private auth: AccountService,
-                private userService: UserService,
-                private route: ActivatedRoute) {
+    constructor(
+        private dialog: MatDialog,
+        private router: Router,
+        private loginService: LoginService,
+        private auth: AccountService,
+        private userService: UserService,
+        private route: ActivatedRoute
+    ) {
         this.verificarSesion();
         if (!this.route.firstChild.data['value']['configuracion']) {
             this.configuracion = false;
@@ -64,6 +68,17 @@ export class NavbarGreenlifeComponent implements OnInit {
     cerrarSesion() {
         this.loginService.logout();
         this.router.navigate(['/']);
+    }
+
+    registrarComerciante() {
+        const ref = this.dialog.open(ConfirmacionDialogComponent);
+        ref.componentInstance.texto = '¿Está seguro de registrase como comerciante?';
+        ref.afterClosed().subscribe((result) => {
+            this.userService.registerComerciante().subscribe((httpResponse) => {
+                this.currentUser = httpResponse.body;
+                this.roles = this.currentUser.authorities;
+            });
+        });
     }
 
     private loadCurrentUser(login) {

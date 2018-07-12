@@ -1,14 +1,22 @@
 package com.radicalbytes.greenlife.web.rest;
 
-import com.codahale.metrics.annotation.Timed;
+import java.util.Optional;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.validation.Valid;
+
+import com.codahale.metrics.annotation.Timed;
 import com.radicalbytes.greenlife.domain.User;
 import com.radicalbytes.greenlife.repository.UserRepository;
 import com.radicalbytes.greenlife.security.SecurityUtils;
 import com.radicalbytes.greenlife.service.MailService;
 import com.radicalbytes.greenlife.service.UserService;
 import com.radicalbytes.greenlife.service.dto.UserDTO;
-import com.radicalbytes.greenlife.web.rest.errors.*;
+import com.radicalbytes.greenlife.web.rest.errors.EmailAlreadyUsedException;
+import com.radicalbytes.greenlife.web.rest.errors.EmailNotFoundException;
+import com.radicalbytes.greenlife.web.rest.errors.InternalServerErrorException;
+import com.radicalbytes.greenlife.web.rest.errors.InvalidPasswordException;
+import com.radicalbytes.greenlife.web.rest.errors.LoginAlreadyUsedException;
 import com.radicalbytes.greenlife.web.rest.vm.KeyAndPasswordVM;
 import com.radicalbytes.greenlife.web.rest.vm.ManagedUserVM;
 
@@ -17,11 +25,13 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.*;
-
-import javax.servlet.http.HttpServletRequest;
-import javax.validation.Valid;
-import java.util.*;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseStatus;
+import org.springframework.web.bind.annotation.RestController;
 
 /**
  * REST controller for managing the current user's account.
@@ -120,6 +130,7 @@ public class AccountResource {
         return userService.getUserWithAuthorities().map(UserDTO::new)
                 .orElseThrow(() -> new InternalServerErrorException("User could not be found"));
     }
+
 
     /**
      * POST /account : update the current user information.

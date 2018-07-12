@@ -68,7 +68,7 @@
                 <div class="dropdown-menu" ngbDropdownMenu>
                     <a class="dropdown-item" [routerLink]="'usuario/' + usuarioId">Mi perfil</a>
                     <a class="dropdown-item" [routerLink]="'usuario/' + currentUser.login + '/comercios'" *ngIf="roles.includes('ROLE_COMERCIO')">Mis Comercios</a>
-                    <a class="dropdown-item" *ngIf="!roles.includes('ROLE_COMERCIO')">Reg. Comerciante</a>
+                    <a class="dropdown-item" (click)="registrarComerciante()" *ngIf="!roles.includes('ROLE_COMERCIO')">Reg. Comerciante</a>
                     <a class="dropdown-item" (click)="cerrarSesion()">Cerrar sesión</a>
                 </div>
             </li>
