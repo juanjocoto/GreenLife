@@ -52,7 +52,7 @@ export class ComerciosRegistroComponent implements OnInit {
 
       this.comercioService.create(comercio).subscribe((httpResponse) => {
         // this.router.navigate(['/app/comercios/' + httpResponse.body.id + '/editar']);
-        this.dialogRef.close(httpResponse.body.id);
+        this.dialogRef.close(httpResponse.body);
       });
     }
   }

@@ -6,6 +6,7 @@ import {ActivatedRoute} from '@angular/router';
 import {JhiAlertService} from 'ng-jhipster';
 import { MatDialog } from '@angular/material';
 import { CategoriasRegistroComponent } from '../../dialogos/categorias-registro/categorias-registro.component';
+import {CategoriasModificarComponent} from '../../dialogos/categorias-modificar/categorias-modificar.component';
 
 @Component({
   selector: 'jhi-categorias',
@@ -57,6 +58,10 @@ export class CategoriasComponent implements OnInit {
         const res = this.dialog.open(CategoriasRegistroComponent, {
             width: '600px'
         });
+
+        res.afterClosed().subscribe(() => {
+            this.getCategorias();
+        });
     }
 
     eliminarCategoria(pcategoria: CategoriaAlimentacion) {
@@ -66,4 +71,14 @@ export class CategoriasComponent implements OnInit {
         });
     }
 
+    modificarCategoria(pcategoria: CategoriaAlimentacion) {
+        const res = this.dialog.open(CategoriasModificarComponent, {
+            width: '600px',
+            data: pcategoria.id
+        });
+
+        res.afterClosed().subscribe(() => {
+            this.getCategorias();
+        });
+    }
 }
