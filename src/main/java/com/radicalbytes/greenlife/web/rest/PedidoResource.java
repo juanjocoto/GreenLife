@@ -33,6 +33,17 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import javax.transaction.Transactional;
+import javax.validation.Valid;
+import java.net.URI;
+import java.net.URISyntaxException;
+
+import java.util.List;
+import java.util.Optional;
+import java.util.stream.Collectors;
+import java.util.stream.StreamSupport;
+
+import static org.elasticsearch.index.query.QueryBuilders.*;
 import io.github.jhipster.web.util.ResponseUtil;
 
 /**
@@ -136,6 +147,16 @@ public class PedidoResource {
         Pedido pedido = pedidoRepository.findOne(id);
         PedidoDTO pedidoDTO = pedidoMapper.toDto(pedido);
         return ResponseUtil.wrapOrNotFound(Optional.ofNullable(pedidoDTO));
+    }
+
+    @GetMapping("/pedidos/local/{id}")
+    @Timed
+    @Transactional
+    public ResponseEntity<List<PedidoDTO>> getProductoByComercio(@PathVariable Long id) {
+        log.debug("REST request to get Producto : {}", id);
+        List<Pedido> pedidos = pedidoRepository.findAllByLocal_id(id);
+        List<PedidoDTO> pedidosDTO = pedidoMapper.toDto(pedidos);
+        return ResponseUtil.wrapOrNotFound(Optional.ofNullable(pedidosDTO));
     }
 
     @GetMapping("/pedidos/suscripcion/{id}")

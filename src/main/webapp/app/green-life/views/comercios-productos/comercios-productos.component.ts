@@ -47,6 +47,7 @@ export class ComerciosProductosComponent implements AfterViewInit {
   ngAfterViewInit() {
     this.dataSource.paginator = this.paginator;
     this.dataSource.sort = this.sort;
+    this.paginator._intl.itemsPerPageLabel = 'Productos por página';
   }
 
   applyFilter(filterValue: string) {
@@ -94,6 +95,8 @@ export class ComerciosProductosComponent implements AfterViewInit {
       this.comercioId = params['comercioId'];
       this.productosService.findByComercio(params['comercioId']).subscribe((resul) => {
         this.dataSource = new MatTableDataSource<Producto>(resul.body);
+        this.dataSource.paginator = this.paginator;
+        this.dataSource.sort = this.sort;
       });
     });
   }

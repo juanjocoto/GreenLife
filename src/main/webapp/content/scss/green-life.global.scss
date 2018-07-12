@@ -183,6 +183,11 @@ $border-radius: 6px;
 }
 
 // Green Life Cards Styles
+.green-life-accordion .mat-expansion-panel-body {
+    max-height: 615px !important;
+    overflow: scroll !important;
+}
+
 .divider {
     background: #FFFFFF;
     max-width: 200px;
