@@ -82,6 +82,7 @@ import { SuscripcionesClienteComponent } from './views/suscripciones-cliente/sus
 import { LocalPedidosComponent } from './views/local-pedidos/local-pedidos.component';
 import { CategoriasModificarComponent } from './dialogos/categorias-modificar/categorias-modificar.component';
 import { ConfiguracionComerciosComponent } from './views/configuracion-comercios/configuracion-comercios.component';
+import { SuscripcionesComercioComponent } from './views/suscripciones-comercio/suscripciones-comercio.component';
 
 @NgModule({
   imports: [
@@ -165,7 +166,8 @@ import { ConfiguracionComerciosComponent } from './views/configuracion-comercios
     LocalPedidosComponent,
     CategoriasModificarComponent,
     PedidoListarComponent,
-    ConfiguracionComerciosComponent
+    ConfiguracionComerciosComponent,
+    SuscripcionesComercioComponent
   ],
   entryComponents: [
     LoginComponent,

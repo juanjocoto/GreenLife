@@ -14,4 +14,6 @@ import java.util.List;
 @Repository
 public interface SuscripcionRepository extends JpaRepository<Suscripcion, Long> {
     List<Suscripcion> findAllByUsuario_id(Long id);
+
+    List<Suscripcion> findAllByComercio_id(Long id);
 }
