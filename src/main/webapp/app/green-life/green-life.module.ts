@@ -42,7 +42,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { BrowserModule } from '@angular/platform-browser';
 import { CargaImagenesComponent } from './dialogos/carga-imagenes/carga-imagenes.component';
 import { CategoriasComponent } from './views/categorias/categorias.component';
-import {CategoriasModificarComponent} from './dialogos/categorias-modificar/categorias-modificar.component';
+import { CategoriasModificarComponent } from './dialogos/categorias-modificar/categorias-modificar.component';
 import { CategoriasRegistroComponent } from './dialogos/categorias-registro/categorias-registro.component';
 import { CdkTableModule } from '@angular/cdk/table';
 import { ColonPipe } from './shared/pipes/colon.pipe';
@@ -62,6 +62,7 @@ import { LandingComponent } from './views/landing/landing.component';
 import { ListaComerciosComponent } from './fragments/lista-comercios/lista-comercios.component';
 import { LocalEliminarComponent } from './dialogos/local-eliminar/local-eliminar.component';
 import { LocalModificarComponent } from './views/local-modificar/local-modificar.component';
+import { LocalPedidosComponent } from './views/local-pedidos/local-pedidos.component';
 import { LocalRegistroComponent } from './views/local-registro/local-registro.component';
 import { LoginComponent } from './dialogos/login/login.component';
 import { NavbarGreenlifeComponent } from './layout/navbar-greenlife/navbar-greenlife.component';
@@ -127,8 +128,7 @@ import { ValidadorNumeroDirective } from './shared/directives/validador-numero.d
     MatTabsModule,
     MatToolbarModule,
     MatTooltipModule,
-    MatFormFieldModule,
-    MatTableModule
+    MatFormFieldModule
   ],
   declarations: [
     LandingComponent,
@@ -161,6 +161,7 @@ import { ValidadorNumeroDirective } from './shared/directives/validador-numero.d
     ComerciosLocalesComponent,
     SuscripcionCrearComponent,
     SuscripcionesClienteComponent,
+    LocalPedidosComponent,
     CategoriasModificarComponent,
     PedidoListarComponent,
     ConfiguracionComerciosComponent
