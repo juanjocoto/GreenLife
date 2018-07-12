@@ -6,3 +6,29 @@
       </h1>
   </div>
 </div>
+<div class="container">
+    <form [formGroup]="formulario" class="green-life-form">
+        <mat-form-field>
+            <input matInput jhiValidadorNumero placeholder="Calificación Miníma" formControlName="calificacionMin">
+        </mat-form-field>
+        <mat-form-field>
+            <input matInput jhiValidadorNumero placeholder="Calificación Máxima" formControlName="calificacionMax">
+        </mat-form-field>
+        <mat-form-field>
+            <input matInput placeholder="Nombre de la apliación" formControlName="nombre">
+        </mat-form-field>
+        <mat-form-field>
+            <input matInput placeholder="Razón Social" formControlName="razonSocial">
+        </mat-form-field>
+        <mat-form-field>
+            <input matInput placeholder="Cédula Jurídica" formControlName="cedJuridica">
+        </mat-form-field>
+        <mat-form-field>
+            <input matInput placeholder="Dirección" formControlName="direccion">
+        </mat-form-field>
+        <mat-form-field>
+            <input matInput placeholder="Teléfono" formControlName="telefono">
+        </mat-form-field>
+        <button type="submit" class="btn btn-success" (click)="actualizar()" [disabled]="!formulario.valid">Actualizar</button>
+    </form>
+</div>

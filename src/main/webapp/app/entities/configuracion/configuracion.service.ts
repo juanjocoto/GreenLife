@@ -33,6 +33,11 @@ export class ConfiguracionService {
             .map((res: EntityResponseType) => this.convertResponse(res));
     }
 
+    findAll(): Observable<HttpResponse<Configuracion[]>> {
+        return this.http.get<Configuracion[]>(`${this.resourceUrl}/`, { observe: 'response'})
+            .map((res: HttpResponse<Configuracion[]>) => this.convertArrayResponse(res));
+    }
+
     query(req?: any): Observable<HttpResponse<Configuracion[]>> {
         const options = createRequestOption(req);
         return this.http.get<Configuracion[]>(this.resourceUrl, { params: options, observe: 'response' })
