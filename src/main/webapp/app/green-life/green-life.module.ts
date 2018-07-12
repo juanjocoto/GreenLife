@@ -42,6 +42,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { BrowserModule } from '@angular/platform-browser';
 import { CargaImagenesComponent } from './dialogos/carga-imagenes/carga-imagenes.component';
 import { CategoriasComponent } from './views/categorias/categorias.component';
+import {CategoriasModificarComponent} from './dialogos/categorias-modificar/categorias-modificar.component';
 import { CategoriasRegistroComponent } from './dialogos/categorias-registro/categorias-registro.component';
 import { CdkTableModule } from '@angular/cdk/table';
 import { ColonPipe } from './shared/pipes/colon.pipe';
@@ -51,6 +52,7 @@ import { ComerciosProductosComponent } from './views/comercios-productos/comerci
 import { ComerciosRegistroComponent } from './dialogos/comercios-registro/comercios-registro.component';
 import { CommonAdapterService } from './shared/services/common-adapter.service';
 import { CommonModule } from '@angular/common';
+import { ConfiguracionComerciosComponent } from './views/configuracion-comercios/configuracion-comercios.component';
 import { ConfirmacionDialogComponent } from './dialogos/confirmacion-dialog/confirmacion-dialog.component';
 import { ConvertidorFechaPipe } from './shared/pipes/convertidor-fecha.pipe';
 import { DummyComponent } from './views/dummy/dummy.component';
@@ -79,8 +81,6 @@ import { UsuarioPerfilComponent } from './views/usuario-perfil/usuario-perfil.co
 import { UsuarioRegistroComponent } from './views/usuario-registro/usuario-registro.component';
 import { UsuarioRolesComponent } from './views/usuario-roles/usuario-roles.component';
 import { ValidadorNumeroDirective } from './shared/directives/validador-numero.directive';
-import {CategoriasModificarComponent} from './dialogos/categorias-modificar/categorias-modificar.component';
-import { ConfiguracionComerciosComponent } from './views/configuracion-comercios/configuracion-comercios.component';
 
 @NgModule({
   imports: [
@@ -172,11 +172,10 @@ import { ConfiguracionComerciosComponent } from './views/configuracion-comercios
     CategoriasModificarComponent,
     ConfirmacionDialogComponent,
     LocalEliminarComponent,
+    CargaImagenesComponent,
+    LocalEliminarComponent
   ],
   providers: [
-    CargaImagenesComponent,
-    ConfirmacionDialogComponent,
-    LocalEliminarComponent,
     CommonAdapterService,
     CategoriasComponent,
     HorasEntregaService,
