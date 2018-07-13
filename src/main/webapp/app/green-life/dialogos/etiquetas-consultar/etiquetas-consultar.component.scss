@@ -1,0 +1,12 @@
+@import './../../../../content/scss/green-life-variables';
+
+.ctn {
+    font-family: 'Lato', sans-serif;
+}
+
+button {
+    border-radius: 6px;
+}
+#btnCancelar {
+    background: $warning-color;
+}

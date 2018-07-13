@@ -11,6 +11,7 @@ import {Usuario, UsuarioService} from '../../../entities/usuario';
 import {MatDialog, MatSnackBar} from '@angular/material';
 import {ComerciosRegistroComponent} from '../../dialogos/comercios-registro/comercios-registro.component';
 import {ConfirmacionDialogComponent} from '../../dialogos/confirmacion-dialog/confirmacion-dialog.component';
+import {EtiquetasConsultarComponent} from '../../dialogos/etiquetas-consultar/etiquetas-consultar.component';
 
 @Component({
   selector: 'jhi-configuracion-comercios',
@@ -81,6 +82,14 @@ export class ConfiguracionComerciosComponent implements OnInit {
                   this.matSnackBar.open(`El comercio ${comercio.razonSocial} fue eliminado`, undefined, {duration: 2000});
               });
           }
+      });
+  }
+
+  consultarEtiquetas(pcomercio: Comercio) {
+      console.log('id del comercio: ' + pcomercio.id);
+      const ref = this.matDialog.open(EtiquetasConsultarComponent, {
+         width: '500px',
+         data: pcomercio.id
       });
   }
 }

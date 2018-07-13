@@ -134,3 +134,30 @@ table.table .avatar {
     background: $green-color;
     font-family: 'Lato', sans-serif;
 }
+
+tr td a.editar {
+    color: #f5d04a;
+}
+
+tr td a.eliminar {
+    color: $warning-color;
+}
+
+tr td a.local {
+    color: $green-color;
+}
+
+tr td a.categoria {
+    color: #a86933;
+}
+tr td a.suscripcion {
+    color: tomato;
+}
+
+tr td a.productos {
+    color: #a7a7a7;
+}
+
+tr td a.etiqueta {
+    color: mediumturquoise;
+}

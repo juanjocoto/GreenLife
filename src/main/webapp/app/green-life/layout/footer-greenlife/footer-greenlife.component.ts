@@ -19,8 +19,12 @@ export class FooterGreenlifeComponent implements OnInit {
   ngOnInit() {
     this.router.events.subscribe((event) => {
       if (event instanceof RoutesRecognized) {
-        const data = event.state.root.firstChild.firstChild.data;
-        this.configuracion = data.configuracion as boolean;
+        const data = (event.state.root.firstChild.firstChild ? event.state.root.firstChild.firstChild.data : event.state.root.firstChild.data);
+        if (data.configuracion !== undefined) {
+          this.configuracion = data.configuracion;
+        } else {
+          this.configuracion = false;
+        }
       }
     });
   }

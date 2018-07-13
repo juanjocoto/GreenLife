@@ -1,16 +1,16 @@
 <div class="title-bar-config">
-  <h1>Configuración del Usuario</h1>
+  <h1>Perfil del Usuario</h1>
 </div>
 <!-- <div class="view-container" *ngIf="usuario && user"> -->
 <div class="container">
   <div class="row">
     <div class="col-9">
       <h2>Información general
-        <button mat-icon-button (click)="modificarUsuario()">
+        <a *ngIf="isConfigurable" mat-icon-button routerLink="editar">
           <mat-icon>
             edit
           </mat-icon>
-        </button>
+        </a>
       </h2>
       <div class="row">
         <div class="col-sm">
@@ -67,7 +67,7 @@
           <img *ngIf="!usuario.fotoUrl" src="http://www.iconexperience.com/_img/o_collection_png/green_dark_grey/512x512/plain/user.png"
             alt="">
         </div>
-        <button mat-icon-button class="img-config" (click)="openImageDialog()">
+        <button *ngIf="isConfigurable" mat-icon-button class="img-config" (click)="openImageDialog()">
           <mat-icon>
             edit
           </mat-icon>

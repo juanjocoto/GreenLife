@@ -1,9 +1,11 @@
 import { ActivatedRoute, Router } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
 
+import { AccountService } from '../../../shared/auth/account.service';
 import { CargaImagenesComponent } from '../../dialogos/carga-imagenes/carga-imagenes.component';
 import { ComerciosRegistroComponent } from '../../dialogos/comercios-registro/comercios-registro.component';
 import { CommonAdapterService } from '../../shared/services/common-adapter.service';
+import { HttpResponse } from '@angular/common/http';
 import { MatDialog } from '@angular/material';
 import { Observable } from 'rxjs/Rx';
 import { SERVER_API_URL } from './../../../app.constants';
@@ -22,6 +24,7 @@ export class UsuarioPerfilComponent implements OnInit {
   usuario: Usuario = new Usuario();
   user: User = new User();
   hostPath = `${SERVER_API_URL}/api/images/`;
+  isConfigurable = false;
 
   constructor(
     private usuarioService: UsuarioService,
@@ -29,24 +32,28 @@ export class UsuarioPerfilComponent implements OnInit {
     private route: ActivatedRoute,
     private router: Router,
     private matDialog: MatDialog,
-    private commonAdapter: CommonAdapterService
+    private commonAdapter: CommonAdapterService,
+    private accauntService: AccountService
   ) { }
 
   ngOnInit() {
     this.route.params.subscribe((params) => {
-
-      const usuario = this.usuarioService.findByUserLogin(params.login);
-      const user = this.userService.find(params.login);
-
-      Observable.zip(usuario, user).subscribe((resul) => {
-        this.usuario = resul[0].body;
-        this.user = resul[1].body;
-      });
+      if (params && params.login) {
+        this.obtenerUsuario(this.usuarioService.findByUserLogin(params.login), this.userService.find(params.login));
+      } else {
+        this.accauntService.get().subscribe((httpResponse) => {
+          this.obtenerUsuario(this.usuarioService.findByUserLogin(httpResponse.body['login']), this.userService.find(httpResponse.body['login']));
+          this.isConfigurable = true;
+        });
+      }
     });
   }
 
-  modificarUsuario() {
-    this.router.navigate(['app/usuario/' + this.user.login + '/editar']);
+  private obtenerUsuario(observableUsuario: Observable<HttpResponse<Usuario>>, observableUser: Observable<HttpResponse<User>>): void {
+    Observable.zip(observableUsuario, observableUser).subscribe((resul) => {
+      this.usuario = resul[0].body;
+      this.user = resul[1].body;
+    });
   }
 
   openComercioDialog() {

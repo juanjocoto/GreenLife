@@ -6,7 +6,7 @@ import {CommonAdapterService, JHILocalDate} from '../../shared/services/common-a
 import {Suscripcion, EstadoSuscripcion,  SuscripcionService} from '../../../entities/suscripcion';
 import {Comercio, ComercioService} from '../../../entities/comercio';
 import {Usuario, UsuarioService} from '../../../entities/usuario';
-import {User, UserService} from '../../../shared';
+import {User, UserService, AccountService} from '../../../shared';
 
 @Component({
     selector: 'jhi-suscripcion-crear',
@@ -27,6 +27,7 @@ export class SuscripcionCrearComponent implements OnInit {
         private router: Router,
         private route: ActivatedRoute,
         private commonAdapterService: CommonAdapterService,
+        private account: AccountService,
         private suscripcionService: SuscripcionService,
         private comercioService: ComercioService,
         private usuarioService: UsuarioService,
@@ -35,10 +36,10 @@ export class SuscripcionCrearComponent implements OnInit {
 
     ngOnInit() {
         this.route.params.subscribe((params) => {
-            this.loadCliente(params['login']);
             this.loadComercio(params['comercioId']);
         });
 
+        this.loadCliente();
         this.validateForm();
     }
 
@@ -54,15 +55,17 @@ export class SuscripcionCrearComponent implements OnInit {
 
         this.suscripcionService.create(newSuscripcion).subscribe((result) => {
             this.formSuscripcion.reset();
-            this.router.navigate(['app/usuario/' + this.clienteDetail.login + '/suscripciones']);
+            this.router.navigate(['app/suscripciones']);
         });
     }
 
-    private loadCliente(login) {
-        this.usuarioService.findByUserLogin(login).subscribe((usuarioResponse: HttpResponse<Usuario>) => {
-            this.cliente = usuarioResponse.body;
-            this.userService.find(login).subscribe((userResponse: HttpResponse<User>) => {
-                this.clienteDetail = userResponse.body;
+    private loadCliente() {
+        this.account.get().subscribe((accountResponse: HttpResponse<Account>) => {
+            this.usuarioService.findByUserLogin(accountResponse.body['login']).subscribe((usuarioResponse: HttpResponse<Usuario>) => {
+                this.cliente = usuarioResponse.body;
+                this.userService.find(accountResponse.body['login']).subscribe((userResponse: HttpResponse<User>) => {
+                    this.clienteDetail = userResponse.body;
+                });
             });
         });
     }

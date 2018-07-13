@@ -85,6 +85,7 @@ import { UsuarioPerfilComponent } from './views/usuario-perfil/usuario-perfil.co
 import { UsuarioRegistroComponent } from './views/usuario-registro/usuario-registro.component';
 import { UsuarioRolesComponent } from './views/usuario-roles/usuario-roles.component';
 import { ValidadorNumeroDirective } from './shared/directives/validador-numero.directive';
+import { EtiquetasConsultarComponent } from './dialogos/etiquetas-consultar/etiquetas-consultar.component';
 import { ResenaComponent } from './dialogos/resena/resena.component';
 
 @NgModule({
@@ -171,6 +172,7 @@ import { ResenaComponent } from './dialogos/resena/resena.component';
     ConfiguracionComerciosComponent,
     ConfiguracionAplicacionComponent,
     SuscripcionesComercioComponent,
+    EtiquetasConsultarComponent,
     ResenaComponent
   ],
   entryComponents: [
@@ -181,6 +183,7 @@ import { ResenaComponent } from './dialogos/resena/resena.component';
     ConfirmacionDialogComponent,
     LocalEliminarComponent,
     CargaImagenesComponent,
+    EtiquetasConsultarComponent,
     ResenaComponent
   ],
   providers: [

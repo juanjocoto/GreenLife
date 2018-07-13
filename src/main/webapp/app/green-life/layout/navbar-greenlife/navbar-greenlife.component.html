@@ -13,7 +13,7 @@
             </li>
             <!--Opcion Suscripciones-->
             <li class="nav-item">
-                <a class="nav-link" [routerLink]="'usuario/' + usuarioId + '/suscripciones'">Suscripciones</a>
+                <a class="nav-link" [routerLink]="'suscripciones'">Suscripciones</a>
             </li>
             <!--Opcion Mantenimineto-->
             <li class="nav-item" *ngIf="roles.includes('ROLE_ADMIN')">
@@ -66,7 +66,7 @@
             <li class="nav-item dropdown" ngbDropdown >
                 <a class="nav-link dropdown-toggle" ngbDropdownToggle><span class="user-img"></span> <span class="text">Usuario</span></a>
                 <div class="dropdown-menu" ngbDropdownMenu>
-                    <a class="dropdown-item" [routerLink]="'usuario/' + usuarioId">Mi perfil</a>
+                    <a class="dropdown-item" routerLink="perfil">Mi perfil</a>
                     <a class="dropdown-item" [routerLink]="'usuario/' + currentUser.login + '/comercios'" *ngIf="roles.includes('ROLE_COMERCIO')">Mis Comercios</a>
                     <a class="dropdown-item" (click)="registrarComerciante()" *ngIf="!roles.includes('ROLE_COMERCIO')">Reg. Comerciante</a>
                     <a class="dropdown-item" (click)="cerrarSesion()">Cerrar sesión</a>
