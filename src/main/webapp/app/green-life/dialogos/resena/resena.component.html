@@ -1,0 +1,21 @@
+<div class="ctn">
+    <mat-dialog-content>
+        <form [formGroup]=calificacionForm class=calificacion-form>
+            <h4>¿Cuéntanos qué te pareció?</h4>
+            <div class="full-width">
+                <a *ngFor="let item of estrellas; let i=index" (click)="setEstrella(i)">
+                    <i *ngIf="item"><img src="../../../../content/images/empty star.png" class="star" /></i>
+                    <i *ngIf="!item"><img src="../../../../content/images/star.png" class="star" /></i>
+                </a>
+            </div>
+            <mat-form-field class="formResena">
+                <textarea matInput placeholder="Comentario" formControlName=comentario></textarea>
+            </mat-form-field>
+        </form>
+    </mat-dialog-content>
+    <mat-dialog-actions>
+        <button type="button" class="btn btn-secondary" mat-dialog-close id="btnCancelar">Cerrar</button>
+        <div class="spacer"></div>
+        <button type="button" class="btn btn-secondary" (click)="agregar()" id="btnAgregar">Agregar</button>
+    </mat-dialog-actions>
+</div>

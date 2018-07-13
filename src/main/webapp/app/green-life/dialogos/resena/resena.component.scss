@@ -1,0 +1,43 @@
+@import './../../../../content/scss/green-life-variables';
+
+form {
+    font-family: 'Lato', sans-serif;
+    margin-top: 15px;
+    margin-bottom: 20px;
+}
+
+.calificacion-form {
+    max-width: 430px;
+}
+
+.calificacion-form mat-form-field {
+    width: 100%;
+}
+
+.full-width {
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+.alert {
+    padding: 8px;
+}
+
+mat-form-field {
+    width: 100%;
+}
+.ng-invalid:not(form) {
+    border-left: unset;
+}
+
+button {
+    border-radius: 6px;
+}
+
+#btnCancelar {
+    background-color: $warning-color;
+}
+#btnAgregar {
+    background-color: $green-color;
+    margin-left: 280px;
+}
