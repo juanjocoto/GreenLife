@@ -81,6 +81,7 @@ import { UsuarioRolesComponent } from './views/usuario-roles/usuario-roles.compo
 import { ValidadorNumeroDirective } from './shared/directives/validador-numero.directive';
 import {CategoriasModificarComponent} from './dialogos/categorias-modificar/categorias-modificar.component';
 import { ConfiguracionComerciosComponent } from './views/configuracion-comercios/configuracion-comercios.component';
+import { EtiquetasConsultarComponent } from './dialogos/etiquetas-consultar/etiquetas-consultar.component';
 
 @NgModule({
   imports: [
@@ -163,13 +164,15 @@ import { ConfiguracionComerciosComponent } from './views/configuracion-comercios
     SuscripcionesClienteComponent,
     CategoriasModificarComponent,
     PedidoListarComponent,
-    ConfiguracionComerciosComponent
+    ConfiguracionComerciosComponent,
+    EtiquetasConsultarComponent
   ],
   entryComponents: [
     LoginComponent,
     ComerciosRegistroComponent,
     CategoriasRegistroComponent,
-    CategoriasModificarComponent
+    CategoriasModificarComponent,
+    EtiquetasConsultarComponent,
   ],
   providers: [
       CargaImagenesComponent,
