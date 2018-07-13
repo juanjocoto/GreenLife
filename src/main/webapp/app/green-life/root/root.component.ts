@@ -26,7 +26,7 @@ export class RootComponent implements OnInit {
   ngOnInit() {
     this.router.events.subscribe((event) => {
       if (event instanceof RoutesRecognized) {
-        const data = event.state.root.firstChild.firstChild.data;
+        const data = (event.state.root.firstChild.firstChild ? event.state.root.firstChild.firstChild.data : event.state.root.firstChild.data);
         if (data && data.configuracion) {
           this.class = 'main-container';
         } else {
