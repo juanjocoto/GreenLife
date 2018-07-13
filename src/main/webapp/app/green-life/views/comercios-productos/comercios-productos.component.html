@@ -6,16 +6,16 @@
       </h1>
   </div>
 </div>
-<div class="container-fluid">
+<div class="container">
     <div class="row">
         <div class="col-md-6">
             <div class="producto-header">
                 <mat-form-field>
-                    <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Filter">
+                    <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Buscar...">
                 </mat-form-field>
             </div>
             <div class="producto-container mat-elevation-z8">
-                <mat-table [dataSource]="dataSource" matSort>
+                <mat-table #table [dataSource]="dataSource" matSort>
 
                     <ng-container matColumnDef="nombre">
                         <mat-header-cell *matHeaderCellDef mat-sort-header> Nombre </mat-header-cell>
@@ -24,7 +24,7 @@
 
                     <ng-container matColumnDef="precio">
                         <mat-header-cell *matHeaderCellDef mat-sort-header> Precio </mat-header-cell>
-                        <mat-cell *matCellDef="let row"> {{row.precio}} </mat-cell>
+                        <mat-cell *matCellDef="let row"> ₡ {{row.precio}} </mat-cell>
                     </ng-container>
 
                     <ng-container matColumnDef="delete">
@@ -35,7 +35,7 @@
                     <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
                     <mat-row *matRowDef="let row; columns: displayedColumns;" (click)="seleccionarProducto(row)" [ngClass]="{'highlight': productoId == row.id }"></mat-row>
                 </mat-table>
-                <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]"></mat-paginator>
+                <mat-paginator #paginator [pageSize]="10" [pageSizeOptions]="[5, 10, 20]" [showFirstLastButtons]="true"></mat-paginator>
             </div>
         </div>
         <div class="col-md-6">
@@ -48,7 +48,7 @@
                     <input matInput placeholder="Descripción" formControlName="descripcion">
                 </mat-form-field>
                 <mat-form-field>
-                    <input matInput placeholder="Precio" formControlName="precio">
+                    <input matInput jhiValidadorNumero placeholder="Precio" formControlName="precio">
                 </mat-form-field>
                 <button type="button" class="btn btn-secondary" id="btnCancelar" (click)="cancelar()">Cancelar</button>
                 <button type="submit" class="btn btn-success" id="btnAgregar" [disabled]="!formulario.valid ||  productoId !== -1" (click)="agregarProducto()">Agregar</button>

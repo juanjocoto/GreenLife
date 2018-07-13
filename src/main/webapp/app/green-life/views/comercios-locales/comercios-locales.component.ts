@@ -76,6 +76,10 @@ export class ComerciosLocalesComponent implements OnInit {
         });
     }
 
+    verPedidos() {
+        this.router.navigate(['app/locales/' + this.currentLocal.id + '/pedidos']);
+    }
+
     loadCurrentLocal(idLocal: number) {
         this.localService.find(idLocal).subscribe((localResponse: HttpResponse<Local>) => {
             this.currentLocal = localResponse.body;

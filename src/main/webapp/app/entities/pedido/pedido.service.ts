@@ -56,6 +56,11 @@ export class PedidoService {
             .map((res: HttpResponse<Pedido[]>) => this.convertArrayResponse(res));
     }
 
+    findByLocal(id: number): Observable<HttpResponse<Pedido[]>> {
+        return this.http.get<Pedido[]>(`${this.resourceUrl}/local/${id}`, { observe: 'response'})
+            .map((res: HttpResponse<Pedido[]>) => this.convertArrayResponse(res));
+    }
+
     private convertResponse(res: EntityResponseType): EntityResponseType {
         const body: Pedido = this.convertItemFromServer(res.body);
         return res.clone({ body });

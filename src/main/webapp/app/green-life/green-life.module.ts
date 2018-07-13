@@ -37,11 +37,13 @@ import {
 } from '@angular/material';
 
 import { AgmCoreModule } from '@agm/core';
+import { AuthAdminGuard } from './shared/guards/auth.admin.guard';
 import { AuthService } from './shared/services/auth.service';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { BrowserModule } from '@angular/platform-browser';
 import { CargaImagenesComponent } from './dialogos/carga-imagenes/carga-imagenes.component';
 import { CategoriasComponent } from './views/categorias/categorias.component';
+import { CategoriasModificarComponent } from './dialogos/categorias-modificar/categorias-modificar.component';
 import { CategoriasRegistroComponent } from './dialogos/categorias-registro/categorias-registro.component';
 import { CdkTableModule } from '@angular/cdk/table';
 import { ColonPipe } from './shared/pipes/colon.pipe';
@@ -51,6 +53,8 @@ import { ComerciosProductosComponent } from './views/comercios-productos/comerci
 import { ComerciosRegistroComponent } from './dialogos/comercios-registro/comercios-registro.component';
 import { CommonAdapterService } from './shared/services/common-adapter.service';
 import { CommonModule } from '@angular/common';
+import { ConfiguracionAplicacionComponent } from './views/configuracion-aplicacion/configuracion-aplicacion.component';
+import { ConfiguracionComerciosComponent } from './views/configuracion-comercios/configuracion-comercios.component';
 import { ConfirmacionDialogComponent } from './dialogos/confirmacion-dialog/confirmacion-dialog.component';
 import { ConvertidorFechaPipe } from './shared/pipes/convertidor-fecha.pipe';
 import { DummyComponent } from './views/dummy/dummy.component';
@@ -60,6 +64,7 @@ import { LandingComponent } from './views/landing/landing.component';
 import { ListaComerciosComponent } from './fragments/lista-comercios/lista-comercios.component';
 import { LocalEliminarComponent } from './dialogos/local-eliminar/local-eliminar.component';
 import { LocalModificarComponent } from './views/local-modificar/local-modificar.component';
+import { LocalPedidosComponent } from './views/local-pedidos/local-pedidos.component';
 import { LocalRegistroComponent } from './views/local-registro/local-registro.component';
 import { LoginComponent } from './dialogos/login/login.component';
 import { NavbarGreenlifeComponent } from './layout/navbar-greenlife/navbar-greenlife.component';
@@ -74,13 +79,12 @@ import { SelectorEtiquetasComponent } from './fragments/selector-etiquetas/selec
 import { SnackBarService } from './shared/services/snack-bar.service';
 import { SuscripcionCrearComponent } from './views/suscripcion-crear/suscripcion-crear.component';
 import { SuscripcionesClienteComponent } from './views/suscripciones-cliente/suscripciones-cliente.component';
+import { SuscripcionesComercioComponent } from './views/suscripciones-comercio/suscripciones-comercio.component';
 import { UsuarioModificarComponent } from './views/usuario-modificar/usuario-modificar.component';
 import { UsuarioPerfilComponent } from './views/usuario-perfil/usuario-perfil.component';
 import { UsuarioRegistroComponent } from './views/usuario-registro/usuario-registro.component';
 import { UsuarioRolesComponent } from './views/usuario-roles/usuario-roles.component';
 import { ValidadorNumeroDirective } from './shared/directives/validador-numero.directive';
-import {CategoriasModificarComponent} from './dialogos/categorias-modificar/categorias-modificar.component';
-import { ConfiguracionComerciosComponent } from './views/configuracion-comercios/configuracion-comercios.component';
 import { EtiquetasConsultarComponent } from './dialogos/etiquetas-consultar/etiquetas-consultar.component';
 
 @NgModule({
@@ -128,8 +132,7 @@ import { EtiquetasConsultarComponent } from './dialogos/etiquetas-consultar/etiq
     MatTabsModule,
     MatToolbarModule,
     MatTooltipModule,
-    MatFormFieldModule,
-    MatTableModule
+    MatFormFieldModule
   ],
   declarations: [
     LandingComponent,
@@ -162,9 +165,12 @@ import { EtiquetasConsultarComponent } from './dialogos/etiquetas-consultar/etiq
     ComerciosLocalesComponent,
     SuscripcionCrearComponent,
     SuscripcionesClienteComponent,
+    LocalPedidosComponent,
     CategoriasModificarComponent,
     PedidoListarComponent,
     ConfiguracionComerciosComponent,
+    ConfiguracionAplicacionComponent,
+    SuscripcionesComercioComponent,
     EtiquetasConsultarComponent
   ],
   entryComponents: [
@@ -172,16 +178,17 @@ import { EtiquetasConsultarComponent } from './dialogos/etiquetas-consultar/etiq
     ComerciosRegistroComponent,
     CategoriasRegistroComponent,
     CategoriasModificarComponent,
-    EtiquetasConsultarComponent,
+    ConfirmacionDialogComponent,
+    LocalEliminarComponent,
+    CargaImagenesComponent,
+    EtiquetasConsultarComponent
   ],
   providers: [
-      CargaImagenesComponent,
-      ConfirmacionDialogComponent,
-      LocalEliminarComponent,
     CommonAdapterService,
     CategoriasComponent,
     HorasEntregaService,
     AuthService,
+    AuthAdminGuard,
     SnackBarService,
     { provide: MAT_DATE_LOCALE, useValue: 'es-CR' }
   ],

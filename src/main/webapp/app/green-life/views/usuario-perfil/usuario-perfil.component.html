@@ -1,85 +1,85 @@
 <div class="title-bar-config">
   <h1>Configuración del Usuario</h1>
 </div>
-<div class="view-container" *ngIf="usuario && user">
-  <div class="container">
-    <div class="row">
-      <div class="col-9">
-        <h2>Información general
-          <button mat-icon-button>
-            <mat-icon>
-              edit
-            </mat-icon>
-          </button>
-        </h2>
-        <div class="row">
-          <div class="col-sm">
-            <table>
-              <tbody>
-                <tr>
-                  <td>Nombre:</td>
-                  <td>{{user.firstName}}</td>
-                </tr>
-                <tr>
-                  <td>Apellidos:</td>
-                  <td>{{user.lastName}}</td>
-                </tr>
-                <tr>
-                  <td>Cédula:</td>
-                  <td>{{usuario.cedula}}</td>
-                </tr>
-                <tr>
-                  <td>Correo:</td>
-                  <td>{{user.email}}</td>
-                </tr>
-                <tr>
-                  <td>Teléfono:</td>
-                  <td>{{usuario.telefono}}</td>
-                </tr>
-              </tbody>
-            </table>
-          </div>
-          <div class="col-sm">
-            <table>
-              <tbody>
-                <tr>
-                  <td>Dirección:</td>
-                  <td>{{usuario.direccion}}</td>
-                </tr>
-                <tr>
-                  <td>Fecha de nacimiento:</td>
-                  <td>{{usuario.fechaNacimiento | date}}</td>
-                </tr>
-                <tr>
-                  <td>Nombre de usuario</td>
-                  <td>{{user.login}}</td>
-                </tr>
-              </tbody>
-            </table>
-          </div>
+<!-- <div class="view-container" *ngIf="usuario && user"> -->
+<div class="container">
+  <div class="row">
+    <div class="col-9">
+      <h2>Información general
+        <button mat-icon-button (click)="modificarUsuario()">
+          <mat-icon>
+            edit
+          </mat-icon>
+        </button>
+      </h2>
+      <div class="row">
+        <div class="col-sm">
+          <table>
+            <tbody>
+              <tr>
+                <td>Nombre:</td>
+                <td>{{user.firstName}}</td>
+              </tr>
+              <tr>
+                <td>Apellidos:</td>
+                <td>{{user.lastName}}</td>
+              </tr>
+              <tr>
+                <td>Cédula:</td>
+                <td>{{usuario.cedula}}</td>
+              </tr>
+              <tr>
+                <td>Correo:</td>
+                <td>{{user.email}}</td>
+              </tr>
+              <tr>
+                <td>Teléfono:</td>
+                <td>{{usuario.telefono}}</td>
+              </tr>
+            </tbody>
+          </table>
         </div>
-      </div>
-      <div class="col-3">
-        <h2>Foto perfíl</h2>
-        <div class="row">
-          <div class="img-container">
-            <img *ngIf="usuario.fotoUrl" [src]="usuario.fotoUrl" alt="">
-            <img *ngIf="!usuario.fotoUrl" src="http://www.iconexperience.com/_img/o_collection_png/green_dark_grey/512x512/plain/user.png"
-              alt="">
-          </div>
-          <button mat-icon-button class="img-config">
-            <mat-icon>
-              edit
-            </mat-icon>
-          </button>
+        <div class="col-sm">
+          <table>
+            <tbody>
+              <tr>
+                <td>Dirección:</td>
+                <td>{{usuario.direccion}}</td>
+              </tr>
+              <tr>
+                <td>Fecha de nacimiento:</td>
+                <td>{{usuario.fechaNacimiento | date}}</td>
+              </tr>
+              <tr>
+                <td>Nombre de usuario</td>
+                <td>{{user.login}}</td>
+              </tr>
+            </tbody>
+          </table>
         </div>
       </div>
     </div>
-    <!-- <div class="row">
-      <button mat-button (click)="openComercioDialog()">Comercio</button>
-    </div> -->
-    <div class="row">
-      <!-- <jhi-lista-comercios></jhi-lista-comercios> -->
+    <div class="col-3">
+      <h2>Foto perfíl</h2>
+      <div class="row">
+        <div class="img-container">
+          <img *ngIf="usuario.fotoUrl" [src]="hostPath+usuario.fotoUrl" alt="">
+          <img *ngIf="!usuario.fotoUrl" src="http://www.iconexperience.com/_img/o_collection_png/green_dark_grey/512x512/plain/user.png"
+            alt="">
+        </div>
+        <button mat-icon-button class="img-config" (click)="openImageDialog()">
+          <mat-icon>
+            edit
+          </mat-icon>
+        </button>
+      </div>
     </div>
   </div>
+  <!-- <div class="row">
+      <button mat-button (click)="openComercioDialog()">Comercio</button>
+    </div> -->
+  <div class="row">
+    <!-- <jhi-lista-comercios></jhi-lista-comercios> -->
+  </div>
 </div>
+<!-- </div> -->

@@ -1,0 +1,38 @@
+<div class="container-fluid title-bar">
+  <div class="row">
+      <div class="col">
+          <h2 id="title-">{{ local.nombre }}</h2>
+          <hr class="divider">
+          <h1>Lista de pedidos del local <span class="badge badge-vista-usuario"> {{pedidos.length}}</span></h1>
+      </div>
+  </div>
+</div>
+<div class="container">
+    <div class="row">
+        <div class="col-md-12" *ngFor="let usuario of listaUsuarios">
+          <mat-accordion class="green-life-accordion">
+            <mat-expansion-panel>
+              <mat-expansion-panel-header (click)="obtenerPedidosPorUsuario(usuario)">
+                <mat-panel-title>Usuario: </mat-panel-title>
+                <mat-panel-description>{{ usuario.firstName }} {{ usuario.lastName }}</mat-panel-description>
+              </mat-expansion-panel-header>
+              <div class="container-fluid">
+                <div class="row">
+                    <div class="col-md-4 container-suscripcion" *ngFor="let pedido of dataPedidos; let i = index">
+                        <div class="card card-green-life">
+                            <h5 class="card-header card-header-green-life">Pedido #{{ i + 1 }}</h5>
+                            <div class="card-body">
+                                <h6 class="card-title card-title-green-life">Usuario: {{ pedido.usuario.firstName }} {{ pedido.usuario.lastName }}.</h6>
+                                <p class="card-text card-text-green-life">Local: {{ pedido.pedido.localNombre }}.</p>
+                                <p class="card-text card-text-green-life">Día de entrega: {{ pedido.pedido.diasEntregaNombre }}.</p>
+                                <p class="card-text card-text-green-life">Hora de entrega: {{ pedido.pedido.hora }}.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+              </div>
+            </mat-expansion-panel>
+          </mat-accordion>
+        </div>
+    </div>
+</div>

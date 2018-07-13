@@ -168,4 +168,14 @@ public class SuscripcionResource {
         return ResponseUtil.wrapOrNotFound(Optional.ofNullable(suscripcionesDTO));
     }
 
+    @GetMapping("/suscripcions/comercio/{id}")
+    @Timed
+    @Transactional
+    public ResponseEntity<List<SuscripcionDTO>> getSuscripcionByComercio(@PathVariable Long id) {
+        log.debug("REST request to get Suscripcion : {}", id);
+        List<Suscripcion> suscripciones = suscripcionRepository.findAllByComercio_id(id);
+        List<SuscripcionDTO> suscripcionesDTO = suscripcionMapper.toDto(suscripciones);
+        return ResponseUtil.wrapOrNotFound(Optional.ofNullable(suscripcionesDTO));
+    }
+
 }

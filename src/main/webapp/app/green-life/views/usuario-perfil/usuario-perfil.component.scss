@@ -1,7 +1,6 @@
 @import "../../../../content/scss/green-life-variables";
-.view-container {
-    max-width: 800px;
-    margin: 0 auto 0;
+.container {
+    margin-top: 55px;
 }
 
 h2,
@@ -28,7 +27,7 @@ tr {
 }
 
 .img-container {
-    max-width: 100px;
+    // max-width: 100px;
     margin: 0 auto;
     position: relative;
 }
@@ -42,4 +41,5 @@ button.img-config {
     bottom: 0;
     right: 0;
     color: $config-green-color;
+    background: #fff;
 }
