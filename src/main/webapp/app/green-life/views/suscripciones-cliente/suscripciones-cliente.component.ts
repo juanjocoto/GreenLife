@@ -8,7 +8,7 @@ import {ConfirmacionDialogComponent} from '../../dialogos/confirmacion-dialog/co
 import {Suscripcion, SuscripcionService} from '../../../entities/suscripcion';
 import {Comercio, ComercioService} from '../../../entities/comercio';
 import {Usuario, UsuarioService} from '../../../entities/usuario';
-import {User, UserService} from '../../../shared';
+import {User, UserService, AccountService} from '../../../shared';
 
 @Component({
     selector: 'jhi-suscripciones-cliente',
@@ -28,6 +28,7 @@ export class SuscripcionesClienteComponent implements OnInit {
         private route: ActivatedRoute,
         private location: Location,
         private commonAdapterService: CommonAdapterService,
+        private account: AccountService,
         private cancelarSuscripcionDialog: MatDialog,
         private suscripcionService: SuscripcionService,
         private comercioService: ComercioService,
@@ -36,10 +37,8 @@ export class SuscripcionesClienteComponent implements OnInit {
     ) { }
 
     ngOnInit() {
-        this.route.params.subscribe((params) => {
-            this.loadUsuario(params['login']);
-            this.loadSuscripcionesUsuario(params['login']);
-        });
+        this.loadSuscripcionesUsuario();
+        this.loadCliente();
     }
 
     cancelarSuscripcion(suscripcionId, comercioNombreComercial) {
@@ -58,33 +57,37 @@ export class SuscripcionesClienteComponent implements OnInit {
         this.router.navigate(['app/suscripciones/' + suscripcionId + '/pedido']);
     }
 
-    private loadUsuario(login) {
-        this.usuarioService.findByUserLogin(login).subscribe((usuarioResponse: HttpResponse<Usuario>) => {
-            this.cliente = usuarioResponse.body;
-            this.userService.find(login).subscribe((userResponse: HttpResponse<User>) => {
-                this.clienteDetail = userResponse.body;
+    private loadCliente() {
+        this.account.get().subscribe((accountResponse) => {
+            this.usuarioService.findByUserLogin(accountResponse.body['login']).subscribe((usuarioResponse: HttpResponse<Usuario>) => {
+                this.cliente = usuarioResponse.body;
+                this.userService.find(accountResponse.body['login']).subscribe((userResponse: HttpResponse<User>) => {
+                    this.clienteDetail = userResponse.body;
+                });
             });
         });
     }
 
-    private loadSuscripcionesUsuario(login) {
-        this.usuarioService.findByUserLogin(login).subscribe((usuarioResponse: HttpResponse<Usuario>) => {
-            this.suscripcionService.findSuscripcionesByUsuario(usuarioResponse.body.id).subscribe((suscripcionResponse: HttpResponse<Suscripcion[]>) => {
-                for (const index of suscripcionResponse.body) {
-                    this.comercioService.find(index.comercioId).subscribe((comercioResponse: HttpResponse<Comercio>) => {
-                        this.suscripciones.push({
-                            suscripcion: index,
-                            comercio: comercioResponse.body
+    private loadSuscripcionesUsuario() {
+        this.account.get().subscribe((accountResponse) => {
+            this.usuarioService.findByUserLogin(accountResponse.body['login']).subscribe((usuarioResponse: HttpResponse<Usuario>) => {
+                this.suscripcionService.findSuscripcionesByUsuario(usuarioResponse.body.id).subscribe((suscripcionResponse: HttpResponse<Suscripcion[]>) => {
+                    for (const index of suscripcionResponse.body) {
+                        this.comercioService.find(index.comercioId).subscribe((comercioResponse: HttpResponse<Comercio>) => {
+                            this.suscripciones.push({
+                                suscripcion: index,
+                                comercio: comercioResponse.body
+                            });
                         });
-                    });
-                }
+                    }
+                });
             });
         });
     }
 
     private refreshPage() {
         this.router.navigateByUrl('/', {skipLocationChange: true}).then(() =>
-            this.router.navigate(['app/usuario/' +  this.clienteDetail.login + '/suscripciones']));
+            this.router.navigate(['app/suscripciones']));
     }
 
 }
