@@ -29,11 +29,13 @@
                 <td>{{comercio.comercio.tipo}}</td>
                 <td>{{comercio.comercio.fechaCreacion | date}}</td>
                 <td>
-                    <a class="edit" data-toggle="modal" [routerLink]="'/app/comercios/' + comercio.comercio.id + '/editar'"><i class="material-icons" data-toggle="tooltip" title="Editar">&#xE254;</i></a>
-                    <a class="delete" data-toggle="modal" (click)="eliminarComercio(comercio.comercio)"><i class="material-icons" data-toggle="tooltip" title="Eliminar">&#xE872;</i></a>
-                    <a [routerLink]="'/app/comercios/' + comercio.comercio.id + '/locales'"><i class="material-icons" data-toggle="tooltip">store_mall_directory</i></a>
-                    <a [routerLink]="'/app/comercios/' + comercio.comercio.id + '/categorias'"><i class="material-icons" data-toggle="tooltip">ballot</i></a>
-                    <a [routerLink]="'/app/comercios/' + comercio.comercio.id + '/suscripciones'"><i class="material-icons" data-toggle="tooltip">local_shipping</i></a>
+                    <a class="editar" data-toggle="modal" [routerLink]="'/app/comercios/' + comercio.comercio.id + '/editar'"><i class="material-icons" data-toggle="tooltip" title="Editar">&#xE254;</i></a>
+                    <a class="eliminar" data-toggle="modal" (click)="eliminarComercio(comercio.comercio)"><i class="material-icons" data-toggle="tooltip" title="Eliminar">&#xE872;</i></a>
+                    <a class="local" [routerLink]="'/app/comercios/' + comercio.comercio.id + '/locales'"><i class="material-icons" data-toggle="tooltip" title="Locales">store_mall_directory</i></a>
+                    <a class="categoria" [routerLink]="'/app/comercios/' + comercio.comercio.id + '/categorias'"><i class="material-icons" data-toggle="tooltip" title="Categorias">ballot</i></a>
+                    <a class="suscripcion" [routerLink]="'/app/comercios/' + comercio.comercio.id + '/suscripciones'"><i class="material-icons" data-toggle="tooltip" title="Suscripciones">local_shipping</i></a>
+                    <a class="productos" [routerLink]="'/app/comercios/' + comercio.comercio.id + '/productos'"><i class="material-icons" data-toggle="tooltip" title="Productos">local_grocery_store</i></a>
+                    <a class="etiqueta" (click)="consultarEtiquetas(comercio.comercio)"><i class="material-icons" data-toggle="tooltip" title="Etiquetas">label</i></a>
                 </td>
             </tr>
             </tbody>
