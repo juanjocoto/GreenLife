@@ -708,6 +708,10 @@
     </build>
     <profiles>
         <profile>
+            <id>gcloud</id>
+            
+        </profile>
+        <profile>
             <id>no-liquibase</id>
             <properties>
                 <profile.no-liquibase>,no-liquibase</profile.no-liquibase>
