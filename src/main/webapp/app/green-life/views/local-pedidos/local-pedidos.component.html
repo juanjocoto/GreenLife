@@ -9,9 +9,9 @@
 </div>
 <div class="container">
     <div class="row">
-        <div class="col-md-12" *ngFor="let usuario of listaUsuarios">
+        <div class="col-md-12">
           <mat-accordion class="green-life-accordion">
-            <mat-expansion-panel>
+            <mat-expansion-panel *ngFor="let usuario of listaUsuarios">
               <mat-expansion-panel-header (click)="obtenerPedidosPorUsuario(usuario)">
                 <mat-panel-title>Usuario: </mat-panel-title>
                 <mat-panel-description>{{ usuario.firstName }} {{ usuario.lastName }}</mat-panel-description>
