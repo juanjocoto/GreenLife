@@ -6,7 +6,7 @@ export class CommonAdapterService {
   constructor() { }
 
   dateToJHILocalDate(date: Date) {
-    return new JHILocalDate(date.getFullYear(), date.getMonth() + 1, date.getDay());
+    return new JHILocalDate(date.getFullYear(), date.getMonth(), date.getDay());
   }
 
 }
