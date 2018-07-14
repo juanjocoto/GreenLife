@@ -37,7 +37,7 @@
             <h5 class="info-comercio-subtitle"><i class="fa fa-id-card"></i><span class="info-sub">Cédula juridíca:</span>  {{currentComercio.cedJuridica}}</h5>
             <h5 class="info-comercio-subtitle"><i class="fa fa-apple"></i><span class="info-sub">Tipo de comercio:</span>  {{currentComercio.tipo | titlecase}}</h5>
             <h5 class="info-comercio-subtitle"><i class="fa fa-calendar"></i><span class="info-sub">Asociado desde:</span>  {{currentComercio.fechaCreacion | date}}</h5>
-            <button class="btn btnVerLocales" (click)="verLocales(currentComercio.id)">Ver locales</button>
+            <button class="btn btnVerLocales">Ver locales</button>
             <button class="btn btnSuscribirse" (click)="suscribiriseComercio(currentComercio.id)">Suscribirse</button>
         </div>
     </div>
