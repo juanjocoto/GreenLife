@@ -86,6 +86,7 @@ import { UsuarioRegistroComponent } from './views/usuario-registro/usuario-regis
 import { UsuarioRolesComponent } from './views/usuario-roles/usuario-roles.component';
 import { ValidadorNumeroDirective } from './shared/directives/validador-numero.directive';
 import { EtiquetasConsultarComponent } from './dialogos/etiquetas-consultar/etiquetas-consultar.component';
+import { ComerciosClienteComponent } from './views/comercios-cliente/comercios-cliente.component';
 import { ResenaComponent } from './dialogos/resena/resena.component';
 
 @NgModule({
@@ -173,6 +174,7 @@ import { ResenaComponent } from './dialogos/resena/resena.component';
     ConfiguracionAplicacionComponent,
     SuscripcionesComercioComponent,
     EtiquetasConsultarComponent,
+    ComerciosClienteComponent,
     ResenaComponent
   ],
   entryComponents: [
