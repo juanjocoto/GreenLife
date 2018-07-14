@@ -8,8 +8,8 @@
     <div class="navbar-collapse collapse mx-auto order-0 dual-collapse2" id="main-link" [class.show]="collapse" [class.inicio]="!configuracion">
         <ul class="navbar-nav ml-auto" [class.hidden]="!isAuth" *ngIf="currentUser">
             <!--Opcion Comercios-->
-            <li class="nav-item" *ngIf="roles.includes('ROLE_COMERCIO')">
-                <a class="nav-link" [routerLink]="'usuario/' + usuarioId + '/comercios'">Comercios</a>
+            <li class="nav-item">
+                <a class="nav-link" [routerLink]="'comercios'">Comercios</a>
             </li>
             <!--Opcion Suscripciones-->
             <li class="nav-item">

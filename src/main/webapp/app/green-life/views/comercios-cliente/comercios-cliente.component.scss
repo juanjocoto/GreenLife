@@ -1,0 +1,132 @@
+@import '../../../../content/scss/green-life.global';
+
+.title-bar {
+    text-align: center;
+}
+
+.info-section {
+    box-shadow:  0 1px 3px rgba(50,50,93,.11), 0 1px 3px rgba(0,0,0,.08);
+}
+
+.info-text {
+    padding: 12px 0 35px 0;
+    text-align: center;
+    font-size: 17px;
+    color: $green-color;
+}
+
+.suscripciones-container {
+    margin: 0 0 125px 0;
+}
+
+.img-container img{
+    margin: 25px 0 10px 0;
+}
+
+.subtitle1, .subtitle2 {
+    text-align: center;
+    color: $config-dark-gray-color;
+    font-weight: 300;
+}
+
+.subtitle1 {
+    margin: 25px 0 0 0;
+}
+
+.subtitle2 {
+    margin: 10px 0 0 0;
+}
+
+.badge-vista-usuario{
+    margin: 0 0 0 12px;
+}
+
+// Styles lista comercios
+.list-group {
+    border-color: #FFFFFF !important;
+    -webkit-border-radius: $border-radius;
+    -moz-border-radius: $border-radius;
+    border-radius: $border-radius;
+    -webkit-box-shadow: $box-shadow;
+    -moz-box-shadow: $box-shadow;
+    box-shadow: $box-shadow;
+}
+
+.list-group-item {
+    border-color: #e6e6e6;
+}
+
+.list-group-item h5 {
+    font-weight: 700;
+    color: $green-color;
+    padding: 0 0 15px 0;
+}
+
+.list-group-item p {
+    font-weight: 400;
+    color: $config-dark-gray-color;
+}
+
+.list-group-item small {
+    font-weight: 300;
+    color: $config-dark-gray-color;
+
+    .fa {
+        padding: 0 10px 0 0;
+    }
+}
+
+// Info comercio styles
+.info-section {
+    box-shadow:  0 1px 3px rgba(50,50,93,.11), 0 1px 3px rgba(0,0,0,.08);
+}
+
+.info-comercio-title {
+    color: white;
+    font-weight: 700;
+    margin: 10px 0 20px 0;
+    padding: 5px 0;
+    background: $green-color;
+    text-align: center;
+    border-radius: 6px;
+    box-shadow:  0 1px 3px rgba(50,50,93,.11), 0 1px 3px rgba(0,0,0,.08);
+}
+
+.info-comercio-subtitle {
+    color: $config-dark-gray-color ;
+    padding: 7px 0;
+    font-weight: 400;
+    font-size: 19px;
+
+    .fa {
+        padding: 0 10px 0 0;
+        color: $green-color;
+    }
+}
+
+.info-sub {
+    font-weight: 700;
+    color: $green-color;
+}
+
+.btnSuscribirse {
+    color: #FFFFFF;
+    background: $config-dark-gray-color;
+    font-weight: 700;
+    box-shadow:  0 1px 3px rgba(50,50,93,.11), 0 1px 3px rgba(0,0,0,.08);
+    float: right;
+    margin: 15px 10px 15px 0;
+
+    .fa {
+        padding: 0 10px 0 0;
+    }
+}
+
+.btnVerLocales {
+    color: $config-dark-gray-color;
+    background: #FFFFFF;
+    border-color: $config-dark-gray-color;
+    box-shadow:  0 1px 3px rgba(50,50,93,.11), 0 1px 3px rgba(0,0,0,.08);
+    float: right;
+    margin: 15px 0 15px 10px;
+}

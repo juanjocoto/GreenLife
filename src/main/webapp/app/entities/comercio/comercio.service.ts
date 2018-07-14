@@ -35,6 +35,11 @@ export class ComercioService {
             .map((res: EntityResponseType) => this.convertResponse(res));
     }
 
+    findAll(): Observable<HttpResponse<Comercio[]>> {
+        return this.http.get<Comercio[]>(`${this.resourceUrl}`, { observe: 'response'})
+            .map((res: HttpResponse<Comercio[]>) => this.convertArrayResponse(res));
+    }
+
     query(req?: any): Observable<HttpResponse<Comercio[]>> {
         const options = createRequestOption(req);
         return this.http.get<Comercio[]>(this.resourceUrl, { params: options, observe: 'response' })
