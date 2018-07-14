@@ -1,0 +1,44 @@
+<div class="container-fluid title-bar">
+    <div class="row">
+        <div class="col">
+            <h2></h2>
+            <hr class="divider">
+            <h1>Comercios</h1>
+        </div>
+    </div>
+</div>
+
+<div class="container" *ngIf="comercios">
+    <div class="row">
+        <div class="col">
+            <h3 class="subtitle1">¡Descubre comercios y suscríbete!</h3>
+            <div class="img-container text-center">
+                <img src="../../../../content/images/comcercio.png" alt="Comercios suscrito" height="140px">
+            </div>
+            <h2 class="subtitle2">Comercios disponibles<span class="badge badge-vista-usuario">{{comercios.length}}</span></h2>
+            <p class="info-text"><i class="fa fa-comment pr-3"></i>Recuerda que la suscripción se completa hasta que sea aprobada por el comercio.</p>
+        </div>
+    </div>
+    <div class="row suscripciones-container">
+        <div class="col p-0">
+            <div class="list-group">
+                <a class="list-group-item list-group-item-action flex-column align-items-start" *ngFor="let comercio of comercios" (click)="displayCurrentComercio(comercio.id)">
+                    <div class="d-flex w-100 justify-content-between">
+                        <h5 class="mb-1">{{comercio.nombreComercial}}</h5>
+                    </div>
+                    <p class="mb-1">{{comercio.tipo | titlecase}}</p>
+                    <small><i class="fa fa-calendar"></i> Asociado desde: {{comercio.fechaCreacion | date}}</small>
+                </a>
+            </div>
+        </div>
+        <div class="col-md-7 info-section ml-5" *ngIf="currentComercio">
+            <h3 class="info-comercio-title">{{currentComercio.nombreComercial}}</h3>
+            <h5 class="info-comercio-subtitle"><i class="fa fa-building"></i><span class="info-sub">Razón social:</span> {{currentComercio.razonSocial}}</h5>
+            <h5 class="info-comercio-subtitle"><i class="fa fa-id-card"></i><span class="info-sub">Cédula juridíca:</span>  {{currentComercio.cedJuridica}}</h5>
+            <h5 class="info-comercio-subtitle"><i class="fa fa-apple"></i><span class="info-sub">Tipo de comercio:</span>  {{currentComercio.tipo | titlecase}}</h5>
+            <h5 class="info-comercio-subtitle"><i class="fa fa-calendar"></i><span class="info-sub">Asociado desde:</span>  {{currentComercio.fechaCreacion | date}}</h5>
+            <button class="btn btnVerLocales" (click)="verLocales(currentComercio.id)">Ver locales</button>
+            <button class="btn btnSuscribirse" (click)="suscribiriseComercio(currentComercio.id)">Suscribirse</button>
+        </div>
+    </div>
+</div>

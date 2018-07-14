@@ -86,6 +86,7 @@ import { UsuarioRegistroComponent } from './views/usuario-registro/usuario-regis
 import { UsuarioRolesComponent } from './views/usuario-roles/usuario-roles.component';
 import { ValidadorNumeroDirective } from './shared/directives/validador-numero.directive';
 import { EtiquetasConsultarComponent } from './dialogos/etiquetas-consultar/etiquetas-consultar.component';
+import { ComerciosClienteComponent } from './views/comercios-cliente/comercios-cliente.component';
 
 @NgModule({
   imports: [
@@ -171,7 +172,8 @@ import { EtiquetasConsultarComponent } from './dialogos/etiquetas-consultar/etiq
     ConfiguracionComerciosComponent,
     ConfiguracionAplicacionComponent,
     SuscripcionesComercioComponent,
-    EtiquetasConsultarComponent
+    EtiquetasConsultarComponent,
+    ComerciosClienteComponent
   ],
   entryComponents: [
     LoginComponent,
