@@ -1,7 +1,7 @@
+import { CommonAdapterService, JHILocalDate } from '../../shared/services/common-adapter.service';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
-import { CommonAdapterService } from '../../shared/services/common-adapter.service';
 import { Register } from './../../../account/register/register.service';
 import { Router } from '@angular/router';
 import { User } from '../../../shared';
@@ -95,7 +95,5 @@ export class UsuarioRegistroComponent implements OnInit {
       });
       // });
     }
-
   }
-
 }
