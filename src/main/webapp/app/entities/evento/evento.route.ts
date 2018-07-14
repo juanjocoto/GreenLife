@@ -1,14 +1,14 @@
-import { Routes } from '@angular/router';
-
-import { UserRouteAccessService } from '../../shared';
+import { CMS_PATH } from './../../app.constants';
 import { EventoComponent } from './evento.component';
+import { EventoDeletePopupComponent } from './evento-delete-dialog.component';
 import { EventoDetailComponent } from './evento-detail.component';
 import { EventoPopupComponent } from './evento-dialog.component';
-import { EventoDeletePopupComponent } from './evento-delete-dialog.component';
+import { Routes } from '@angular/router';
+import { UserRouteAccessService } from '../../shared';
 
 export const eventoRoute: Routes = [
     {
-        path: 'evento',
+        path: CMS_PATH + '/evento',
         component: EventoComponent,
         data: {
             authorities: ['ROLE_USER'],
@@ -16,7 +16,7 @@ export const eventoRoute: Routes = [
         },
         canActivate: [UserRouteAccessService]
     }, {
-        path: 'evento/:id',
+        path: CMS_PATH + '/evento/:id',
         component: EventoDetailComponent,
         data: {
             authorities: ['ROLE_USER'],

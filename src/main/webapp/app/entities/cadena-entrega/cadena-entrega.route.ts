@@ -1,14 +1,14 @@
-import { Routes } from '@angular/router';
-
-import { UserRouteAccessService } from '../../shared';
+import { CMS_PATH } from './../../app.constants';
 import { CadenaEntregaComponent } from './cadena-entrega.component';
+import { CadenaEntregaDeletePopupComponent } from './cadena-entrega-delete-dialog.component';
 import { CadenaEntregaDetailComponent } from './cadena-entrega-detail.component';
 import { CadenaEntregaPopupComponent } from './cadena-entrega-dialog.component';
-import { CadenaEntregaDeletePopupComponent } from './cadena-entrega-delete-dialog.component';
+import { Routes } from '@angular/router';
+import { UserRouteAccessService } from '../../shared';
 
 export const cadenaEntregaRoute: Routes = [
     {
-        path: 'cadena-entrega',
+        path: CMS_PATH + '/cadena-entrega',
         component: CadenaEntregaComponent,
         data: {
             authorities: ['ROLE_USER'],
@@ -16,7 +16,7 @@ export const cadenaEntregaRoute: Routes = [
         },
         canActivate: [UserRouteAccessService]
     }, {
-        path: 'cadena-entrega/:id',
+        path: CMS_PATH + '/cadena-entrega/:id',
         component: CadenaEntregaDetailComponent,
         data: {
             authorities: ['ROLE_USER'],

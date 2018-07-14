@@ -1,14 +1,14 @@
-import { Routes } from '@angular/router';
-
-import { UserRouteAccessService } from '../../shared';
+import { CMS_PATH } from './../../app.constants';
 import { ContratoComponent } from './contrato.component';
+import { ContratoDeletePopupComponent } from './contrato-delete-dialog.component';
 import { ContratoDetailComponent } from './contrato-detail.component';
 import { ContratoPopupComponent } from './contrato-dialog.component';
-import { ContratoDeletePopupComponent } from './contrato-delete-dialog.component';
+import { Routes } from '@angular/router';
+import { UserRouteAccessService } from '../../shared';
 
 export const contratoRoute: Routes = [
     {
-        path: 'contrato',
+        path: CMS_PATH + '/contrato',
         component: ContratoComponent,
         data: {
             authorities: ['ROLE_USER'],
@@ -16,7 +16,7 @@ export const contratoRoute: Routes = [
         },
         canActivate: [UserRouteAccessService]
     }, {
-        path: 'contrato/:id',
+        path: CMS_PATH + '/contrato/:id',
         component: ContratoDetailComponent,
         data: {
             authorities: ['ROLE_USER'],

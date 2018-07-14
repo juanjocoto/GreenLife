@@ -17,8 +17,6 @@ import { GreenlifeSharedModule } from '../../shared';
 import { RouterModule } from '@angular/router';
 import { cadenaEntregaRoute } from './../cadena-entrega/cadena-entrega.route';
 
-cadenaEntregaRoute.forEach((a) => a.path = `${CMS_PATH}/${a.path}`);
-
 const ENTITY_STATES = [
     ...cadenaOrdenRecoleccionRoute,
     ...cadenaOrdenRecoleccionPopupRoute,

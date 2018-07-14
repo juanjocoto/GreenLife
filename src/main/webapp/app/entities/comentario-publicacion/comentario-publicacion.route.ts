@@ -1,14 +1,14 @@
-import { Routes } from '@angular/router';
-
-import { UserRouteAccessService } from '../../shared';
+import { CMS_PATH } from './../../app.constants';
 import { ComentarioPublicacionComponent } from './comentario-publicacion.component';
+import { ComentarioPublicacionDeletePopupComponent } from './comentario-publicacion-delete-dialog.component';
 import { ComentarioPublicacionDetailComponent } from './comentario-publicacion-detail.component';
 import { ComentarioPublicacionPopupComponent } from './comentario-publicacion-dialog.component';
-import { ComentarioPublicacionDeletePopupComponent } from './comentario-publicacion-delete-dialog.component';
+import { Routes } from '@angular/router';
+import { UserRouteAccessService } from '../../shared';
 
 export const comentarioPublicacionRoute: Routes = [
     {
-        path: 'comentario-publicacion',
+        path: CMS_PATH + '/comentario-publicacion',
         component: ComentarioPublicacionComponent,
         data: {
             authorities: ['ROLE_USER'],
@@ -16,7 +16,7 @@ export const comentarioPublicacionRoute: Routes = [
         },
         canActivate: [UserRouteAccessService]
     }, {
-        path: 'comentario-publicacion/:id',
+        path: CMS_PATH + '/comentario-publicacion/:id',
         component: ComentarioPublicacionDetailComponent,
         data: {
             authorities: ['ROLE_USER'],

@@ -1,14 +1,14 @@
-import { Routes } from '@angular/router';
-
-import { UserRouteAccessService } from '../../shared';
+import { CMS_PATH } from './../../app.constants';
 import { PagoComponent } from './pago.component';
+import { PagoDeletePopupComponent } from './pago-delete-dialog.component';
 import { PagoDetailComponent } from './pago-detail.component';
 import { PagoPopupComponent } from './pago-dialog.component';
-import { PagoDeletePopupComponent } from './pago-delete-dialog.component';
+import { Routes } from '@angular/router';
+import { UserRouteAccessService } from '../../shared';
 
 export const pagoRoute: Routes = [
     {
-        path: 'pago',
+        path: CMS_PATH + '/pago',
         component: PagoComponent,
         data: {
             authorities: ['ROLE_USER'],
@@ -16,7 +16,7 @@ export const pagoRoute: Routes = [
         },
         canActivate: [UserRouteAccessService]
     }, {
-        path: 'pago/:id',
+        path: CMS_PATH + '/pago/:id',
         component: PagoDetailComponent,
         data: {
             authorities: ['ROLE_USER'],

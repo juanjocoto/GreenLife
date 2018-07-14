@@ -1,14 +1,14 @@
-import { Routes } from '@angular/router';
-
-import { UserRouteAccessService } from '../../shared';
+import { CMS_PATH } from './../../app.constants';
 import { ProductoComponent } from './producto.component';
+import { ProductoDeletePopupComponent } from './producto-delete-dialog.component';
 import { ProductoDetailComponent } from './producto-detail.component';
 import { ProductoPopupComponent } from './producto-dialog.component';
-import { ProductoDeletePopupComponent } from './producto-delete-dialog.component';
+import { Routes } from '@angular/router';
+import { UserRouteAccessService } from '../../shared';
 
 export const productoRoute: Routes = [
     {
-        path: 'producto',
+        path: CMS_PATH + '/producto',
         component: ProductoComponent,
         data: {
             authorities: ['ROLE_USER'],
@@ -16,7 +16,7 @@ export const productoRoute: Routes = [
         },
         canActivate: [UserRouteAccessService]
     }, {
-        path: 'producto/:id',
+        path: CMS_PATH + '/producto/:id',
         component: ProductoDetailComponent,
         data: {
             authorities: ['ROLE_USER'],

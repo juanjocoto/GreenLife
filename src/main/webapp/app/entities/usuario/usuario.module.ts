@@ -17,8 +17,6 @@ import { GreenlifeAdminModule } from '../../admin/admin.module';
 import { GreenlifeSharedModule } from '../../shared';
 import { RouterModule } from '@angular/router';
 
-usuarioRoute.forEach((a) => a.path = `${CMS_PATH}/${a.path}`);
-
 const ENTITY_STATES = [
     ...usuarioRoute,
     ...usuarioPopupRoute,

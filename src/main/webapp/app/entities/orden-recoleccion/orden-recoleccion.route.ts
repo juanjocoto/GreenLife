@@ -1,14 +1,14 @@
-import { Routes } from '@angular/router';
-
-import { UserRouteAccessService } from '../../shared';
+import { CMS_PATH } from './../../app.constants';
 import { OrdenRecoleccionComponent } from './orden-recoleccion.component';
+import { OrdenRecoleccionDeletePopupComponent } from './orden-recoleccion-delete-dialog.component';
 import { OrdenRecoleccionDetailComponent } from './orden-recoleccion-detail.component';
 import { OrdenRecoleccionPopupComponent } from './orden-recoleccion-dialog.component';
-import { OrdenRecoleccionDeletePopupComponent } from './orden-recoleccion-delete-dialog.component';
+import { Routes } from '@angular/router';
+import { UserRouteAccessService } from '../../shared';
 
 export const ordenRecoleccionRoute: Routes = [
     {
-        path: 'orden-recoleccion',
+        path: CMS_PATH + '/orden-recoleccion',
         component: OrdenRecoleccionComponent,
         data: {
             authorities: ['ROLE_USER'],
@@ -16,7 +16,7 @@ export const ordenRecoleccionRoute: Routes = [
         },
         canActivate: [UserRouteAccessService]
     }, {
-        path: 'orden-recoleccion/:id',
+        path: CMS_PATH + '/orden-recoleccion/:id',
         component: OrdenRecoleccionDetailComponent,
         data: {
             authorities: ['ROLE_USER'],

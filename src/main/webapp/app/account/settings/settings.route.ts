@@ -1,10 +1,10 @@
+import { CMS_PATH } from './../../app.constants';
 import { Route } from '@angular/router';
-
-import { UserRouteAccessService } from '../../shared';
 import { SettingsComponent } from './settings.component';
+import { UserRouteAccessService } from '../../shared';
 
 export const settingsRoute: Route = {
-    path: 'settings',
+    path: CMS_PATH + '/settings',
     component: SettingsComponent,
     data: {
         authorities: ['ROLE_USER'],

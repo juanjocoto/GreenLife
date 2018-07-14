@@ -1,14 +1,14 @@
-import { Routes } from '@angular/router';
-
-import { UserRouteAccessService } from '../../shared';
+import { CMS_PATH } from './../../app.constants';
 import { LineaEntregaComponent } from './linea-entrega.component';
+import { LineaEntregaDeletePopupComponent } from './linea-entrega-delete-dialog.component';
 import { LineaEntregaDetailComponent } from './linea-entrega-detail.component';
 import { LineaEntregaPopupComponent } from './linea-entrega-dialog.component';
-import { LineaEntregaDeletePopupComponent } from './linea-entrega-delete-dialog.component';
+import { Routes } from '@angular/router';
+import { UserRouteAccessService } from '../../shared';
 
 export const lineaEntregaRoute: Routes = [
     {
-        path: 'linea-entrega',
+        path: CMS_PATH + '/linea-entrega',
         component: LineaEntregaComponent,
         data: {
             authorities: ['ROLE_USER'],
@@ -16,7 +16,7 @@ export const lineaEntregaRoute: Routes = [
         },
         canActivate: [UserRouteAccessService]
     }, {
-        path: 'linea-entrega/:id',
+        path: CMS_PATH + '/linea-entrega/:id',
         component: LineaEntregaDetailComponent,
         data: {
             authorities: ['ROLE_USER'],

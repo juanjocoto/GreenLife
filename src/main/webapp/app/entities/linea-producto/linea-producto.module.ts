@@ -17,8 +17,6 @@ import { GreenlifeSharedModule } from '../../shared';
 import { RouterModule } from '@angular/router';
 import { lineaEntregaRoute } from '../linea-entrega';
 
-lineaEntregaRoute.forEach((a) => a.path = `${CMS_PATH}/${a.path}`);
-
 const ENTITY_STATES = [
     ...lineaProductoRoute,
     ...lineaProductoPopupRoute,

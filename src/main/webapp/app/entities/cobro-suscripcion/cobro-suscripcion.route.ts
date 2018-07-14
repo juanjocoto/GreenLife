@@ -1,14 +1,14 @@
-import { Routes } from '@angular/router';
-
-import { UserRouteAccessService } from '../../shared';
+import { CMS_PATH } from './../../app.constants';
 import { CobroSuscripcionComponent } from './cobro-suscripcion.component';
+import { CobroSuscripcionDeletePopupComponent } from './cobro-suscripcion-delete-dialog.component';
 import { CobroSuscripcionDetailComponent } from './cobro-suscripcion-detail.component';
 import { CobroSuscripcionPopupComponent } from './cobro-suscripcion-dialog.component';
-import { CobroSuscripcionDeletePopupComponent } from './cobro-suscripcion-delete-dialog.component';
+import { Routes } from '@angular/router';
+import { UserRouteAccessService } from '../../shared';
 
 export const cobroSuscripcionRoute: Routes = [
     {
-        path: 'cobro-suscripcion',
+        path: CMS_PATH + '/cobro-suscripcion',
         component: CobroSuscripcionComponent,
         data: {
             authorities: ['ROLE_USER'],
@@ -16,7 +16,7 @@ export const cobroSuscripcionRoute: Routes = [
         },
         canActivate: [UserRouteAccessService]
     }, {
-        path: 'cobro-suscripcion/:id',
+        path: CMS_PATH + '/cobro-suscripcion/:id',
         component: CobroSuscripcionDetailComponent,
         data: {
             authorities: ['ROLE_USER'],

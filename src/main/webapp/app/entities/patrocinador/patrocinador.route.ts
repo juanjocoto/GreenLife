@@ -1,14 +1,14 @@
-import { Routes } from '@angular/router';
-
-import { UserRouteAccessService } from '../../shared';
+import { CMS_PATH } from './../../app.constants';
 import { PatrocinadorComponent } from './patrocinador.component';
+import { PatrocinadorDeletePopupComponent } from './patrocinador-delete-dialog.component';
 import { PatrocinadorDetailComponent } from './patrocinador-detail.component';
 import { PatrocinadorPopupComponent } from './patrocinador-dialog.component';
-import { PatrocinadorDeletePopupComponent } from './patrocinador-delete-dialog.component';
+import { Routes } from '@angular/router';
+import { UserRouteAccessService } from '../../shared';
 
 export const patrocinadorRoute: Routes = [
     {
-        path: 'patrocinador',
+        path: CMS_PATH + '/patrocinador',
         component: PatrocinadorComponent,
         data: {
             authorities: ['ROLE_USER'],
@@ -16,7 +16,7 @@ export const patrocinadorRoute: Routes = [
         },
         canActivate: [UserRouteAccessService]
     }, {
-        path: 'patrocinador/:id',
+        path: CMS_PATH + '/patrocinador/:id',
         component: PatrocinadorDetailComponent,
         data: {
             authorities: ['ROLE_USER'],

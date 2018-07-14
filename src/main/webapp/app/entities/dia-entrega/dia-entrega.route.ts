@@ -1,14 +1,14 @@
-import { Routes } from '@angular/router';
-
-import { UserRouteAccessService } from '../../shared';
+import { CMS_PATH } from './../../app.constants';
 import { DiaEntregaComponent } from './dia-entrega.component';
+import { DiaEntregaDeletePopupComponent } from './dia-entrega-delete-dialog.component';
 import { DiaEntregaDetailComponent } from './dia-entrega-detail.component';
 import { DiaEntregaPopupComponent } from './dia-entrega-dialog.component';
-import { DiaEntregaDeletePopupComponent } from './dia-entrega-delete-dialog.component';
+import { Routes } from '@angular/router';
+import { UserRouteAccessService } from '../../shared';
 
 export const diaEntregaRoute: Routes = [
     {
-        path: 'dia-entrega',
+        path: CMS_PATH + '/dia-entrega',
         component: DiaEntregaComponent,
         data: {
             authorities: ['ROLE_USER'],
@@ -16,7 +16,7 @@ export const diaEntregaRoute: Routes = [
         },
         canActivate: [UserRouteAccessService]
     }, {
-        path: 'dia-entrega/:id',
+        path: CMS_PATH + '/dia-entrega/:id',
         component: DiaEntregaDetailComponent,
         data: {
             authorities: ['ROLE_USER'],

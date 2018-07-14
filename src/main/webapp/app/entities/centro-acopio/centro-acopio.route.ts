@@ -1,14 +1,14 @@
-import { Routes } from '@angular/router';
-
-import { UserRouteAccessService } from '../../shared';
+import { CMS_PATH } from './../../app.constants';
 import { CentroAcopioComponent } from './centro-acopio.component';
+import { CentroAcopioDeletePopupComponent } from './centro-acopio-delete-dialog.component';
 import { CentroAcopioDetailComponent } from './centro-acopio-detail.component';
 import { CentroAcopioPopupComponent } from './centro-acopio-dialog.component';
-import { CentroAcopioDeletePopupComponent } from './centro-acopio-delete-dialog.component';
+import { Routes } from '@angular/router';
+import { UserRouteAccessService } from '../../shared';
 
 export const centroAcopioRoute: Routes = [
     {
-        path: 'centro-acopio',
+        path: CMS_PATH + '/centro-acopio',
         component: CentroAcopioComponent,
         data: {
             authorities: ['ROLE_USER'],
@@ -16,7 +16,7 @@ export const centroAcopioRoute: Routes = [
         },
         canActivate: [UserRouteAccessService]
     }, {
-        path: 'centro-acopio/:id',
+        path: CMS_PATH + '/centro-acopio/:id',
         component: CentroAcopioDetailComponent,
         data: {
             authorities: ['ROLE_USER'],

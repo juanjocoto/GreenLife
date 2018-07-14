@@ -1,14 +1,14 @@
+import { CMS_PATH } from './../../app.constants';
 import { Routes } from '@angular/router';
-
-import { UserRouteAccessService } from '../../shared';
 import { SuscripcionComponent } from './suscripcion.component';
+import { SuscripcionDeletePopupComponent } from './suscripcion-delete-dialog.component';
 import { SuscripcionDetailComponent } from './suscripcion-detail.component';
 import { SuscripcionPopupComponent } from './suscripcion-dialog.component';
-import { SuscripcionDeletePopupComponent } from './suscripcion-delete-dialog.component';
+import { UserRouteAccessService } from '../../shared';
 
 export const suscripcionRoute: Routes = [
     {
-        path: 'suscripcion',
+        path: CMS_PATH + '/suscripcion',
         component: SuscripcionComponent,
         data: {
             authorities: ['ROLE_USER'],
@@ -16,7 +16,7 @@ export const suscripcionRoute: Routes = [
         },
         canActivate: [UserRouteAccessService]
     }, {
-        path: 'suscripcion/:id',
+        path: CMS_PATH + '/suscripcion/:id',
         component: SuscripcionDetailComponent,
         data: {
             authorities: ['ROLE_USER'],

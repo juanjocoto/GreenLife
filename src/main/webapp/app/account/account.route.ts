@@ -23,8 +23,6 @@ const ACCOUNT_ROUTES = [
     settingsRoute
 ];
 
-ACCOUNT_ROUTES.forEach((a) => a.path = `${CMS_PATH}/${a.path}`);
-
 export const accountState: Routes = [{
     path: '',
     children: ACCOUNT_ROUTES

@@ -1,3 +1,4 @@
+import { CMS_PATH } from './../../app.constants';
 import { Routes } from '@angular/router';
 import { UserRouteAccessService } from '../../shared';
 import { UsuarioComponent } from './usuario.component';
@@ -7,7 +8,7 @@ import { UsuarioPopupComponent } from './usuario-dialog.component';
 
 export const usuarioRoute: Routes = [
     {
-        path: 'usuario',
+        path: CMS_PATH + '/usuario',
         component: UsuarioComponent,
         data: {
             authorities: ['ROLE_USER'],
@@ -15,7 +16,7 @@ export const usuarioRoute: Routes = [
         },
         canActivate: [UserRouteAccessService]
     }, {
-        path: 'usuario/:id',
+        path: CMS_PATH + '/usuario/:id',
         component: UsuarioDetailComponent,
         data: {
             authorities: ['ROLE_USER'],

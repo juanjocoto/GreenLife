@@ -16,8 +16,6 @@ import { CMS_PATH } from '../../app.constants';
 import { GreenlifeSharedModule } from '../../shared';
 import { RouterModule } from '@angular/router';
 
-resenaComercioRoute.forEach((a) => a.path = `${CMS_PATH}/${a.path}`);
-
 const ENTITY_STATES = [
     ...resenaComercioRoute,
     ...resenaComercioPopupRoute,

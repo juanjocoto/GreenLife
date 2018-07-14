@@ -1,9 +1,9 @@
+import { CMS_PATH } from './../../app.constants';
+import { RegisterComponent } from './register.component';
 import { Route } from '@angular/router';
 
-import { RegisterComponent } from './register.component';
-
 export const registerRoute: Route = {
-    path: 'register',
+    path: CMS_PATH + '/register',
     component: RegisterComponent,
     data: {
         authorities: [],

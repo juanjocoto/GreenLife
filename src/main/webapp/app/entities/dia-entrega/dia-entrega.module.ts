@@ -16,8 +16,6 @@ import { CMS_PATH } from '../../app.constants';
 import { GreenlifeSharedModule } from '../../shared';
 import { RouterModule } from '@angular/router';
 
-diaEntregaRoute.forEach((a) => a.path = `${CMS_PATH}/${a.path}`);
-
 const ENTITY_STATES = [
     ...diaEntregaRoute,
     ...diaEntregaPopupRoute,

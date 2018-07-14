@@ -1,14 +1,14 @@
-import { Routes } from '@angular/router';
-
-import { UserRouteAccessService } from '../../shared';
+import { CMS_PATH } from './../../app.constants';
 import { EtiquetaComponent } from './etiqueta.component';
+import { EtiquetaDeletePopupComponent } from './etiqueta-delete-dialog.component';
 import { EtiquetaDetailComponent } from './etiqueta-detail.component';
 import { EtiquetaPopupComponent } from './etiqueta-dialog.component';
-import { EtiquetaDeletePopupComponent } from './etiqueta-delete-dialog.component';
+import { Routes } from '@angular/router';
+import { UserRouteAccessService } from '../../shared';
 
 export const etiquetaRoute: Routes = [
     {
-        path: 'etiqueta',
+        path: CMS_PATH + '/etiqueta',
         component: EtiquetaComponent,
         data: {
             authorities: ['ROLE_USER'],
@@ -16,7 +16,7 @@ export const etiquetaRoute: Routes = [
         },
         canActivate: [UserRouteAccessService]
     }, {
-        path: 'etiqueta/:id',
+        path: CMS_PATH + '/etiqueta/:id',
         component: EtiquetaDetailComponent,
         data: {
             authorities: ['ROLE_USER'],

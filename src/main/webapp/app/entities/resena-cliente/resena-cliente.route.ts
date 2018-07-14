@@ -1,14 +1,14 @@
-import { Routes } from '@angular/router';
-
-import { UserRouteAccessService } from '../../shared';
+import { CMS_PATH } from './../../app.constants';
 import { ResenaClienteComponent } from './resena-cliente.component';
+import { ResenaClienteDeletePopupComponent } from './resena-cliente-delete-dialog.component';
 import { ResenaClienteDetailComponent } from './resena-cliente-detail.component';
 import { ResenaClientePopupComponent } from './resena-cliente-dialog.component';
-import { ResenaClienteDeletePopupComponent } from './resena-cliente-delete-dialog.component';
+import { Routes } from '@angular/router';
+import { UserRouteAccessService } from '../../shared';
 
 export const resenaClienteRoute: Routes = [
     {
-        path: 'resena-cliente',
+        path: CMS_PATH + '/resena-cliente',
         component: ResenaClienteComponent,
         data: {
             authorities: ['ROLE_USER'],
@@ -16,7 +16,7 @@ export const resenaClienteRoute: Routes = [
         },
         canActivate: [UserRouteAccessService]
     }, {
-        path: 'resena-cliente/:id',
+        path: CMS_PATH + '/resena-cliente/:id',
         component: ResenaClienteDetailComponent,
         data: {
             authorities: ['ROLE_USER'],

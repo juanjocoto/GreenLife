@@ -1,11 +1,11 @@
+import { CMS_PATH } from './../../app.constants';
 import { Route } from '@angular/router';
-
-import { UserRouteAccessService } from '../../shared';
-import { SocialRegisterComponent } from './social-register.component';
 import { SocialAuthComponent } from './social-auth.component';
+import { SocialRegisterComponent } from './social-register.component';
+import { UserRouteAccessService } from '../../shared';
 
 export const socialRegisterRoute: Route = {
-    path: 'social-register/:provider?{success:boolean}',
+    path: CMS_PATH + '/social-register/:provider?{success:boolean}',
     component: SocialRegisterComponent,
     data: {
         authorities: [],

@@ -1,14 +1,14 @@
+import { CMS_PATH } from './../../app.constants';
 import { Routes } from '@angular/router';
-
-import { UserRouteAccessService } from '../../shared';
 import { TipoContratoComponent } from './tipo-contrato.component';
+import { TipoContratoDeletePopupComponent } from './tipo-contrato-delete-dialog.component';
 import { TipoContratoDetailComponent } from './tipo-contrato-detail.component';
 import { TipoContratoPopupComponent } from './tipo-contrato-dialog.component';
-import { TipoContratoDeletePopupComponent } from './tipo-contrato-delete-dialog.component';
+import { UserRouteAccessService } from '../../shared';
 
 export const tipoContratoRoute: Routes = [
     {
-        path: 'tipo-contrato',
+        path: CMS_PATH + '/tipo-contrato',
         component: TipoContratoComponent,
         data: {
             authorities: ['ROLE_USER'],
@@ -16,7 +16,7 @@ export const tipoContratoRoute: Routes = [
         },
         canActivate: [UserRouteAccessService]
     }, {
-        path: 'tipo-contrato/:id',
+        path: CMS_PATH + '/tipo-contrato/:id',
         component: TipoContratoDetailComponent,
         data: {
             authorities: ['ROLE_USER'],

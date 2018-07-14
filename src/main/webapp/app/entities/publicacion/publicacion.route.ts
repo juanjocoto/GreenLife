@@ -1,14 +1,14 @@
-import { Routes } from '@angular/router';
-
-import { UserRouteAccessService } from '../../shared';
+import { CMS_PATH } from './../../app.constants';
 import { PublicacionComponent } from './publicacion.component';
+import { PublicacionDeletePopupComponent } from './publicacion-delete-dialog.component';
 import { PublicacionDetailComponent } from './publicacion-detail.component';
 import { PublicacionPopupComponent } from './publicacion-dialog.component';
-import { PublicacionDeletePopupComponent } from './publicacion-delete-dialog.component';
+import { Routes } from '@angular/router';
+import { UserRouteAccessService } from '../../shared';
 
 export const publicacionRoute: Routes = [
     {
-        path: 'publicacion',
+        path: CMS_PATH + '/publicacion',
         component: PublicacionComponent,
         data: {
             authorities: ['ROLE_USER'],
@@ -16,7 +16,7 @@ export const publicacionRoute: Routes = [
         },
         canActivate: [UserRouteAccessService]
     }, {
-        path: 'publicacion/:id',
+        path: CMS_PATH + '/publicacion/:id',
         component: PublicacionDetailComponent,
         data: {
             authorities: ['ROLE_USER'],

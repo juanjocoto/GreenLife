@@ -1,14 +1,14 @@
-import { Routes } from '@angular/router';
-
-import { UserRouteAccessService } from '../../shared';
+import { CMS_PATH } from './../../app.constants';
 import { FotografiaComponent } from './fotografia.component';
+import { FotografiaDeletePopupComponent } from './fotografia-delete-dialog.component';
 import { FotografiaDetailComponent } from './fotografia-detail.component';
 import { FotografiaPopupComponent } from './fotografia-dialog.component';
-import { FotografiaDeletePopupComponent } from './fotografia-delete-dialog.component';
+import { Routes } from '@angular/router';
+import { UserRouteAccessService } from '../../shared';
 
 export const fotografiaRoute: Routes = [
     {
-        path: 'fotografia',
+        path: CMS_PATH + '/fotografia',
         component: FotografiaComponent,
         data: {
             authorities: ['ROLE_USER'],
@@ -16,7 +16,7 @@ export const fotografiaRoute: Routes = [
         },
         canActivate: [UserRouteAccessService]
     }, {
-        path: 'fotografia/:id',
+        path: CMS_PATH + '/fotografia/:id',
         component: FotografiaDetailComponent,
         data: {
             authorities: ['ROLE_USER'],

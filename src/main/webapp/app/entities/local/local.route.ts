@@ -1,14 +1,14 @@
-import { Routes } from '@angular/router';
-
-import { UserRouteAccessService } from '../../shared';
+import { CMS_PATH } from './../../app.constants';
 import { LocalComponent } from './local.component';
+import { LocalDeletePopupComponent } from './local-delete-dialog.component';
 import { LocalDetailComponent } from './local-detail.component';
 import { LocalPopupComponent } from './local-dialog.component';
-import { LocalDeletePopupComponent } from './local-delete-dialog.component';
+import { Routes } from '@angular/router';
+import { UserRouteAccessService } from '../../shared';
 
 export const localRoute: Routes = [
     {
-        path: 'local',
+        path: CMS_PATH + '/local',
         component: LocalComponent,
         data: {
             authorities: ['ROLE_USER'],
@@ -16,7 +16,7 @@ export const localRoute: Routes = [
         },
         canActivate: [UserRouteAccessService]
     }, {
-        path: 'local/:id',
+        path: CMS_PATH + '/local/:id',
         component: LocalDetailComponent,
         data: {
             authorities: ['ROLE_USER'],

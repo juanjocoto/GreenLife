@@ -1,14 +1,14 @@
-import { Routes } from '@angular/router';
-
-import { UserRouteAccessService } from '../../shared';
+import { CMS_PATH } from './../../app.constants';
 import { CobroMensualidadComponent } from './cobro-mensualidad.component';
+import { CobroMensualidadDeletePopupComponent } from './cobro-mensualidad-delete-dialog.component';
 import { CobroMensualidadDetailComponent } from './cobro-mensualidad-detail.component';
 import { CobroMensualidadPopupComponent } from './cobro-mensualidad-dialog.component';
-import { CobroMensualidadDeletePopupComponent } from './cobro-mensualidad-delete-dialog.component';
+import { Routes } from '@angular/router';
+import { UserRouteAccessService } from '../../shared';
 
 export const cobroMensualidadRoute: Routes = [
     {
-        path: 'cobro-mensualidad',
+        path: CMS_PATH + '/cobro-mensualidad',
         component: CobroMensualidadComponent,
         data: {
             authorities: ['ROLE_USER'],
@@ -16,7 +16,7 @@ export const cobroMensualidadRoute: Routes = [
         },
         canActivate: [UserRouteAccessService]
     }, {
-        path: 'cobro-mensualidad/:id',
+        path: CMS_PATH + '/cobro-mensualidad/:id',
         component: CobroMensualidadDetailComponent,
         data: {
             authorities: ['ROLE_USER'],

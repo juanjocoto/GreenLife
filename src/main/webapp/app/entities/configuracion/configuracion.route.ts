@@ -1,14 +1,14 @@
-import { Routes } from '@angular/router';
-
-import { UserRouteAccessService } from '../../shared';
+import { CMS_PATH } from './../../app.constants';
 import { ConfiguracionComponent } from './configuracion.component';
+import { ConfiguracionDeletePopupComponent } from './configuracion-delete-dialog.component';
 import { ConfiguracionDetailComponent } from './configuracion-detail.component';
 import { ConfiguracionPopupComponent } from './configuracion-dialog.component';
-import { ConfiguracionDeletePopupComponent } from './configuracion-delete-dialog.component';
+import { Routes } from '@angular/router';
+import { UserRouteAccessService } from '../../shared';
 
 export const configuracionRoute: Routes = [
     {
-        path: 'configuracion',
+        path: `${CMS_PATH}/configuracion`,
         component: ConfiguracionComponent,
         data: {
             authorities: ['ROLE_USER'],
@@ -16,7 +16,7 @@ export const configuracionRoute: Routes = [
         },
         canActivate: [UserRouteAccessService]
     }, {
-        path: 'configuracion/:id',
+        path: `${CMS_PATH}/configuracion:id`,
         component: ConfiguracionDetailComponent,
         data: {
             authorities: ['ROLE_USER'],
