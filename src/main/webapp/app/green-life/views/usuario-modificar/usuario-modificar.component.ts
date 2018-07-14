@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {ActivatedRoute, Router} from '@angular/router';
+import { AccountService } from '../../../shared/auth/account.service';
 import { Observable } from 'rxjs/Rx';
 import {LoginService, User} from '../../../shared';
 import { UserService } from './../../../shared/user/user.service';
@@ -10,6 +11,7 @@ import { MatDialog } from '@angular/material';
 import {MouseEvent} from '@agm/core';
 import {ConfirmacionDialogComponent} from '../../dialogos/confirmacion-dialog/confirmacion-dialog.component';
 import { Location } from '@angular/common';
+import {HttpResponse} from '@angular/common/http';
 
 @Component({
     selector: 'jhi-usuario-modificar',
@@ -41,59 +43,63 @@ export class UsuarioModificarComponent implements OnInit {
         private dialog: MatDialog,
         private loginService: LoginService,
         private router: Router,
-        private location: Location) { }
+        private location: Location,
+        private account: AccountService) { }
 
     ngOnInit() {
-        this.getUser();
+        this.route.params.subscribe((params) => {
+            if (params && params.login) {
+                this.getUser(this.usuarioService.findByUserLogin(params.login), this.userService.find(params.login));
+            } else {
+                this.account.get().subscribe((httpResponse) => {
+                    this.getUser(this.usuarioService.findByUserLogin(httpResponse.body['login']), this.userService.find(httpResponse.body['login']));
+                });
+            }
+        });
     }
 
-    getUser(): void {
-        this.route.params.subscribe((params) => {
-            const usuario = this.usuarioService.findByUserLogin(params.login);
-            const user = this.userService.find(params.login);
+    getUser(observableUsuario: Observable<HttpResponse<Usuario>>, observableUser: Observable<HttpResponse<User>>): void {
+        Observable.zip(observableUsuario, observableUser).subscribe((resul) => {
+            this.usuario = resul[0].body;
+            this.user = resul[1].body;
 
-            Observable.zip(usuario, user).subscribe((resul) => {
-                this.usuario = resul[0].body;
-                this.user = resul[1].body;
+            if (this.usuario.latitud) {
+                this.lat = this.usuario.latitud;
+                this.long = this.usuario.longitud;
+            }
 
-                if (this.usuario.latitud) {
-                    this.lat = this.usuario.latitud;
-                    this.long = this.usuario.longitud;
-                }
-
-                this.formulario = this.formBuilder.group({
-                    apellido: [this.user.lastName, [
-                        Validators.required,
-                    ]],
-                    nombre: [this.user.firstName, [
-                        Validators.required
-                    ]],
-                    fechaNacimiento: [this.usuario.fechaNacimiento, [
-                        Validators.required,
-                    ]],
-                    cedula: [this.usuario.cedula, [
-                        Validators.required,
-                        Validators.minLength(9),
-                        Validators.maxLength(9)
-                    ]],
-                    telefono: [this.usuario.telefono, [
-                        Validators.minLength(8),
-                        Validators.maxLength(8)
-                    ]],
-                    direccion: [this.usuario.direccion, [
-                    ]],
-                    correo: [this.user.email, [
-                        Validators.required,
-                        Validators.email
-                    ]],
-                    latitud: [this.lat, [
-                    ]],
-                    longitud: [this.long, [
-                    ]],
-                    usuario: [this.user.login, [
-                        Validators.required
-                    ]]
-                });
+            this.formulario = this.formBuilder.group({
+                apellido: [this.user.lastName, [
+                    Validators.required,
+                ]],
+                nombre: [this.user.firstName, [
+                    Validators.required
+                ]],
+                fechaNacimiento: [this.usuario.fechaNacimiento, [
+                    Validators.required,
+                ]],
+                cedula: [this.usuario.cedula, [
+                    Validators.required,
+                    Validators.minLength(9),
+                    Validators.maxLength(9)
+                ]],
+                telefono: [this.usuario.telefono, [
+                    Validators.minLength(8),
+                    Validators.maxLength(8)
+                ]],
+                direccion: [this.usuario.direccion, [
+                ]],
+                correo: [this.user.email, [
+                    Validators.required,
+                    Validators.email
+                ]],
+                latitud: [this.lat, [
+                ]],
+                longitud: [this.long, [
+                ]],
+                usuario: [this.user.login, [
+                    Validators.required
+                ]]
             });
         });
     }

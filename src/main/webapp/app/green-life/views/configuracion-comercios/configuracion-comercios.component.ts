@@ -12,6 +12,7 @@ import {MatDialog, MatSnackBar} from '@angular/material';
 import {ComerciosRegistroComponent} from '../../dialogos/comercios-registro/comercios-registro.component';
 import {ConfirmacionDialogComponent} from '../../dialogos/confirmacion-dialog/confirmacion-dialog.component';
 import {EtiquetasConsultarComponent} from '../../dialogos/etiquetas-consultar/etiquetas-consultar.component';
+import {AccountService} from '../../../shared/auth/account.service';
 
 @Component({
   selector: 'jhi-configuracion-comercios',
@@ -33,30 +34,32 @@ export class ConfiguracionComerciosComponent implements OnInit {
       private userService: UserService,
       private usuarioService: UsuarioService,
       private matDialog: MatDialog,
-      private matSnackBar: MatSnackBar) {}
+      private matSnackBar: MatSnackBar,
+      private account: AccountService) {}
 
   ngOnInit() {
-      this.getComercios();
+      this.route.params.subscribe((params) => {
+          if (params && params.login) {
+              this.getComercios(this.usuarioService.findByUserLogin(params.login), this.userService.find(params.login));
+          } else {
+              this.account.get().subscribe((httpResponse) => {
+                  this.getComercios(this.usuarioService.findByUserLogin(httpResponse.body['login']), this.userService.find(httpResponse.body['login']));
+              });
+          }
+      });
   }
 
-  getComercios(): void {
-      this.route.params.subscribe((params) => {
+  getComercios(observableUsuario: Observable<HttpResponse<Usuario>>, observableUser: Observable<HttpResponse<User>>): void {
+      Observable.zip(observableUsuario, observableUser).subscribe((resul) => {
+          this.usuario = resul[0].body;
+          this.user = resul[1].body;
 
-          const usuario = this.usuarioService.findByUserLogin(params.login);
-          const user = this.userService.find(params.login);
-
-          Observable.zip(usuario, user).subscribe((resul) => {
-              this.usuario = resul[0].body;
-              this.user = resul[1].body;
-
-              console.log(this.usuario.id);
-              this.comercioService.findComerciosByDueno(this.usuario.id).subscribe((comercioResponse: HttpResponse<Comercio[]>) => {
-                    for (const index of comercioResponse.body) {
-                        this.comercios.push({
-                            comercio: index
-                        });
-                    }
-                });
+          this.comercioService.findComerciosByDueno(this.usuario.id).subscribe((comercioResponse: HttpResponse<Comercio[]>) => {
+              for (const index of comercioResponse.body) {
+                  this.comercios.push({
+                      comercio: index
+                  });
+              }
           });
       });
   }
