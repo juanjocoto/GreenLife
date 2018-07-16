@@ -38,7 +38,7 @@
                 <constraints nullable="false" />
             </column>
 
-            <column name="latitude" type="double">
+            <column name="longitud" type="double">
                 <constraints nullable="false" />
             </column>
 

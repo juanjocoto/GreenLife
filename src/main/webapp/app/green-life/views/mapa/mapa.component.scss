@@ -1,0 +1,12 @@
+$menuBar: 57px;
+$footer: 74px;
+$marginBottom: 20px;
+$marginTop: 20px;
+
+.container{
+    // margin-top: $marginTop;
+}
+agm-map {
+    width: 100%;
+    height: calc(100vh - 57px - 74px - 20px);
+}

@@ -1,15 +1,16 @@
+import {ActivatedRoute, Router} from '@angular/router';
+import {Comercio, ComercioService} from '../../../entities/comercio';
 import {Component, OnInit} from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
-import {HttpResponse} from '@angular/common/http';
-import {ActivatedRoute, Router} from '@angular/router';
-import {MouseEvent} from '@agm/core';
-import {CommonAdapterService} from '../../shared/services/common-adapter.service';
-import {CargaImagenesComponent} from '../../dialogos/carga-imagenes/carga-imagenes.component';
-import {Local, LocalService} from '../../../entities/local';
-import {Comercio, ComercioService} from '../../../entities/comercio';
 import {Fotografia, FotografiaService} from '../../../entities/fotografia';
-import {SERVER_API_URL} from '../../../app.constants';
+import {Local, LocalService} from '../../../entities/local';
+
+import {CargaImagenesComponent} from '../../dialogos/carga-imagenes/carga-imagenes.component';
+import {CommonAdapterService} from '../../shared/services/common-adapter.service';
+import {HttpResponse} from '@angular/common/http';
 import {MatDialog} from '@angular/material';
+import {MouseEvent} from '@agm/core';
+import {SERVER_API_URL} from '../../../app.constants';
 
 @Component({
     selector: 'jhi-local-registro',
@@ -87,7 +88,7 @@ export class LocalRegistroComponent implements OnInit {
             this.formLocales.get('horaCierre').value
         );
         this.newLocal.latitud = this.marker.lat;
-        this.newLocal.latitude = this.marker.long;
+        this.newLocal.longitud = this.marker.long;
         this.newLocal.comercioId = this.comercio.id;
         this.newLocal.comercioRazonSocial = this.comercio.razonSocial;
 

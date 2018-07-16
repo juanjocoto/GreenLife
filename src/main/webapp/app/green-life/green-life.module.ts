@@ -88,6 +88,7 @@ import { ValidadorNumeroDirective } from './shared/directives/validador-numero.d
 import { EtiquetasConsultarComponent } from './dialogos/etiquetas-consultar/etiquetas-consultar.component';
 import { ComerciosClienteComponent } from './views/comercios-cliente/comercios-cliente.component';
 import { ResenaComponent } from './dialogos/resena/resena.component';
+import { MapaComponent } from './views/mapa/mapa.component';
 
 @NgModule({
   imports: [
@@ -175,7 +176,8 @@ import { ResenaComponent } from './dialogos/resena/resena.component';
     SuscripcionesComercioComponent,
     EtiquetasConsultarComponent,
     ComerciosClienteComponent,
-    ResenaComponent
+    ResenaComponent,
+    MapaComponent
   ],
   entryComponents: [
     LoginComponent,

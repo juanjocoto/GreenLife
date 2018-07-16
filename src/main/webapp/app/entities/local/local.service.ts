@@ -1,11 +1,10 @@
-import { Injectable } from '@angular/core';
 import { HttpClient, HttpResponse } from '@angular/common/http';
+
+import { Injectable } from '@angular/core';
+import { JhiDateUtils } from 'ng-jhipster';
+import { Local } from './local.model';
 import { Observable } from 'rxjs/Observable';
 import { SERVER_API_URL } from '../../app.constants';
-
-import { JhiDateUtils } from 'ng-jhipster';
-
-import { Local } from './local.model';
 import { createRequestOption } from '../../shared';
 
 export type EntityResponseType = HttpResponse<Local>;
@@ -13,7 +12,7 @@ export type EntityResponseType = HttpResponse<Local>;
 @Injectable()
 export class LocalService {
 
-    private resourceUrl =  SERVER_API_URL + 'api/locals';
+    private resourceUrl = SERVER_API_URL + 'api/locals';
     private resourceSearchUrl = SERVER_API_URL + 'api/_search/locals';
 
     constructor(private http: HttpClient, private dateUtils: JhiDateUtils) { }
@@ -31,8 +30,13 @@ export class LocalService {
     }
 
     find(id: number): Observable<EntityResponseType> {
-        return this.http.get<Local>(`${this.resourceUrl}/${id}`, { observe: 'response'})
+        return this.http.get<Local>(`${this.resourceUrl}/${id}`, { observe: 'response' })
             .map((res: EntityResponseType) => this.convertResponse(res));
+    }
+
+    getAll(): Observable<HttpResponse<Local[]>> {
+        return this.http.get<Local[]>(this.resourceUrl, { observe: 'response' })
+            .map((res: HttpResponse<Local[]>) => this.convertArrayResponse(res));
     }
 
     query(req?: any): Observable<HttpResponse<Local[]>> {
@@ -42,7 +46,7 @@ export class LocalService {
     }
 
     delete(id: number): Observable<HttpResponse<any>> {
-        return this.http.delete<any>(`${this.resourceUrl}/${id}`, { observe: 'response'});
+        return this.http.delete<any>(`${this.resourceUrl}/${id}`, { observe: 'response' });
     }
 
     search(req?: any): Observable<HttpResponse<Local[]>> {
@@ -52,13 +56,13 @@ export class LocalService {
     }
 
     findByComercio(id: number): Observable<HttpResponse<Local[]>> {
-        return this.http.get<Local[]>(`${this.resourceUrl}/comercios/${id}`, { observe: 'response'})
+        return this.http.get<Local[]>(`${this.resourceUrl}/comercios/${id}`, { observe: 'response' })
             .map((res: HttpResponse<Local[]>) => this.convertArrayResponse(res));
     }
 
     private convertResponse(res: EntityResponseType): EntityResponseType {
         const body: Local = this.convertItemFromServer(res.body);
-        return res.clone({body});
+        return res.clone({ body });
     }
 
     private convertArrayResponse(res: HttpResponse<Local[]>): HttpResponse<Local[]> {
@@ -67,7 +71,7 @@ export class LocalService {
         for (let i = 0; i < jsonResponse.length; i++) {
             body.push(this.convertItemFromServer(jsonResponse[i]));
         }
-        return res.clone({body});
+        return res.clone({ body });
     }
 
     /**

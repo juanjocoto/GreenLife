@@ -1,0 +1,7 @@
+<div class="container">
+  <agm-map  [latitude]="lat" [longitude]="long" [zoom]="zoom">
+    <agm-marker *ngFor="let local of localList" [latitude]="local.latitud" [longitude]="local.longitud">
+      <!-- <agm-info-window>Börk</agm-info-window> -->
+    </agm-marker>
+  </agm-map>
+</div>
