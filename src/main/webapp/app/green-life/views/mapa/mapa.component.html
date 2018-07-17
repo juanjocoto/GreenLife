@@ -1,7 +1,26 @@
 <div class="container">
-  <agm-map  [latitude]="lat" [longitude]="long" [zoom]="zoom">
-    <agm-marker *ngFor="let local of localList" [latitude]="local.latitud" [longitude]="local.longitud">
-      <!-- <agm-info-window>Börk</agm-info-window> -->
-    </agm-marker>
-  </agm-map>
+  <div class="map-container">
+    <agm-map [latitude]="lat" [longitude]="long" [zoom]="zoom">
+      <agm-marker *ngFor="let local of localList" [latitude]="local.latitud" [longitude]="local.longitud">
+        <agm-info-window>
+          <h4>{{comercioMap.get(local.comercioId).nombreComercial}}</h4>
+          <h6>{{local.nombre}}</h6>
+          <p>Tipo de local: {{comercioMap.get(local.id).tipo}}</p>
+          <p>Dirección: {{local.direccion}}</p>
+          <p>Teléfono: {{local.telefono}}</p>
+          <p>Horario: {{local.horario}}</p>
+          <mat-chip-list>
+            <mat-chip *ngFor="let tag of comercioMap.get(local.id).etiquetas">{{tag['nombre']}}</mat-chip>
+          </mat-chip-list>
+          <a *ngIf="account" style="margin: 10px 0 0" class="btn-sm btn btnSuscribirse" [routerLink]="'/app/suscripcion/comercio/' + local.comercioId">Suscribirse</a>
+          <!-- <pre>{{comercioMap.get(local.id) | json}}</pre> -->
+        </agm-info-window>
+      </agm-marker>
+    </agm-map>
+    <div class="filters">
+      <mat-form-field>
+        <input type="text" matInput placeholder="Comercio">
+      </mat-form-field>
+    </div>
+  </div>
 </div>
