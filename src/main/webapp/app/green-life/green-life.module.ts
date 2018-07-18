@@ -48,6 +48,7 @@ import { CategoriasRegistroComponent } from './dialogos/categorias-registro/cate
 import { CdkTableModule } from '@angular/cdk/table';
 import { ColonPipe } from './shared/pipes/colon.pipe';
 import { ComercioEditarComponent } from './views/comercio-editar/comercio-editar.component';
+import { ComerciosClienteComponent } from './views/comercios-cliente/comercios-cliente.component';
 import { ComerciosLocalesComponent } from './views/comercios-locales/comercios-locales.component';
 import { ComerciosProductosComponent } from './views/comercios-productos/comercios-productos.component';
 import { ComerciosRegistroComponent } from './dialogos/comercios-registro/comercios-registro.component';
@@ -58,6 +59,7 @@ import { ConfiguracionComerciosComponent } from './views/configuracion-comercios
 import { ConfirmacionDialogComponent } from './dialogos/confirmacion-dialog/confirmacion-dialog.component';
 import { ConvertidorFechaPipe } from './shared/pipes/convertidor-fecha.pipe';
 import { DummyComponent } from './views/dummy/dummy.component';
+import { EtiquetasConsultarComponent } from './dialogos/etiquetas-consultar/etiquetas-consultar.component';
 import { FooterGreenlifeComponent } from './layout/footer-greenlife/footer-greenlife.component';
 import { HorasEntregaService } from './shared/services/horas-entrega.service';
 import { LandingComponent } from './views/landing/landing.component';
@@ -67,12 +69,14 @@ import { LocalModificarComponent } from './views/local-modificar/local-modificar
 import { LocalPedidosComponent } from './views/local-pedidos/local-pedidos.component';
 import { LocalRegistroComponent } from './views/local-registro/local-registro.component';
 import { LoginComponent } from './dialogos/login/login.component';
+import { MapaComponent } from './views/mapa/mapa.component';
 import { NavbarGreenlifeComponent } from './layout/navbar-greenlife/navbar-greenlife.component';
 import { NgModule } from '@angular/core';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { PedidoCrearComponent } from './views/pedido-crear/pedido-crear.component';
 import { PedidoListarComponent } from './views/pedido-listar/pedido-listar.component';
 import { PedidoModificarComponent } from './views/pedido-modificar/pedido-modificar.component';
+import { ResenaComponent } from './dialogos/resena/resena.component';
 import { RootComponent } from './root/root.component';
 import { RouterModule } from '@angular/router';
 import { SelectorEtiquetasComponent } from './fragments/selector-etiquetas/selector-etiquetas.component';
@@ -85,10 +89,6 @@ import { UsuarioPerfilComponent } from './views/usuario-perfil/usuario-perfil.co
 import { UsuarioRegistroComponent } from './views/usuario-registro/usuario-registro.component';
 import { UsuarioRolesComponent } from './views/usuario-roles/usuario-roles.component';
 import { ValidadorNumeroDirective } from './shared/directives/validador-numero.directive';
-import { EtiquetasConsultarComponent } from './dialogos/etiquetas-consultar/etiquetas-consultar.component';
-import { ComerciosClienteComponent } from './views/comercios-cliente/comercios-cliente.component';
-import { ResenaComponent } from './dialogos/resena/resena.component';
-import { MapaComponent } from './views/mapa/mapa.component';
 
 @NgModule({
   imports: [

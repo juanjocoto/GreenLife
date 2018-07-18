@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { FormControl, FormGroup } from '@angular/forms';
+import { map, startWith } from 'rxjs/operators';
 
 import { AccountService } from '../../../shared/auth/account.service';
 import { Comercio } from '../../../entities/comercio/comercio.model';
@@ -6,7 +8,7 @@ import { ComercioService } from '../../../entities/comercio/comercio.service';
 import { GMAP_DEFAULT_SETTINGS } from '../../../app.constants';
 import { Local } from '../../../entities/local/local.model';
 import { LocalService } from '../../../entities/local/local.service';
-import { Observable } from '../../../../../../../node_modules/rxjs';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'jhi-mapa',
@@ -15,6 +17,10 @@ import { Observable } from '../../../../../../../node_modules/rxjs';
 })
 export class MapaComponent implements OnInit {
 
+  comercioFG = new FormControl();
+
+  currentLocation: { lat: number, long: number };
+
   // Google Maps default configuration
   zoom = GMAP_DEFAULT_SETTINGS.zoom;
   // Default Latitude and Longitude (San Jose, Costa Rica)
@@ -22,8 +28,11 @@ export class MapaComponent implements OnInit {
   long = GMAP_DEFAULT_SETTINGS.long;
   account: Account;
 
+  comercioList: Comercio[] = [];
   localList: Local[] = [];
   comercioMap: Map<number, Comercio> = new Map();
+
+  filteredOptions: Observable<string[]>;
 
   constructor(
     private localService: LocalService,
@@ -37,12 +46,18 @@ export class MapaComponent implements OnInit {
       this.comercioService.findAll(),
       this.localService.getAll())
       .subscribe((response) => {
-        for (const comercio of response[0].body) {
+        this.comercioList = response[0].body;
+        for (const comercio of this.comercioList) {
           this.comercioMap.set(comercio.id, comercio);
         }
 
         this.localList = response[1].body;
-        console.log(this.localList);
+
+        this.filteredOptions = this.comercioFG.valueChanges
+          .pipe(
+            startWith(''),
+            map((value) => this.filter(value))
+          );
       });
 
     this.accountService.get().subscribe(
@@ -50,6 +65,35 @@ export class MapaComponent implements OnInit {
       (err) => this.account = undefined
     );
 
+    navigator.geolocation.getCurrentPosition((position) => {
+      this.currentLocation = {
+        lat: position.coords.latitude,
+        long: position.coords.longitude
+      };
+      this.lat = position.coords.latitude;
+      this.long = position.coords.longitude;
+      this.zoom = 14;
+    });
+  }
+
+  formatLabel(value: number | null) {
+    if (!value) {
+      return 0;
+    }
+
+    if (value >= 1000) {
+      return Math.round(value / 1000) + 'k';
+    }
+
+    return value;
+  }
+
+  private filter(value: string) {
+    const filterValue = value.toLowerCase();
+
+    return this.comercioList
+      .map((comercio) => comercio.nombreComercial)
+      .filter((option) => option.toLowerCase().includes(filterValue));
   }
 
 }
