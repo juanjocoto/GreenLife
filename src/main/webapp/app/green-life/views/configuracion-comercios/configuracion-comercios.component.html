@@ -27,7 +27,7 @@
                 <td>{{comercio.comercio.razonSocial}}</td>
                 <td>{{comercio.comercio.nombreComercial}}</td>
                 <td>{{comercio.comercio.tipo}}</td>
-                <td>{{comercio.comercio.fechaCreacion | date}}</td>
+                <td>{{comercio.comercio.fechaCreacion | date:"dd/MM/y"}}</td>
                 <td>
                     <a class="editar" data-toggle="modal" [routerLink]="'/app/comercios/' + comercio.comercio.id + '/editar'"><i class="material-icons" data-toggle="tooltip" title="Editar">&#xE254;</i></a>
                     <a class="eliminar" data-toggle="modal" (click)="eliminarComercio(comercio.comercio)"><i class="material-icons" data-toggle="tooltip" title="Eliminar">&#xE872;</i></a>
