@@ -18,8 +18,8 @@ agm-map {
 .filters {
     position: absolute;
     background: #fff;
-    height: calc(100vh - 57px - 74px - 20px - 20px);
-    width: 300px;
+    max-height: calc(100vh - 57px - 74px - 20px - 20px);
+    width: 200px;
     top: 10px;
     left: 10px;
     padding: 10px;

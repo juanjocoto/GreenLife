@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 import { map, startWith } from 'rxjs/operators';
 
@@ -8,6 +8,7 @@ import { ComercioService } from '../../../entities/comercio/comercio.service';
 import { GMAP_DEFAULT_SETTINGS } from '../../../app.constants';
 import { Local } from '../../../entities/local/local.model';
 import { LocalService } from '../../../entities/local/local.service';
+import { MatSlider } from '@angular/material';
 import { Observable } from 'rxjs';
 import { SERVER_API_URL } from './../../../app.constants';
 
@@ -18,15 +19,33 @@ import { SERVER_API_URL } from './../../../app.constants';
 })
 export class MapaComponent implements OnInit {
 
-  comercioFG = new FormControl();
+  @ViewChild('slider') slider: MatSlider;
 
-  currentLocation: { lat: number, long: number };
+  comercioFG = new FormControl();
 
   // Google Maps default configuration
   zoom = GMAP_DEFAULT_SETTINGS.zoom;
   // Default Latitude and Longitude (San Jose, Costa Rica)
-  lat = GMAP_DEFAULT_SETTINGS.lat;
-  long = GMAP_DEFAULT_SETTINGS.long;
+  defaultCoordinates: Coords = {
+    lat: GMAP_DEFAULT_SETTINGS.lat,
+    lng: GMAP_DEFAULT_SETTINGS.long
+  };
+
+  currentLocation: Coords = {
+    lat: this.defaultCoordinates.lat,
+    lng: this.defaultCoordinates.lng
+  };
+  cameraLocation: Coords = {
+    lat: this.defaultCoordinates.lat,
+    lng: this.defaultCoordinates.lng
+  };
+  circleLocation: Coords = {
+    lat: this.currentLocation.lat,
+    lng: this.currentLocation.lng
+  };
+
+  showFilter = false;
+
   account: Account;
 
   comercioList: Comercio[] = [];
@@ -44,54 +63,78 @@ export class MapaComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-
-    Observable.zip(
-      this.comercioService.findAll(),
-      this.localService.getAll())
-      .subscribe((response) => {
-        this.comercioList = response[0].body;
-        for (const comercio of this.comercioList) {
-          this.comercioMap.set(comercio.id, comercio);
-        }
-
-        this.localList = response[1].body;
-
-        this.filteredOptions = this.comercioFG.valueChanges
-          .pipe(
-            startWith(''),
-            map((value) => this.filter(value))
-          );
-      });
-
     this.accountService.get().subscribe(
       (httpresponse) => this.account = httpresponse.body,
       (err) => this.account = undefined
     );
+    const distance = parseFloat(this.slider.value.toString()) * 1000;
 
     navigator.geolocation.getCurrentPosition((position) => {
-      this.currentLocation = {
-        lat: position.coords.latitude,
-        long: position.coords.longitude
-      };
-      this.lat = position.coords.latitude;
-      this.long = position.coords.longitude;
+      this.currentLocation.lat = position.coords.latitude;
+      this.currentLocation.lng = position.coords.longitude;
+
+      this.circleLocation.lat = position.coords.latitude;
+      this.circleLocation.lng = position.coords.longitude;
+
+      this.cameraLocation.lat = position.coords.latitude;
+      this.cameraLocation.lng = position.coords.longitude;
+
       this.zoom = 14;
-      this.localService.getByDistance(this.lat, this.long, 1.5 * 1000).subscribe((httpResponse) => {
-        console.log(httpResponse.body);
-      });
+
+      Observable.zip(
+        this.comercioService.findAll(),
+        this.localService.getByDistance(this.currentLocation.lat, this.currentLocation.lng, distance))
+        .subscribe((response) => {
+          this.comercioList = response[0].body;
+          for (const comercio of this.comercioList) {
+            this.comercioMap.set(comercio.id, comercio);
+          }
+
+          this.localList = response[1].body;
+
+          this.filteredOptions = this.comercioFG.valueChanges
+            .pipe(
+              startWith(''),
+              map((value) => this.filter(value))
+            );
+        });
+    }, (err) => {
+      Observable.zip(
+        this.comercioService.findAll(),
+        this.localService.getByDistance(this.currentLocation.lat, this.currentLocation.lng, distance))
+        .subscribe((response) => {
+          this.comercioList = response[0].body;
+          for (const comercio of this.comercioList) {
+            this.comercioMap.set(comercio.id, comercio);
+          }
+
+          this.localList = response[1].body;
+
+          this.filteredOptions = this.comercioFG.valueChanges
+            .pipe(
+              startWith(''),
+              map((value) => this.filter(value))
+            );
+        });
     });
   }
 
-  formatLabel(value: number | null) {
-    if (!value) {
-      return 0;
-    }
+  updateLocation(data: { coords: Coords }) {
+    this.currentLocation = data.coords;
+    this.circleLocation = data.coords;
 
-    if (value >= 1000) {
-      return Math.round(value / 1000) + 'k';
-    }
+    this.updateList();
+  }
 
-    return value;
+  updateList() {
+    const distance = parseFloat(this.slider.value.toString()) * 1000;
+    this.localService.getByDistance(this.currentLocation.lat, this.currentLocation.lng, distance).subscribe((response) => {
+      this.localList = response.body;
+    });
+  }
+
+  onMapReady(event) {
+    this.showFilter = true;
   }
 
   private filter(value: string) {
@@ -102,4 +145,8 @@ export class MapaComponent implements OnInit {
       .filter((option) => option.toLowerCase().includes(filterValue));
   }
 
+}
+
+interface Coords {
+  lat: number; lng: number;
 }

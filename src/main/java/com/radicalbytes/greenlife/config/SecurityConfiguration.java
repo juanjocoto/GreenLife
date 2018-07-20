@@ -96,7 +96,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
             .authorizeRequests()
             .antMatchers("/api/register").permitAll()
             .antMatchers(HttpMethod.POST,"/api/usuarios").permitAll()
-            .antMatchers(HttpMethod.GET,"/api/locals").permitAll()
+            .antMatchers(HttpMethod.GET,"/api/locals", "/api/locals/distance").permitAll()
             .antMatchers(HttpMethod.GET,"/api/comercios").permitAll()
             .antMatchers("/api/images").permitAll()
             .antMatchers("/api/images/**").permitAll()

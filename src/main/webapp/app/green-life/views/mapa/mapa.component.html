@@ -1,9 +1,9 @@
 <div class="container">
   <div class="map-container">
-    <agm-map [latitude]="lat" [longitude]="long" [zoom]="zoom">
-      <agm-circle *ngIf="currentLocation" #locationMarker [latitude]="currentLocation.lat" [longitude]="currentLocation.long" [radius]="slider.value * 1000"></agm-circle>
-      <agm-marker *ngIf="currentLocation" [latitude]="currentLocation.lat" [longitude]="currentLocation.long" [markerDraggable]="true"
-        fillColor="#555"></agm-marker>
+    <agm-map [latitude]="cameraLocation.lat" [longitude]="cameraLocation.lng" [zoom]="zoom" (mapReady)="onMapReady($event)">
+      <agm-circle *ngIf="currentLocation" #locationMarker [latitude]="circleLocation.lat" [longitude]="circleLocation.lng" [radius]="slider.value * 1000"></agm-circle>
+      <agm-marker *ngIf="currentLocation" [(latitude)]="currentLocation.lat" [(longitude)]="currentLocation.lng" [markerDraggable]="true"
+        (dragEnd)="updateLocation($event)" fillColor="#555"></agm-marker>
       <agm-marker *ngFor="let local of localList" [latitude]="local.latitud" [longitude]="local.longitud">
         <!-- [iconUrl]="iconUrl" -->
         <agm-info-window>
@@ -21,7 +21,7 @@
         </agm-info-window>
       </agm-marker>
     </agm-map>
-    <div class="filters">
+    <div class="filters" [style.display]="(showFilter?'unset':'none')">
       <mat-form-field>
         <input type="text" matInput placeholder="Comercio" [matAutocomplete]="auto" [formControl]="comercioFG">
         <mat-autocomplete #auto="matAutocomplete">
@@ -30,7 +30,8 @@
           </mat-option>
         </mat-autocomplete>
       </mat-form-field>
-      <mat-slider min="0.5" max="20" step="0.5" [value]="1.5" #slider thumbLabel></mat-slider>
+      <span style="margin: 0 0 0 10px;color: #757575;">Distancia</span>
+      <mat-slider id="slider" #slider min="0.5" max="5" step="0.5" [value]="1.5" #slider thumbLabel (change)="updateList()"></mat-slider>
     </div>
   </div>
 </div>
