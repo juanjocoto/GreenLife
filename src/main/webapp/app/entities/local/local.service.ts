@@ -1,4 +1,4 @@
-import { HttpClient, HttpResponse } from '@angular/common/http';
+import { HttpClient, HttpParams, HttpResponse } from '@angular/common/http';
 
 import { Injectable } from '@angular/core';
 import { JhiDateUtils } from 'ng-jhipster';
@@ -36,6 +36,17 @@ export class LocalService {
 
     getAll(): Observable<HttpResponse<Local[]>> {
         return this.http.get<Local[]>(this.resourceUrl, { observe: 'response' })
+            .map((res: HttpResponse<Local[]>) => this.convertArrayResponse(res));
+    }
+
+    getByDistance(lat: number, lng: number, distance: number): Observable<HttpResponse<Local[]>> {
+        const params = new HttpParams()
+            .set('lat', lat.toString())
+            .set('lng', lng.toString())
+            .set('distance', distance.toString());
+
+        console.log(params.toString());
+        return this.http.get<Local[]>(`${this.resourceUrl}/distance`, { observe: 'response', params })
             .map((res: HttpResponse<Local[]>) => this.convertArrayResponse(res));
     }
 

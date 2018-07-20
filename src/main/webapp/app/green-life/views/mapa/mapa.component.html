@@ -2,8 +2,10 @@
   <div class="map-container">
     <agm-map [latitude]="lat" [longitude]="long" [zoom]="zoom">
       <agm-circle *ngIf="currentLocation" #locationMarker [latitude]="currentLocation.lat" [longitude]="currentLocation.long" [radius]="slider.value * 1000"></agm-circle>
-      <agm-marker *ngIf="currentLocation" [latitude]="currentLocation.lat" [longitude]="currentLocation.long" [markerDraggable]="true" fillColor="#555"></agm-marker>
+      <agm-marker *ngIf="currentLocation" [latitude]="currentLocation.lat" [longitude]="currentLocation.long" [markerDraggable]="true"
+        fillColor="#555"></agm-marker>
       <agm-marker *ngFor="let local of localList" [latitude]="local.latitud" [longitude]="local.longitud">
+        <!-- [iconUrl]="iconUrl" -->
         <agm-info-window>
           <h4>{{comercioMap.get(local.comercioId).nombreComercial}}</h4>
           <h6>{{local.nombre}}</h6>

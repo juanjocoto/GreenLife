@@ -9,6 +9,7 @@ import { GMAP_DEFAULT_SETTINGS } from '../../../app.constants';
 import { Local } from '../../../entities/local/local.model';
 import { LocalService } from '../../../entities/local/local.service';
 import { Observable } from 'rxjs';
+import { SERVER_API_URL } from './../../../app.constants';
 
 @Component({
   selector: 'jhi-mapa',
@@ -33,6 +34,8 @@ export class MapaComponent implements OnInit {
   comercioMap: Map<number, Comercio> = new Map();
 
   filteredOptions: Observable<string[]>;
+
+  iconUrl = `/api/images/bitmap.png`;
 
   constructor(
     private localService: LocalService,
@@ -73,6 +76,9 @@ export class MapaComponent implements OnInit {
       this.lat = position.coords.latitude;
       this.long = position.coords.longitude;
       this.zoom = 14;
+      this.localService.getByDistance(this.lat, this.long, 1.5 * 1000).subscribe((httpResponse) => {
+        console.log(httpResponse.body);
+      });
     });
   }
 
