@@ -9,15 +9,26 @@
         <ul class="navbar-nav ml-auto" [class.hidden]="!isAuth" *ngIf="currentUser">
             <!--Opcion Comercios-->
             <li class="nav-item">
-                <a class="nav-link" [routerLink]="'comercios'">Comercios</a>
+                <a class="nav-link" [routerLink]="'comercios'"> Comercios</a>
             </li>
             <!--Opcion Suscripciones-->
             <li class="nav-item">
                 <a class="nav-link" [routerLink]="'suscripciones'">Suscripciones</a>
             </li>
+            <!--Opcion administracion del comercio-->
+            <li class="nav-item dropdown" ngbDropdown *ngIf="roles.includes('ROLE_COMERCIO')" >
+                <a class="nav-link dropdown-toggle" ngbDropdownToggle>Administración</a>
+                <div class="dropdown-menu" ngbDropdownMenu>
+                    <a class="dropdown-item" routerLink="miscomercios">Mis Comecios</a>
+                </div>
+            </li>
             <!--Opcion Mantenimineto-->
             <li class="nav-item" *ngIf="roles.includes('ROLE_ADMIN')">
                 <a class="nav-link" routerLink="configuracion/aplicacion">Mantenimiento</a>
+            </li>
+            <!--Opcion CMS-->
+            <li class="nav-item" *ngIf="roles.includes('ROLE_ADMIN')">
+                <a class="nav-link" routerLink="../cms">CMS</a>
             </li>
             <!--Opcion Alimentacion
             <li class="nav-item dropdown" ngbDropdown>
@@ -67,7 +78,6 @@
                 <a class="nav-link dropdown-toggle" ngbDropdownToggle><span class="user-img"></span> <span class="text">Usuario</span></a>
                 <div class="dropdown-menu" ngbDropdownMenu>
                     <a class="dropdown-item" routerLink="perfil">Mi perfil</a>
-                    <a class="dropdown-item" routerLink="miscomercios" *ngIf="roles.includes('ROLE_COMERCIO')">Mis Comercios</a>
                     <a class="dropdown-item" (click)="registrarComerciante()" *ngIf="!roles.includes('ROLE_COMERCIO')">Reg. Comerciante</a>
                     <a class="dropdown-item" (click)="cerrarSesion()">Cerrar sesión</a>
                 </div>
