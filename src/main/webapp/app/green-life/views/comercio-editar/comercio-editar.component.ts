@@ -86,6 +86,7 @@ export class ComercioEditarComponent implements OnInit {
         console.log(httpResponse);
         if (httpResponse.status === 200) {
           this.snackBar.open('El comercio ha sido actualizado', undefined, { duration: 2000 });
+          this.location.back();
         } else {
           this.snackBar.open('Se generó un error', undefined, { duration: 2000 });
         }

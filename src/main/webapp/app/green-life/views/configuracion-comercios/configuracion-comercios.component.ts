@@ -83,7 +83,7 @@ export class ConfiguracionComerciosComponent implements OnInit {
           if (result) {
               this.comercioService.delete(comercio.id).subscribe((httpResponse) => {
                   this.matSnackBar.open(`El comercio ${comercio.nombreComercial} fue eliminado`, undefined, {duration: 2000});
-                  let index = this.comercios.findIndex(d => d.comercio.id === comercio.id);
+                  const index = this.comercios.findIndex((d) => d.comercio.id === comercio.id);
                   this.comercios.splice(index, 1);
               });
           }
