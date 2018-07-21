@@ -4,7 +4,7 @@
       <agm-circle *ngIf="currentLocation" #locationMarker [latitude]="circleLocation.lat" [longitude]="circleLocation.lng" [radius]="slider.value * 1000"></agm-circle>
       <agm-marker *ngIf="currentLocation" [(latitude)]="currentLocation.lat" [(longitude)]="currentLocation.lng" [markerDraggable]="true"
         (dragEnd)="updateLocation($event)" fillColor="#555"></agm-marker>
-      <agm-marker *ngFor="let local of localList" [latitude]="local.latitud" [longitude]="local.longitud">
+      <agm-marker [iconUrl]="iconUrl" *ngFor="let local of localList" [latitude]="local.latitud" [longitude]="local.longitud">
         <!-- [iconUrl]="iconUrl" -->
         <agm-info-window>
           <h4>{{comercioMap.get(local.comercioId).nombreComercial}}</h4>
@@ -17,21 +17,22 @@
             <mat-chip *ngFor="let tag of comercioMap.get(local.id).etiquetas">{{tag['nombre']}}</mat-chip>
           </mat-chip-list>
           <a *ngIf="account" style="margin: 10px 0 0" class="btn-sm btn btnSuscribirse" [routerLink]="'/app/suscripcion/comercio/' + local.comercioId">Suscribirse</a>
-          <!-- <pre>{{comercioMap.get(local.id) | json}}</pre> -->
         </agm-info-window>
       </agm-marker>
     </agm-map>
     <div class="filters" [style.display]="(showFilter?'unset':'none')">
-      <mat-form-field>
+      <!-- <mat-form-field>
         <input type="text" matInput placeholder="Comercio" [matAutocomplete]="auto" [formControl]="comercioFG">
         <mat-autocomplete #auto="matAutocomplete">
           <mat-option *ngFor="let option of filteredOptions | async" [value]="option">
             {{ option }}
           </mat-option>
         </mat-autocomplete>
-      </mat-form-field>
-      <span style="margin: 0 0 0 10px;color: #757575;">Distancia</span>
-      <mat-slider id="slider" #slider min="0.5" max="5" step="0.5" [value]="1.5" #slider thumbLabel (change)="updateList()"></mat-slider>
+      </mat-form-field> -->
+      <div>
+        <span style="margin: 0 0 0 10px;color: #757575;">Distancia</span>
+        <mat-slider id="slider" #slider min="0.5" max="5" step="0.5" [value]="1.5" #slider thumbLabel (change)="updateList()"></mat-slider>
+      </div>
     </div>
   </div>
 </div>

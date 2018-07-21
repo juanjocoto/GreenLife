@@ -54,7 +54,8 @@ export class MapaComponent implements OnInit {
 
   filteredOptions: Observable<string[]>;
 
-  iconUrl = `/api/images/bitmap.png`;
+  // Modidificar por la ubicación del icono final
+  iconUrl = undefined; // `/api/images/bitmap.png`;
 
   constructor(
     private localService: LocalService,
