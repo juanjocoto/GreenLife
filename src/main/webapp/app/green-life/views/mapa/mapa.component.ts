@@ -82,41 +82,9 @@ export class MapaComponent implements OnInit {
 
       this.zoom = 14;
 
-      Observable.zip(
-        this.comercioService.findAll(),
-        this.localService.getByDistance(this.currentLocation.lat, this.currentLocation.lng, distance))
-        .subscribe((response) => {
-          this.comercioList = response[0].body;
-          for (const comercio of this.comercioList) {
-            this.comercioMap.set(comercio.id, comercio);
-          }
-
-          this.localList = response[1].body;
-
-          this.filteredOptions = this.comercioFG.valueChanges
-            .pipe(
-              startWith(''),
-              map((value) => this.filter(value))
-            );
-        });
+      this.updateList();
     }, (err) => {
-      Observable.zip(
-        this.comercioService.findAll(),
-        this.localService.getByDistance(this.currentLocation.lat, this.currentLocation.lng, distance))
-        .subscribe((response) => {
-          this.comercioList = response[0].body;
-          for (const comercio of this.comercioList) {
-            this.comercioMap.set(comercio.id, comercio);
-          }
-
-          this.localList = response[1].body;
-
-          this.filteredOptions = this.comercioFG.valueChanges
-            .pipe(
-              startWith(''),
-              map((value) => this.filter(value))
-            );
-        });
+      this.updateList();
     });
   }
 
@@ -129,8 +97,15 @@ export class MapaComponent implements OnInit {
 
   updateList() {
     const distance = parseFloat(this.slider.value.toString()) * 1000;
-    this.localService.getByDistance(this.currentLocation.lat, this.currentLocation.lng, distance).subscribe((response) => {
-      this.localList = response.body;
+    Observable.zip(
+      this.comercioService.findAll(),
+      this.localService.getByDistance(this.currentLocation.lat, this.currentLocation.lng, distance)
+    ).subscribe((response) => {
+      this.comercioList = response[0].body;
+      for (const comercio of this.comercioList) {
+        this.comercioMap.set(comercio.id, comercio);
+      }
+      this.localList = response[1].body;
     });
   }
 
