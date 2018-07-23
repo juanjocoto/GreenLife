@@ -45,8 +45,7 @@ export class ComercioEditarComponent implements OnInit {
     this.comercioForm = this.formBuilder.group({
         razonSocial: ['', [Validators.required]],
         nombreComercial: ['', [Validators.required]],
-
-        edJuridica: ['', [
+        cedJuridica: ['', [
             Validators.required,
             Validators.maxLength(10),
             Validators.minLength(10)
@@ -67,7 +66,6 @@ export class ComercioEditarComponent implements OnInit {
   }
 
   guardar() {
-      console.log(this.comercioForm.valid);
       if (this.comercioForm.valid) {
           this.comercio.razonSocial = this.comercioForm.get('razonSocial').value;
           this.comercio.nombreComercial = this.comercioForm.get('nombreComercial').value;
