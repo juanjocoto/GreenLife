@@ -55,8 +55,8 @@ public class LocalResourceIntTest {
     private static final Double DEFAULT_LATITUD = 1D;
     private static final Double UPDATED_LATITUD = 2D;
 
-    private static final Double DEFAULT_LATITUDE = 1D;
-    private static final Double UPDATED_LATITUDE = 2D;
+    private static final Double DEFAULT_LONGITUD = 1D;
+    private static final Double UPDATED_LONGITUD = 2D;
 
     private static final String DEFAULT_HORARIO = "AAAAAAAAAA";
     private static final String UPDATED_HORARIO = "BBBBBBBBBB";
@@ -112,7 +112,7 @@ public class LocalResourceIntTest {
             .nombre(DEFAULT_NOMBRE)
             .direccion(DEFAULT_DIRECCION)
             .latitud(DEFAULT_LATITUD)
-            .latitude(DEFAULT_LATITUDE)
+            .longitud(DEFAULT_LONGITUD)
             .horario(DEFAULT_HORARIO)
             .telefono(DEFAULT_TELEFONO);
         return local;
@@ -144,7 +144,7 @@ public class LocalResourceIntTest {
         assertThat(testLocal.getNombre()).isEqualTo(DEFAULT_NOMBRE);
         assertThat(testLocal.getDireccion()).isEqualTo(DEFAULT_DIRECCION);
         assertThat(testLocal.getLatitud()).isEqualTo(DEFAULT_LATITUD);
-        assertThat(testLocal.getLatitude()).isEqualTo(DEFAULT_LATITUDE);
+        assertThat(testLocal.getLongitud()).isEqualTo(DEFAULT_LONGITUD);
         assertThat(testLocal.getHorario()).isEqualTo(DEFAULT_HORARIO);
         assertThat(testLocal.getTelefono()).isEqualTo(DEFAULT_TELEFONO);
 
@@ -251,10 +251,10 @@ public class LocalResourceIntTest {
 
     @Test
     @Transactional
-    public void checkLatitudeIsRequired() throws Exception {
+    public void checkLongitudIsRequired() throws Exception {
         int databaseSizeBeforeTest = localRepository.findAll().size();
         // set the field null
-        local.setLatitude(null);
+        local.setLongitud(null);
 
         // Create the Local, which fails.
         LocalDTO localDTO = localMapper.toDto(local);
@@ -321,7 +321,7 @@ public class LocalResourceIntTest {
             .andExpect(jsonPath("$.[*].nombre").value(hasItem(DEFAULT_NOMBRE.toString())))
             .andExpect(jsonPath("$.[*].direccion").value(hasItem(DEFAULT_DIRECCION.toString())))
             .andExpect(jsonPath("$.[*].latitud").value(hasItem(DEFAULT_LATITUD.doubleValue())))
-            .andExpect(jsonPath("$.[*].latitude").value(hasItem(DEFAULT_LATITUDE.doubleValue())))
+            .andExpect(jsonPath("$.[*].longitud").value(hasItem(DEFAULT_LONGITUD.doubleValue())))
             .andExpect(jsonPath("$.[*].horario").value(hasItem(DEFAULT_HORARIO.toString())))
             .andExpect(jsonPath("$.[*].telefono").value(hasItem(DEFAULT_TELEFONO.toString())));
     }
@@ -341,7 +341,7 @@ public class LocalResourceIntTest {
             .andExpect(jsonPath("$.nombre").value(DEFAULT_NOMBRE.toString()))
             .andExpect(jsonPath("$.direccion").value(DEFAULT_DIRECCION.toString()))
             .andExpect(jsonPath("$.latitud").value(DEFAULT_LATITUD.doubleValue()))
-            .andExpect(jsonPath("$.latitude").value(DEFAULT_LATITUDE.doubleValue()))
+            .andExpect(jsonPath("$.longitud").value(DEFAULT_LONGITUD.doubleValue()))
             .andExpect(jsonPath("$.horario").value(DEFAULT_HORARIO.toString()))
             .andExpect(jsonPath("$.telefono").value(DEFAULT_TELEFONO.toString()));
     }
@@ -371,7 +371,7 @@ public class LocalResourceIntTest {
             .nombre(UPDATED_NOMBRE)
             .direccion(UPDATED_DIRECCION)
             .latitud(UPDATED_LATITUD)
-            .latitude(UPDATED_LATITUDE)
+            .longitud(UPDATED_LONGITUD)
             .horario(UPDATED_HORARIO)
             .telefono(UPDATED_TELEFONO);
         LocalDTO localDTO = localMapper.toDto(updatedLocal);
@@ -389,7 +389,7 @@ public class LocalResourceIntTest {
         assertThat(testLocal.getNombre()).isEqualTo(UPDATED_NOMBRE);
         assertThat(testLocal.getDireccion()).isEqualTo(UPDATED_DIRECCION);
         assertThat(testLocal.getLatitud()).isEqualTo(UPDATED_LATITUD);
-        assertThat(testLocal.getLatitude()).isEqualTo(UPDATED_LATITUDE);
+        assertThat(testLocal.getLongitud()).isEqualTo(UPDATED_LONGITUD);
         assertThat(testLocal.getHorario()).isEqualTo(UPDATED_HORARIO);
         assertThat(testLocal.getTelefono()).isEqualTo(UPDATED_TELEFONO);
 
@@ -455,7 +455,7 @@ public class LocalResourceIntTest {
             .andExpect(jsonPath("$.[*].nombre").value(hasItem(DEFAULT_NOMBRE.toString())))
             .andExpect(jsonPath("$.[*].direccion").value(hasItem(DEFAULT_DIRECCION.toString())))
             .andExpect(jsonPath("$.[*].latitud").value(hasItem(DEFAULT_LATITUD.doubleValue())))
-            .andExpect(jsonPath("$.[*].latitude").value(hasItem(DEFAULT_LATITUDE.doubleValue())))
+            .andExpect(jsonPath("$.[*].longitud").value(hasItem(DEFAULT_LONGITUD.doubleValue())))
             .andExpect(jsonPath("$.[*].horario").value(hasItem(DEFAULT_HORARIO.toString())))
             .andExpect(jsonPath("$.[*].telefono").value(hasItem(DEFAULT_TELEFONO.toString())));
     }

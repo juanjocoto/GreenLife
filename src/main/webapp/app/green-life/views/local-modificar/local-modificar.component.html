@@ -16,11 +16,11 @@
                     <div class="map-container">
                         <agm-map
                             [latitude]="local.latitud"
-                            [longitude]="local.latitude"
+                            [longitude]="local.longitud"
                             [zoom]="zoom">
                             <agm-marker
                                 [latitude]="local.latitud"
-                                [longitude]="local.latitude"
+                                [longitude]="local.longitud"
                                 [markerDraggable]="true"
                                 (dragEnd)="markerDragEnd($event)">
                             </agm-marker>

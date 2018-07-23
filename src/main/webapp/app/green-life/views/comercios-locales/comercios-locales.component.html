@@ -21,7 +21,7 @@
                     <agm-marker
                         *ngFor="let local of locales"
                         [latitude]="local.latitud"
-                        [longitude]="local.latitude"
+                        [longitude]="local.longitud"
                         [markerDraggable]="false"
                         (markerClick)="loadCurrentLocal(local.id)">
                         <agm-info-window>
