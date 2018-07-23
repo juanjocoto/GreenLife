@@ -30,7 +30,7 @@ public class LocalDTO implements Serializable {
     private Double latitud;
 
     @NotNull
-    private Double latitude;
+    private Double longitud;
 
     @NotNull
     @Size(max = 20)
@@ -86,12 +86,12 @@ public class LocalDTO implements Serializable {
         this.latitud = latitud;
     }
 
-    public Double getLatitude() {
-        return latitude;
+    public Double getLongitud() {
+        return longitud;
     }
 
-    public void setLatitude(Double latitude) {
-        this.latitude = latitude;
+    public void setLongitud(Double longitud) {
+        this.longitud = longitud;
     }
 
     public String getHorario() {
@@ -163,7 +163,7 @@ public class LocalDTO implements Serializable {
             ", nombre='" + getNombre() + "'" +
             ", direccion='" + getDireccion() + "'" +
             ", latitud=" + getLatitud() +
-            ", latitude=" + getLatitude() +
+            ", longitud=" + getLongitud() +
             ", horario='" + getHorario() + "'" +
             ", telefono='" + getTelefono() + "'" +
             "}";

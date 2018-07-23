@@ -50,7 +50,7 @@
             ]
         },
         {
-            "fieldName": "latitude",
+            "fieldName": "longitud",
             "fieldType": "Double",
             "fieldValidateRules": [
                 "required"

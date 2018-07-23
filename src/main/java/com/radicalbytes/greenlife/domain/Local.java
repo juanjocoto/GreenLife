@@ -45,8 +45,8 @@ public class Local implements Serializable {
     private Double latitud;
 
     @NotNull
-    @Column(name = "latitude", nullable = false)
-    private Double latitude;
+    @Column(name = "longitud", nullable = false)
+    private Double longitud;
 
     @NotNull
     @Size(max = 20)
@@ -126,17 +126,17 @@ public class Local implements Serializable {
         this.latitud = latitud;
     }
 
-    public Double getLatitude() {
-        return latitude;
+    public Double getLongitud() {
+        return longitud;
     }
 
-    public Local latitude(Double latitude) {
-        this.latitude = latitude;
+    public Local longitud(Double longitud) {
+        this.longitud = longitud;
         return this;
     }
 
-    public void setLatitude(Double latitude) {
-        this.latitude = latitude;
+    public void setLongitud(Double longitud) {
+        this.longitud = longitud;
     }
 
     public String getHorario() {
@@ -220,7 +220,7 @@ public class Local implements Serializable {
             ", nombre='" + getNombre() + "'" +
             ", direccion='" + getDireccion() + "'" +
             ", latitud=" + getLatitud() +
-            ", latitude=" + getLatitude() +
+            ", longitud=" + getLongitud() +
             ", horario='" + getHorario() + "'" +
             ", telefono='" + getTelefono() + "'" +
             "}";

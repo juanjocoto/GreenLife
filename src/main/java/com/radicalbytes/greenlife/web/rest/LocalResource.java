@@ -7,11 +7,13 @@ import com.radicalbytes.greenlife.repository.LocalRepository;
 import com.radicalbytes.greenlife.repository.search.LocalSearchRepository;
 import com.radicalbytes.greenlife.web.rest.errors.BadRequestAlertException;
 import com.radicalbytes.greenlife.web.rest.util.HeaderUtil;
+import com.radicalbytes.greenlife.service.LocalService;
 import com.radicalbytes.greenlife.service.dto.LocalDTO;
 import com.radicalbytes.greenlife.service.mapper.LocalMapper;
 import io.github.jhipster.web.util.ResponseUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -44,17 +46,23 @@ public class LocalResource {
 
     private final LocalSearchRepository localSearchRepository;
 
-    public LocalResource(LocalRepository localRepository, LocalMapper localMapper, LocalSearchRepository localSearchRepository) {
+    @Autowired
+    private LocalService localService;
+
+    public LocalResource(LocalRepository localRepository, LocalMapper localMapper,
+            LocalSearchRepository localSearchRepository) {
         this.localRepository = localRepository;
         this.localMapper = localMapper;
         this.localSearchRepository = localSearchRepository;
     }
 
     /**
-     * POST  /locals : Create a new local.
+     * POST /locals : Create a new local.
      *
      * @param localDTO the localDTO to create
-     * @return the ResponseEntity with status 201 (Created) and with body the new localDTO, or with status 400 (Bad Request) if the local has already an ID
+     * @return the ResponseEntity with status 201 (Created) and with body the new
+     *         localDTO, or with status 400 (Bad Request) if the local has already
+     *         an ID
      * @throws URISyntaxException if the Location URI syntax is incorrect
      */
     @PostMapping("/locals")
@@ -69,17 +77,17 @@ public class LocalResource {
         LocalDTO result = localMapper.toDto(local);
         localSearchRepository.save(local);
         return ResponseEntity.created(new URI("/api/locals/" + result.getId()))
-            .headers(HeaderUtil.createEntityCreationAlert(ENTITY_NAME, result.getId().toString()))
-            .body(result);
+                .headers(HeaderUtil.createEntityCreationAlert(ENTITY_NAME, result.getId().toString())).body(result);
     }
 
     /**
-     * PUT  /locals : Updates an existing local.
+     * PUT /locals : Updates an existing local.
      *
      * @param localDTO the localDTO to update
-     * @return the ResponseEntity with status 200 (OK) and with body the updated localDTO,
-     * or with status 400 (Bad Request) if the localDTO is not valid,
-     * or with status 500 (Internal Server Error) if the localDTO couldn't be updated
+     * @return the ResponseEntity with status 200 (OK) and with body the updated
+     *         localDTO, or with status 400 (Bad Request) if the localDTO is not
+     *         valid, or with status 500 (Internal Server Error) if the localDTO
+     *         couldn't be updated
      * @throws URISyntaxException if the Location URI syntax is incorrect
      */
     @PutMapping("/locals")
@@ -93,15 +101,24 @@ public class LocalResource {
         local = localRepository.save(local);
         LocalDTO result = localMapper.toDto(local);
         localSearchRepository.save(local);
-        return ResponseEntity.ok()
-            .headers(HeaderUtil.createEntityUpdateAlert(ENTITY_NAME, localDTO.getId().toString()))
-            .body(result);
+        return ResponseEntity.ok().headers(HeaderUtil.createEntityUpdateAlert(ENTITY_NAME, localDTO.getId().toString()))
+                .body(result);
+    }
+
+    @GetMapping("/locals/distance")
+    public List<LocalDTO> getByDistance(@RequestParam double lat, @RequestParam double lng,
+            @RequestParam double distance) {
+
+        List<Local> locals = this.localService.findByDistance(lat, lng, distance);
+
+        return localMapper.toDto(locals);
     }
 
     /**
-     * GET  /locals : get all the locals.
+     * GET /locals : get all the locals.
      *
-     * @return the ResponseEntity with status 200 (OK) and the list of locals in body
+     * @return the ResponseEntity with status 200 (OK) and the list of locals in
+     *         body
      */
     @GetMapping("/locals")
     @Timed
@@ -109,13 +126,14 @@ public class LocalResource {
         log.debug("REST request to get all Locals");
         List<Local> locals = localRepository.findAll();
         return localMapper.toDto(locals);
-        }
+    }
 
     /**
-     * GET  /locals/:id : get the "id" local.
+     * GET /locals/:id : get the "id" local.
      *
      * @param id the id of the localDTO to retrieve
-     * @return the ResponseEntity with status 200 (OK) and with body the localDTO, or with status 404 (Not Found)
+     * @return the ResponseEntity with status 200 (OK) and with body the localDTO,
+     *         or with status 404 (Not Found)
      */
     @GetMapping("/locals/{id}")
     @Timed
@@ -127,7 +145,7 @@ public class LocalResource {
     }
 
     /**
-     * DELETE  /locals/:id : delete the "id" local.
+     * DELETE /locals/:id : delete the "id" local.
      *
      * @param id the id of the localDTO to delete
      * @return the ResponseEntity with status 200 (OK)
@@ -142,8 +160,8 @@ public class LocalResource {
     }
 
     /**
-     * SEARCH  /_search/locals?query=:query : search for the local corresponding
-     * to the query.
+     * SEARCH /_search/locals?query=:query : search for the local corresponding to
+     * the query.
      *
      * @param query the query of the local search
      * @return the result of the search
@@ -152,10 +170,8 @@ public class LocalResource {
     @Timed
     public List<LocalDTO> searchLocals(@RequestParam String query) {
         log.debug("REST request to search Locals for query {}", query);
-        return StreamSupport
-            .stream(localSearchRepository.search(queryStringQuery(query)).spliterator(), false)
-            .map(localMapper::toDto)
-            .collect(Collectors.toList());
+        return StreamSupport.stream(localSearchRepository.search(queryStringQuery(query)).spliterator(), false)
+                .map(localMapper::toDto).collect(Collectors.toList());
     }
 
     @GetMapping("/locals/comercios/{id}")

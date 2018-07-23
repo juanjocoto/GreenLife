@@ -1,0 +1,35 @@
+$menuBar: 57px;
+$footer: 74px;
+$marginBottom: 20px;
+$marginTop: 20px;
+.container {
+    // margin-top: $marginTop;
+}
+
+agm-map {
+    width: 100%;
+    height: calc(100vh - 57px - 74px - 20px);
+}
+
+.map-container {
+    position: relative;
+}
+
+.filters {
+    position: absolute;
+    background: #fff;
+    max-height: calc(100vh - 57px - 74px - 20px - 20px);
+    width: 200px;
+    top: 10px;
+    left: 10px;
+    padding: 10px;
+}
+
+mat-slider,
+mat-form-field {
+    width: 100%;
+}
+
+mat-form-field {
+    padding: 0 10px;
+}
