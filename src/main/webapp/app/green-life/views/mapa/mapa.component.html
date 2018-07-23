@@ -14,7 +14,7 @@
           <p>Teléfono: {{local.telefono}}</p>
           <p>Horario: {{local.horario}}</p>
           <mat-chip-list>
-            <mat-chip *ngFor="let tag of comercioMap.get(local.id).etiquetas">{{tag['nombre']}}</mat-chip>
+            <mat-chip *ngFor="let tag of comercioMap.get(local.comercioId).etiquetas">{{tag['nombre']}}</mat-chip>
           </mat-chip-list>
           <a *ngIf="account" style="margin: 10px 0 0" class="btn-sm btn btnSuscribirse" [routerLink]="'/app/suscripcion/comercio/' + local.comercioId">Suscribirse</a>
         </agm-info-window>
