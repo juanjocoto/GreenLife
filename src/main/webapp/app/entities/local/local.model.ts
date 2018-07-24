@@ -7,7 +7,7 @@ export class Local implements BaseEntity {
         public nombre?: string,
         public direccion?: string,
         public latitud?: number,
-        public latitude?: number,
+        public longitud?: number,
         public horario?: string,
         public telefono?: string,
         public fachadaId?: number,

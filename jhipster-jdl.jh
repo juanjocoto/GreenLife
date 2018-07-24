@@ -55,7 +55,7 @@ entity Local {
 	nombre String required maxlength(50)
     direccion String required maxlength(200)
     latitud Double required
-    latitude Double required
+    longitud Double required
     horario String required maxlength(20)
     telefono String required maxlength(8)
 }

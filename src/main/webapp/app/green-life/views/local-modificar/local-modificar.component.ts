@@ -1,12 +1,13 @@
-import {Component, OnInit, Input} from '@angular/core';
-import {FormBuilder, FormGroup, Validators} from '@angular/forms';
-import {HttpResponse} from '@angular/common/http';
 import {ActivatedRoute, Router} from '@angular/router';
-import {MouseEvent} from '@agm/core';
-import { CommonAdapterService } from '../../shared/services/common-adapter.service';
-import {Local, LocalService} from '../../../entities/local';
 import {Comercio, ComercioService} from '../../../entities/comercio';
+import {Component, Input, OnInit} from '@angular/core';
+import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {Fotografia, FotografiaService} from '../../../entities/fotografia';
+import {Local, LocalService} from '../../../entities/local';
+
+import { CommonAdapterService } from '../../shared/services/common-adapter.service';
+import {HttpResponse} from '@angular/common/http';
+import {MouseEvent} from '@agm/core';
 
 @Component({
     selector: 'jhi-local-modificar',
@@ -61,7 +62,7 @@ export class LocalModificarComponent implements OnInit {
             this.formLocales.get('horaCierre').value
         );
         this.local.latitud = this.marker.lat;
-        this.local.latitude = this.marker.long;
+        this.local.longitud = this.marker.long;
         this.local.comercioId = this.comercio.id;
         this.local.comercioRazonSocial = this.comercio.razonSocial;
 
@@ -86,7 +87,7 @@ export class LocalModificarComponent implements OnInit {
             this.local = localResponse.body;
             this.unformattedHorario(this.local.horario);
             this.marker.lat = this.local.latitud;
-            this.marker.long = this.local.latitude;
+            this.marker.long = this.local.longitud;
             this.formLocales = this.formBuilder.group({
                 nombre: [this.local.nombre, [
                     Validators.required
@@ -102,7 +103,7 @@ export class LocalModificarComponent implements OnInit {
                 latitud: [this.local.latitud, [
                     Validators.required
                 ]],
-                longitud: [this.local.latitude, [
+                longitud: [this.local.longitud, [
                     Validators.required
                 ]],
                 horaApertura: [this.horaApertura, [
