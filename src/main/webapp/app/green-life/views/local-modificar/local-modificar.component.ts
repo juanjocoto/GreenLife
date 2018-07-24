@@ -26,7 +26,7 @@ export class LocalModificarComponent implements OnInit {
     horaCierre: string;
 
     // Google Maps default configuration
-    zoom = 11;
+    zoom = 14;
     // Default Latitude and Longitude (San Jose, Costa Rica)
     lat = 9.935354;
     long = -84.082753;
@@ -100,12 +100,6 @@ export class LocalModificarComponent implements OnInit {
                 direccion: [this.local.direccion, [
                     Validators.required
                 ]],
-                latitud: [this.local.latitud, [
-                    Validators.required
-                ]],
-                longitud: [this.local.longitud, [
-                    Validators.required
-                ]],
                 horaApertura: [this.horaApertura, [
                     Validators.required
                 ]],
@@ -127,6 +121,9 @@ export class LocalModificarComponent implements OnInit {
 
     cancel() {
         this.formLocales.reset();
+    }
+
+    irAtras() {
         this.router.navigate(['app/comercios/' + this.comercio.id + '/locales']);
     }
 
@@ -134,6 +131,23 @@ export class LocalModificarComponent implements OnInit {
     markerDragEnd($event: MouseEvent) {
         this.marker.lat = $event.coords.lat;
         this.marker.long = $event.coords.lng;
+    }
+
+    mapClicked($event: MouseEvent) {
+        this.local.latitud = $event.coords.lat;
+        this.local.longitud = $event.coords.lng;
+        this.marker.lat = $event.coords.lat;
+        this.marker.long = $event.coords.lng;
+    }
+
+    getCurrentLocation() {
+        navigator.geolocation.getCurrentPosition((position) => {
+            this.local.latitud = position.coords.latitude;
+            this.local.longitud = position.coords.longitude;
+            this.marker.lat = position.coords.latitude;
+            this.marker.long = position.coords.longitude;
+            this.zoom = 14.5;
+        });
     }
 
 }

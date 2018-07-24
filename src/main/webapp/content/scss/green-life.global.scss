@@ -195,3 +195,14 @@ $border-radius: 6px;
     -moz-box-shadow: 0 1px 3px rgba(50, 50, 93, .11), 0 1px 3px rgba(0, 0, 0, .08);
     box-shadow: 0 1px 3px rgba(50, 50, 93, .11), 0 1px 3px rgba(0, 0, 0, .08);
 }
+
+.btn-atras-header-configuracion {
+    margin: 12px 0 0 8px;
+    color: $config-green-color;
+    background: #FFFFFF;
+    float: right;
+    border-radius: $border-radius;
+    -webkit-box-shadow: $box-shadow;
+    -moz-box-shadow: $box-shadow;
+    box-shadow: $box-shadow;
+}

@@ -22,7 +22,7 @@ p {
     color: $config-dark-gray-color;
 }
 
-.tab-container {
+.map-container {
     border-radius: 6px;
     box-shadow:  0 1px 3px rgba(50,50,93,.11), 0 1px 3px rgba(0,0,0,.08);
 }
@@ -75,4 +75,16 @@ mat-form-field {
     box-shadow:  0 1px 3px rgba(50,50,93,.11), 0 1px 3px rgba(0,0,0,.08);
     float: right;
     margin: 20px 10px 0 0;
+}
+
+.btn-mi-ubicacion {
+    color: #FFFFFF;
+    background: $config-dark-gray-color;
+    border-color: $config-dark-gray-color;
+    box-shadow:  0 1px 3px rgba(50,50,93,.11), 0 1px 3px rgba(0,0,0,.08);
+    margin: 8px 0;
+    display: block;
+    .fa {
+        margin: 0 7px 0 0;
+    }
 }
