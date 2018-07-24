@@ -1,17 +1,18 @@
-import { Component, OnInit } from '@angular/core';
 import {ActivatedRoute, Router} from '@angular/router';
-import { AccountService } from '../../../shared/auth/account.service';
-import { Observable } from 'rxjs/Rx';
+import { Component, OnInit } from '@angular/core';
+import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {LoginService, User} from '../../../shared';
+
+import { AccountService } from '../../../shared/auth/account.service';
+import {ConfirmacionDialogComponent} from '../../dialogos/confirmacion-dialog/confirmacion-dialog.component';
+import {HttpResponse} from '@angular/common/http';
+import { Location } from '@angular/common';
+import { MatDialog } from '@angular/material';
+import {MouseEvent} from '@agm/core';
+import { Observable } from 'rxjs/Rx';
 import { UserService } from './../../../shared/user/user.service';
 import { Usuario } from '../../../entities/usuario';
 import { UsuarioService } from './../../../entities/usuario/usuario.service';
-import {FormBuilder, FormGroup, Validators} from '@angular/forms';
-import { MatDialog } from '@angular/material';
-import {MouseEvent} from '@agm/core';
-import {ConfirmacionDialogComponent} from '../../dialogos/confirmacion-dialog/confirmacion-dialog.component';
-import { Location } from '@angular/common';
-import {HttpResponse} from '@angular/common/http';
 
 @Component({
     selector: 'jhi-usuario-modificar',
@@ -135,7 +136,7 @@ export class UsuarioModificarComponent implements OnInit {
         return {
             year: value.getFullYear(),
             month: value.getMonth() + 1,
-            day: value.getDay()
+            day: value.getDate()
         };
     }
 
