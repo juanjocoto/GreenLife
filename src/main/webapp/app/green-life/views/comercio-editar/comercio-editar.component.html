@@ -39,9 +39,9 @@
                 </mat-form-field>
                 <jhi-selector-etiquetas *ngIf="comercio" [model]="comercio.etiquetas"></jhi-selector-etiquetas>
                 <div style="display:flex">
-                    <button class="btn btn-danger" (click)="eliminar()">Eliminar</button>
+                    <button class="btn btn-success" (click)="cancelar()">Cancelar</button>
                     <div class="spacer"></div>
-                    <button class="btn btn-success" (click)="guardar()">Guardar</button>
+                    <button class="btn btn-danger" (click)="guardar()">Guardar</button>
                 </div>
             </form>
         </div>
