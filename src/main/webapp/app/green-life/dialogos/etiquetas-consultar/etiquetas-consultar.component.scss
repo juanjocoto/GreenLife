@@ -10,3 +10,15 @@ button {
 #btnCancelar {
     background: $warning-color;
 }
+
+mat-chip-list {
+    display: inline-block;
+}
+
+mat-chip {
+    margin-right: 5px;
+}
+
+mat-dialog-actions {
+    margin-top: 10px;
+}
