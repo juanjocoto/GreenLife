@@ -47,7 +47,6 @@ export class CategoriasModificarComponent implements OnInit {
 
       if (this.formCategoria.valid) {
           this.categoriaService.update(this.categoria).subscribe((result) => {
-              console.log(result);
               this.dialogRef.close();
           });
       }
