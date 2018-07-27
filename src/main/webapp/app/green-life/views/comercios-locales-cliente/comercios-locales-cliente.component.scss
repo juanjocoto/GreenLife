@@ -1,0 +1,111 @@
+@import '../../../../content/scss/green-life-variables';
+
+.main-container {
+    padding: 40px 0 75px 0;
+}
+
+// Header styles
+.title-bar {
+    text-align: center;
+}
+
+.divider {
+    background: #FFFFFF;
+    max-width: 200px;
+    -webkit-box-shadow: 0 1px 3px rgba(50,50,93,.11), 0 1px 3px rgba(0,0,0,.08);
+    -moz-box-shadow: 0 1px 3px rgba(50,50,93,.11), 0 1px 3px rgba(0,0,0,.08);
+    box-shadow: 0 1px 3px rgba(50,50,93,.11), 0 1px 3px rgba(0,0,0,.08);
+}
+
+.subtitle {
+    margin: 10px 0 0 0;
+    text-align: center;
+    color: $config-dark-gray-color;
+    font-weight: 300;
+}
+
+.subtitle2 {
+    text-align: center;
+    color: $config-dark-gray-color;
+    font-weight: 300;
+}
+
+.info-text {
+    padding: 12px 0 0 0;
+    text-align: center;
+    font-size: 17px;
+    color: $green-color;
+}
+
+.img-container img{
+    margin: 25px 0 10px 0;
+}
+
+.subtitle-body {
+    font-weight: 300;
+    padding: 15px 0 0 0;
+}
+
+.badge-vista-usuario{
+    margin: 0 0 0 12px;
+    background: $config-dark-gray-color;
+}
+
+// AGM Styles
+agm-map {
+    height: 600px;
+    border-radius: 6px !important;
+    box-shadow:  0 1px 3px rgba(50,50,93,.11), 0 1px 3px rgba(0,0,0,.08) !important;
+}
+
+agm-info-window {
+    border-radius: 6px !important;
+    box-shadow:  0 1px 3px rgba(50,50,93,.11), 0 1px 3px rgba(0,0,0,.08) !important;
+}
+
+.titleMarker {
+    font-size: 17px;
+    color: $green-color;
+    margin: 5px 0 15px 0;
+}
+
+.textMarker {
+    font-size: 15px;
+    color: $config-dark-gray-color;
+    margin: 10px 0;
+
+    .fa {
+        color: $config-dark-gray-color;
+        padding: 0 7px 0 0;
+    }
+}
+
+// Info local styles
+.info-local-title {
+    color: white;
+    font-weight: 700;
+    margin: 15px 0 35px 0;
+    padding: 15px 0;
+    background: $config-dark-gray-color;
+    text-align: center;
+    border-radius: 6px;
+    box-shadow:  0 1px 3px rgba(50,50,93,.11), 0 1px 3px rgba(0,0,0,.08);
+}
+
+.info-local-subtitle {
+    color: $config-dark-gray-color ;
+    padding: 5px 0;
+    font-weight: 300;
+
+    .fa {
+        padding: 0 10px 0 0;
+        color: $config-dark-gray-color;
+    }
+}
+
+.info-section {
+    min-width: 347px;
+    max-height: 599px;
+    margin: 16px 0 0 0;
+    box-shadow:  0 1px 3px rgba(50,50,93,.11), 0 1px 3px rgba(0,0,0,.08);
+}

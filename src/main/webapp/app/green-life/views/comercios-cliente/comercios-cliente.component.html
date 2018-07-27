@@ -13,7 +13,7 @@
         <div class="col">
             <h3 class="subtitle1">¡Descubre comercios y suscríbete!</h3>
             <div class="img-container text-center">
-                <img src="../../../../content/images/comcercio.png" alt="Comercios suscrito" height="140px">
+                <img src="../../../../content/images/comcercio.png" alt="Comercios suscrito" height="135px">
             </div>
             <h2 class="subtitle2">Comercios disponibles<span class="badge badge-vista-usuario">{{comercios.length}}</span></h2>
             <p class="info-text"><i class="fa fa-comment pr-3"></i>Recuerda que la suscripción se completa hasta que sea aprobada por el comercio.</p>
@@ -37,8 +37,22 @@
             <h5 class="info-comercio-subtitle"><i class="fa fa-id-card"></i><span class="info-sub">Cédula juridíca:</span>  {{currentComercio.cedJuridica}}</h5>
             <h5 class="info-comercio-subtitle"><i class="fa fa-apple"></i><span class="info-sub">Tipo de comercio:</span>  {{currentComercio.tipo | titlecase}}</h5>
             <h5 class="info-comercio-subtitle"><i class="fa fa-calendar"></i><span class="info-sub">Asociado desde:</span>  {{currentComercio.fechaCreacion | date}}</h5>
-            <button class="btn btnVerLocales">Ver locales</button>
+            <button class="btn btnVerLocales" (click)="verLocales(currentComercio.id)">Ver locales</button>
             <button class="btn btnSuscribirse" (click)="suscribiriseComercio(currentComercio.id)">Suscribirse</button>
+        </div>
+    </div>
+    <div class="row mb-5">
+        <div class="col">
+            <h3 class="subtitle1">Filtra comercios y locales por distancia, tipo, calificación  y rango de precios.</h3>
+            <div class="img-container-filters text-center">
+                <img src="../../../../content/images/compass.png" alt="Comercios suscrito" height="55px">
+                <img src="../../../../content/images/prices.png" alt="Comercios suscrito" height="60px">
+                <img src="../../../../content/images/map.png" alt="Comercios suscrito" height="60px">
+                <img src="../../../../content/images/tipo.png" alt="Comercios suscrito" height="60px">
+                <img src="../../../../content/images/rating.png" alt="Comercios suscrito" height="90px">
+            </div>
+            <p class="info-text mb-0"><i class="fa fa-comment pr-3"></i>Dale click a un marcador en el mapa para ver la información del local.</p>
+            <jhi-mapa></jhi-mapa>
         </div>
     </div>
 </div>
