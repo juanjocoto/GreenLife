@@ -15,7 +15,6 @@
             "fieldName": "descripcion",
             "fieldType": "String",
             "fieldValidateRules": [
-                "required",
                 "maxlength"
             ],
             "fieldValidateRulesMaxlength": 200

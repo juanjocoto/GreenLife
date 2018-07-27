@@ -20,6 +20,11 @@
             </tr>
             </thead>
             <tbody>
+            <tr *ngFor="let default of categoriasDefault">
+                <td>{{default.nombre}}</td>
+                <td></td>
+                <td></td>
+            </tr>
             <tr *ngFor="let categoria of categorias">
                 <td>{{categoria.nombre}}</td>
                 <td>{{categoria.descripcion}}</td>

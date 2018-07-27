@@ -6,7 +6,8 @@ import {ActivatedRoute} from '@angular/router';
 import {JhiAlertService} from 'ng-jhipster';
 import { MatDialog } from '@angular/material';
 import { CategoriasRegistroComponent } from '../../dialogos/categorias-registro/categorias-registro.component';
-import {CategoriasModificarComponent} from '../../dialogos/categorias-modificar/categorias-modificar.component';
+import { CategoriasModificarComponent } from '../../dialogos/categorias-modificar/categorias-modificar.component';
+import { Comercio, ComercioService } from '../../../entities/comercio';
 
 @Component({
   selector: 'jhi-categorias',
@@ -15,70 +16,56 @@ import {CategoriasModificarComponent} from '../../dialogos/categorias-modificar/
 })
 export class CategoriasComponent implements OnInit {
 
-    categorias: CategoriaAlimentacion[];
+    categorias: CategoriaAlimentacion[] = [];
+    categoriasDefault: CategoriaAlimentacion[] = [];
     currentSearch: string;
+    comercio: Comercio;
 
   constructor(
       private categoriaService: CategoriaAlimentacionService,
+      private comercioService: ComercioService,
       private activatedRoute: ActivatedRoute,
       private jhiAlertService: JhiAlertService,
       private dialog: MatDialog) {
-      this.currentSearch = this.activatedRoute.snapshot && this.activatedRoute.snapshot.params['search'] ?
-      this.activatedRoute.snapshot.params['search'] : '';
   }
 
   ngOnInit() {
-      this.getCategorias();
+      for (let i = 1; i < 7; i++) {
+          this.categoriaService.find(i).subscribe((resul) => {
+             this.categoriasDefault.push(resul.body);
+          });
+      }
   }
 
   getCategorias(): void {
-      if (this.currentSearch) {
-          this.categoriaService.search({
-              query: this.currentSearch,
-          }).subscribe(
-              (res: HttpResponse<CategoriaAlimentacion[]>) => this.categorias = res.body,
-              (res: HttpErrorResponse) => this.onError(res.message)
-          );
-          return;
-      }
-      this.categoriaService.query().subscribe(
-          (res: HttpResponse<CategoriaAlimentacion[]>) => {
-              this.categorias = res.body;
-              this.currentSearch = '';
-          },
-          (res: HttpErrorResponse) => this.onError(res.message)
-      );
+
   }
 
-    private onError(error) {
-        this.jhiAlertService.error(error.message, null, null);
-    }
+  agregarCategoria() {
+      const res = this.dialog.open(CategoriasRegistroComponent, {
+          width: '600px'
+      });
 
-    agregarCategoria() {
-        const res = this.dialog.open(CategoriasRegistroComponent, {
-            width: '600px'
-        });
+      res.afterClosed().subscribe(() => {
+          this.getCategorias();
+      });
+  }
 
-        res.afterClosed().subscribe(() => {
-            this.getCategorias();
-        });
-    }
+  eliminarCategoria(pcategoria: CategoriaAlimentacion) {
+      this.categoriaService.delete(pcategoria.id).subscribe((resul) => {
+          console.log(resul);
+          this.getCategorias();
+      });
+  }
 
-    eliminarCategoria(pcategoria: CategoriaAlimentacion) {
-        this.categoriaService.delete(pcategoria.id).subscribe((resul) => {
-            console.log(resul);
-            this.getCategorias();
-        });
-    }
+  modificarCategoria(pcategoria: CategoriaAlimentacion) {
+      const res = this.dialog.open(CategoriasModificarComponent, {
+          width: '600px',
+          data: pcategoria.id
+      });
 
-    modificarCategoria(pcategoria: CategoriaAlimentacion) {
-        const res = this.dialog.open(CategoriasModificarComponent, {
-            width: '600px',
-            data: pcategoria.id
-        });
-
-        res.afterClosed().subscribe(() => {
-            this.getCategorias();
-        });
-    }
+      res.afterClosed().subscribe(() => {
+          this.getCategorias();
+      });
+  }
 }
