@@ -1,18 +1,16 @@
 <div class="ctn">
-    <div class="modal-header">
-        <h3>Etiquetas</h3>
-    </div>
-    <div *ngIf="etiquetas?.length;else other_content">
-        <mat-list role="list" *ngFor="let etiqueta of etiquetas">
-            <mat-list-item role="listitem">{{etiqueta.nombre}}</mat-list-item>
-        </mat-list>
-    </div>
-    <ng-template #other_content>
-        <mat-list role="list">
-            <mat-list-item role="listitem">No se han encontrado etiquetas</mat-list-item>
-        </mat-list>
-    </ng-template>
-    <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" mat-dialog-close id="btnCancelar">Cerrar</button>
-    </div>
+    <h3 mat-dialog-title="">Etiquetas</h3>
+    <mat-dialog-content>
+        <div *ngIf="etiquetas?.length;else other_content">
+            <mat-chip-list *ngFor="let etiqueta of etiquetas">
+                <mat-chip>{{etiqueta.nombre}}</mat-chip>
+            </mat-chip-list>
+        </div>
+        <ng-template #other_content>
+            <p>No se han encontrado etiquetas</p>
+        </ng-template>
+    </mat-dialog-content>
+    <mat-dialog-actions>
+        <button type="button" class="btn btn-secondary" mat-dialog-close id="btnCancelar">Cerrar</button>
+    </mat-dialog-actions>
 </div>
