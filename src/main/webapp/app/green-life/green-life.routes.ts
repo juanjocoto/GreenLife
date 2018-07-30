@@ -13,6 +13,7 @@ import { LocalModificarComponent } from './views/local-modificar/local-modificar
 import { LocalPedidosComponent } from './views/local-pedidos/local-pedidos.component';
 import { LocalRegistroComponent } from './views/local-registro/local-registro.component';
 import { MapaComponent } from './views/mapa/mapa.component';
+import { PatrocinadorListarComponent } from './views/patrocinador-listar/patrocinador-listar.component';
 import { PedidoCrearComponent } from './views/pedido-crear/pedido-crear.component';
 import { PedidoListarComponent } from './views/pedido-listar/pedido-listar.component';
 import { PedidoModificarComponent } from './views/pedido-modificar/pedido-modificar.component';
@@ -47,5 +48,6 @@ export const greenLifeRoutes: Route[] = [
     { path: 'suscripciones', component: SuscripcionesClienteComponent, data: { configuracion: false }, canActivate: [AuthGuard] },
     { path: 'pedido/:pedidoId/editar', component: PedidoModificarComponent, data: { configuracion: false }, canActivate: [AuthGuard] },
     { path: 'comercios/:comercioId/suscripciones', component: SuscripcionesComercioComponent, data: { configuracion: false }, canActivate: [AuthGuard] },
-    { path: 'map', component: MapaComponent, data: { configuracion: false } }
+    { path: 'map', component: MapaComponent, data: { configuracion: false } },
+    { path: 'patrocinadores', component: PatrocinadorListarComponent, data: { configuracion: true } }
 ];
