@@ -1,0 +1,52 @@
+<div class="container-fluid title-bar" *ngIf="comercio">
+    <div class="row">
+        <div class="col">
+            <h2>Locales</h2>
+            <hr class="divider">
+            <h1>{{comercio.nombreComercial}}</h1>
+        </div>
+    </div>
+</div>
+
+<div class="container main-container" *ngIf="comercio && locales">
+    <div class="row">
+        <div class="col">
+            <h3 class="subtitle2">¡Descubre los diferentes locales de {{comercio.nombreComercial}}!</h3>
+            <div class="img-container text-center">
+                <img src="../../../../content/images/local.png" alt="Comercios suscrito" height="130px">
+            </div>
+            <h2 class="subtitle">Locales disponibles<span class="badge badge-vista-usuario">{{locales.length}}</span></h2>
+            <p class="info-text"><i class="fa fa-comment pr-3"></i>Dale click a un marcador en el mapa para ver la información del local.</p>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col p-0 mt-3">
+            <div class="map-container">
+                <agm-map
+                    [latitude]="lat"
+                    [longitude]="long"
+                    [zoom]="zoom">
+                    <agm-marker
+                        *ngFor="let local of locales"
+                        [latitude]="local.latitud"
+                        [longitude]="local.longitud"
+                        [markerDraggable]="false"
+                        (markerClick)="loadCurrentLocal(local.id)">
+                        <agm-info-window>
+                            <h6 class="titleMarker">{{local.nombre}}</h6>
+                            <p class="textMarker"><i class="fa fa-phone"></i> {{local.telefono}}</p>
+                            <p class="textMarker"><i class="fa fa-map-marker"></i> {{local.direccion}}</p>
+                            <p class="textMarker"><i class="fa fa-clock-o"></i> {{local.horario}}</p>
+                        </agm-info-window>
+                    </agm-marker>
+                </agm-map>
+            </div>
+        </div>
+        <div class="col-md-4 info-section ml-0" *ngIf="currentLocal">
+            <h2 class="info-local-title">{{currentLocal.nombre}}</h2>
+            <h5 class="info-local-subtitle"><i class="fa fa-phone"></i> {{currentLocal.telefono}}</h5>
+            <h5 class="info-local-subtitle"><i class="fa fa-map-marker"></i> {{currentLocal.direccion}}</h5>
+            <h5 class="info-local-subtitle"><i class="fa fa-clock-o"></i> {{currentLocal.horario}}</h5>
+        </div>
+    </div>
+</div>

@@ -4,6 +4,7 @@ import { CategoriasComponent } from './views/categorias/categorias.component';
 import { ComercioEditarComponent } from './views/comercio-editar/comercio-editar.component';
 import { ComerciosClienteComponent } from './views/comercios-cliente/comercios-cliente.component';
 import { ComerciosLocalesComponent } from './views/comercios-locales/comercios-locales.component';
+import {ComerciosLocalesClienteComponent} from './views/comercios-locales-cliente/comercios-locales-cliente.component';
 import { ComerciosProductosComponent } from './views/comercios-productos/comercios-productos.component';
 import { ConfiguracionAplicacionComponent } from './views/configuracion-aplicacion/configuracion-aplicacion.component';
 import { ConfiguracionComerciosComponent } from './views/configuracion-comercios/configuracion-comercios.component';
@@ -34,6 +35,7 @@ export const greenLifeRoutes: Route[] = [
     { path: 'comercios/:comercioId/productos', component: ComerciosProductosComponent, data: { configuracion: true }, canActivate: [AuthGuard] },
     { path: 'comercios/:comercioId/editar', component: ComercioEditarComponent, data: { configuracion: true }, canActivate: [AuthGuard] },
     { path: 'comercios/:comercioId/locales', component: ComerciosLocalesComponent, data: { configuracion: true }, canActivate: [AuthGuard] },
+    { path: 'comercios/:comercioId/localescliente', component: ComerciosLocalesClienteComponent, data: { configuracion: false }, canActivate: [AuthGuard] },
     { path: 'comercios/:comercioId/local/agregar', component: LocalRegistroComponent, data: { configuracion: true }, canActivate: [AuthGuard] },
     { path: 'comercios/:comercioId/local/editar/:localId', component: LocalModificarComponent, data: { configuracion: true }, canActivate: [AuthGuard] },
     { path: 'comercios/:comercioId/categorias', component: CategoriasComponent, data: { configuracion: true }, canActivate: [AuthGuard] },
