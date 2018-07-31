@@ -1,6 +1,6 @@
 
 <div *ngIf="categoriaAlimentacion">
-    <h2><span>Categoria Alimentación</span> {{categoriaAlimentacion.id}}</h2>
+    <h2><span>Categoria Alimentacion</span> {{categoriaAlimentacion.id}}</h2>
     <hr>
     <jhi-alert-error></jhi-alert-error>
     <dl class="row-md jh-entity-details">
@@ -8,7 +8,7 @@
         <dd>
             <span>{{categoriaAlimentacion.nombre}}</span>
         </dd>
-        <dt><span>Descripción</span></dt>
+        <dt><span>Descripcion</span></dt>
         <dd>
             <span>{{categoriaAlimentacion.descripcion}}</span>
         </dd>
@@ -17,7 +17,7 @@
     <button type="submit"
             (click)="previousState()"
             class="btn btn-info">
-        <span class="fa fa-arrow-left"></span>&nbsp;<span> Regresar</span>
+        <span class="fa fa-arrow-left"></span>&nbsp;<span> Back</span>
     </button>
 
     <button type="button"
@@ -25,6 +25,6 @@
             replaceUrl="true"
             queryParamsHandling="merge"
             class="btn btn-primary">
-        <span class="fa fa-pencil"></span>&nbsp;<span> Editar</span>
+        <span class="fa fa-pencil"></span>&nbsp;<span> Edit</span>
     </button>
 </div>

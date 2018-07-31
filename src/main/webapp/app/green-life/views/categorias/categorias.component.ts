@@ -1,12 +1,13 @@
 import { Component, OnInit } from '@angular/core';
 import { CategoriaAlimentacion } from '../../../entities/categoria-alimentacion';
 import { CategoriaAlimentacionService } from './../../../entities/categoria-alimentacion/categoria-alimentacion.service';
-import {HttpErrorResponse, HttpResponse} from '@angular/common/http';
 import {ActivatedRoute} from '@angular/router';
 import {JhiAlertService} from 'ng-jhipster';
 import { MatDialog } from '@angular/material';
 import { CategoriasRegistroComponent } from '../../dialogos/categorias-registro/categorias-registro.component';
-import {CategoriasModificarComponent} from '../../dialogos/categorias-modificar/categorias-modificar.component';
+import { CategoriasModificarComponent } from '../../dialogos/categorias-modificar/categorias-modificar.component';
+import { Comercio, ComercioService } from '../../../entities/comercio';
+import {CommonAdapterService} from '../../shared/services/common-adapter.service';
 
 @Component({
   selector: 'jhi-categorias',
@@ -15,70 +16,73 @@ import {CategoriasModificarComponent} from '../../dialogos/categorias-modificar/
 })
 export class CategoriasComponent implements OnInit {
 
-    categorias: CategoriaAlimentacion[];
+    categoriasDefault: CategoriaAlimentacion[] = [];
+    categorias: CategoriaAlimentacion[] = [];
     currentSearch: string;
+    comercio: Comercio;
 
   constructor(
       private categoriaService: CategoriaAlimentacionService,
-      private activatedRoute: ActivatedRoute,
+      private comercioService: ComercioService,
+      private route: ActivatedRoute,
       private jhiAlertService: JhiAlertService,
-      private dialog: MatDialog) {
-      this.currentSearch = this.activatedRoute.snapshot && this.activatedRoute.snapshot.params['search'] ?
-      this.activatedRoute.snapshot.params['search'] : '';
+      private dialog: MatDialog,
+      private commonAdapterService: CommonAdapterService) {
   }
 
   ngOnInit() {
+      for (let i = 1; i < 7; i++) {
+          this.categoriaService.find(i).subscribe((resul) => {
+             this.categoriasDefault.push(resul.body);
+          });
+      }
       this.getCategorias();
   }
 
   getCategorias(): void {
-      if (this.currentSearch) {
-          this.categoriaService.search({
-              query: this.currentSearch,
-          }).subscribe(
-              (res: HttpResponse<CategoriaAlimentacion[]>) => this.categorias = res.body,
-              (res: HttpErrorResponse) => this.onError(res.message)
-          );
-          return;
-      }
-      this.categoriaService.query().subscribe(
-          (res: HttpResponse<CategoriaAlimentacion[]>) => {
-              this.categorias = res.body;
-              this.currentSearch = '';
-          },
-          (res: HttpErrorResponse) => this.onError(res.message)
-      );
+      this.route.params.subscribe((params) => {
+          const comercioId = params['comercioId'];
+          this.comercioService.find(comercioId).subscribe((resul) => {
+              this.comercio = resul.body;
+              this.categorias = this.comercio.categorias;
+          });
+      });
   }
 
-    private onError(error) {
-        this.jhiAlertService.error(error.message, null, null);
-    }
+  agregarCategoria() {
+      const res = this.dialog.open(CategoriasRegistroComponent, {
+          width: '600px',
+          data: this.comercio.id
+      });
 
-    agregarCategoria() {
-        const res = this.dialog.open(CategoriasRegistroComponent, {
-            width: '600px'
-        });
+      res.afterClosed().subscribe(() => {
+          this.getCategorias();
+      });
+  }
 
-        res.afterClosed().subscribe(() => {
-            this.getCategorias();
-        });
-    }
+  eliminarCategoria(pcategoria: CategoriaAlimentacion) {
+      const index = this.comercio.categorias.indexOf(pcategoria);
 
-    eliminarCategoria(pcategoria: CategoriaAlimentacion) {
-        this.categoriaService.delete(pcategoria.id).subscribe((resul) => {
-            console.log(resul);
-            this.getCategorias();
-        });
-    }
+      if (index >= 0) {
+          this.comercio.categorias.splice(index, 1);
+      }
 
-    modificarCategoria(pcategoria: CategoriaAlimentacion) {
-        const res = this.dialog.open(CategoriasModificarComponent, {
-            width: '600px',
-            data: pcategoria.id
-        });
+      this.comercio.fechaCreacion = this.commonAdapterService.dateToJHILocalDate(new Date(this.comercio.fechaCreacion));
+      this.comercioService.update(this.comercio).subscribe((httpResponse) => {
+          this.categoriaService.delete(pcategoria.id).subscribe((result) => {
+              console.log(result);
+          });
+      });
+  }
 
-        res.afterClosed().subscribe(() => {
-            this.getCategorias();
-        });
-    }
+  modificarCategoria(pcategoria: CategoriaAlimentacion) {
+      const res = this.dialog.open(CategoriasModificarComponent, {
+          width: '600px',
+          data: pcategoria.id
+      });
+
+      res.afterClosed().subscribe(() => {
+          this.getCategorias();
+      });
+  }
 }
