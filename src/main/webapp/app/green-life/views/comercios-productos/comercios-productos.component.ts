@@ -156,6 +156,6 @@ export class ComerciosProductosComponent implements AfterViewInit {
   }
 
   atras() {
-    this.router.navigate(['']);
+    this.router.navigate(['/miscomercios']);
   }
 }
