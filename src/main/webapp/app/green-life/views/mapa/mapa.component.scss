@@ -1,3 +1,5 @@
+@import '../../../../content/scss/green-life-variables';
+
 $menuBar: 57px;
 $footer: 74px;
 $marginBottom: 20px;
@@ -32,4 +34,43 @@ mat-form-field {
 
 mat-form-field {
     padding: 0 10px;
+}
+
+//BUSCADOR
+
+.buscador {
+    width: 100%;
+    width: 60%;
+    position: relative;
+    margin: 70px 0 0 190px;
+    padding: 0 0 50px 0;
+}
+
+.buscadorTerm {
+    float: left;
+    width: 100%;
+    border: 3px solid $lightgray-color;
+    padding: 5px;
+    height: 36px;
+    border-radius: 5px;
+    outline: none;
+    color: #9DBFAF;
+}
+
+.buscadorTerm:focus{
+    color: $lightgray-color;
+}
+
+.buscadorButton {
+    position: absolute;
+    right: -35px;
+    width: 40px;
+    height: 36px;
+    border: 1px solid $lightgray-color;
+    background: $lightgray-color;
+    text-align: center;
+    color: #fff;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 20px;
 }
