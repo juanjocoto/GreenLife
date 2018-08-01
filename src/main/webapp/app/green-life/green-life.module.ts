@@ -90,6 +90,8 @@ import { UsuarioPerfilComponent } from './views/usuario-perfil/usuario-perfil.co
 import { UsuarioRegistroComponent } from './views/usuario-registro/usuario-registro.component';
 import { UsuarioRolesComponent } from './views/usuario-roles/usuario-roles.component';
 import { ValidadorNumeroDirective } from './shared/directives/validador-numero.directive';
+import { PagoServiciosComponent } from './views/pago-servicios/pago-servicios.component';
+import { NgxStripeModule } from 'ngx-stripe';
 
 @NgModule({
   imports: [
@@ -102,6 +104,7 @@ import { ValidadorNumeroDirective } from './shared/directives/validador-numero.d
     AgmCoreModule.forRoot({
       apiKey: 'AIzaSyAKK8_ZbHnWx9CD9b4NZFGRKe8rMw83wmI'
     }),
+    NgxStripeModule.forRoot('pk_test_Pb8txXeTKiTx09hkGDFj58WR'),
     ReactiveFormsModule,
     CdkTableModule,
     MatAutocompleteModule,
@@ -179,7 +182,8 @@ import { ValidadorNumeroDirective } from './shared/directives/validador-numero.d
     ComerciosClienteComponent,
     ResenaComponent,
     MapaComponent,
-    ComerciosLocalesClienteComponent
+    ComerciosLocalesClienteComponent,
+    PagoServiciosComponent
   ],
   entryComponents: [
     LoginComponent,

@@ -1,0 +1,13 @@
+<div class="container" *ngIf="cliente && clienteDetail">
+    <div class="row">
+        <div class="col-md-5 text-center mx-auto mt-5">
+            <form novalidate (ngSubmit)="processPayment($event)" [formGroup]="paymentForm">
+                <!--<input type="text" formControlName="name" placeholder="John Doe">-->
+                <ngx-stripe-card [options]="cardOptions" [elementsOptions]="elementsOptions"></ngx-stripe-card>
+                <button class="btn" type="submit">
+                    Pagar
+                </button>
+            </form>
+        </div>
+    </div>
+</div>
