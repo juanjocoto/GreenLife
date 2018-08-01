@@ -1,20 +1,19 @@
-import { CUSTOM_ELEMENTS_SCHEMA, NgModule } from '@angular/core';
+import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
+import { RouterModule } from '@angular/router';
+
+import { GreenlifeSharedModule } from '../../shared';
 import {
+    CategoriaAlimentacionService,
+    CategoriaAlimentacionPopupService,
     CategoriaAlimentacionComponent,
-    CategoriaAlimentacionDeleteDialogComponent,
-    CategoriaAlimentacionDeletePopupComponent,
     CategoriaAlimentacionDetailComponent,
     CategoriaAlimentacionDialogComponent,
     CategoriaAlimentacionPopupComponent,
-    CategoriaAlimentacionPopupService,
-    CategoriaAlimentacionService,
-    categoriaAlimentacionPopupRoute,
+    CategoriaAlimentacionDeletePopupComponent,
+    CategoriaAlimentacionDeleteDialogComponent,
     categoriaAlimentacionRoute,
+    categoriaAlimentacionPopupRoute,
 } from './';
-
-import { CMS_PATH } from '../../app.constants';
-import { GreenlifeSharedModule } from '../../shared';
-import { RouterModule } from '@angular/router';
 
 const ENTITY_STATES = [
     ...categoriaAlimentacionRoute,

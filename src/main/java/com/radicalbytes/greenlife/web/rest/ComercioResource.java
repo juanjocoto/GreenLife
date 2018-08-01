@@ -3,6 +3,7 @@ package com.radicalbytes.greenlife.web.rest;
 import com.codahale.metrics.annotation.Timed;
 import com.radicalbytes.greenlife.domain.Comercio;
 
+import com.radicalbytes.greenlife.domain.enumeration.TipoComercio;
 import com.radicalbytes.greenlife.repository.ComercioRepository;
 import com.radicalbytes.greenlife.repository.search.ComercioSearchRepository;
 import com.radicalbytes.greenlife.web.rest.errors.BadRequestAlertException;
@@ -169,4 +170,15 @@ public class ComercioResource {
         List<ComercioDTO> comerciosDTO = comercioMapper.toDto(comercios);
         return ResponseUtil.wrapOrNotFound(Optional.ofNullable(comerciosDTO));
     }
+
+    @GetMapping("/comercios/tipo/{tipo}")
+    @Timed
+    @Transactional
+    public ResponseEntity<List<ComercioDTO>> getComercioByTipo(@PathVariable TipoComercio tipo) {
+        log.debug("REST request to get Comercios with type : {}", tipo);
+        List<Comercio> comercios = comercioRepository.findAllByTipo(tipo);
+        List<ComercioDTO> comerciosDTO = comercioMapper.toDto(comercios);
+        return ResponseUtil.wrapOrNotFound(Optional.ofNullable(comerciosDTO));
+    }
+
 }
