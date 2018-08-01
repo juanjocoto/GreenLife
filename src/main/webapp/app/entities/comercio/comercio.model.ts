@@ -1,8 +1,8 @@
 import { BaseEntity } from './../../shared';
 
-export const enum TipoComercio {
-    'RESTAURANTE',
-    'TIENDA'
+export enum TipoComercio {
+    RESTAURANTE = 'RESTAURANTE',
+    TIENDA = 'TIENDA'
 }
 
 export class Comercio implements BaseEntity {
