@@ -15,6 +15,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import javax.transaction.Transactional;
 import javax.validation.Valid;
 import java.net.URI;
 import java.net.URISyntaxException;
@@ -122,6 +123,16 @@ public class ResenaComercioResource {
         log.debug("REST request to get ResenaComercio : {}", id);
         ResenaComercio resenaComercio = resenaComercioRepository.findOne(id);
         ResenaComercioDTO resenaComercioDTO = resenaComercioMapper.toDto(resenaComercio);
+        return ResponseUtil.wrapOrNotFound(Optional.ofNullable(resenaComercioDTO));
+    }
+
+    @GetMapping("/resena-comercios/comercio/{id}")
+    @Timed
+    @Transactional
+    public ResponseEntity<List<ResenaComercioDTO>> getProductoByComercio(@PathVariable Long id) {
+        log.debug("REST request to get Resena Comercio : {}", id);
+        List<ResenaComercio> resenaComercio = resenaComercioRepository.findAllByComercio_id(id);
+        List<ResenaComercioDTO> resenaComercioDTO = resenaComercioMapper.toDto(resenaComercio);
         return ResponseUtil.wrapOrNotFound(Optional.ofNullable(resenaComercioDTO));
     }
 
