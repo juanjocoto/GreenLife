@@ -28,7 +28,7 @@ export class ComerciosClienteComponent implements OnInit {
     }
 
     verLocales(comercioId) {
-        this.router.navigate(['app/comercios/' + comercioId + '/locales']);
+        this.router.navigate(['app/comercios/' + comercioId + '/localescliente']);
     }
 
     suscribiriseComercio(comercioId) {

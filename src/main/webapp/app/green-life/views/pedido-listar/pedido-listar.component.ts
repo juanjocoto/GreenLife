@@ -1,8 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialog, MatSnackBar } from '@angular/material';
-
 import { AccountService } from '../../../shared/auth/account.service';
-import { ActivatedRoute } from '@angular/router';
+import {ActivatedRoute, Router} from '@angular/router';
 import { ConfirmacionDialogComponent } from '../../dialogos/confirmacion-dialog/confirmacion-dialog.component';
 import { LineaProducto } from './../../../entities/linea-producto/linea-producto.model';
 import { LineaProductoService } from '../../../entities/linea-producto';
@@ -23,6 +22,7 @@ export class PedidoListarComponent implements OnInit {
 
   constructor(
     private route: ActivatedRoute,
+    private router: Router,
     private pedidoService: PedidoService,
     private lineaService: LineaProductoService,
     private auth: AccountService,
@@ -75,6 +75,10 @@ export class PedidoListarComponent implements OnInit {
         });
       }
     });
+  }
+
+  irAtras() {
+      this.router.navigate(['app/suscripciones']);
   }
 
 }

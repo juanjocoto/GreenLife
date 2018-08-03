@@ -50,6 +50,7 @@ import { ColonPipe } from './shared/pipes/colon.pipe';
 import { ComercioEditarComponent } from './views/comercio-editar/comercio-editar.component';
 import { ComerciosClienteComponent } from './views/comercios-cliente/comercios-cliente.component';
 import { ComerciosLocalesComponent } from './views/comercios-locales/comercios-locales.component';
+import { ComerciosLocalesClienteComponent } from './views/comercios-locales-cliente/comercios-locales-cliente.component';
 import { ComerciosProductosComponent } from './views/comercios-productos/comercios-productos.component';
 import { ComerciosRegistroComponent } from './dialogos/comercios-registro/comercios-registro.component';
 import { CommonAdapterService } from './shared/services/common-adapter.service';
@@ -177,7 +178,8 @@ import { ValidadorNumeroDirective } from './shared/directives/validador-numero.d
     EtiquetasConsultarComponent,
     ComerciosClienteComponent,
     ResenaComponent,
-    MapaComponent
+    MapaComponent,
+    ComerciosLocalesClienteComponent
   ],
   entryComponents: [
     LoginComponent,

@@ -13,6 +13,9 @@
 }
 
 .info-section {
+    min-width: 347px;
+    max-height: 599px;
+    margin: 48px 0 0 0;
     box-shadow:  0 1px 3px rgba(50,50,93,.11), 0 1px 3px rgba(0,0,0,.08);
 }
 
@@ -66,16 +69,22 @@ agm-info-window {
     }
 }
 
+#subtitle {
+    margin: 40px 0 10px 0;
+    text-align: center;
+    color: $config-dark-gray-color;
+    font-weight: 300;
+}
+
 .btnAdd {
     color: #FFFFFF;
     background: $config-dark-gray-color;
     font-weight: 700;
+    font-size: 18px;
     box-shadow:  0 1px 3px rgba(50,50,93,.11), 0 1px 3px rgba(0,0,0,.08);
-    float: right;
-    margin: 30px 0 0 0;
-
+    margin: 10px 0 0 0;
     .fa {
-        padding: 0 10px 0 0;
+        padding: 0 8px 0 0;
     }
 }
 

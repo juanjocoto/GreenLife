@@ -4,6 +4,7 @@
             <span class="title-bar-config-icon icon"><span class="iconImg"></span></span>
             Locales {{comercio.razonSocial}}
         </h1>
+        <button class="btn btn-atras-header-configuracion" (click)="irAtras()">Atrás</button>
     </div>
 </div>
 
@@ -11,23 +12,24 @@
     <div class="row config-section" *ngIf="local">
         <div class="col pr-md-5">
             <h3>Locales</h3>
-            <mat-tab-group class="tab-container">
-                <mat-tab label="Mapa de locales">
-                    <div class="map-container">
-                        <agm-map
-                            [latitude]="local.latitud"
-                            [longitude]="local.longitud"
-                            [zoom]="zoom">
-                            <agm-marker
-                                [latitude]="local.latitud"
-                                [longitude]="local.longitud"
-                                [markerDraggable]="true"
-                                (dragEnd)="markerDragEnd($event)">
-                            </agm-marker>
-                        </agm-map>
-                    </div>
-                </mat-tab>
-            </mat-tab-group>
+            <div class="map-container">
+                <agm-map
+                    [latitude]="local.latitud"
+                    [longitude]="local.longitud"
+                    [zoom]="zoom"
+                    (mapClick)="mapClicked($event)">
+                    <agm-marker
+                        [latitude]="local.latitud"
+                        [longitude]="local.longitud"
+                        [markerDraggable]="true"
+                        (dragEnd)="markerDragEnd($event)">
+                    </agm-marker>
+                </agm-map>
+            </div>
+            <h5>Ubicación en el mapa</h5>
+            <p class="mb-1">Latitud: {{local.latitud}}</p>
+            <p class="mt-1">Longitud: {{local.longitud}}</p>
+            <button class="btn btn-sm btn-mi-ubicacion" (click)="getCurrentLocation()"><i class="fa fa-crosshairs"></i>Mi ubicación</button>
         </div>
         <div class="col">
             <h3>Información del local</h3>
@@ -44,13 +46,6 @@
                     </mat-form-field>
                     <mat-form-field>
                         <textarea matInput matTextareaAutosize matAutosizeMinRows="4" matAutosizeMaxRows="4"  placeholder="Dirección" formControlName="direccion"></textarea>
-                    </mat-form-field>
-                    <h5>Ubicación en el mapa</h5>
-                    <mat-form-field>
-                        <input matInput [value]="marker.lat" [readonly]="true" placeholder="Latitud" formControlName="latitud">
-                    </mat-form-field>
-                    <mat-form-field>
-                        <input matInput [value]="marker.long" [readonly]="true" placeholder="Longitud" formControlName="longitud">
                     </mat-form-field>
                     <h5>Horario</h5>
                     <mat-form-field>

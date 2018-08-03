@@ -1,6 +1,7 @@
 package com.radicalbytes.greenlife.repository;
 
 import com.radicalbytes.greenlife.domain.Comercio;
+import com.radicalbytes.greenlife.domain.enumeration.TipoComercio;
 import org.springframework.stereotype.Repository;
 
 import org.springframework.data.jpa.repository.*;
@@ -20,4 +21,5 @@ public interface ComercioRepository extends JpaRepository<Comercio, Long> {
     Comercio findOneWithEagerRelationships(@Param("id") Long id);
 
     List<Comercio> findAllByDueno_id(Long id);
+    List<Comercio> findAllByTipo(TipoComercio tipo);
 }
