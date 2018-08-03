@@ -170,13 +170,18 @@ export class MapaComponent implements OnInit {
         switch (this.selectedOpcion) {
             case 'comercios':
                 this.comercioService.findByNombreComercial(this.resultado).subscribe((resul) => {
-                    this.comercio = resul.body;
-                    this.comercioMap.set(this.comercio.id, this.comercio);
-                    this.localService.findByComercio(this.comercio.id).subscribe((localResponse: HttpResponse<Local[]>) => {
-                        for (const local of localResponse.body) {
-                            this.localList.push(local);
-                        }
-                    });
+                    console.log('Sale esto' + resul.ok);
+                    if (resul.ok) {
+                        this.comercio = resul.body;
+                        this.comercioMap.set(this.comercio.id, this.comercio);
+                        this.localService.findByComercio(this.comercio.id).subscribe((localResponse: HttpResponse<Local[]>) => {
+                            for (const local of localResponse.body) {
+                                this.localList.push(local);
+                            }
+                        });
+                    } else {
+
+                    }
                 });
                 break;
 

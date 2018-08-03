@@ -7,7 +7,6 @@ import { JhiDateUtils } from 'ng-jhipster';
 
 import {Comercio, TipoComercio} from './comercio.model';
 import { createRequestOption } from '../../shared';
-import {Usuario} from "../usuario/usuario.model";
 
 export type EntityResponseType = HttpResponse<Comercio>;
 
@@ -71,7 +70,6 @@ export class ComercioService {
         return this.http.get<Comercio>(`${this.resourceUrl}/nombre/${nombre}`, { observe: 'response' })
             .map((res: EntityResponseType) => this.convertResponse(res));
     }
-
 
     private convertResponse(res: EntityResponseType): EntityResponseType {
         const body: Comercio = this.convertItemFromServer(res.body);
