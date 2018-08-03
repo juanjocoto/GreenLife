@@ -69,9 +69,7 @@ export class CategoriasComponent implements OnInit {
 
       this.comercio.fechaCreacion = this.commonAdapterService.dateToJHILocalDate(new Date(this.comercio.fechaCreacion));
       this.comercioService.update(this.comercio).subscribe((httpResponse) => {
-          this.categoriaService.delete(pcategoria.id).subscribe((result) => {
-              console.log(result);
-          });
+          this.categoriaService.delete(pcategoria.id).subscribe((result) => { });
       });
   }
 
