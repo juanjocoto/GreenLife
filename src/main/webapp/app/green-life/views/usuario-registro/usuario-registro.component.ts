@@ -84,16 +84,13 @@ export class UsuarioRegistroComponent implements OnInit {
 
     if (this.formulario.valid) {
       this.registerService.save(newUser).subscribe((id) => {
-        // this.userService.find(newUser.login).subscribe((jhiUser) => {
         nuevoUsuario.userDetailId = id;
         nuevoUsuario.fechaCreacion = this.commonAdapterService.dateToJHILocalDate(new Date());
 
         this.usuarioService.create(nuevoUsuario).subscribe((result) => {
-          console.log(result);
           this.router.navigate(['/']);
         });
       });
-      // });
     }
   }
 }
