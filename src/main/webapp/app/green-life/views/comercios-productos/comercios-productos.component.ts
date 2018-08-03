@@ -1,5 +1,6 @@
 import { Component, AfterViewInit, ViewChild } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
+import { ActivatedRoute } from '@angular/router';
+import { Location } from '@angular/common';
 import { Producto, ProductoService } from '../../../entities/producto';
 import { MatPaginator, MatSort, MatTableDataSource, MatDialog, MatSnackBar } from '@angular/material';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
@@ -26,7 +27,7 @@ export class ComerciosProductosComponent implements AfterViewInit {
 
   constructor(
     private route: ActivatedRoute,
-    private router: Router,
+    private location: Location,
     private productosService: ProductoService,
     private formBuilder: FormBuilder,
     private dialog: MatDialog,
@@ -156,6 +157,6 @@ export class ComerciosProductosComponent implements AfterViewInit {
   }
 
   atras() {
-    this.router.navigate(['']);
+    this.location.back();
   }
 }
