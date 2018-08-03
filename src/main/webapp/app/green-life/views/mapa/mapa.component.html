@@ -1,10 +1,10 @@
 <div class="wrap">
     <div class="buscador">
-            <mat-select class="buscadorSelect" placeholder="Buscar por...">
-                <mat-option>Comercios</mat-option>
-                <mat-option>Locales</mat-option>
+            <mat-select [(ngModel)]="selectedOpcion" class="buscadorSelect" placeholder="Buscar por...">
+                <mat-option value="comercios">Comercios</mat-option>
+                <mat-option value="locales">Locales</mat-option>
             </mat-select>
-        <input type="text" class="buscadorTerm" placeholder="¿Qué deseas buscar?">
+        <input type="text" class="buscadorTerm" placeholder="¿Qué deseas buscar?" [(ngModel)]="resultado">
         <button type="submit" class="buscadorButton" (click)="buscar()">
             <i class="fa fa-search"></i>
         </button>

@@ -181,4 +181,12 @@ public class ComercioResource {
         return ResponseUtil.wrapOrNotFound(Optional.ofNullable(comerciosDTO));
     }
 
+    @GetMapping("/comercios/nombre/{nombre}")
+    @Timed
+    public ResponseEntity<ComercioDTO> getComercioByNombre(@PathVariable String nombre) {
+        log.debug("REST request to get Comercio : {}", nombre);
+        Comercio comercio = comercioRepository.findByNombreComercial(nombre);
+        ComercioDTO comercioDTO = comercioMapper.toDto(comercio);
+        return ResponseUtil.wrapOrNotFound(Optional.ofNullable(comercioDTO));
+    }
 }

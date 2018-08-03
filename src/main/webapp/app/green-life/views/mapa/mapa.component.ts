@@ -49,14 +49,16 @@ export class MapaComponent implements OnInit {
     comercioList: Comercio[] = [];
     localList: Local[] = [];
     comercioMap: Map<number, Comercio> = new Map();
-
     filteredOptions: Observable<string[]>;
+    comercio: Comercio;
 
     // Modidificar por la ubicación del icono final
     iconUrl = undefined; // `/api/images/bitmap.png`;
 
     tipos = [];
     selectedTipo: string;
+    selectedOpcion: string;
+    resultado: string;
 
     constructor(
         private localService: LocalService,
@@ -164,6 +166,25 @@ export class MapaComponent implements OnInit {
         }
     }
 
+    buscar() {
+        switch (this.selectedOpcion) {
+            case 'comercios':
+                this.comercioService.findByNombreComercial(this.resultado).subscribe((resul) => {
+                    this.comercio = resul.body;
+                    this.comercioMap.set(this.comercio.id, this.comercio);
+                    this.localService.findByComercio(this.comercio.id).subscribe((localResponse: HttpResponse<Local[]>) => {
+                        for (const local of localResponse.body) {
+                            this.localList.push(local);
+                        }
+                    });
+                });
+                break;
+
+            case 'locales':
+                console.log('Hola');
+                break;
+        }
+    }
 }
 
 interface Coords {
