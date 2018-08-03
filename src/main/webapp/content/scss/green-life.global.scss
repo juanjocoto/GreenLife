@@ -4,7 +4,6 @@
 @include mat-core();
 // Tipografia Green Life
 @import url('https://fonts.googleapis.com/css?family=Lato:300,300i,400,400i,700,700i');
-@import '~ngx-bar-rating/themes/br-bootstrap-theme';
 @import '~ngx-bar-rating/themes/br-default-theme';
 // Declaracion de la tipografia Lato
 $custom-typography: mat-typography-config( $font-family: 'Lato, sans-serif');
