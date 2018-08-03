@@ -1,0 +1,69 @@
+@import '../../../../content/scss/green-life.global';
+
+.card {
+    border: none;
+    border-radius: $border-radius;
+    -webkit-box-shadow: $box-shadow;
+    -moz-box-shadow: $box-shadow;
+    box-shadow: $box-shadow;
+}
+
+.card-header {
+    color: #FFFFFF;
+    font-size: 17px;
+    background: $green-color;
+    padding: 8px 0 8px 0;
+    border-radius: $border-radius;
+}
+
+.card-body-payment {
+    padding-bottom: 3px;
+}
+
+.card-footer {
+    background: #FFFFFF;
+    color: $config-dark-gray-color;
+}
+
+.container-payment {
+    background: #FFFFFF;
+    border-radius: $border-radius;
+    -webkit-box-shadow: $box-shadow;
+    -moz-box-shadow: $box-shadow;
+    box-shadow: $box-shadow;
+}
+
+.btn-pagar {
+    color: #FFFFFF;
+    background: $config-dark-gray-color;
+    font-size: 17px;
+    font-weight: 700;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    margin: 28px 0 15px 0;
+    border-color: $config-dark-gray-color;
+    border-radius: $border-radius;
+    -webkit-box-shadow: $box-shadow;
+    -moz-box-shadow: $box-shadow;
+    box-shadow: $box-shadow;
+}
+
+.img-container-filters img {
+    margin: 5px 15px 23px 15px;
+}
+
+.card-title-payment, .card-text-payment {
+    color: $config-dark-gray-color;
+}
+
+.card-title-payment {
+    .fa {
+        color: $green-color;
+        padding: 0 7px 0 0;
+    }
+}
+
+.card-text-payment {
+    font-size: 18.5px;
+    font-weight: 300;
+}

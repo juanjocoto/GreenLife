@@ -1,7 +1,8 @@
-import {Component, OnInit, ViewChild, ElementRef} from '@angular/core';
+import {Component, OnInit, ViewChild, Input} from '@angular/core';
 import {HttpResponse} from '@angular/common/http';
-import {FormGroup, FormBuilder, Validators} from '@angular/forms';
+import {MatSnackBar} from '@angular/material';
 import {StripeService, StripeCardComponent, ElementOptions, ElementsOptions} from 'ngx-stripe';
+import {PagoService} from '../../../entities/pago';
 import {Usuario, UsuarioService} from '../../../entities/usuario';
 import {User, UserService, AccountService} from '../../../shared';
 
@@ -16,7 +17,9 @@ import {User, UserService, AccountService} from '../../../shared';
 export class PagoServiciosComponent implements OnInit {
 
     @ViewChild(StripeCardComponent) card: StripeCardComponent;
-    paymentForm: FormGroup;
+    @Input() amount: number;
+    @Input() description: string;
+    paymentStatus = false;
     cliente: Usuario;
     clienteDetail: User;
 
@@ -26,7 +29,7 @@ export class PagoServiciosComponent implements OnInit {
                 iconColor: '#666EE8',
                 color: '#40535C',
                 lineHeight: '40px',
-                fontWeight: 300,
+                fontWeight: 500,
                 fontFamily: '"Lato", sans-serif',
                 fontSize: '18px',
                 fontSmoothing: 'antialiased',
@@ -42,18 +45,15 @@ export class PagoServiciosComponent implements OnInit {
     };
 
     constructor(
-        private formBuilder: FormBuilder,
         private stripeService: StripeService,
+        private pagoService: PagoService,
         private account: AccountService,
         private usuarioService: UsuarioService,
-        private userService: UserService
+        private userService: UserService,
+        public snackBar: MatSnackBar
     ) {}
 
     ngOnInit() {
-        this.paymentForm = this.formBuilder.group({
-            name: ['', [Validators.required]]
-        });
-
         this.loadCliente();
     }
 
@@ -63,16 +63,36 @@ export class PagoServiciosComponent implements OnInit {
 
         this.stripeService
             .createToken(this.card.getCard(), {name, currency})
-            .subscribe((tokenResponse) => {
-                if (tokenResponse.token) {
-                    // Use the token to create a charge or a customer
-                    // https://stripe.com/docs/charges
-                    console.log(tokenResponse.token.id);
-                } else if (tokenResponse.error) {
+            .subscribe((response) => {
+                if (response.token) {
+                    // Token created successful
+                    this.showSnackBar('Procesando el pago...');
+                    this.chargeCard(response.token.id);
+                } else if (response.error) {
                     // Error creating the token
-                    console.log(tokenResponse.error.message);
+                    this.showSnackBar(response.error.message);
                 }
             });
+    }
+
+    private chargeCard(token: string) {
+        this.pagoService.chargeCard(token, this.amount, this.description, this.clienteDetail.email).subscribe((response) => {
+            if (response.status === 200) {
+                // Payment successful
+                this.paymentStatus = true;
+                this.showSnackBar('Pago realizo exitosamente');
+            } else if (response.status !== 200) {
+                // Payment unsuccessful
+                this.paymentStatus = false;
+                this.showSnackBar('No se ha podido realizar el pago');
+            }
+        });
+    }
+
+    showSnackBar(message: string) {
+        this.snackBar.open(message, 'Stripe', {
+            duration: 30000,
+        });
     }
 
     private loadCliente() {
