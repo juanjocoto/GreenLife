@@ -129,7 +129,7 @@ public class ResenaComercioResource {
     @GetMapping("/resena-comercios/comercio/{id}")
     @Timed
     @Transactional
-    public ResponseEntity<List<ResenaComercioDTO>> getProductoByComercio(@PathVariable Long id) {
+    public ResponseEntity<List<ResenaComercioDTO>> getResenaComercioByComercio(@PathVariable Long id) {
         log.debug("REST request to get Resena Comercio : {}", id);
         List<ResenaComercio> resenaComercio = resenaComercioRepository.findAllByComercio_id(id);
         List<ResenaComercioDTO> resenaComercioDTO = resenaComercioMapper.toDto(resenaComercio);
