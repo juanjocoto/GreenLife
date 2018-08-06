@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ConfiguracionService, Configuracion } from '../../../entities/configuracion';
 import { MatSnackBar } from '../../../../../../../node_modules/@angular/material';
+import { MouseEvent } from '@agm/core';
 
 @Component({
   selector: 'jhi-configuracion-aplicacion',
@@ -12,6 +13,8 @@ export class ConfiguracionAplicacionComponent implements OnInit {
 
   formulario: FormGroup;
   configuracion: Configuracion;
+  zoom = 11;
+  marker: Marker;
 
   constructor(private formBuilder: FormBuilder, private configuracionService: ConfiguracionService,
     private snackBar: MatSnackBar) {
@@ -52,6 +55,10 @@ export class ConfiguracionAplicacionComponent implements OnInit {
         calificacionMax: this.configuracion.calificacionMaxima,
         nombre: this.configuracion.nombreAplicacion
       });
+      this.marker = {
+        lat: this.configuracion.latitud,
+        long: this.configuracion.longitud
+      };
     });
   }
 
@@ -62,6 +69,8 @@ export class ConfiguracionAplicacionComponent implements OnInit {
     this.configuracion.telefono = this.formulario.controls['telefono'].value;
     this.configuracion.calificacionMinima = this.formulario.controls['calificacionMin'].value;
     this.configuracion.calificacionMaxima = this.formulario.controls['calificacionMax'].value;
+    this.configuracion.latitud = this.marker.lat;
+    this.configuracion.longitud = this.marker.long;
     this.configuracion.nombreAplicacion = this.formulario.controls['nombre'].value;
     this.configuracion.urlLogo = 'none';
     this.configuracionService.update(this.configuracion).subscribe((resul) => {
@@ -71,4 +80,13 @@ export class ConfiguracionAplicacionComponent implements OnInit {
     });
   }
 
+  markerDragEnd($event: MouseEvent) {
+    this.marker.lat = $event.coords.lat;
+    this.marker.long = $event.coords.lng;
+  }
+}
+
+interface Marker {
+  lat: number;
+  long: number;
 }

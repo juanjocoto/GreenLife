@@ -1,5 +1,6 @@
 import { Component, AfterViewInit, ViewChild } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { Location } from '@angular/common';
 import { Producto, ProductoService } from '../../../entities/producto';
 import { MatPaginator, MatSort, MatTableDataSource, MatDialog, MatSnackBar } from '@angular/material';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
@@ -17,6 +18,7 @@ export class ComerciosProductosComponent implements AfterViewInit {
   dataSource: MatTableDataSource<Producto> = new MatTableDataSource<Producto>([]);
   formulario: FormGroup;
   productoSeleccionado: Producto;
+  cantProductos = 0;
   productoId = -1;
   comercioId = -1;
 
@@ -25,6 +27,7 @@ export class ComerciosProductosComponent implements AfterViewInit {
 
   constructor(
     private route: ActivatedRoute,
+    private location: Location,
     private productosService: ProductoService,
     private formBuilder: FormBuilder,
     private dialog: MatDialog,
@@ -95,6 +98,7 @@ export class ComerciosProductosComponent implements AfterViewInit {
       this.comercioId = params['comercioId'];
       this.productosService.findByComercio(params['comercioId']).subscribe((resul) => {
         this.dataSource = new MatTableDataSource<Producto>(resul.body);
+        this.cantProductos = this.dataSource.data.length;
         this.dataSource.paginator = this.paginator;
         this.dataSource.sort = this.sort;
       });
@@ -150,5 +154,9 @@ export class ComerciosProductosComponent implements AfterViewInit {
       descripcion: '',
       precio: '',
     });
+  }
+
+  atras() {
+    this.location.back();
   }
 }

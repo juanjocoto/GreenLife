@@ -50,11 +50,8 @@ export class SuscripcionesComercioComponent implements OnInit {
   private loadSuscripcionesComercio(comercioId) {
       this.suscripcionService.findSuscripcionesByComercio(comercioId).subscribe((suscripcionResponse: HttpResponse<Suscripcion[]>) => {
           for (const index of suscripcionResponse.body) {
-              console.log(index.usuarioId);
               this.usuarioService.find(index.usuarioId).subscribe((usuarioResponse: HttpResponse<Usuario>) => {
-                  console.log(usuarioResponse.body.userDetailId);
                   this.userService.findById(usuarioResponse.body.userDetailId).subscribe((userResponse: HttpResponse<User>) => {
-                      console.log(userResponse.body.firstName);
                       this.suscripciones.push({
                           suscripcion: index,
                           cliente: usuarioResponse.body,

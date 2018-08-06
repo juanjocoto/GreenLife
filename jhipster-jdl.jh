@@ -107,7 +107,7 @@ enum EstadoOrdenRecoleccion {
 }
 entity CategoriaAlimentacion {
 	nombre String required maxlength(50)
-    descripcion String required maxlength(200)
+    descripcion String maxlength(200)
 }
 entity Publicacion {
 	fechaCreacion LocalDate required

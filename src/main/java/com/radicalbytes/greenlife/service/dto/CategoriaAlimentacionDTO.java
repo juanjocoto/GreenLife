@@ -16,7 +16,6 @@ public class CategoriaAlimentacionDTO implements Serializable {
     @Size(max = 50)
     private String nombre;
 
-    @NotNull
     @Size(max = 200)
     private String descripcion;
 

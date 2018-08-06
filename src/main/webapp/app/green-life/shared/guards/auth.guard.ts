@@ -18,7 +18,6 @@ export class AuthGuard implements CanActivate {
       return true;
     }).catch((err) => {
       return new Observable<boolean>((observer) => {
-        console.log('error');
         observer.next(false);
       });
     });

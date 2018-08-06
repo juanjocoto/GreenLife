@@ -1,17 +1,17 @@
 <div class="ctn">
-    <h1 mat-dialog-title>Agregar Categoría</h1>
+    <h1 mat-dialog-title>Modificar Categoría</h1>
     <mat-dialog-content>
         <form *ngIf="categoria" [formGroup]="formCategoria">
             <mat-form-field>
-                <input matInput formControlName="nombre">
+                <input matInput formControlName="nombre" placeholder="Nombre">
             </mat-form-field>
             <mat-form-field>
-                <input matInput formControlName="descr">
+                <input matInput formControlName="descr" placeholder="Descripción">
             </mat-form-field>
         </form>
     </mat-dialog-content>
     <mat-dialog-actions>
-        <button type="button" class="btn btn-secondary" mat-dialog-close id="btnCancelar">Cerrar</button>
+        <button type="button" class="btn btn-secondary" mat-dialog-close id="btnCancelar">Cancelar</button>
         <div class="spacer"></div>
         <button class="btn btn-success" (click)="modificarCategoria()" id="btnModificar">Editar</button>
     </mat-dialog-actions>

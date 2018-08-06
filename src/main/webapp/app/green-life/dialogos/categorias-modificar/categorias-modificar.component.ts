@@ -22,21 +22,14 @@ export class CategoriasModificarComponent implements OnInit {
       @Inject(MAT_DIALOG_DATA) public data: number) { }
 
   ngOnInit() {
-      this.obtenerCategoria();
-  }
-
-  obtenerCategoria() {
-
-      this.categoriaService.find(this.data).subscribe((localResponse: HttpResponse<CategoriaAlimentacion>) => {
-          this.categoria = localResponse.body;
+      this.categoriaService.find(this.data).subscribe((result) => {
+          this.categoria = result.body;
 
           this.formCategoria = this.formBuilder.group({
               nombre: [this.categoria.nombre, [
                   Validators.required,
               ]],
-              descr: [this.categoria.descripcion, [
-                  Validators.required,
-              ]]
+              descr: [this.categoria.descripcion, []]
           });
       });
   }

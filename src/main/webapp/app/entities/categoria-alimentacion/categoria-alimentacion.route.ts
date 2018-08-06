@@ -1,14 +1,14 @@
-import { CMS_PATH } from './../../app.constants';
+import { Routes } from '@angular/router';
+
+import { UserRouteAccessService } from '../../shared';
 import { CategoriaAlimentacionComponent } from './categoria-alimentacion.component';
-import { CategoriaAlimentacionDeletePopupComponent } from './categoria-alimentacion-delete-dialog.component';
 import { CategoriaAlimentacionDetailComponent } from './categoria-alimentacion-detail.component';
 import { CategoriaAlimentacionPopupComponent } from './categoria-alimentacion-dialog.component';
-import { Routes } from '@angular/router';
-import { UserRouteAccessService } from '../../shared';
+import { CategoriaAlimentacionDeletePopupComponent } from './categoria-alimentacion-delete-dialog.component';
 
 export const categoriaAlimentacionRoute: Routes = [
     {
-        path: CMS_PATH + '/categoria-alimentacion',
+        path: 'categoria-alimentacion',
         component: CategoriaAlimentacionComponent,
         data: {
             authorities: ['ROLE_USER'],
@@ -16,7 +16,7 @@ export const categoriaAlimentacionRoute: Routes = [
         },
         canActivate: [UserRouteAccessService]
     }, {
-        path: CMS_PATH + '/categoria-alimentacion/:id',
+        path: 'categoria-alimentacion/:id',
         component: CategoriaAlimentacionDetailComponent,
         data: {
             authorities: ['ROLE_USER'],

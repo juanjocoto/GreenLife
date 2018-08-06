@@ -1,7 +1,7 @@
 <div class="ctn">
     <h1 mat-dialog-title>Agregar Categoría</h1>
     <mat-dialog-content>
-        <form [formGroup]="categoriaForm" class="green-life-form">
+        <form [formGroup]="categoriaForm">
             <mat-form-field>
                 <input matInput placeholder="Nombre" formControlName="nombre">
             </mat-form-field>
@@ -11,7 +11,7 @@
         </form>
     </mat-dialog-content>
     <mat-dialog-actions>
-        <button type="button" class="btn btn-secondary" mat-dialog-close id="btnCancelar">Cerrar</button>
+        <button type="button" class="btn btn-secondary" mat-dialog-close id="btnCancelar">Cancelar</button>
         <div class="spacer"></div>
         <button class="btn btn-success" (click)="crearCategoria()" id="btnAgregar">Agregar</button>
     </mat-dialog-actions>
