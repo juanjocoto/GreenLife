@@ -1,8 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialog, MatSnackBar } from '@angular/material';
-
 import { AccountService } from '../../../shared/auth/account.service';
-import { ActivatedRoute } from '@angular/router';
+import {ActivatedRoute, Router} from '@angular/router';
 import { ConfirmacionDialogComponent } from '../../dialogos/confirmacion-dialog/confirmacion-dialog.component';
 import { LineaProducto } from './../../../entities/linea-producto/linea-producto.model';
 import { LineaProductoService } from '../../../entities/linea-producto';
@@ -23,6 +22,7 @@ export class PedidoListarComponent implements OnInit {
 
   constructor(
     private route: ActivatedRoute,
+    private router: Router,
     private pedidoService: PedidoService,
     private lineaService: LineaProductoService,
     private auth: AccountService,
@@ -47,7 +47,6 @@ export class PedidoListarComponent implements OnInit {
           });
         }
         this.pedidos = pedidos;
-        console.log(this.pedidos);
       });
     });
   }
@@ -66,7 +65,6 @@ export class PedidoListarComponent implements OnInit {
       if (response) {
         const lineas = pedido.lineas.filter((linea) => linea.id);
         this.lineaService.deleteMany(lineas).subscribe((lineResponse) => {
-          console.log(lineResponse);
           this.pedidoService.delete(pedido.id).subscribe(() => {
             this.snackBar.open('El pedido fué eliminado', undefined, { duration: 2000 });
             const index = this.pedidos.indexOf(pedido);
@@ -75,6 +73,10 @@ export class PedidoListarComponent implements OnInit {
         });
       }
     });
+  }
+
+  irAtras() {
+      this.router.navigate(['app/suscripciones']);
   }
 
 }

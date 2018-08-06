@@ -87,6 +87,16 @@ $border-radius: 6px;
     box-shadow: $box-shadow;
 }
 
+.btn-atras {
+    background-color: $config-dark-gray-color !important;
+    border-color: $config-dark-gray-color !important;
+    border-radius: $border-radius;
+    color: #FFFFFF !important;
+    -webkit-box-shadow: $box-shadow;
+    -moz-box-shadow: $box-shadow;
+    box-shadow: $box-shadow;
+}
+
 .mat-icon-button:focus,
 .mat-button:focus {
     outline: unset;
@@ -108,6 +118,7 @@ $border-radius: 6px;
 // Green Life Cards Styles
 .card-green-life {
     color: $config-dark-gray-color;
+    background: #f7f7f7;
     border: none;
     border-radius: $border-radius;
     -webkit-box-shadow: $box-shadow;
@@ -194,4 +205,15 @@ $border-radius: 6px;
     -webkit-box-shadow: 0 1px 3px rgba(50, 50, 93, .11), 0 1px 3px rgba(0, 0, 0, .08);
     -moz-box-shadow: 0 1px 3px rgba(50, 50, 93, .11), 0 1px 3px rgba(0, 0, 0, .08);
     box-shadow: 0 1px 3px rgba(50, 50, 93, .11), 0 1px 3px rgba(0, 0, 0, .08);
+}
+
+.btn-atras-header-configuracion {
+    margin: 12px 0 0 8px;
+    color: $config-green-color;
+    background: #FFFFFF;
+    float: right;
+    border-radius: $border-radius;
+    -webkit-box-shadow: $box-shadow;
+    -moz-box-shadow: $box-shadow;
+    box-shadow: $box-shadow;
 }

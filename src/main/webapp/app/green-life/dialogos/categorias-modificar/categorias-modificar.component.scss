@@ -5,9 +5,7 @@ form {
     margin-top: 15px;
     margin-bottom: 20px;
 }
-.ctn {
-    margin-left: 50px;
-}
+
 .green-life-form {
     max-width: 430px;
 }
@@ -27,8 +25,8 @@ button {
     border-radius: 6px;
 }
 #btnCancelar {
-    background-color: #46B97E;
+background-color: $warning-color;
 }
 #btnModificar {
-    background-color: #46B97E;
+    background-color: $green-color;
 }

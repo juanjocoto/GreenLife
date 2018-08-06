@@ -28,7 +28,7 @@ export class ComerciosClienteComponent implements OnInit {
     }
 
     verLocales(comercioId) {
-        this.router.navigate(['app/comercios/' + comercioId + '/locales']);
+        this.router.navigate(['app/comercios/' + comercioId + '/localescliente']);
     }
 
     suscribiriseComercio(comercioId) {
@@ -44,7 +44,6 @@ export class ComerciosClienteComponent implements OnInit {
     private loadComercios() {
         this.comercioService.findAll().subscribe((comercioResponse: HttpResponse<Comercio[]>) => {
             this.comercios = comercioResponse.body;
-            console.log(comercioResponse.body);
         });
     }
 }

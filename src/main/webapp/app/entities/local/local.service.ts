@@ -44,8 +44,6 @@ export class LocalService {
             .set('lat', lat.toString())
             .set('lng', lng.toString())
             .set('distance', distance.toString());
-
-        console.log(params.toString());
         return this.http.get<Local[]>(`${this.resourceUrl}/distance`, { observe: 'response', params })
             .map((res: HttpResponse<Local[]>) => this.convertArrayResponse(res));
     }

@@ -85,7 +85,6 @@ export class PedidoModificarComponent implements OnInit {
               .subscribe((productoResponse) => {
                 this.productos = productoResponse.body;
                 this.lineaProductoService.findByPedidoId(this.pedido.id).subscribe((lineaResponse) => {
-                  console.log(lineaResponse.body);
                   lineaResponse.body.forEach((linea: Linea) => linea.producto = this.getProducto(linea.productoId));
                   this.listaLineas = lineaResponse.body as Linea[];
                   this.filterProductList();
@@ -148,10 +147,8 @@ export class PedidoModificarComponent implements OnInit {
       }
 
       observable.subscribe((result) => {
-        console.log(result);
         this.location.back();
       }, (err) => {
-        console.log(err);
       });
     } else {
       this.formulario.updateValueAndValidity();
@@ -166,7 +163,6 @@ export class PedidoModificarComponent implements OnInit {
         const lineas = this.listaLineas.filter((linea) => linea.id);
         if (lineas.length > 0) {
           this.lineaProductoService.deleteMany(lineas).subscribe((lineResponse) => {
-            console.log(lineResponse);
             this.pedidoService.delete(this.pedido.id).subscribe((response) => this.location.back());
           });
         } else {

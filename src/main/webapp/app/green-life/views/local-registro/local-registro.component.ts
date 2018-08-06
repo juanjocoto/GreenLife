@@ -114,6 +114,9 @@ export class LocalRegistroComponent implements OnInit {
 
     cancel() {
         this.formLocales.reset();
+    }
+
+    irAtras() {
         this.router.navigate(['app/comercios/' + this.comercio.id + '/locales']);
     }
 
@@ -125,7 +128,6 @@ export class LocalRegistroComponent implements OnInit {
 
                 this.fotografiaService.create(this.newFachada).subscribe((httpResponse) => {
                     this.newLocal.fachadaId = httpResponse.body.id;
-                    console.log(httpResponse.body);
                 });
             }
         });
@@ -135,6 +137,21 @@ export class LocalRegistroComponent implements OnInit {
     markerDragEnd($event: MouseEvent) {
         this.marker.lat = $event.coords.lat;
         this.marker.long = $event.coords.lng;
+    }
+
+    mapClicked($event: MouseEvent) {
+        this.marker.lat = $event.coords.lat;
+        this.marker.long = $event.coords.lng;
+    }
+
+    getCurrentLocation() {
+        navigator.geolocation.getCurrentPosition((position) => {
+            this.marker.lat = position.coords.latitude;
+            this.marker.long = position.coords.longitude;
+            this.lat = position.coords.latitude;
+            this.long = position.coords.longitude;
+            this.zoom = 14.5;
+        });
     }
 
 }

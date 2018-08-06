@@ -1,16 +1,14 @@
-import { ActivatedRoute, Router } from '@angular/router';
 import { Comercio, ComercioService } from '../../../entities/comercio';
-import { CommonAdapterService, JHILocalDate } from '../../shared/services/common-adapter.service';
 import { Component, OnInit } from '@angular/core';
 import { EstadoSuscripcion, Suscripcion, SuscripcionService } from '../../../entities/suscripcion';
 import { User, UserService } from '../../../shared';
 import { Usuario, UsuarioService } from '../../../entities/usuario';
 
+import { ActivatedRoute } from '@angular/router';
 import { ConfirmacionDialogComponent } from '../../dialogos/confirmacion-dialog/confirmacion-dialog.component';
 import { HttpResponse } from '@angular/common/http';
+import { JHILocalDate } from '../../shared/services/common-adapter.service';
 import { MatDialog } from '@angular/material';
-import { MatExpansionModule } from '@angular/material/expansion';
-import { Observable } from '../../../../../../../node_modules/rxjs';
 
 @Component({
     selector: 'jhi-suscripciones-comercio',
@@ -64,21 +62,21 @@ export class SuscripcionesComercioComponent implements OnInit {
         });
     }
 
-    private loadSuscripcionesComercio(comercioId) {
-        this.suscripcionService.findSuscripcionesByComercio(comercioId).subscribe((suscripcionResponse: HttpResponse<Suscripcion[]>) => {
-            for (const index of suscripcionResponse.body) {
-                this.usuarioService.find(index.usuarioId).subscribe((usuarioResponse: HttpResponse<Usuario>) => {
-                    this.userService.findById(usuarioResponse.body.userDetailId).subscribe((userResponse: HttpResponse<User>) => {
-                        this.suscripciones.push({
-                            suscripcion: index,
-                            cliente: usuarioResponse.body,
-                            user: userResponse.body
-                        });
-                    });
-                });
-            }
-        });
-    }
+  private loadSuscripcionesComercio(comercioId) {
+      this.suscripcionService.findSuscripcionesByComercio(comercioId).subscribe((suscripcionResponse: HttpResponse<Suscripcion[]>) => {
+          for (const index of suscripcionResponse.body) {
+              this.usuarioService.find(index.usuarioId).subscribe((usuarioResponse: HttpResponse<Usuario>) => {
+                  this.userService.findById(usuarioResponse.body.userDetailId).subscribe((userResponse: HttpResponse<User>) => {
+                      this.suscripciones.push({
+                          suscripcion: index,
+                          cliente: usuarioResponse.body,
+                          user: userResponse.body
+                      });
+                  });
+              });
+          }
+      });
+  }
 
 }
 

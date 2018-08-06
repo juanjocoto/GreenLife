@@ -86,4 +86,8 @@ export class ComerciosLocalesComponent implements OnInit {
         });
     }
 
+    irAtras() {
+        this.router.navigate(['app/miscomercios']);
+    }
+
 }

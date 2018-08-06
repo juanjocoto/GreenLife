@@ -121,11 +121,9 @@ export class UsuarioModificarComponent implements OnInit {
 
         if (this.formulario.valid) {
             this.userService.update(this.user).subscribe((result) => {
-                console.log(result);
                 this.usuario.fechaCreacion = this.convertirFecha(new Date());
 
                 this.usuarioService.update(this.usuario).subscribe((resuld) => {
-                    console.log(resuld);
                     this.location.back();
                 });
             });
@@ -148,7 +146,6 @@ export class UsuarioModificarComponent implements OnInit {
                 this.user.activated = false;
 
                 this.userService.update(this.user).subscribe((resuld) => {
-                    console.log(resuld);
                     this.loginService.logout();
                     this.router.navigate(['']);
                 });

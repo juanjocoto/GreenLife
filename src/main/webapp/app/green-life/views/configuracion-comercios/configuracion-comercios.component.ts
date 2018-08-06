@@ -82,14 +82,15 @@ export class ConfiguracionComerciosComponent implements OnInit {
       ref.afterClosed().subscribe((result) => {
           if (result) {
               this.comercioService.delete(comercio.id).subscribe((httpResponse) => {
-                  this.matSnackBar.open(`El comercio ${comercio.razonSocial} fue eliminado`, undefined, {duration: 2000});
+                  this.matSnackBar.open(`El comercio ${comercio.nombreComercial} fue eliminado`, undefined, {duration: 2000});
+                  const index = this.comercios.findIndex((d) => d.comercio.id === comercio.id);
+                  this.comercios.splice(index, 1);
               });
           }
       });
   }
 
   consultarEtiquetas(pcomercio: Comercio) {
-      console.log('id del comercio: ' + pcomercio.id);
       const ref = this.matDialog.open(EtiquetasConsultarComponent, {
          width: '500px',
          data: pcomercio.id
