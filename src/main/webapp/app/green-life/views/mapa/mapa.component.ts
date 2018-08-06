@@ -157,6 +157,7 @@ export class MapaComponent implements OnInit {
                 }
             });
         }
+        this.selectedPrecio = null;
     }
 
     filterByPrecio() {
@@ -173,6 +174,7 @@ export class MapaComponent implements OnInit {
                 this.localList = response[1].body;
             });
         } else {
+            this.localList = [];
             let tipo = '';
             switch (this.selectedPrecio) {
                 case this.tipoPrecios[0]: tipo = 'Low';
@@ -193,8 +195,8 @@ export class MapaComponent implements OnInit {
                     });
                 }
             });
-
         }
+        this.selectedTipo = null;
     }
 
     loadTipos() {
