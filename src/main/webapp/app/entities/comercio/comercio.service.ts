@@ -40,6 +40,11 @@ export class ComercioService {
             .map((res: HttpResponse<Comercio[]>) => this.convertArrayResponse(res));
     }
 
+    findByRange(range: string): Observable<HttpResponse<Comercio[]>> {
+        return this.http.get<Comercio[]>(`${this.resourceUrl}/range/${range}`, { observe: 'response'})
+            .map((res: HttpResponse<Comercio[]>) => this.convertArrayResponse(res));
+    }
+
     query(req?: any): Observable<HttpResponse<Comercio[]>> {
         const options = createRequestOption(req);
         return this.http.get<Comercio[]>(this.resourceUrl, { params: options, observe: 'response' })

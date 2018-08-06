@@ -44,6 +44,16 @@
                     </mat-option>
                 </mat-select>
             </mat-form-field>
+            <mat-form-field>
+              <mat-select placeholder="Precio" [(value)]="selectedPrecio" (valueChange)="filterByPrecio()">
+                  <mat-option value="Todos">
+                      Todos
+                  </mat-option>
+                  <mat-option *ngFor="let precio of tipoPrecios" [value]="precio">
+                      {{precio | titlecase}}
+                  </mat-option>
+              </mat-select>
+          </mat-form-field>
         </div>
     </div>
   </div>
