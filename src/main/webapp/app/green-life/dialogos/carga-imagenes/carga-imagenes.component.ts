@@ -28,15 +28,12 @@ export class CargaImagenesComponent implements OnInit {
     this.imageForm = this.fb.group({
       image: ['', [Validators.required]]
     });
-    console.log(this.uploadIframe);
   }
 
   subirImage(event: Event) {
     const iframe = this.uploadIframe.nativeElement as HTMLIFrameElement;
     iframe.onload = (iframeEvent) => {
       iframe.onload = undefined;
-
-      console.log(iframeEvent);
 
       const preEleemnt = <HTMLPreElement>iframe.contentDocument.querySelector('pre');
       if (preEleemnt && preEleemnt.innerHTML !== '') {
@@ -59,7 +56,6 @@ export class CargaImagenesComponent implements OnInit {
   }
 
   imagenCargada(event: Event) {
-    console.log(event);
     const element = event.target as HTMLInputElement;
     const file = element.files[0];
     this.getBase64(file).then((base64Decoded: string) => {
