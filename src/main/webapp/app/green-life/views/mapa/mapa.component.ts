@@ -6,7 +6,7 @@ import {ComercioService} from '../../../entities/comercio/comercio.service';
 import {GMAP_DEFAULT_SETTINGS} from '../../../app.constants';
 import {Local} from '../../../entities/local/local.model';
 import {LocalService} from '../../../entities/local/local.service';
-import {MatSlider} from '@angular/material';
+import {MatSlider, MatSnackBar} from '@angular/material';
 import {Observable} from 'rxjs';
 import {HttpResponse} from '@angular/common/http';
 
@@ -63,7 +63,8 @@ export class MapaComponent implements OnInit {
     constructor(
         private localService: LocalService,
         private comercioService: ComercioService,
-        private accountService: AccountService
+        private accountService: AccountService,
+        private matSnackBar: MatSnackBar
     ) {}
 
     ngOnInit() {
@@ -169,24 +170,21 @@ export class MapaComponent implements OnInit {
     buscar() {
         switch (this.selectedOpcion) {
             case 'comercios':
-                this.comercioService.findByNombreComercial(this.resultado).subscribe((resul) => {
-                    console.log('Sale esto' + resul.ok);
-                    if (resul.ok) {
-                        this.comercio = resul.body;
-                        this.comercioMap.set(this.comercio.id, this.comercio);
-                        this.localService.findByComercio(this.comercio.id).subscribe((localResponse: HttpResponse<Local[]>) => {
-                            for (const local of localResponse.body) {
-                                this.localList.push(local);
-                            }
-                        });
-                    } else {
 
-                    }
+                this.comercioService.findByNombreComercial(this.resultado).subscribe((resul) => {
+                    this.comercio = resul.body;
+                    this.comercioMap.set(this.comercio.id, this.comercio);
+                    this.localService.findByComercio(this.comercio.id).subscribe((localResponse: HttpResponse<Local[]>) => {
+                        for (const local of localResponse.body) {
+                            this.localList.push(local);
+                        }
+                    });
+                }, (error) => {
+                    this.matSnackBar.open(`No se ha encontrado ningun resultado`, undefined, {duration: 2000});
                 });
                 break;
 
             case 'locales':
-                console.log('Hola');
                 break;
         }
     }
