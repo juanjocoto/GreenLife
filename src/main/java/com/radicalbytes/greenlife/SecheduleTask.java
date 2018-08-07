@@ -6,16 +6,19 @@ import java.util.List;
 import java.util.Locale;
 import java.util.Set;
 
+import com.radicalbytes.greenlife.domain.CadenaEntrega;
 import com.radicalbytes.greenlife.domain.Entrega;
 import com.radicalbytes.greenlife.domain.LineaEntrega;
 import com.radicalbytes.greenlife.domain.LineaProducto;
 import com.radicalbytes.greenlife.domain.Pedido;
+import com.radicalbytes.greenlife.domain.enumeration.EstadoCadena;
+import com.radicalbytes.greenlife.repository.CadenaEntregaRepository;
 import com.radicalbytes.greenlife.repository.EntregaRepository;
 import com.radicalbytes.greenlife.repository.LineaEntregaRepository;
 import com.radicalbytes.greenlife.repository.PedidoRepository;
+import com.radicalbytes.greenlife.service.MailService;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -24,12 +27,14 @@ public class SecheduleTask {
 
     @Autowired
     private PedidoRepository pedidoRepo;
-
     @Autowired
     private EntregaRepository entregaRepo;
-
     @Autowired
     private LineaEntregaRepository lineaEntregaRepo;
+    @Autowired
+    private CadenaEntregaRepository cadenaEntregaRepository;
+    @Autowired
+    private MailService mailService;
 
     // @Scheduled(cron = "0/60 * * * * *")
     @Transactional
@@ -47,7 +52,6 @@ public class SecheduleTask {
             entrega.setFechaInicio(now);
             entrega.setSuscripcion(pedido.getSuscripcion());
             entrega.setPedido(pedido);
-
             entregaRepo.save(entrega);
 
             Set<LineaEntrega> lineas = entrega.getLineas();
@@ -59,6 +63,17 @@ public class SecheduleTask {
                 lineas.add(lineaEntrega);
                 lineaEntregaRepo.save(lineaEntrega);
             }
+            // entrega.addCadena(cadenaEntrega);
+
+            CadenaEntrega cadenaEntrega = new CadenaEntrega();
+            cadenaEntrega.entrega(entrega);
+            cadenaEntrega.setEstado(EstadoCadena.PENDIENTE);
+            cadenaEntregaRepository.save(cadenaEntrega);
+
+            String reciver = entrega.getSuscripcion().getUsuario().getUserDetail().getEmail();
+
+            mailService.sendEmail(reciver, "Creacion del pedido", "", false, true);
         }
     }
+
 }

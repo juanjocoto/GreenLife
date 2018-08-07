@@ -11,7 +11,6 @@ export class HorasEntregaService {
         if (!this.horas) {
             this.generateHoras();
         }
-        console.log('hora');
         return this.horas;
     }
 

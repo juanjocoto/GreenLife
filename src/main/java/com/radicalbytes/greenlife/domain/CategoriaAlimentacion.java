@@ -30,9 +30,8 @@ public class CategoriaAlimentacion implements Serializable {
     @Column(name = "nombre", length = 50, nullable = false)
     private String nombre;
 
-    @NotNull
     @Size(max = 200)
-    @Column(name = "descripcion", length = 200, nullable = false)
+    @Column(name = "descripcion", length = 200)
     private String descripcion;
 
     // jhipster-needle-entity-add-field - JHipster will add fields here, do not remove

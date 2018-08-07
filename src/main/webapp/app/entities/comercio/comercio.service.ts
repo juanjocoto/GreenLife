@@ -5,7 +5,7 @@ import { SERVER_API_URL } from '../../app.constants';
 
 import { JhiDateUtils } from 'ng-jhipster';
 
-import { Comercio } from './comercio.model';
+import {Comercio, TipoComercio} from './comercio.model';
 import { createRequestOption } from '../../shared';
 
 export type EntityResponseType = HttpResponse<Comercio>;
@@ -58,6 +58,11 @@ export class ComercioService {
 
     findComerciosByDueno(id: number): Observable<HttpResponse<Comercio[]>> {
         return this.http.get<Comercio[]>(`${this.resourceUrl}/usuario/${id}`, { observe: 'response'})
+            .map((res: HttpResponse<Comercio[]>) => this.convertArrayResponse(res));
+    }
+
+    findComerciosByTipo(tipo: TipoComercio): Observable<HttpResponse<Comercio[]>> {
+        return this.http.get<Comercio[]>(`${this.resourceUrl}/tipo/${tipo}`, { observe: 'response'})
             .map((res: HttpResponse<Comercio[]>) => this.convertArrayResponse(res));
     }
 

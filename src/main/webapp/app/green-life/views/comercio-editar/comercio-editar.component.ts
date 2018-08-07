@@ -58,9 +58,7 @@ export class ComercioEditarComponent implements OnInit {
       this.dialog.open(CargaImagenesComponent).afterClosed().subscribe((imageName: string) => {
       if (imageName) {
           this.comercio.logoUrl = `/api/images/${imageName}`;
-          this.comercioService.update(this.comercio).subscribe((httpResponse) => {
-              console.log(httpResponse.body);
-          });
+          this.comercioService.update(this.comercio).subscribe((httpResponse) => { });
       }
       });
   }
@@ -73,7 +71,6 @@ export class ComercioEditarComponent implements OnInit {
           this.comercio.tipo = this.comercioForm.get('tipo').value;
 
           this.comercioService.update(this.comercio).subscribe((httpResponse) => {
-              console.log(httpResponse);
               if (httpResponse.status === 200) {
                   this.snackBar.open('El comercio ha sido actualizado', undefined, { duration: 2000 });
                   this.location.back();

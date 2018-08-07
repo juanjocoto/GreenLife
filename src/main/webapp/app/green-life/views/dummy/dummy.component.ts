@@ -29,9 +29,7 @@ export class DummyComponent implements OnInit {
   doSomething() {
     const observable: Observable<HttpResponse<User>> = this.userService.registerComerciante();
 
-    observable.subscribe((response) => {
-      console.log(response);
-    });
+    observable.subscribe((response) => { });
   }
 
 }
