@@ -168,9 +168,9 @@ export class MapaComponent implements OnInit {
     }
 
     buscar() {
+        this.localList = [];
         switch (this.selectedOpcion) {
             case 'comercios':
-
                 this.comercioService.findByNombreComercial(this.resultado).subscribe((resul) => {
                     this.comercio = resul.body;
                     this.comercioMap.set(this.comercio.id, this.comercio);
@@ -185,6 +185,13 @@ export class MapaComponent implements OnInit {
                 break;
 
             case 'locales':
+                console.log('Hola');
+                this.localService.findByNombre(this.resultado).subscribe((resul) => {
+                    console.log(resul.body.nombre);
+                   this.localList.push(resul.body);
+                }, (error) => {
+                    this.matSnackBar.open(`No se ha encontrado ningun resultado`, undefined, {duration: 2000});
+                });
                 break;
         }
     }

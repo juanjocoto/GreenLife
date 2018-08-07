@@ -184,4 +184,13 @@ public class LocalResource {
         return ResponseUtil.wrapOrNotFound(Optional.ofNullable(localesDTO));
     }
 
+    @GetMapping("/locals/nombre/{nombre}")
+    @Timed
+    public ResponseEntity<LocalDTO> getLocalByNombre(@PathVariable String nombre) {
+        log.debug("REST request to get Local : {}", nombre);
+        Local local = localRepository.findByNombre(nombre);
+        LocalDTO localDTO = localMapper.toDto(local);
+        return ResponseUtil.wrapOrNotFound(Optional.ofNullable(localDTO));
+    }
+
 }

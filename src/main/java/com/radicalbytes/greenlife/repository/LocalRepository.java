@@ -15,4 +15,5 @@ import java.util.List;
 @Repository
 public interface LocalRepository extends JpaRepository<Local, Long> {
     List<Local> findAllByComercio_id(Long id);
+    Local findByNombre(String nombre);
 }

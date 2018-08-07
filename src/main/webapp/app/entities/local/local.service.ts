@@ -6,6 +6,7 @@ import { Local } from './local.model';
 import { Observable } from 'rxjs/Observable';
 import { SERVER_API_URL } from '../../app.constants';
 import { createRequestOption } from '../../shared';
+import {Comercio} from "../comercio/comercio.model";
 
 export type EntityResponseType = HttpResponse<Local>;
 
@@ -67,6 +68,11 @@ export class LocalService {
     findByComercio(id: number): Observable<HttpResponse<Local[]>> {
         return this.http.get<Local[]>(`${this.resourceUrl}/comercios/${id}`, { observe: 'response' })
             .map((res: HttpResponse<Local[]>) => this.convertArrayResponse(res));
+    }
+
+    findByNombre(nombre: string): Observable<EntityResponseType> {
+        return this.http.get<Local>(`${this.resourceUrl}/nombre/${nombre}`, { observe: 'response' })
+            .map((res: EntityResponseType) => this.convertResponse(res));
     }
 
     private convertResponse(res: EntityResponseType): EntityResponseType {
