@@ -1,5 +1,4 @@
 @import '../../../../content/scss/green-life-variables';
-
 .main-container {
     padding: 15px 0 75px 0;
 }
@@ -11,9 +10,9 @@
 .divider {
     background: #FFFFFF;
     max-width: 200px;
-    -webkit-box-shadow: 0 1px 3px rgba(50,50,93,.11), 0 1px 3px rgba(0,0,0,.08);
-    -moz-box-shadow: 0 1px 3px rgba(50,50,93,.11), 0 1px 3px rgba(0,0,0,.08);
-    box-shadow: 0 1px 3px rgba(50,50,93,.11), 0 1px 3px rgba(0,0,0,.08);
+    -webkit-box-shadow: 0 1px 3px rgba(50, 50, 93, .11), 0 1px 3px rgba(0, 0, 0, .08);
+    -moz-box-shadow: 0 1px 3px rgba(50, 50, 93, .11), 0 1px 3px rgba(0, 0, 0, .08);
+    box-shadow: 0 1px 3px rgba(50, 50, 93, .11), 0 1px 3px rgba(0, 0, 0, .08);
 }
 
 #subtitle {
@@ -30,7 +29,7 @@
     color: $green-color;
 }
 
-.img-container img{
+.img-container img {
     margin: 25px 0 10px 0;
 }
 
@@ -42,9 +41,9 @@
 .badge-primary {
     margin: 0 0 0 12px;
     border-radius: 6px;
-    -webkit-box-shadow: 0 1px 3px rgba(50,50,93,.11), 0 1px 3px rgba(0,0,0,.08);
-    -moz-box-shadow: 0 1px 3px rgba(50,50,93,.11), 0 1px 3px rgba(0,0,0,.08);
-    box-shadow: 0 1px 3px rgba(50,50,93,.11), 0 1px 3px rgba(0,0,0,.08);
+    -webkit-box-shadow: 0 1px 3px rgba(50, 50, 93, .11), 0 1px 3px rgba(0, 0, 0, .08);
+    -moz-box-shadow: 0 1px 3px rgba(50, 50, 93, .11), 0 1px 3px rgba(0, 0, 0, .08);
+    box-shadow: 0 1px 3px rgba(50, 50, 93, .11), 0 1px 3px rgba(0, 0, 0, .08);
     color: #FFFFFF;
     background: $config-dark-gray-color;
 }
@@ -63,9 +62,9 @@
     color: $config-dark-gray-color;
     border: none;
     border-radius: 6px;
-    -webkit-box-shadow: 0 1px 3px rgba(50,50,93,.11), 0 1px 3px rgba(0,0,0,.08);
-    -moz-box-shadow: 0 1px 3px rgba(50,50,93,.11), 0 1px 3px rgba(0,0,0,.08);
-    box-shadow: 0 1px 3px rgba(50,50,93,.11), 0 1px 3px rgba(0,0,0,.08);
+    -webkit-box-shadow: 0 1px 3px rgba(50, 50, 93, .11), 0 1px 3px rgba(0, 0, 0, .08);
+    -moz-box-shadow: 0 1px 3px rgba(50, 50, 93, .11), 0 1px 3px rgba(0, 0, 0, .08);
+    box-shadow: 0 1px 3px rgba(50, 50, 93, .11), 0 1px 3px rgba(0, 0, 0, .08);
 }
 
 .card-header {
@@ -73,10 +72,9 @@
     background: $green-color;
     border: none;
     border-radius: 6px;
-    -webkit-box-shadow: 0 1px 3px rgba(50,50,93,.11), 0 1px 3px rgba(0,0,0,.08);
-    -moz-box-shadow: 0 1px 3px rgba(50,50,93,.11), 0 1px 3px rgba(0,0,0,.08);
-    box-shadow: 0 1px 3px rgba(50,50,93,.11), 0 1px 3px rgba(0,0,0,.08);
-
+    -webkit-box-shadow: 0 1px 3px rgba(50, 50, 93, .11), 0 1px 3px rgba(0, 0, 0, .08);
+    -moz-box-shadow: 0 1px 3px rgba(50, 50, 93, .11), 0 1px 3px rgba(0, 0, 0, .08);
+    box-shadow: 0 1px 3px rgba(50, 50, 93, .11), 0 1px 3px rgba(0, 0, 0, .08);
     .fa {
         padding: 0 7px 0 0;
         font-size: 17px;
@@ -91,9 +89,9 @@
 .badge-secondary {
     margin: 0 0 0 12px;
     border-radius: 6px;
-    -webkit-box-shadow: 0 1px 3px rgba(50,50,93,.11), 0 1px 3px rgba(0,0,0,.08);
-    -moz-box-shadow: 0 1px 3px rgba(50,50,93,.11), 0 1px 3px rgba(0,0,0,.08);
-    box-shadow: 0 1px 3px rgba(50,50,93,.11), 0 1px 3px rgba(0,0,0,.08);
+    -webkit-box-shadow: 0 1px 3px rgba(50, 50, 93, .11), 0 1px 3px rgba(0, 0, 0, .08);
+    -moz-box-shadow: 0 1px 3px rgba(50, 50, 93, .11), 0 1px 3px rgba(0, 0, 0, .08);
+    box-shadow: 0 1px 3px rgba(50, 50, 93, .11), 0 1px 3px rgba(0, 0, 0, .08);
     color: $green-color;
     background: #FFFFFF;
 }
@@ -109,14 +107,14 @@
     font-size: 17px;
 }
 
-.btn-cancelar-suscripcion, .btn-aprobar-suscripcion {
+.btn-cancelar-suscripcion,
+.btn-aprobar-suscripcion {
     margin: 20px 0 0 0;
     font-size: 16px;
     border-radius: 6px;
-    -webkit-box-shadow: 0 1px 3px rgba(50,50,93,.11), 0 1px 3px rgba(0,0,0,.08);
-    -moz-box-shadow: 0 1px 3px rgba(50,50,93,.11), 0 1px 3px rgba(0,0,0,.08);
-    box-shadow: 0 1px 3px rgba(50,50,93,.11), 0 1px 3px rgba(0,0,0,.08);
-
+    -webkit-box-shadow: 0 1px 3px rgba(50, 50, 93, .11), 0 1px 3px rgba(0, 0, 0, .08);
+    -moz-box-shadow: 0 1px 3px rgba(50, 50, 93, .11), 0 1px 3px rgba(0, 0, 0, .08);
+    box-shadow: 0 1px 3px rgba(50, 50, 93, .11), 0 1px 3px rgba(0, 0, 0, .08);
     .fa {
         padding: 0 8px 0 0;
     }
@@ -129,8 +127,7 @@
 
 .btn-aprobar-suscripcion {
     color: #FFFFFF;
-    background:  $config-dark-gray-color;
-    margin-right: 117px;
+    background: $config-dark-gray-color; // margin-right: 117px;
 }
 
 // no-sucripcion section
@@ -150,5 +147,8 @@
     padding: 10px 0 10px 0;
 }
 
-// no-sucripcion section
+mat-action-row {
+    padding: 16px;
+}
 
+// no-sucripcion section
