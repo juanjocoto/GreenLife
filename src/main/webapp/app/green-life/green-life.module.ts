@@ -1,4 +1,5 @@
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { LOCALE_ID, NgModule } from '@angular/core';
 import {
   MAT_DATE_LOCALE,
   MatAutocompleteModule,
@@ -73,7 +74,6 @@ import { LocalRegistroComponent } from './views/local-registro/local-registro.co
 import { LoginComponent } from './dialogos/login/login.component';
 import { MapaComponent } from './views/mapa/mapa.component';
 import { NavbarGreenlifeComponent } from './layout/navbar-greenlife/navbar-greenlife.component';
-import { NgModule } from '@angular/core';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { PedidoCrearComponent } from './views/pedido-crear/pedido-crear.component';
 import { PedidoListarComponent } from './views/pedido-listar/pedido-listar.component';
@@ -201,7 +201,8 @@ import { ValidadorNumeroDirective } from './shared/directives/validador-numero.d
     AuthService,
     AuthAdminGuard,
     SnackBarService,
-    { provide: MAT_DATE_LOCALE, useValue: 'es-CR' }
+    { provide: MAT_DATE_LOCALE, useValue: 'es-CR' },
+    { provide: LOCALE_ID, useValue: 'es-CR' }
   ],
 })
 export class GreenLifeModule { }
