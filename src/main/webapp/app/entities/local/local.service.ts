@@ -6,7 +6,6 @@ import { Local } from './local.model';
 import { Observable } from 'rxjs/Observable';
 import { SERVER_API_URL } from '../../app.constants';
 import { createRequestOption } from '../../shared';
-import {Comercio} from "../comercio/comercio.model";
 
 export type EntityResponseType = HttpResponse<Local>;
 
