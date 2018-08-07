@@ -3,12 +3,13 @@ import { AuthGuard } from './shared/guards/auth.guard';
 import { CategoriasComponent } from './views/categorias/categorias.component';
 import { ComercioEditarComponent } from './views/comercio-editar/comercio-editar.component';
 import { ComerciosClienteComponent } from './views/comercios-cliente/comercios-cliente.component';
+import { ComerciosLocalesClienteComponent } from './views/comercios-locales-cliente/comercios-locales-cliente.component';
 import { ComerciosLocalesComponent } from './views/comercios-locales/comercios-locales.component';
-import {ComerciosLocalesClienteComponent} from './views/comercios-locales-cliente/comercios-locales-cliente.component';
 import { ComerciosProductosComponent } from './views/comercios-productos/comercios-productos.component';
 import { ConfiguracionAplicacionComponent } from './views/configuracion-aplicacion/configuracion-aplicacion.component';
 import { ConfiguracionComerciosComponent } from './views/configuracion-comercios/configuracion-comercios.component';
 import { DummyComponent } from './views/dummy/dummy.component';
+import { EntregaListComponent } from './views/entrega-list/entrega-list.component';
 import { LandingComponent } from './views/landing/landing.component';
 import { LocalModificarComponent } from './views/local-modificar/local-modificar.component';
 import { LocalPedidosComponent } from './views/local-pedidos/local-pedidos.component';
@@ -49,5 +50,6 @@ export const greenLifeRoutes: Route[] = [
     { path: 'suscripciones', component: SuscripcionesClienteComponent, data: { configuracion: false }, canActivate: [AuthGuard] },
     { path: 'pedido/:pedidoId/editar', component: PedidoModificarComponent, data: { configuracion: false }, canActivate: [AuthGuard] },
     { path: 'comercios/:comercioId/suscripciones', component: SuscripcionesComercioComponent, data: { configuracion: false }, canActivate: [AuthGuard] },
-    { path: 'map', component: MapaComponent, data: { configuracion: false } }
+    { path: 'map', component: MapaComponent, data: { configuracion: false } },
+    { path: 'entregas', component: EntregaListComponent, data: { configuracion: true }, canActivate: [AuthGuard] }
 ];

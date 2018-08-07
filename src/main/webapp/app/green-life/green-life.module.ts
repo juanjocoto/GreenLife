@@ -49,8 +49,8 @@ import { CdkTableModule } from '@angular/cdk/table';
 import { ColonPipe } from './shared/pipes/colon.pipe';
 import { ComercioEditarComponent } from './views/comercio-editar/comercio-editar.component';
 import { ComerciosClienteComponent } from './views/comercios-cliente/comercios-cliente.component';
-import { ComerciosLocalesComponent } from './views/comercios-locales/comercios-locales.component';
 import { ComerciosLocalesClienteComponent } from './views/comercios-locales-cliente/comercios-locales-cliente.component';
+import { ComerciosLocalesComponent } from './views/comercios-locales/comercios-locales.component';
 import { ComerciosProductosComponent } from './views/comercios-productos/comercios-productos.component';
 import { ComerciosRegistroComponent } from './dialogos/comercios-registro/comercios-registro.component';
 import { CommonAdapterService } from './shared/services/common-adapter.service';
@@ -60,6 +60,7 @@ import { ConfiguracionComerciosComponent } from './views/configuracion-comercios
 import { ConfirmacionDialogComponent } from './dialogos/confirmacion-dialog/confirmacion-dialog.component';
 import { ConvertidorFechaPipe } from './shared/pipes/convertidor-fecha.pipe';
 import { DummyComponent } from './views/dummy/dummy.component';
+import { EntregaListComponent } from './views/entrega-list/entrega-list.component';
 import { EtiquetasConsultarComponent } from './dialogos/etiquetas-consultar/etiquetas-consultar.component';
 import { FooterGreenlifeComponent } from './layout/footer-greenlife/footer-greenlife.component';
 import { HorasEntregaService } from './shared/services/horas-entrega.service';
@@ -179,7 +180,8 @@ import { ValidadorNumeroDirective } from './shared/directives/validador-numero.d
     ComerciosClienteComponent,
     ResenaComponent,
     MapaComponent,
-    ComerciosLocalesClienteComponent
+    ComerciosLocalesClienteComponent,
+    EntregaListComponent
   ],
   entryComponents: [
     LoginComponent,
