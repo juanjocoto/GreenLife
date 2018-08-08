@@ -184,7 +184,7 @@ import { NgxStripeModule } from 'ngx-stripe';
     ResenaComponent,
     MapaComponent,
     ComerciosLocalesClienteComponent,
-    ConfiguracionUsuariosComponent
+    ConfiguracionUsuariosComponent,
     PagoServiciosComponent
   ],
   entryComponents: [
