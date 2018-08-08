@@ -44,9 +44,9 @@ spring:
                     destination: topic-jhipster
     datasource:
         type: com.zaxxer.hikari.HikariDataSource
-        url: jdbc:mysql://localhost:3306/greenlife?useUnicode=true&characterEncoding=utf8&useSSL=false
+        url: jdbc:mysql://aa1ao60rnjos4pb.cbr5umapuark.us-west-2.rds.amazonaws.com:3306/greenlife?useUnicode=true&characterEncoding=utf8&useSSL=false
         username: root
-        password:
+        password: greenlife
         hikari:
             data-source-properties:
                 cachePrepStmts: true
