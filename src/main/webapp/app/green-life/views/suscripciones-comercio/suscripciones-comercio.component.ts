@@ -2,7 +2,6 @@ import {Component, OnInit} from '@angular/core';
 import {HttpResponse} from '@angular/common/http';
 import {Router, ActivatedRoute} from '@angular/router';
 import {CommonAdapterService} from '../../shared/services/common-adapter.service';
-import {Suscripcion, SuscripcionService} from '../../../entities/suscripcion';
 import {Comercio, ComercioService} from '../../../entities/comercio';
 import {Usuario, UsuarioService} from '../../../entities/usuario';
 import {AccountService, User, UserService} from '../../../shared';
@@ -10,6 +9,10 @@ import {Observable} from '../../../../../../../node_modules/rxjs';
 import {MatExpansionModule} from '@angular/material/expansion';
 import {TIPO_SERVICIO_SUSCRIPCION} from '../../../app.constants';
 import {ContratoService} from '../../../entities/contrato';
+import { EstadoSuscripcion, Suscripcion, SuscripcionService } from '../../../entities/suscripcion';
+import { ConfirmacionDialogComponent } from '../../dialogos/confirmacion-dialog/confirmacion-dialog.component';
+import { JHILocalDate } from '../../shared/services/common-adapter.service';
+import { MatDialog } from '@angular/material';
 
 @Component({
     selector: 'jhi-suscripciones-comercio',
@@ -20,23 +23,27 @@ export class SuscripcionesComercioComponent implements OnInit {
 
     panelOpenState = false;
     isContratoActivo = false;
-    suscripciones: ISuscripcion[] = [];
+    private _suscripciones: ISuscripcion[] = [];
     cliente: Usuario;
     user: User;
     comercio: Comercio;
 
+    get suscripciones() {
+        return this._suscripciones
+            .filter((a: any) => a.suscripcion.estado !== 'EXPIRADO' && a.suscripcion.estado !== 'RECHAZADO');
+    }
     constructor(
-        private router: Router,
         private route: ActivatedRoute,
+        private router: Router,
         private commonAdapterService: CommonAdapterService,
         private suscripcionService: SuscripcionService,
         private comercioService: ComercioService,
         private usuarioService: UsuarioService,
         private userService: UserService,
         private account: AccountService,
-        private contratoService: ContratoService
-    ) {
-    }
+        private contratoService: ContratoService,
+        private matDialog: MatDialog
+    ) { }
 
     ngOnInit() {
         this.route.params.subscribe((params) => {
@@ -46,12 +53,44 @@ export class SuscripcionesComercioComponent implements OnInit {
 
         this.verificarServicioSuscripcion();
     }
+    aprobarSuscripcion(suscripcion) {
+        const ref = this.matDialog.open(ConfirmacionDialogComponent);
+        const nombreUsuario = `${suscripcion.user.firstName} ${suscripcion.user.lastName}`;
+        ref.componentInstance.texto = `¿Desea aprobar la suscripción de ${nombreUsuario}?`;
+        ref.afterClosed().subscribe((resul) => {
+            if (resul) {
+                const copy = Object.assign(new Suscripcion(), suscripcion.suscripcion) as Suscripcion;
+                copy.estado = EstadoSuscripcion.VIGENTE;
+                copy.fechaCreacion = new JHILocalDate(copy.fechaCreacion);
+                copy.fechaCobro = new JHILocalDate(copy.fechaCobro);
+                this.suscripcionService.update(copy).subscribe((httpReponse) => {
+                    suscripcion.suscripcion = httpReponse.body;
+                });
+            }
+        });
+    }
+
+    cancelarSuscripcion(suscripcion) {
+        const ref = this.matDialog.open(ConfirmacionDialogComponent);
+        const nombreUsuario = `${suscripcion.user.firstName} ${suscripcion.user.lastName}`;
+        ref.componentInstance.texto = `¿Desea cancelar la suscripción de ${nombreUsuario}?`;
+        ref.afterClosed().subscribe((resul) => {
+            if (resul) {
+                const copy = Object.assign(new Suscripcion(), suscripcion.suscripcion) as Suscripcion;
+                copy.estado = (copy.estado as any) === 'PENDIENTE' ? EstadoSuscripcion.RECHAZADO : EstadoSuscripcion.EXPIRADO;
+                copy.fechaCreacion = new JHILocalDate(copy.fechaCreacion);
+                copy.fechaCobro = new JHILocalDate(copy.fechaCobro);
+                copy.fechaCancelacion = new JHILocalDate(new Date());
+                this.suscripcionService.update(copy).subscribe((httpReponse) => {
+                    suscripcion.suscripcion = httpReponse.body;
+                });
+            }
+        });
+    }
 
     private loadComercio(comercioId) {
-        const comercio = this.comercioService.find(comercioId);
-
-        Observable.zip(comercio).subscribe((resul) => {
-            this.comercio = resul[0].body;
+        this.comercioService.find(comercioId).subscribe((resul) => {
+            this.comercio = resul.body;
         });
     }
 
@@ -60,7 +99,7 @@ export class SuscripcionesComercioComponent implements OnInit {
             for (const index of suscripcionResponse.body) {
                 this.usuarioService.find(index.usuarioId).subscribe((usuarioResponse: HttpResponse<Usuario>) => {
                     this.userService.findById(usuarioResponse.body.userDetailId).subscribe((userResponse: HttpResponse<User>) => {
-                        this.suscripciones.push({
+                        this._suscripciones.push({
                             suscripcion: index,
                             cliente: usuarioResponse.body,
                             user: userResponse.body

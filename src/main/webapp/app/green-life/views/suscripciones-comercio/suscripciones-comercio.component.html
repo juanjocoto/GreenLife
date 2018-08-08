@@ -14,7 +14,9 @@
             <div class="img-container text-center">
                 <img src="../../../../content/images/Usuarios.png" alt="Clientes suscritos" height="140px">
             </div>
-            <h2 id="subtitle">Clientes suscritos<span class="badge badge-primary">{{suscripciones.length}}</span></h2>
+            <h2 id="subtitle">Clientes suscritos
+                <span class="badge badge-primary">{{suscripciones.length}}</span>
+            </h2>
         </div>
     </div>
     <div class="row container-suscripciones">
@@ -28,12 +30,16 @@
                     </mat-expansion-panel-header>
                     <p>Nombre del cliente:&nbsp;&nbsp; {{suscripcion.user.firstName + ' ' + suscripcion.user.lastName}}</p>
                     <p>Estado:&nbsp;&nbsp; {{suscripcion.suscripcion.estado}}</p>
-                    <p>Corte de pago:&nbsp;&nbsp; {{suscripcion.suscripcion.fechaCobro | date}}</p>
+                    <p>Corte de pago:&nbsp;&nbsp; {{suscripcion.suscripcion.fechaCobro | date:'dd'}}</p>
                     <p>Suscrito desde:&nbsp;&nbsp; {{suscripcion.suscripcion.fechaCreacion| date}}</p>
                     <p>Detalle:&nbsp;&nbsp; {{suscripcion.suscripcion.detalle}}</p>
                     <mat-action-row>
-                        <button class="btn btn-sm btn-aprobar-suscripcion"><i class="fa fa-check"></i>Aprobar</button>
-                        <button class="btn btn-sm btn-cancelar-suscripcion"><i class="fa fa-ban"></i>Cancelar</button>
+                        <!--  -->
+                        <button *ngIf="suscripcion.suscripcion.estado.toString() === 'PENDIENTE'" class="btn btn-sm btn-aprobar-suscripcion" (click)="aprobarSuscripcion(suscripcion)">
+                            <i class="fa fa-check"></i>Aprobar</button>
+                        <div class="spacer"></div>
+                        <button class="btn btn-sm btn-cancelar-suscripcion" (click)="cancelarSuscripcion(suscripcion)">
+                            <i class="fa fa-ban"></i>Cancelar</button>
                     </mat-action-row>
                 </mat-expansion-panel>
             </mat-accordion>

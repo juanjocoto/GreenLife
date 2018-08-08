@@ -8,7 +8,7 @@
 </div>
 <div class="container">
     <div class="row">
-        <div class="col-md-6">
+        <div class="col-md-6 section" [ngClass]="{'hidden' : cantProductos === 0 }">
             <div class="producto-header">
                 <mat-form-field>
                     <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Buscar...">
@@ -38,7 +38,7 @@
                 <mat-paginator #paginator [pageSize]="10" [pageSizeOptions]="[5, 10, 20]" [showFirstLastButtons]="true"></mat-paginator>
             </div>
         </div>
-        <div class="col-md-6">
+        <div class="col section">
             <h1 class="sub-title">Producto</h1>
             <form [formGroup]="formulario">
                 <mat-form-field>
@@ -51,8 +51,9 @@
                     <input matInput jhiValidadorNumero placeholder="Precio" formControlName="precio">
                 </mat-form-field>
                 <button type="button" class="btn btn-secondary" id="btnCancelar" (click)="cancelar()">Cancelar</button>
-                <button type="submit" class="btn btn-success" id="btnAgregar" [disabled]="!formulario.valid ||  productoId !== -1" (click)="agregarProducto()">Agregar</button>
-                <button type="submit" class="btn btn-success" (click)="actualizarProducto()" [disabled]="!formulario.valid ||  productoId == -1">Actualizar</button>
+                <button type="submit" class="btn btn-success" (click)="atras()">Atrás</button>
+                <button type="submit" class="btn btn-success" [ngClass]="{'hidden' : productoId !== -1 }" id="btnAgregar" [disabled]="!formulario.valid ||  productoId !== -1" (click)="agregarProducto()">Agregar</button>
+                <button type="submit" class="btn btn-success" [ngClass]="{'hidden' : cantProductos === 0 || productoId === -1 }" (click)="actualizarProducto()" [disabled]="!formulario.valid ||  productoId == -1">Actualizar</button>
             </form>
         </div>
     </div>
