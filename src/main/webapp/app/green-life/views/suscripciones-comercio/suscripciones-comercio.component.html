@@ -8,7 +8,7 @@
     </div>
 </div>
 
-<div class="container main-container" *ngIf="suscripciones;else noSuscripcion">
+<div class="container main-container" *ngIf="suscripciones && isContratoActivo;else noSuscripcion">
     <div class="row">
         <div class="col">
             <div class="img-container text-center">
@@ -57,12 +57,14 @@
 
 <ng-template class="container" id="no-suscripcion" #noSuscripcion>
     <div class="row">
-        <div class="col text-center">
-            <h1 class="title-no-suscripcion">No se ha encontrado ninguna suscripción</h1>
-            <h1><span class="badge badge-primary">0</span></h1>
+        <div class="col text-center mt-3 mb-5 mx-auto">
+            <h1 class="title-no-suscripcion">El servicio de suscripciones no está activo</h1>
+            <!--<span class="badge badge-primary">0</span>-->
             <div class="img-container-no-suscripcion text-center">
+                <img src="../../../../content/images/Usuarios.png" alt="Clientes suscritos" height="162px">
             </div>
-            <h2 class="subtitle-no-suscripcion">Dale publicidad a tu comercio para conseguir suscripciones.</h2>
+            <h3 class="subtitle-no-suscripcion">¡Activalo para que tus clientes puedan empezar a suscribirse a todos tus comercios!</h3>
+            <button class="btn btn-activar-servicio-suscripcion text-center" (click)="activarServicioSuscripcion()"><i class="fa fa-check-circle"></i>Activar</button>
         </div>
     </div>
 </ng-template>
