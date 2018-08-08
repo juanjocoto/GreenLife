@@ -56,6 +56,9 @@ public class PagoResourceIntTest {
     private PagoSearchRepository pagoSearchRepository;
 
     @Autowired
+    private StripeClient stripeClient;
+
+    @Autowired
     private MappingJackson2HttpMessageConverter jacksonMessageConverter;
 
     @Autowired
@@ -74,7 +77,7 @@ public class PagoResourceIntTest {
     @Before
     public void setup() {
         MockitoAnnotations.initMocks(this);
-        final PagoResource pagoResource = new PagoResource(pagoRepository, pagoMapper, pagoSearchRepository);
+        final PagoResource pagoResource = new PagoResource(pagoRepository, pagoMapper, pagoSearchRepository, stripeClient);
         this.restPagoMockMvc = MockMvcBuilders.standaloneSetup(pagoResource)
             .setCustomArgumentResolvers(pageableArgumentResolver)
             .setControllerAdvice(exceptionTranslator)

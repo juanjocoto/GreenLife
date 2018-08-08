@@ -109,7 +109,6 @@ export class PedidoCrearComponent implements OnInit {
       this.pedido.lineas = this.listaLineas;
       this.pedidoService.create(this.pedido).subscribe((httpResponse) => {
         this.pedido.id = httpResponse.body.id;
-        console.log(httpResponse.body);
         this.lineaProductoService.createMany(this.listaLineas.filter((linea) => linea.cantidad > 0).map((linea) => {
           return {
             id: linea.id,

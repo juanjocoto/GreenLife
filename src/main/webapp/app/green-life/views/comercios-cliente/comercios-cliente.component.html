@@ -42,7 +42,7 @@
             <button class="btn btnSuscribirse" (click)="suscribiriseComercio(currentComercio.id)">Suscribirse</button>
         </div>
     </div>
-    <div class="row mb-5">
+    <div class="row mb-5" *ngIf="comercios.length > 0">
         <div class="col">
             <h3 class="subtitle1">Filtra comercios y locales por distancia, tipo, calificación  y rango de precios.</h3>
             <div class="img-container-filters text-center">

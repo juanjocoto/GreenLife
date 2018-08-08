@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { MatDialog } from '@angular/material';
+import { MatDialog, MatSnackBar } from '@angular/material';
 import { LoginService } from '../../../shared';
 import { Router } from '@angular/router';
 
@@ -15,7 +15,8 @@ export class LoginComponent implements OnInit {
   msgError = 'Error al ingresar al sistema, verifique sus datos nuevamente';
   formulario: FormGroup;
 
-  constructor(private dialog: MatDialog, private loginService: LoginService, private formBuilder: FormBuilder, private route: Router) { }
+  constructor(private dialog: MatDialog, private loginService: LoginService,
+    private formBuilder: FormBuilder, private route: Router, private snackBar: MatSnackBar) { }
 
   ngOnInit() {
     this.formulario = this.formBuilder.group({
@@ -35,6 +36,7 @@ export class LoginComponent implements OnInit {
       rememberMe: false
     }).then(() => {
       this.isValid = true;
+      this.snackBar.open('Acceso Permitido', undefined, { duration: 3000 });
       this.dialog.closeAll();
       this.route.navigate(['']);
     }).catch(() => {

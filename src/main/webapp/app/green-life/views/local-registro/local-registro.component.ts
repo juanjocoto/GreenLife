@@ -128,7 +128,6 @@ export class LocalRegistroComponent implements OnInit {
 
                 this.fotografiaService.create(this.newFachada).subscribe((httpResponse) => {
                     this.newLocal.fachadaId = httpResponse.body.id;
-                    console.log(httpResponse.body);
                 });
             }
         });
