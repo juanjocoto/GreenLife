@@ -6,7 +6,7 @@ import {ComercioService} from '../../../entities/comercio/comercio.service';
 import {GMAP_DEFAULT_SETTINGS} from '../../../app.constants';
 import {Local} from '../../../entities/local/local.model';
 import {LocalService} from '../../../entities/local/local.service';
-import {MatSlider} from '@angular/material';
+import {MatSlider, MatSnackBar} from '@angular/material';
 import {Observable} from 'rxjs';
 import {HttpResponse} from '@angular/common/http';
 
@@ -49,8 +49,8 @@ export class MapaComponent implements OnInit {
     comercioList: Comercio[] = [];
     localList: Local[] = [];
     comercioMap: Map<number, Comercio> = new Map();
-
     filteredOptions: Observable<string[]>;
+    comercio: Comercio;
 
     // Modidificar por la ubicación del icono final
     iconUrl = undefined; // `/api/images/bitmap.png`;
@@ -60,11 +60,14 @@ export class MapaComponent implements OnInit {
     selectedTipo: string;
     selectedPrecio: string;
     selectedCalificacion: string;
+    selectedOpcion: string;
+    resultado: string;
 
     constructor(
         private localService: LocalService,
         private comercioService: ComercioService,
-        private accountService: AccountService
+        private accountService: AccountService,
+        private matSnackBar: MatSnackBar
     ) {}
 
     ngOnInit() {
@@ -241,6 +244,36 @@ export class MapaComponent implements OnInit {
         }
     }
 
+    buscar() {
+        this.localList = [];
+        switch (this.selectedOpcion) {
+            case 'comercios':
+                this.comercioService.findByNombreComercial(this.resultado).subscribe((resul) => {
+                    this.comercioList = resul.body;
+                    for (const comercio of this.comercioList) {
+                        this.comercioMap.set(comercio.id, comercio);
+                        this.localService.findByComercio(comercio.id).subscribe((localResponse: HttpResponse<Local[]>) => {
+                            for (const local of localResponse.body) {
+                                this.localList.push(local);
+                            }
+                        });
+                    }
+                }, (error) => {
+                    this.matSnackBar.open(`No se ha encontrado ningun resultado`, undefined, {duration: 2000});
+                });
+                break;
+
+            case 'locales':
+                this.localService.findByNombre(this.resultado).subscribe((localResponse: HttpResponse<Local[]>) => {
+                    for (const local of localResponse.body) {
+                        this.localList.push(local);
+                    }
+                }, (error) => {
+                    this.matSnackBar.open(`No se ha encontrado ningun resultado`, undefined, {duration: 2000});
+                });
+                break;
+        }
+    }
 }
 
 interface Coords {

@@ -1,0 +1,33 @@
+<div class="container" *ngIf="cliente && clienteDetail">
+    <div class="row">
+        <div class="col-md-8 col-lg-6">
+            <div class="card">
+                <div class="card-header text-center">
+                    Metódo de pago
+                </div>
+                <div class="card-body card-body-payment" *ngIf="paymentStatus == false">
+                    <div class="img-container-filters text-center">
+                        <img src="../../../../content/images/visa.svg" alt="Visa" height="41px">
+                        <img src="../../../../content/images/mastercard.png" alt="Mastercard" height="41px">
+                        <img src="../../../../content/images/discover.png" alt="Discover" height="49px">
+                        <img src="../../../../content/images/american-express.png" alt="American Express" height="45px">
+                    </div>
+                    <form id="paymentForm" novalidate (ngSubmit)="processPayment($event)">
+                        <ngx-stripe-card [options]="cardOptions" [elementsOptions]="elementsOptions"></ngx-stripe-card>
+                        <button class="btn btn-block btn-pagar" type="submit" form="paymentForm" *ngIf="paymentStatus == false">Pagar</button>
+                    </form>
+                    <div class="float-right">
+                        <img src="../../../../content/images/stripe-payment.png" alt="Pago seguro" height="83px">
+                    </div>
+                </div>
+                <div class="card-body text-center mt-2 mb-3" *ngIf="paymentStatus == true">
+                    <h5 class="card-title card-title-payment"><span><i class="fa fa-check-circle"></i></span> El pago se ha realizado exitosamente</h5>
+                    <p class="card-text card-text-payment">¡Muchas gracias por su preferencia!</p>
+                    <div>
+                        <img class="mt-1" src="../../../../content/images/stripe-logo.png" alt="Stripe" height="40px">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

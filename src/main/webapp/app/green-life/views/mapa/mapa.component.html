@@ -1,3 +1,15 @@
+<div class="wrap">
+    <div class="buscador">
+            <mat-select [(ngModel)]="selectedOpcion" class="buscadorSelect" placeholder="Buscar por...">
+                <mat-option value="comercios">Comercios</mat-option>
+                <mat-option value="locales">Locales</mat-option>
+            </mat-select>
+        <input type="text" class="buscadorTerm" placeholder="¿Qué deseas buscar?" [(ngModel)]="resultado">
+        <button type="submit" class="buscadorButton" (click)="buscar()">
+            <i class="fa fa-search"></i>
+        </button>
+    </div>
+</div>
 <div class="container">
   <div class="map-container">
     <agm-map [latitude]="cameraLocation.lat" [longitude]="cameraLocation.lng" [zoom]="zoom" (mapReady)="onMapReady($event)">
@@ -78,5 +90,4 @@
             </mat-form-field>
         </div>
     </div>
-  </div>
 </div>

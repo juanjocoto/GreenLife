@@ -12,6 +12,7 @@ import com.radicalbytes.greenlife.service.mapper.PagoMapper;
 import io.github.jhipster.web.util.ResponseUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -43,10 +44,14 @@ public class PagoResource {
 
     private final PagoSearchRepository pagoSearchRepository;
 
-    public PagoResource(PagoRepository pagoRepository, PagoMapper pagoMapper, PagoSearchRepository pagoSearchRepository) {
+    private final StripeClient stripeClient;
+
+    @Autowired
+    public PagoResource(PagoRepository pagoRepository, PagoMapper pagoMapper, PagoSearchRepository pagoSearchRepository, StripeClient stripeClient) {
         this.pagoRepository = pagoRepository;
         this.pagoMapper = pagoMapper;
         this.pagoSearchRepository = pagoSearchRepository;
+        this.stripeClient = stripeClient;
     }
 
     /**
@@ -157,4 +162,8 @@ public class PagoResource {
             .collect(Collectors.toList());
     }
 
+    @PostMapping("/pagos/payment")
+    public String chargeCard(@RequestParam String token, @RequestParam String amount, @RequestParam String description, @RequestParam String email) throws Exception {
+        return this.stripeClient.chargeCard(token, Double.parseDouble(amount), description, email).toJson();
+    }
 }
