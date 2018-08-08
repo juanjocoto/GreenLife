@@ -1,0 +1,26 @@
+<div class="container-fluid">
+  <div class="row">
+    <div class="header">
+        <h1><i class="fas fa-store"></i> Reseñas "{{ comercio.nombreComercial }}"</h1>
+    </div>
+  </div>
+  <div class="row" *ngIf="listaResenas.length === 0">
+    <div class="msg">
+      <p>No hay reseñas existentes <i class="far fa-frown"></i></p>
+    </div>
+  </div>
+  <div class="row resenas" *ngIf="listaResenas.length > 0">
+    <div class="resena" *ngFor="let resena of listaResenas">
+      <p><b>Fecha:</b> {{resena.fechaCreacion}}</p>
+      <p class="calif"><b>Calificación:</b><bar-rating [theme]="'default'" [readOnly]="true" [(rate)]="resena.calificacion" [max]="5"></bar-rating></p>
+      <p><b>Comentario:</b> {{resena.comentario}}</p>
+    </div>
+  </div>
+  <div class="row">
+    <div class="buttons-area">
+      <button type="button" class="btn" id="btnCancelar" (click)="cerrarDialogo()">Cancelar</button>
+      <button type="button" class="btn" id="btnAgregarResena" (click)="agregarResena()">Agregar Reseña</button>
+    </div>
+  </div>
+</div>
+

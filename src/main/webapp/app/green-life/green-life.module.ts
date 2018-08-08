@@ -36,6 +36,7 @@ import {
   MatToolbarModule,
   MatTooltipModule
 } from '@angular/material';
+import { BarRatingModule } from 'ngx-bar-rating';
 
 import { AgmCoreModule } from '@agm/core';
 import { AuthAdminGuard } from './shared/guards/auth.admin.guard';
@@ -90,6 +91,7 @@ import { UsuarioPerfilComponent } from './views/usuario-perfil/usuario-perfil.co
 import { UsuarioRegistroComponent } from './views/usuario-registro/usuario-registro.component';
 import { UsuarioRolesComponent } from './views/usuario-roles/usuario-roles.component';
 import { ValidadorNumeroDirective } from './shared/directives/validador-numero.directive';
+import { ComerciosResenasComponent } from './dialogos/comercios-resenas/comercios-resenas.component';
 import { PagoServiciosComponent } from './views/pago-servicios/pago-servicios.component';
 import { NgxStripeModule } from 'ngx-stripe';
 
@@ -139,7 +141,8 @@ import { NgxStripeModule } from 'ngx-stripe';
     MatTabsModule,
     MatToolbarModule,
     MatTooltipModule,
-    MatFormFieldModule
+    MatFormFieldModule,
+    BarRatingModule
   ],
   declarations: [
     LandingComponent,
@@ -183,6 +186,7 @@ import { NgxStripeModule } from 'ngx-stripe';
     ResenaComponent,
     MapaComponent,
     ComerciosLocalesClienteComponent,
+    ComerciosResenasComponent,
     PagoServiciosComponent
   ],
   entryComponents: [
@@ -194,7 +198,8 @@ import { NgxStripeModule } from 'ngx-stripe';
     LocalEliminarComponent,
     CargaImagenesComponent,
     EtiquetasConsultarComponent,
-    ResenaComponent
+    ResenaComponent,
+    ComerciosResenasComponent
   ],
   providers: [
     CommonAdapterService,
