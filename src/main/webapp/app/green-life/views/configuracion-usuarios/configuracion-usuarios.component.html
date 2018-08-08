@@ -1,0 +1,42 @@
+<div class="title-bar-config">
+  <div class="col-md-auto">
+      <h1>
+          <span class="title-bar-config-icon icon"><span class="iconImg"></span></span>
+          Configuración de los usuarios
+      </h1>
+  </div>
+</div>
+<div class="container">
+  <div class="row">
+      <div class="col-md-12">
+          <div class="usuario-header">
+              <mat-form-field class="filter">
+                  <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Buscar...">
+              </mat-form-field>
+          </div>
+          <div class="usuario-container mat-elevation-z8">
+              <mat-table #table [dataSource]="dataSource" matSort>
+
+                  <ng-container matColumnDef="nombre">
+                      <mat-header-cell *matHeaderCellDef mat-sort-header>Nombre</mat-header-cell>
+                      <mat-cell *matCellDef="let row"> {{row.firstName}} {{row.lastName}}</mat-cell>
+                  </ng-container>
+
+                  <ng-container matColumnDef="estado">
+                      <mat-header-cell *matHeaderCellDef mat-sort-header>Estado</mat-header-cell>
+                      <mat-cell *matCellDef="let row"> <a class="desactivar" *ngIf="row.activated" (click)="cambiarEstado(row, false)">Desactivar</a> <a class="activar" *ngIf="!row.activated" (click)="cambiarEstado(row, true)">Activar</a> </mat-cell>
+                  </ng-container>
+
+                  <ng-container matColumnDef="delete">
+                      <mat-header-cell *matHeaderCellDef mat-sort-header><i class="material-icons">delete_outline</i></mat-header-cell>
+                      <mat-cell *matCellDef="let row"><i class="material-icons delete" (click)="eliminar(row)">delete_outline</i></mat-cell>
+                  </ng-container>
+
+                  <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+                  <mat-row *matRowDef="let row; columns: displayedColumns;" (click)="seleccionarUsuario(row)" [ngClass]="{'highlight': usuario.id == row.id }"></mat-row>
+              </mat-table>
+              <mat-paginator #paginator [pageSize]="10" [pageSizeOptions]="[5, 10, 20]" [showFirstLastButtons]="true"></mat-paginator>
+          </div>
+      </div>
+  </div>
+</div>
