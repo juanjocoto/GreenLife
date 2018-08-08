@@ -59,6 +59,7 @@ export class MapaComponent implements OnInit {
     tipoPrecios = ['Bajos', 'Medio', 'Altos'];
     selectedTipo: string;
     selectedPrecio: string;
+    selectedCalificacion: string;
 
     constructor(
         private localService: LocalService,
@@ -185,6 +186,37 @@ export class MapaComponent implements OnInit {
                 break;
             }
             this.comercioService.findByRange(tipo).subscribe((comercioResponse) => {
+                this.comercioList = comercioResponse.body;
+                for (const comercio of comercioResponse.body) {
+                    this.comercioMap.set(comercio.id, comercio);
+                    this.localService.findByComercio(comercio.id).subscribe((localResponse: HttpResponse<Local[]>) => {
+                        for (const local of localResponse.body) {
+                            this.localList.push(local);
+                        }
+                    });
+                }
+            });
+        }
+        this.selectedTipo = null;
+    }
+
+    filterByCalificacion() {
+        if (this.selectedCalificacion === 'Todos') {
+            Observable.zip(
+                this.comercioService.findAll(),
+                this.localService.getAll()
+            ).subscribe((response) => {
+                this.comercioList = response[0].body;
+
+                for (const comercio of this.comercioList) {
+                    this.comercioMap.set(comercio.id, comercio);
+                }
+                this.localList = response[1].body;
+            });
+        } else {
+            this.localList = [];
+            console.log(this.selectedCalificacion);
+            this.comercioService.findByScore(this.selectedCalificacion).subscribe((comercioResponse) => {
                 this.comercioList = comercioResponse.body;
                 for (const comercio of comercioResponse.body) {
                     this.comercioMap.set(comercio.id, comercio);

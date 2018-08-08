@@ -12,6 +12,7 @@ import com.radicalbytes.greenlife.domain.Comercio;
 import com.radicalbytes.greenlife.domain.Producto;
 import com.radicalbytes.greenlife.repository.ComercioRepository;
 import com.radicalbytes.greenlife.repository.ProductoRepository;
+import com.radicalbytes.greenlife.repository.ResenaComercioRepository;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -23,6 +24,8 @@ public class ComercioService {
     private ComercioRepository comercioRepository;
     @Autowired
     private ProductoRepository productoRepository;
+    @Autowired
+    private ResenaComercioRepository resenaRepository;
 
     @Transactional
     public List<Comercio> findByRange(String range) {
@@ -75,6 +78,23 @@ public class ComercioService {
         range.max = min + rangeSize;
         listRangePrices.put("High", range);
         return listRangePrices;
+    }
+
+    @Transactional
+    public List<Comercio> findByScore(Long score) {
+        List<Comercio> filterComercios = new ArrayList<Comercio>();
+
+        List<Comercio> listComercios = comercioRepository.findAll();
+
+        for (int i = 0; i < listComercios.size(); i ++) {
+            Comercio comercio = listComercios.get(i);
+            double avg = resenaRepository.getCalificacion(comercio.getId()) - score;
+            if ( avg > 0 && avg < 1) {
+                filterComercios.add(comercio);
+            }
+        }
+
+        return filterComercios;
     }
 
     class Range {

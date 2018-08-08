@@ -142,6 +142,15 @@ public class ComercioResource {
         List<Comercio> comercios = comercioService.findByRange(range);
         return comercioMapper.toDto(comercios);
     }
+
+    @GetMapping("/comercios/score/{score}")
+    @Timed
+    @Transactional
+    public List<ComercioDTO> getComerciosByScore(@PathVariable Long score) {
+        log.debug("REST request to get Comercio : {}", score);
+        List<Comercio> comercios = comercioService.findByScore(score);
+        return comercioMapper.toDto(comercios);
+    }
     /**
      * DELETE  /comercios/:id : delete the "id" comercio.
      *
