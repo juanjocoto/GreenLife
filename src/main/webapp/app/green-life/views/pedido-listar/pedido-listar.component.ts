@@ -47,7 +47,6 @@ export class PedidoListarComponent implements OnInit {
           });
         }
         this.pedidos = pedidos;
-        console.log(this.pedidos);
       });
     });
   }
@@ -66,7 +65,6 @@ export class PedidoListarComponent implements OnInit {
       if (response) {
         const lineas = pedido.lineas.filter((linea) => linea.id);
         this.lineaService.deleteMany(lineas).subscribe((lineResponse) => {
-          console.log(lineResponse);
           this.pedidoService.delete(pedido.id).subscribe(() => {
             this.snackBar.open('El pedido fué eliminado', undefined, { duration: 2000 });
             const index = this.pedidos.indexOf(pedido);

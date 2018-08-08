@@ -36,7 +36,6 @@ export class SelectorEtiquetasComponent implements OnInit {
 
   ngOnInit(): void {
     this.etiquetaService.getAll().subscribe((httpResponse) => {
-      console.log(httpResponse.body);
       this.etiquetas = httpResponse.body;
     });
   }
@@ -81,8 +80,6 @@ export class SelectorEtiquetasComponent implements OnInit {
   }
 
   selected(event: MatAutocompleteSelectedEvent): void {
-
-    console.log('selected');
 
     const fitrado = this.etiquetas.filter((etiqueta) => etiqueta.nombre.toLowerCase() === event.option.viewValue.toLocaleLowerCase().trim());
 

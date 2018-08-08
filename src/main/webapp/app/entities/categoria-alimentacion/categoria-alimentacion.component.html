@@ -1,10 +1,10 @@
 <div>
     <h2>
-        <span>Categoria Alimentación</span>
+        <span>Categoria Alimentacions</span>
         <button class="btn btn-primary float-right jh-create-entity create-categoria-alimentacion" [routerLink]="['/', { outlets: { popup: ['categoria-alimentacion-new'] } }]">
             <span class="fa fa-plus"></span>
             <span class="hidden-sm-down" >
-            Crear nueva Categoria Alimentación
+            Create new Categoria Alimentacion
             </span>
         </button>
     </h2>
@@ -31,7 +31,7 @@
             <tr>
             <th><span>ID</span></th>
             <th><span>Nombre</span></th>
-            <th><span>Descripción</span></th>
+            <th><span>Descripcion</span></th>
             <th></th>
             </tr>
             </thead>
@@ -46,7 +46,7 @@
                                 [routerLink]="['../categoria-alimentacion', categoriaAlimentacion.id ]"
                                 class="btn btn-info btn-sm">
                             <span class="fa fa-eye"></span>
-                            <span class="d-none d-md-inline">Ver</span>
+                            <span class="d-none d-md-inline">View</span>
                         </button>
                         <button type="submit"
                                 [routerLink]="['/', { outlets: { popup: 'categoria-alimentacion/'+ categoriaAlimentacion.id + '/edit'} }]"
@@ -54,7 +54,7 @@
                                 queryParamsHandling="merge"
                                 class="btn btn-primary btn-sm">
                             <span class="fa fa-pencil"></span>
-                            <span class="d-none d-md-inline">Editar</span>
+                            <span class="d-none d-md-inline">Edit</span>
                         </button>
                         <button type="submit"
                                 [routerLink]="['/', { outlets: { popup: 'categoria-alimentacion/'+ categoriaAlimentacion.id + '/delete'} }]"
@@ -62,7 +62,7 @@
                                 queryParamsHandling="merge"
                                 class="btn btn-danger btn-sm">
                             <span class="fa fa-remove"></span>
-                            <span class="d-none d-md-inline">Eliminar</span>
+                            <span class="d-none d-md-inline">Delete</span>
                         </button>
                     </div>
                 </td>

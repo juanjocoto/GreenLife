@@ -1,4 +1,5 @@
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { LOCALE_ID, NgModule } from '@angular/core';
 import {
   MAT_DATE_LOCALE,
   MatAutocompleteModule,
@@ -72,7 +73,6 @@ import { LocalRegistroComponent } from './views/local-registro/local-registro.co
 import { LoginComponent } from './dialogos/login/login.component';
 import { MapaComponent } from './views/mapa/mapa.component';
 import { NavbarGreenlifeComponent } from './layout/navbar-greenlife/navbar-greenlife.component';
-import { NgModule } from '@angular/core';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { PedidoCrearComponent } from './views/pedido-crear/pedido-crear.component';
 import { PedidoListarComponent } from './views/pedido-listar/pedido-listar.component';
@@ -91,6 +91,8 @@ import { UsuarioRegistroComponent } from './views/usuario-registro/usuario-regis
 import { UsuarioRolesComponent } from './views/usuario-roles/usuario-roles.component';
 import { ValidadorNumeroDirective } from './shared/directives/validador-numero.directive';
 import { ConfiguracionUsuariosComponent } from './views/configuracion-usuarios/configuracion-usuarios.component';
+import { PagoServiciosComponent } from './views/pago-servicios/pago-servicios.component';
+import { NgxStripeModule } from 'ngx-stripe';
 
 @NgModule({
   imports: [
@@ -103,6 +105,7 @@ import { ConfiguracionUsuariosComponent } from './views/configuracion-usuarios/c
     AgmCoreModule.forRoot({
       apiKey: 'AIzaSyAKK8_ZbHnWx9CD9b4NZFGRKe8rMw83wmI'
     }),
+    NgxStripeModule.forRoot('pk_test_Pb8txXeTKiTx09hkGDFj58WR'),
     ReactiveFormsModule,
     CdkTableModule,
     MatAutocompleteModule,
@@ -182,6 +185,7 @@ import { ConfiguracionUsuariosComponent } from './views/configuracion-usuarios/c
     MapaComponent,
     ComerciosLocalesClienteComponent,
     ConfiguracionUsuariosComponent
+    PagoServiciosComponent
   ],
   entryComponents: [
     LoginComponent,
@@ -201,7 +205,8 @@ import { ConfiguracionUsuariosComponent } from './views/configuracion-usuarios/c
     AuthService,
     AuthAdminGuard,
     SnackBarService,
-    { provide: MAT_DATE_LOCALE, useValue: 'es-CR' }
+    { provide: MAT_DATE_LOCALE, useValue: 'es-CR' },
+    { provide: LOCALE_ID, useValue: 'es-CR' }
   ],
 })
 export class GreenLifeModule { }

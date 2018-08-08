@@ -91,7 +91,6 @@ export class ConfiguracionComerciosComponent implements OnInit {
   }
 
   consultarEtiquetas(pcomercio: Comercio) {
-      console.log('id del comercio: ' + pcomercio.id);
       const ref = this.matDialog.open(EtiquetasConsultarComponent, {
          width: '500px',
          data: pcomercio.id

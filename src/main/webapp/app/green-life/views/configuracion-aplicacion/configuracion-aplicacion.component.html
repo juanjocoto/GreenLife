@@ -29,6 +29,19 @@
         <mat-form-field>
             <input matInput placeholder="Teléfono" formControlName="telefono">
         </mat-form-field>
+        <div class="map-container">
+                <agm-map
+                    [latitude]="configuracion.latitud"
+                    [longitude]="configuracion.longitud"
+                    [zoom]="zoom">
+                    <agm-marker
+                        [latitude]="configuracion.latitud"
+                        [longitude]="configuracion.longitud"
+                        [markerDraggable]="true"
+                        (dragEnd)="markerDragEnd($event)">
+                    </agm-marker>
+                </agm-map>
+        </div>
         <button type="submit" class="btn btn-success" (click)="actualizar()" [disabled]="!formulario.valid">Actualizar</button>
     </form>
 </div>

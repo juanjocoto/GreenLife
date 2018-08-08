@@ -44,7 +44,6 @@ export class ComerciosClienteComponent implements OnInit {
     private loadComercios() {
         this.comercioService.findAll().subscribe((comercioResponse: HttpResponse<Comercio[]>) => {
             this.comercios = comercioResponse.body;
-            console.log(comercioResponse.body);
         });
     }
 }
