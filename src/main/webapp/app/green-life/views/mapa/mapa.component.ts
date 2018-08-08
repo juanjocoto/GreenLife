@@ -159,6 +159,7 @@ export class MapaComponent implements OnInit {
             });
         }
         this.selectedPrecio = null;
+        this.selectedCalificacion = null;
     }
 
     filterByPrecio() {
@@ -198,6 +199,7 @@ export class MapaComponent implements OnInit {
             });
         }
         this.selectedTipo = null;
+        this.selectedCalificacion = null;
     }
 
     filterByCalificacion() {
@@ -215,7 +217,6 @@ export class MapaComponent implements OnInit {
             });
         } else {
             this.localList = [];
-            console.log(this.selectedCalificacion);
             this.comercioService.findByScore(this.selectedCalificacion).subscribe((comercioResponse) => {
                 this.comercioList = comercioResponse.body;
                 for (const comercio of comercioResponse.body) {
@@ -229,6 +230,7 @@ export class MapaComponent implements OnInit {
             });
         }
         this.selectedTipo = null;
+        this.selectedPrecio = null;
     }
 
     loadTipos() {
