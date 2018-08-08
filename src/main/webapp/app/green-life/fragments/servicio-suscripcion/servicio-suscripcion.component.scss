@@ -16,7 +16,7 @@
     border-radius: $border-radius;
 }
 
-.card-body-payment {
+.card-body-servicio-suscripcion {
     padding-bottom: 10px;
 }
 
@@ -25,40 +25,28 @@
     color: $config-dark-gray-color;
 }
 
-.container-payment {
-    background: #FFFFFF;
-    border-radius: $border-radius;
-    -webkit-box-shadow: $box-shadow;
-    -moz-box-shadow: $box-shadow;
-    box-shadow: $box-shadow;
-}
-
-.img-container-filters img {
-    margin: 5px 15px 23px 15px;
-}
-
-.card-title-payment, .card-text-payment {
+.card-title, .card-text-servicio-inactivo {
     color: $config-dark-gray-color;
 }
 
-.card-title-payment {
+.card-title-servicio-activo, .card-title-servicio-inactivo {
     .fa {
         color: $green-color;
         padding: 0 7px 0 0;
     }
 }
 
-.card-text-servicio-activo {
+.card-text-servicio-activo, .card-text-servicio-inactivo {
     font-size: 18.5px;
     font-weight: 300;
 }
 
-.btn-servicio-suscripcion {
+.btn-servicio-suscripcion, .btn-cancel-servicio-suscripcion {
     color: #FFFFFF;
     background: $config-dark-gray-color;
     font-size: 16px;
     font-weight: 700;
-    margin: 15px 0 20px 0;
+    margin: 15px 0 15px 0;
     border-color: $config-dark-gray-color;
     border-radius: $border-radius;
     -webkit-box-shadow: $box-shadow;

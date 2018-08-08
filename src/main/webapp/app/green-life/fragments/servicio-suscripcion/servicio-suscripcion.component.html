@@ -3,20 +3,15 @@
         <div class="card-header">
             Servicio de Suscripciones
         </div>
-        <div class="card-body card-body-payment" *ngIf="isContratoActivo == false">
-            <!--        <div class="img-container-filters text-center">
-                        <img src="../../../../content/images/visa.svg" alt="Visa" height="41px">
-                        <img src="../../../../content/images/mastercard.png" alt="Mastercard" height="41px">
-                        <img src="../../../../content/images/discover.png" alt="Discover" height="49px">
-                        <img src="../../../../content/images/american-express.png" alt="American Express" height="45px">
-                    </div>-->
-            <h5 class="card-title">¡Activá el servicio de suscripciones!</h5>
+        <div class="card-body card-body-servicio-suscripcion" *ngIf="isContratoActivo == false">
+            <h5 class="card-title card-title-servicio-activo">¡Activá el servicio de suscripciones!</h5>
             <p class="card-text card-text-servicio-activo">Dale a tus clientes la posibilidad de suscribirse a tus comercios, para que puedan realizar pedidos de los diferentes productos que ofrecen.</p>
             <button class="btn btn-servicio-suscripcion" (click)="solicitarContratoServicioSuscripcion()">Activar servicio</button>
         </div>
         <div class="card-body text-center mt-2 mb-3" *ngIf="isContratoActivo == true">
-            <h5 class="card-title card-title-payment"><span><i class="fa fa-check-circle"></i></span>El servicio de suscripción se encuentra activo.</h5>
-            <!--<p class="card-text card-text-payment">¡Muchas gracias por su preferencia!</p>-->
+            <h5 class="card-title card-title-servicio-inactivo"><span><i class="fa fa-check-circle"></i></span>El servicio de suscripción se encuentra activo.</h5>
+            <p class="card-text card-text-servicio-inactivo">Si cancelas la suscripción no recibirás los pagos pendientes del mes actual.</p>
+            <button class="btn btn-cancel-servicio-suscripcion" (click)="cancelarContratoServicioSuscripcion()">Cancelar servicio</button>
         </div>
     </div>
 </div>

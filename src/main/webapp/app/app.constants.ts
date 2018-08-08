@@ -9,3 +9,4 @@ export const BUILD_TIMESTAMP = process.env.BUILD_TIMESTAMP;
 export const CMS_PATH = 'cms';
 export const GMAP_DEFAULT_SETTINGS = { zoom: 7.5, lat: 9.935354, long: -84.082753 };
 export const COSTO_SERVICIO_SUSCRIPCION = 5000;
+export const TIPO_SERVICIO_SUSCRIPCION = 1;

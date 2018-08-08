@@ -47,6 +47,11 @@ table.table tr th, table.table tr td {
     padding: 12px 15px;
     vertical-align: middle;
 }
+
+table.table td {
+    font-weight: 300;
+}
+
 table.table tr th {
     margin-left: 80px;
 }
@@ -131,7 +136,11 @@ table.table .avatar {
     font-size: 13px;
 }
 .btn-success {
-    background: $green-color;
+    color: $config-dark-gray-color !important;
+    background: #FFFFFF !important;
+    border-radius: 6px !important;
+    -moz-border-radius: 6px !important;
+    -webkit-border-radius: 6px !important;
     font-family: 'Lato', sans-serif;
 }
 

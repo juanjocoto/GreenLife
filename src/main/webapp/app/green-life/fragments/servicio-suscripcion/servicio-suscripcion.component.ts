@@ -1,7 +1,8 @@
-import {Component, OnInit, AfterContentInit} from '@angular/core';
-import {HttpResponse} from '@angular/common/http';
-import {COSTO_SERVICIO_SUSCRIPCION} from '../../../app.constants';
+import {Component, OnInit} from '@angular/core';
+import {MatDialog} from '@angular/material';
+import {TIPO_SERVICIO_SUSCRIPCION} from '../../../app.constants';
 import {CommonAdapterService} from '../../shared/services/common-adapter.service';
+import {ConfirmacionDialogComponent} from '../../dialogos/confirmacion-dialog/confirmacion-dialog.component';
 import {UsuarioService} from '../../../entities/usuario';
 import {AccountService} from '../../../shared';
 import {Comercio, ComercioService} from '../../../entities/comercio';
@@ -28,7 +29,8 @@ export class ServicioSuscripcionComponent implements OnInit {
         private usuarioService: UsuarioService,
         private comercioService: ComercioService,
         private contratoService: ContratoService,
-        private tipoContratoService: TipoContratoService
+        private tipoContratoService: TipoContratoService,
+        private matDialog: MatDialog,
     ) {}
 
     ngOnInit() {
@@ -37,32 +39,31 @@ export class ServicioSuscripcionComponent implements OnInit {
     }
 
     solicitarContratoServicioSuscripcion() {
-        if (this.isContratoActivo === false) {
-            this.newTipoContrato = new TipoContrato();
-            this.newTipoContrato.nombre = 'Servicio Suscripción';
-            this.newTipoContrato.descripcion = 'Contrato por servicio de suscripción';
-            this.newTipoContrato.costo = COSTO_SERVICIO_SUSCRIPCION;
+        const ref = this.matDialog.open(ConfirmacionDialogComponent);
+        ref.componentInstance.texto = `¿Está seguro que desea activar el servicio de suscripciones?`;
+        ref.afterClosed().subscribe((result) => {
+            if (result && this.isContratoActivo === false) {
+                for (const comercio of this.comercios) {
+                    this.newContrato = new Contrato();
+                    this.newContrato.tipoId = TIPO_SERVICIO_SUSCRIPCION;
+                    this.newContrato.comercioId = comercio.id;
+                    this.newContrato.fechaCreacion = this.commonAdapterService.dateToJHILocalDate(new Date());
 
-            this.tipoContratoService.create(this.newTipoContrato).subscribe((responseTipoContrato) => {
-                if (responseTipoContrato.status === 201) {
-                    for (const comercio of this.comercios) {
-                        this.newContrato = new Contrato();
-                        this.newContrato.tipoId = responseTipoContrato.body.id;
-                        this.newContrato.comercioId = comercio.id;
-                        this.newContrato.fechaCreacion = this.commonAdapterService.dateToJHILocalDate(new Date());
-
-                        this.contratoService.create(this.newContrato).subscribe((responseContrato) => {
-                            if (responseContrato.status === 201) {
-                                this.isContratoActivo = true;
-                            }
-                        });
-                    }
+                    this.contratoService.create(this.newContrato).subscribe((responseContrato) => {
+                        this.isContratoActivo = responseContrato.status === 201;
+                    });
                 }
-            });
-        }
+            }
+        });
     }
 
     cancelarContratoServicioSuscripcion() {
+        const ref = this.matDialog.open(ConfirmacionDialogComponent);
+        ref.componentInstance.texto = `¿Está seguro que desea cancelar el servicio de suscripciones?`;
+        ref.afterClosed().subscribe((result) => {
+            if (result && this.isContratoActivo === true) {
+            }
+        });
     }
 
     verificarServicioSuscripcion() {
@@ -70,12 +71,8 @@ export class ServicioSuscripcionComponent implements OnInit {
             this.usuarioService.findByUserLogin(accountResponse.body['login']).subscribe((responseUser) => {
                 this.comercioService.findComerciosByDueno(responseUser.body.id).subscribe((responseComercio) => {
                     for (const comercio of responseComercio.body) {
-                        this.contratoService.find(comercio.id).subscribe((responseContrato) => {
-                            if (responseContrato.status === 200) {
-                                this.isContratoActivo = true;
-                            } else {
-                                this.isContratoActivo = false;
-                            }
+                        this.contratoService.findByTipo(TIPO_SERVICIO_SUSCRIPCION).subscribe((responseContrato) => {
+                            this.isContratoActivo = responseContrato.status === 200 && responseContrato.body.length > 0;
                         });
                     }
                 });
@@ -92,5 +89,32 @@ export class ServicioSuscripcionComponent implements OnInit {
             });
         });
     }
+
+    // TODO AGREGAR TIPO DE CONTRATO POR DEFAULT EN LIQUIBASE
+    /*   solicitarContratoServicioSuscripcion() {
+           if (this.isContratoActivo === false) {
+               this.newTipoContrato = new TipoContrato();
+               this.newTipoContrato.nombre = 'Servicio Suscripción';
+               this.newTipoContrato.descripcion = 'Contrato por servicio de suscripción';
+               this.newTipoContrato.costo = COSTO_SERVICIO_SUSCRIPCION;
+
+               this.tipoContratoService.create(this.newTipoContrato).subscribe((responseTipoContrato) => {
+                   if (responseTipoContrato.status === 201) {
+                       for (const comercio of this.comercios) {
+                           this.newContrato = new Contrato();
+                           this.newContrato.tipoId = responseTipoContrato.body.id;
+                           this.newContrato.comercioId = comercio.id;
+                           this.newContrato.fechaCreacion = this.commonAdapterService.dateToJHILocalDate(new Date());
+
+                           this.contratoService.create(this.newContrato).subscribe((responseContrato) => {
+                               if (responseContrato.status === 201) {
+                                   this.isContratoActivo = true;
+                               }
+                           });
+                       }
+                   }
+               });
+           }
+       }*/
 
 }

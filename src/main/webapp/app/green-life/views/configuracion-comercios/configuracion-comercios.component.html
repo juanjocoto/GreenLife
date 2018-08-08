@@ -3,6 +3,11 @@
 </div>
 <body>
 <div class="container">
+    <div class="row">
+        <div class="col">
+            <jhi-servicio-suscripcion></jhi-servicio-suscripcion>
+        </div>
+    </div>
     <div class="table-wrapper">
         <div class="table-title">
             <div class="row">
@@ -29,7 +34,7 @@
                 <td>{{comercio.comercio.cedJuridica}}</td>
                 <td>{{comercio.comercio.razonSocial}}</td>
                 <td>{{comercio.comercio.nombreComercial}}</td>
-                <td>{{comercio.comercio.tipo}}</td>
+                <td>{{comercio.comercio.tipo | titlecase}}</td>
                 <td>{{comercio.comercio.fechaCreacion | date:"dd/MM/y"}}</td>
                 <td>
                     <a class="editar" data-toggle="modal" [routerLink]="'/app/comercios/' + comercio.comercio.id + '/editar'"><i class="material-icons" data-toggle="tooltip" title="Editar">&#xE254;</i></a>
