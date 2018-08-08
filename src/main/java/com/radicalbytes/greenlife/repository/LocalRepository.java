@@ -1,6 +1,7 @@
 package com.radicalbytes.greenlife.repository;
 
 import com.radicalbytes.greenlife.domain.Local;
+import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
 import org.springframework.data.jpa.repository.*;
@@ -15,5 +16,5 @@ import java.util.List;
 @Repository
 public interface LocalRepository extends JpaRepository<Local, Long> {
     List<Local> findAllByComercio_id(Long id);
-    Local findByNombre(String nombre);
+    List<Local> findByNombreContaining(String nombre);
 }

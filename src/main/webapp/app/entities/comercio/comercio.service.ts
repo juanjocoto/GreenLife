@@ -66,9 +66,9 @@ export class ComercioService {
             .map((res: HttpResponse<Comercio[]>) => this.convertArrayResponse(res));
     }
 
-    findByNombreComercial(nombre: string): Observable<EntityResponseType> {
-        return this.http.get<Comercio>(`${this.resourceUrl}/nombre/${nombre}`, { observe: 'response' })
-            .map((res: EntityResponseType) => this.convertResponse(res));
+    findByNombreComercial(nombre: string): Observable<HttpResponse<Comercio[]>> {
+        return this.http.get<Comercio[]>(`${this.resourceUrl}/nombre/${nombre}`, { observe: 'response' })
+            .map((res: HttpResponse<Comercio[]>) => this.convertArrayResponse(res));
     }
 
     private convertResponse(res: EntityResponseType): EntityResponseType {

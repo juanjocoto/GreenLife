@@ -172,23 +172,25 @@ export class MapaComponent implements OnInit {
         switch (this.selectedOpcion) {
             case 'comercios':
                 this.comercioService.findByNombreComercial(this.resultado).subscribe((resul) => {
-                    this.comercio = resul.body;
-                    this.comercioMap.set(this.comercio.id, this.comercio);
-                    this.localService.findByComercio(this.comercio.id).subscribe((localResponse: HttpResponse<Local[]>) => {
-                        for (const local of localResponse.body) {
-                            this.localList.push(local);
-                        }
-                    });
+                    this.comercioList = resul.body;
+                    for (const comercio of this.comercioList) {
+                        this.comercioMap.set(comercio.id, comercio);
+                        this.localService.findByComercio(comercio.id).subscribe((localResponse: HttpResponse<Local[]>) => {
+                            for (const local of localResponse.body) {
+                                this.localList.push(local);
+                            }
+                        });
+                    }
                 }, (error) => {
                     this.matSnackBar.open(`No se ha encontrado ningun resultado`, undefined, {duration: 2000});
                 });
                 break;
 
             case 'locales':
-                console.log('Hola');
-                this.localService.findByNombre(this.resultado).subscribe((resul) => {
-                    console.log(resul.body.nombre);
-                   this.localList.push(resul.body);
+                this.localService.findByNombre(this.resultado).subscribe((localResponse: HttpResponse<Local[]>) => {
+                    for (const local of localResponse.body) {
+                        this.localList.push(local);
+                    }
                 }, (error) => {
                     this.matSnackBar.open(`No se ha encontrado ningun resultado`, undefined, {duration: 2000});
                 });

@@ -69,9 +69,9 @@ export class LocalService {
             .map((res: HttpResponse<Local[]>) => this.convertArrayResponse(res));
     }
 
-    findByNombre(nombre: string): Observable<EntityResponseType> {
-        return this.http.get<Local>(`${this.resourceUrl}/nombre/${nombre}`, { observe: 'response' })
-            .map((res: EntityResponseType) => this.convertResponse(res));
+    findByNombre(nombre: string): Observable<HttpResponse<Local[]>> {
+        return this.http.get<Local[]>(`${this.resourceUrl}/nombre/${nombre}`, { observe: 'response' })
+            .map((res: HttpResponse<Local[]>) => this.convertArrayResponse(res));
     }
 
     private convertResponse(res: EntityResponseType): EntityResponseType {
