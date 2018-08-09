@@ -1,6 +1,7 @@
 import { BaseEntity } from './../../shared';
 
 export class Entrega implements BaseEntity {
+
     constructor(
         public id?: number,
         public fechaInicio?: any,
@@ -8,6 +9,7 @@ export class Entrega implements BaseEntity {
         public pedidoId?: number,
         public cadenaId?: number,
         public lineas?: BaseEntity[],
+        public cadena?: BaseEntity
     ) {
     }
 }

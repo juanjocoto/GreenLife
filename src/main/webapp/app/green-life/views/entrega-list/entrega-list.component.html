@@ -1,7 +1,36 @@
 <div class="container">
-  <div class="card card-green-life">
-    <div class="card-header card-header-green-life">
-      
-    </div>
-  </div>
+
+  <mat-accordion>
+    <mat-expansion-panel *ngFor="let comercio of comercios">
+      <mat-expansion-panel-header>
+        <mat-panel-title>
+          {{comercio.nombreComercial}}
+        </mat-panel-title>
+        <mat-panel-description>
+          Type your name and age
+        </mat-panel-description>
+      </mat-expansion-panel-header>
+      <div class="card card-green-life" *ngFor="let entrega of entregaMap.get(comercio.id)">
+        <div class="card-header card-header-green-life">
+          Entrega #{{entrega.id}}
+        </div>
+        <div class="card-body">
+          <div>Monto: {{calcMonto(entrega.lineas) | colon}}</div>
+          <!-- <div style="display: flex;">
+            <div style="flex: 1 1">Estado: </div>
+            <mat-select style="flex: 1 1" [value]="entrega.cadena['estado']">  
+              <mat-option *ngFor="let estado of estados" [value]="estado.value">
+                {{estado.text}}
+              </mat-option>
+            </mat-select>
+          </div> -->
+          <div>Estado: {{entrega.cadena['estado']}}
+            <button mat-icon-button (click)="editEstado(entrega)">
+              <mat-icon>edit</mat-icon>
+            </button>
+          </div>
+        </div>
+      </div>
+    </mat-expansion-panel>
+  </mat-accordion>
 </div>

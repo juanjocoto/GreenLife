@@ -1,6 +1,5 @@
 package com.radicalbytes.greenlife.service.dto;
 
-
 import java.io.Serializable;
 import java.util.Objects;
 
@@ -20,8 +19,24 @@ public class LineaEntregaDTO implements Serializable {
 
     private Long entregaId;
 
+    private ProductoDTO producto;
+
     public Long getId() {
         return id;
+    }
+
+    /**
+     * @return the producto
+     */
+    public ProductoDTO getProducto() {
+        return producto;
+    }
+
+    /**
+     * @param producto the producto to set
+     */
+    public void setProducto(ProductoDTO producto) {
+        this.producto = producto;
     }
 
     public void setId(Long id) {
@@ -62,7 +77,7 @@ public class LineaEntregaDTO implements Serializable {
         }
 
         LineaEntregaDTO lineaEntregaDTO = (LineaEntregaDTO) o;
-        if(lineaEntregaDTO.getId() == null || getId() == null) {
+        if (lineaEntregaDTO.getId() == null || getId() == null) {
             return false;
         }
         return Objects.equals(getId(), lineaEntregaDTO.getId());
@@ -75,9 +90,6 @@ public class LineaEntregaDTO implements Serializable {
 
     @Override
     public String toString() {
-        return "LineaEntregaDTO{" +
-            "id=" + getId() +
-            ", cantidad=" + getCantidad() +
-            "}";
+        return "LineaEntregaDTO{" + "id=" + getId() + ", cantidad=" + getCantidad() + "}";
     }
 }

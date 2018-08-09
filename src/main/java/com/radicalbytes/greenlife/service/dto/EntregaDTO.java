@@ -24,6 +24,8 @@ public class EntregaDTO implements Serializable {
 
     private Long cadenaId;
 
+    private CadenaEntregaDTO cadena;
+
     private List<LineaEntregaDTO> lineas;
 
     public Long getId() {
@@ -31,6 +33,34 @@ public class EntregaDTO implements Serializable {
     }
 
     /**
+	 * @return the cadenaId
+	 */
+	public Long getCadenaId() {
+		return cadenaId;
+	}
+
+	/**
+	 * @param cadenaId the cadenaId to set
+	 */
+	public void setCadenaId(Long cadenaId) {
+		this.cadenaId = cadenaId;
+	}
+
+	/**
+	 * @return the cadena
+	 */
+	public CadenaEntregaDTO getCadena() {
+		return cadena;
+	}
+
+	/**
+	 * @param cadena the cadena to set
+	 */
+	public void setCadena(CadenaEntregaDTO cadena) {
+		this.cadena = cadena;
+	}
+
+	/**
 	 * @return the lineas
 	 */
 	public List<LineaEntregaDTO> getLineas() {
@@ -70,14 +100,6 @@ public class EntregaDTO implements Serializable {
 
     public void setPedidoId(Long pedidoId) {
         this.pedidoId = pedidoId;
-    }
-
-    public Long getCadenaId() {
-        return cadenaId;
-    }
-
-    public void setCadenaId(Long cadenaEntregaId) {
-        this.cadenaId = cadenaEntregaId;
     }
 
     @Override

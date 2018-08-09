@@ -13,6 +13,7 @@ import io.github.jhipster.web.util.ResponseUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.http.ResponseEntity;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
@@ -117,6 +118,7 @@ public class EntregaResource {
 
     @GetMapping("/entregas/comercio/{idComercio}")
     @Timed
+    @Transactional
     public List<EntregaDTO> getAllByComercio(@PathVariable long idComercio) {
         log.debug("REST request to get all Entregas");
         List<Entrega> entregas = entregaRepository.queryFindByComercioId(idComercio);

@@ -1,3 +1,4 @@
+import { EntregaListComponent, EstadoEntregaDialogComponet } from './views/entrega-list/entrega-list.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { LOCALE_ID, NgModule } from '@angular/core';
 import {
@@ -61,7 +62,6 @@ import { ConfiguracionComerciosComponent } from './views/configuracion-comercios
 import { ConfirmacionDialogComponent } from './dialogos/confirmacion-dialog/confirmacion-dialog.component';
 import { ConvertidorFechaPipe } from './shared/pipes/convertidor-fecha.pipe';
 import { DummyComponent } from './views/dummy/dummy.component';
-import { EntregaListComponent } from './views/entrega-list/entrega-list.component';
 import { EtiquetasConsultarComponent } from './dialogos/etiquetas-consultar/etiquetas-consultar.component';
 import { FooterGreenlifeComponent } from './layout/footer-greenlife/footer-greenlife.component';
 import { HorasEntregaService } from './shared/services/horas-entrega.service';
@@ -181,7 +181,8 @@ import { ValidadorNumeroDirective } from './shared/directives/validador-numero.d
     ResenaComponent,
     MapaComponent,
     ComerciosLocalesClienteComponent,
-    EntregaListComponent
+    EntregaListComponent,
+    EstadoEntregaDialogComponet
   ],
   entryComponents: [
     LoginComponent,
@@ -192,7 +193,8 @@ import { ValidadorNumeroDirective } from './shared/directives/validador-numero.d
     LocalEliminarComponent,
     CargaImagenesComponent,
     EtiquetasConsultarComponent,
-    ResenaComponent
+    ResenaComponent,
+    EstadoEntregaDialogComponet
   ],
   providers: [
     CommonAdapterService,

@@ -20,7 +20,7 @@ public interface EntregaMapper extends EntityMapper<EntregaDTO, Entrega> {
     @Mapping(source = "suscripcionId", target = "suscripcion")
     @Mapping(source = "pedidoId", target = "pedido")
     @Mapping(source = "cadenaId", target = "cadena")
-    @Mapping(target = "lineas", ignore = false)
+    @Mapping(target = "lineas", ignore = true)
     Entrega toEntity(EntregaDTO entregaDTO);
 
     default Entrega fromId(Long id) {
