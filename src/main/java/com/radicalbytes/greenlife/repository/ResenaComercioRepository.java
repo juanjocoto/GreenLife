@@ -11,6 +11,7 @@ import org.springframework.stereotype.Repository;
 import org.springframework.data.jpa.repository.*;
 import org.springframework.data.repository.query.Param;
 
+import java.util.List;
 
 /**
  * Spring Data JPA repository for the ResenaComercio entity.
@@ -22,4 +23,5 @@ public interface ResenaComercioRepository extends JpaRepository<ResenaComercio, 
     @Query("SELECT COALESCE(AVG(calificacion), 0) FROM ResenaComercio WHERE comercio.id=:id")
     float getCalificacion(@Param("id") Long id);
 
+    List<ResenaComercio> findAllByComercio_id(Long id);
 }
