@@ -16,12 +16,6 @@
         <dd>
             <span>{{cadenaEntrega.estado}}</span>
         </dd>
-        <dt><span>Entrega</span></dt>
-        <dd>
-            <div *ngIf="cadenaEntrega.entregaId">
-                <a [routerLink]="['/entrega', cadenaEntrega.entregaId]">{{cadenaEntrega.entregaId}}</a>
-            </div>
-        </dd>
         <dt><span>Previo</span></dt>
         <dd>
             <div *ngIf="cadenaEntrega.previoId">

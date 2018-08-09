@@ -11,6 +11,7 @@ import { EntregaService } from '../../../../../../main/webapp/app/entities/entre
 import { Entrega } from '../../../../../../main/webapp/app/entities/entrega/entrega.model';
 import { SuscripcionService } from '../../../../../../main/webapp/app/entities/suscripcion';
 import { PedidoService } from '../../../../../../main/webapp/app/entities/pedido';
+import { CadenaEntregaService } from '../../../../../../main/webapp/app/entities/cadena-entrega';
 
 describe('Component Tests', () => {
 
@@ -28,6 +29,7 @@ describe('Component Tests', () => {
                 providers: [
                     SuscripcionService,
                     PedidoService,
+                    CadenaEntregaService,
                     EntregaService
                 ]
             })

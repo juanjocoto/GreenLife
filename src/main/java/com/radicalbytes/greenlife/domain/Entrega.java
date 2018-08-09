@@ -1,18 +1,28 @@
 package com.radicalbytes.greenlife.domain;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import org.hibernate.annotations.Cache;
-import org.hibernate.annotations.CacheConcurrencyStrategy;
-
-import javax.persistence.*;
-import javax.validation.constraints.*;
-
-import org.springframework.data.elasticsearch.annotations.Document;
 import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.HashSet;
-import java.util.Set;
 import java.util.Objects;
+import java.util.Set;
+
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
+import javax.persistence.Table;
+import javax.validation.constraints.NotNull;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
+import org.hibernate.annotations.Cache;
+import org.hibernate.annotations.CacheConcurrencyStrategy;
+import org.springframework.data.elasticsearch.annotations.Document;
 
 /**
  * A Entrega.
@@ -39,10 +49,9 @@ public class Entrega implements Serializable {
     @ManyToOne
     private Pedido pedido;
 
-    @OneToMany(mappedBy = "entrega")
-    @JsonIgnore
-    @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
-    private Set<CadenaEntrega> cadenas = new HashSet<>();
+    @OneToOne
+    @JoinColumn(unique = true)
+    private CadenaEntrega cadena;
 
     @OneToMany(mappedBy = "entrega")
     @JsonIgnore
@@ -97,29 +106,17 @@ public class Entrega implements Serializable {
         this.pedido = pedido;
     }
 
-    public Set<CadenaEntrega> getCadenas() {
-        return cadenas;
+    public CadenaEntrega getCadena() {
+        return cadena;
     }
 
-    public Entrega cadenas(Set<CadenaEntrega> cadenaEntregas) {
-        this.cadenas = cadenaEntregas;
+    public Entrega cadena(CadenaEntrega cadenaEntrega) {
+        this.cadena = cadenaEntrega;
         return this;
     }
 
-    public Entrega addCadena(CadenaEntrega cadenaEntrega) {
-        this.cadenas.add(cadenaEntrega);
-        cadenaEntrega.setEntrega(this);
-        return this;
-    }
-
-    public Entrega removeCadena(CadenaEntrega cadenaEntrega) {
-        this.cadenas.remove(cadenaEntrega);
-        cadenaEntrega.setEntrega(null);
-        return this;
-    }
-
-    public void setCadenas(Set<CadenaEntrega> cadenaEntregas) {
-        this.cadenas = cadenaEntregas;
+    public void setCadena(CadenaEntrega cadenaEntrega) {
+        this.cadena = cadenaEntrega;
     }
 
     public Set<LineaEntrega> getLineas() {

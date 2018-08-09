@@ -33,10 +33,6 @@
             <column name="estado" type="varchar(255)">
                 <constraints nullable="true" />
             </column>
-
-            <column name="entrega_id" type="bigint">
-                <constraints nullable="true" />
-            </column>
             <column name="previo_id" type="bigint">
                 <constraints unique="true" nullable="true" />
             </column>

@@ -1,21 +1,20 @@
 package com.radicalbytes.greenlife.service.mapper;
 
-import com.radicalbytes.greenlife.domain.*;
+import com.radicalbytes.greenlife.domain.CadenaEntrega;
 import com.radicalbytes.greenlife.service.dto.CadenaEntregaDTO;
 
-import org.mapstruct.*;
+import org.mapstruct.Mapper;
+import org.mapstruct.Mapping;
 
 /**
  * Mapper for the entity CadenaEntrega and its DTO CadenaEntregaDTO.
  */
-@Mapper(componentModel = "spring", uses = {EntregaMapper.class})
+@Mapper(componentModel = "spring", uses = {})
 public interface CadenaEntregaMapper extends EntityMapper<CadenaEntregaDTO, CadenaEntrega> {
 
-    @Mapping(source = "entrega.id", target = "entregaId")
     @Mapping(source = "previo.id", target = "previoId")
     CadenaEntregaDTO toDto(CadenaEntrega cadenaEntrega);
 
-    @Mapping(source = "entregaId", target = "entrega")
     @Mapping(source = "previoId", target = "previo")
     CadenaEntrega toEntity(CadenaEntregaDTO cadenaEntregaDTO);
 

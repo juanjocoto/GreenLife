@@ -26,7 +26,13 @@ export class EntregaListComponent implements OnInit {
         console.log(usuarioResult.body);
         this.comercioService.findComerciosByDueno(usuarioResult.body.id).subscribe((comerciosResult) => {
           console.log(comerciosResult.body);
-          // this.entregaService.findByComercio
+          for (const comercio of comerciosResult.body) {
+            this.entregaService.findByComercio(comercio).subscribe((entregasResult) => {
+              for (const entrega of entregasResult.body) {
+                console.log(entrega);
+              }
+            });
+          }
         });
       });
     });

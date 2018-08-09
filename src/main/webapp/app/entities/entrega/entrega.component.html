@@ -4,7 +4,7 @@
         <button class="btn btn-primary float-right jh-create-entity create-entrega" [routerLink]="['/', { outlets: { popup: ['entrega-new'] } }]">
             <span class="fa fa-plus"></span>
             <span class="hidden-sm-down" >
-            Crear nueva Entrega
+                Crear nueva Entrega
             </span>
         </button>
     </h2>
@@ -33,6 +33,7 @@
             <th><span>Fecha Inicio</span></th>
             <th><span>Suscripcion</span></th>
             <th><span>Pedido</span></th>
+            <th><span>Cadena</span></th>
             <th></th>
             </tr>
             </thead>
@@ -48,6 +49,11 @@
                 <td>
                     <div *ngIf="entrega.pedidoId">
                         <a [routerLink]="['../pedido', entrega.pedidoId  ]" >{{entrega.pedidoId}}</a>
+                    </div>
+                </td>
+                <td>
+                    <div *ngIf="entrega.cadenaId">
+                        <a [routerLink]="['../cadena-entrega', entrega.cadenaId  ]" >{{entrega.cadenaId}}</a>
                     </div>
                 </td>
                 <td class="text-right">

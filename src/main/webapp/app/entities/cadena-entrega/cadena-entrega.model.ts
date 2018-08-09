@@ -12,7 +12,6 @@ export class CadenaEntrega implements BaseEntity {
         public info?: string,
         public fecha?: any,
         public estado?: EstadoCadena,
-        public entregaId?: number,
         public previoId?: number,
     ) {
     }

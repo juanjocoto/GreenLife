@@ -20,6 +20,12 @@
                 <a [routerLink]="['/pedido', entrega.pedidoId]">{{entrega.pedidoId}}</a>
             </div>
         </dd>
+        <dt><span>Cadena</span></dt>
+        <dd>
+            <div *ngIf="entrega.cadenaId">
+                <a [routerLink]="['/cadena-entrega', entrega.cadenaId]">{{entrega.cadenaId}}</a>
+            </div>
+        </dd>
     </dl>
 
     <button type="submit"

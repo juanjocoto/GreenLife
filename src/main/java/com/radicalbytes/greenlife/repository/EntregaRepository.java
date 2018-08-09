@@ -15,6 +15,6 @@ import org.springframework.data.jpa.repository.*;
 @Repository
 public interface EntregaRepository extends JpaRepository<Entrega, Long> {
 
-    @Query("SELECT entrega FROM Entrega AS entrega INNER JOIN Suscripcion AS s ON entrega.suscripcion_id = s.id WHERE s.comercio_id = ?")
+    @Query("SELECT entrega FROM Entrega entrega, Suscripcion s WHERE entrega.suscripcion.id = s.id AND s.comercio.id = ?")
     List<Entrega> queryFindByComercioId(long id);
 }

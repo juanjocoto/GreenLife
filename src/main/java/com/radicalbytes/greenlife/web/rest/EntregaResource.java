@@ -43,22 +43,26 @@ public class EntregaResource {
 
     private final EntregaSearchRepository entregaSearchRepository;
 
-    public EntregaResource(EntregaRepository entregaRepository, EntregaMapper entregaMapper, EntregaSearchRepository entregaSearchRepository) {
+    public EntregaResource(EntregaRepository entregaRepository, EntregaMapper entregaMapper,
+            EntregaSearchRepository entregaSearchRepository) {
         this.entregaRepository = entregaRepository;
         this.entregaMapper = entregaMapper;
         this.entregaSearchRepository = entregaSearchRepository;
     }
 
     /**
-     * POST  /entregas : Create a new entrega.
+     * POST /entregas : Create a new entrega.
      *
      * @param entregaDTO the entregaDTO to create
-     * @return the ResponseEntity with status 201 (Created) and with body the new entregaDTO, or with status 400 (Bad Request) if the entrega has already an ID
+     * @return the ResponseEntity with status 201 (Created) and with body the new
+     *         entregaDTO, or with status 400 (Bad Request) if the entrega has
+     *         already an ID
      * @throws URISyntaxException if the Location URI syntax is incorrect
      */
     @PostMapping("/entregas")
     @Timed
-    public ResponseEntity<EntregaDTO> createEntrega(@Valid @RequestBody EntregaDTO entregaDTO) throws URISyntaxException {
+    public ResponseEntity<EntregaDTO> createEntrega(@Valid @RequestBody EntregaDTO entregaDTO)
+            throws URISyntaxException {
         log.debug("REST request to save Entrega : {}", entregaDTO);
         if (entregaDTO.getId() != null) {
             throw new BadRequestAlertException("A new entrega cannot already have an ID", ENTITY_NAME, "idexists");
@@ -68,22 +72,23 @@ public class EntregaResource {
         EntregaDTO result = entregaMapper.toDto(entrega);
         entregaSearchRepository.save(entrega);
         return ResponseEntity.created(new URI("/api/entregas/" + result.getId()))
-            .headers(HeaderUtil.createEntityCreationAlert(ENTITY_NAME, result.getId().toString()))
-            .body(result);
+                .headers(HeaderUtil.createEntityCreationAlert(ENTITY_NAME, result.getId().toString())).body(result);
     }
 
     /**
-     * PUT  /entregas : Updates an existing entrega.
+     * PUT /entregas : Updates an existing entrega.
      *
      * @param entregaDTO the entregaDTO to update
-     * @return the ResponseEntity with status 200 (OK) and with body the updated entregaDTO,
-     * or with status 400 (Bad Request) if the entregaDTO is not valid,
-     * or with status 500 (Internal Server Error) if the entregaDTO couldn't be updated
+     * @return the ResponseEntity with status 200 (OK) and with body the updated
+     *         entregaDTO, or with status 400 (Bad Request) if the entregaDTO is not
+     *         valid, or with status 500 (Internal Server Error) if the entregaDTO
+     *         couldn't be updated
      * @throws URISyntaxException if the Location URI syntax is incorrect
      */
     @PutMapping("/entregas")
     @Timed
-    public ResponseEntity<EntregaDTO> updateEntrega(@Valid @RequestBody EntregaDTO entregaDTO) throws URISyntaxException {
+    public ResponseEntity<EntregaDTO> updateEntrega(@Valid @RequestBody EntregaDTO entregaDTO)
+            throws URISyntaxException {
         log.debug("REST request to update Entrega : {}", entregaDTO);
         if (entregaDTO.getId() == null) {
             return createEntrega(entregaDTO);
@@ -93,14 +98,14 @@ public class EntregaResource {
         EntregaDTO result = entregaMapper.toDto(entrega);
         entregaSearchRepository.save(entrega);
         return ResponseEntity.ok()
-            .headers(HeaderUtil.createEntityUpdateAlert(ENTITY_NAME, entregaDTO.getId().toString()))
-            .body(result);
+                .headers(HeaderUtil.createEntityUpdateAlert(ENTITY_NAME, entregaDTO.getId().toString())).body(result);
     }
 
     /**
-     * GET  /entregas : get all the entregas.
+     * GET /entregas : get all the entregas.
      *
-     * @return the ResponseEntity with status 200 (OK) and the list of entregas in body
+     * @return the ResponseEntity with status 200 (OK) and the list of entregas in
+     *         body
      */
     @GetMapping("/entregas")
     @Timed
@@ -108,13 +113,22 @@ public class EntregaResource {
         log.debug("REST request to get all Entregas");
         List<Entrega> entregas = entregaRepository.findAll();
         return entregaMapper.toDto(entregas);
-        }
+    }
+
+    @GetMapping("/entregas/comercio/{idComercio}")
+    @Timed
+    public List<EntregaDTO> getAllByComercio(@PathVariable long idComercio) {
+        log.debug("REST request to get all Entregas");
+        List<Entrega> entregas = entregaRepository.queryFindByComercioId(idComercio);
+        return entregaMapper.toDto(entregas);
+    }
 
     /**
-     * GET  /entregas/:id : get the "id" entrega.
+     * GET /entregas/:id : get the "id" entrega.
      *
      * @param id the id of the entregaDTO to retrieve
-     * @return the ResponseEntity with status 200 (OK) and with body the entregaDTO, or with status 404 (Not Found)
+     * @return the ResponseEntity with status 200 (OK) and with body the entregaDTO,
+     *         or with status 404 (Not Found)
      */
     @GetMapping("/entregas/{id}")
     @Timed
@@ -126,7 +140,7 @@ public class EntregaResource {
     }
 
     /**
-     * DELETE  /entregas/:id : delete the "id" entrega.
+     * DELETE /entregas/:id : delete the "id" entrega.
      *
      * @param id the id of the entregaDTO to delete
      * @return the ResponseEntity with status 200 (OK)
@@ -141,7 +155,7 @@ public class EntregaResource {
     }
 
     /**
-     * SEARCH  /_search/entregas?query=:query : search for the entrega corresponding
+     * SEARCH /_search/entregas?query=:query : search for the entrega corresponding
      * to the query.
      *
      * @param query the query of the entrega search
@@ -151,10 +165,8 @@ public class EntregaResource {
     @Timed
     public List<EntregaDTO> searchEntregas(@RequestParam String query) {
         log.debug("REST request to search Entregas for query {}", query);
-        return StreamSupport
-            .stream(entregaSearchRepository.search(queryStringQuery(query)).spliterator(), false)
-            .map(entregaMapper::toDto)
-            .collect(Collectors.toList());
+        return StreamSupport.stream(entregaSearchRepository.search(queryStringQuery(query)).spliterator(), false)
+                .map(entregaMapper::toDto).collect(Collectors.toList());
     }
 
 }

@@ -19,6 +19,7 @@ import com.radicalbytes.greenlife.repository.PedidoRepository;
 import com.radicalbytes.greenlife.service.MailService;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -45,6 +46,9 @@ public class SecheduleTask {
         LocalDate now = LocalDate.now();
         String dayWeek = now.format(DateTimeFormatter.ofPattern("EEEE", spanishLocale));
         dayWeek = dayWeek.substring(0, 1).toUpperCase() + dayWeek.substring(1);
+        System.out.println();
+        System.out.println(dayWeek);
+        System.out.println();
 
         List<Pedido> pedidoList = pedidoRepo.findAllByDiasEntrega_nombre(dayWeek);
         for (Pedido pedido : pedidoList) {
@@ -66,9 +70,14 @@ public class SecheduleTask {
             // entrega.addCadena(cadenaEntrega);
 
             CadenaEntrega cadenaEntrega = new CadenaEntrega();
-            cadenaEntrega.entrega(entrega);
+            cadenaEntrega.setFecha(now);
             cadenaEntrega.setEstado(EstadoCadena.PENDIENTE);
+            cadenaEntrega.setInfo("");
             cadenaEntregaRepository.save(cadenaEntrega);
+
+            entrega.setCadena(cadenaEntrega);
+
+            entregaRepo.save(entrega);
 
             String reciver = entrega.getSuscripcion().getUsuario().getUserDetail().getEmail();
 

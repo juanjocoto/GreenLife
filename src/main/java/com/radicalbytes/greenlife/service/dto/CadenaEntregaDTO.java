@@ -1,13 +1,12 @@
 package com.radicalbytes.greenlife.service.dto;
 
 
-import java.io.Serializable;
 import java.time.LocalDate;
+import javax.validation.constraints.*;
+import java.io.Serializable;
+import java.util.HashSet;
+import java.util.Set;
 import java.util.Objects;
-
-import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Size;
-
 import com.radicalbytes.greenlife.domain.enumeration.EstadoCadena;
 
 /**
@@ -25,8 +24,6 @@ public class CadenaEntregaDTO implements Serializable {
     private LocalDate fecha;
 
     private EstadoCadena estado;
-
-    private Long entregaId;
 
     private Long previoId;
 
@@ -60,14 +57,6 @@ public class CadenaEntregaDTO implements Serializable {
 
     public void setEstado(EstadoCadena estado) {
         this.estado = estado;
-    }
-
-    public Long getEntregaId() {
-        return entregaId;
-    }
-
-    public void setEntregaId(Long entregaId) {
-        this.entregaId = entregaId;
     }
 
     public Long getPrevioId() {

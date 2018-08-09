@@ -6,7 +6,7 @@ export class Entrega implements BaseEntity {
         public fechaInicio?: any,
         public suscripcionId?: number,
         public pedidoId?: number,
-        public cadenas?: BaseEntity[],
+        public cadenaId?: number,
         public lineas?: BaseEntity[],
     ) {
     }
