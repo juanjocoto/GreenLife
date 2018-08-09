@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpResponse } from '@angular/common/http';
+import {HttpClient, HttpResponse, HttpParams} from '@angular/common/http';
 import { Observable } from 'rxjs/Observable';
 import { SERVER_API_URL } from '../../app.constants';
 
@@ -49,6 +49,16 @@ export class PagoService {
         const options = createRequestOption(req);
         return this.http.get<Pago[]>(this.resourceSearchUrl, { params: options, observe: 'response' })
             .map((res: HttpResponse<Pago[]>) => this.convertArrayResponse(res));
+    }
+
+    chargeCard(token: string, amount: number, description: string, email: string): Observable<HttpResponse<any>> {
+        const params = new HttpParams()
+            .set('token', token)
+            .set('amount', amount.toString())
+            .set('description', description)
+            .set('email', email);
+
+        return this.http.post<any>(`${this.resourceUrl}/payment`, {}, {observe: 'response', params});
     }
 
     private convertResponse(res: EntityResponseType): EntityResponseType {

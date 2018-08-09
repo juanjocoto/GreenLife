@@ -41,6 +41,7 @@ import {
 import { AgmCoreModule } from '@agm/core';
 import { AuthAdminGuard } from './shared/guards/auth.admin.guard';
 import { AuthService } from './shared/services/auth.service';
+import { BarRatingModule } from 'ngx-bar-rating';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { BrowserModule } from '@angular/platform-browser';
 import { CargaImagenesComponent } from './dialogos/carga-imagenes/carga-imagenes.component';
@@ -55,6 +56,7 @@ import { ComerciosLocalesClienteComponent } from './views/comercios-locales-clie
 import { ComerciosLocalesComponent } from './views/comercios-locales/comercios-locales.component';
 import { ComerciosProductosComponent } from './views/comercios-productos/comercios-productos.component';
 import { ComerciosRegistroComponent } from './dialogos/comercios-registro/comercios-registro.component';
+import { ComerciosResenasComponent } from './dialogos/comercios-resenas/comercios-resenas.component';
 import { CommonAdapterService } from './shared/services/common-adapter.service';
 import { CommonModule } from '@angular/common';
 import { ConfiguracionAplicacionComponent } from './views/configuracion-aplicacion/configuracion-aplicacion.component';
@@ -75,6 +77,8 @@ import { LoginComponent } from './dialogos/login/login.component';
 import { MapaComponent } from './views/mapa/mapa.component';
 import { NavbarGreenlifeComponent } from './layout/navbar-greenlife/navbar-greenlife.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { NgxStripeModule } from 'ngx-stripe';
+import { PagoServiciosComponent } from './views/pago-servicios/pago-servicios.component';
 import { PedidoCrearComponent } from './views/pedido-crear/pedido-crear.component';
 import { PedidoListarComponent } from './views/pedido-listar/pedido-listar.component';
 import { PedidoModificarComponent } from './views/pedido-modificar/pedido-modificar.component';
@@ -103,6 +107,7 @@ import { ValidadorNumeroDirective } from './shared/directives/validador-numero.d
     AgmCoreModule.forRoot({
       apiKey: 'AIzaSyAKK8_ZbHnWx9CD9b4NZFGRKe8rMw83wmI'
     }),
+    NgxStripeModule.forRoot('pk_test_Pb8txXeTKiTx09hkGDFj58WR'),
     ReactiveFormsModule,
     CdkTableModule,
     MatAutocompleteModule,
@@ -137,7 +142,8 @@ import { ValidadorNumeroDirective } from './shared/directives/validador-numero.d
     MatTabsModule,
     MatToolbarModule,
     MatTooltipModule,
-    MatFormFieldModule
+    MatFormFieldModule,
+    BarRatingModule
   ],
   declarations: [
     LandingComponent,
@@ -182,7 +188,9 @@ import { ValidadorNumeroDirective } from './shared/directives/validador-numero.d
     MapaComponent,
     ComerciosLocalesClienteComponent,
     EntregaListComponent,
-    EstadoEntregaDialogComponet
+    EstadoEntregaDialogComponet,
+    ComerciosResenasComponent,
+    PagoServiciosComponent
   ],
   entryComponents: [
     LoginComponent,
@@ -194,7 +202,8 @@ import { ValidadorNumeroDirective } from './shared/directives/validador-numero.d
     CargaImagenesComponent,
     EtiquetasConsultarComponent,
     ResenaComponent,
-    EstadoEntregaDialogComponet
+    EstadoEntregaDialogComponet,
+    ComerciosResenasComponent
   ],
   providers: [
     CommonAdapterService,
