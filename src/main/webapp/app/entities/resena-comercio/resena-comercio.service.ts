@@ -35,6 +35,11 @@ export class ResenaComercioService {
             .map((res: EntityResponseType) => this.convertResponse(res));
     }
 
+    findByComercio(id: number): Observable<HttpResponse<ResenaComercio[]>> {
+        return this.http.get<ResenaComercio[]>(`${this.resourceUrl}/comercio/${id}`, { observe: 'response'})
+            .map((res: HttpResponse<ResenaComercio[]>) => this.convertArrayResponse(res));
+    }
+
     query(req?: any): Observable<HttpResponse<ResenaComercio[]>> {
         const options = createRequestOption(req);
         return this.http.get<ResenaComercio[]>(this.resourceUrl, { params: options, observe: 'response' })
