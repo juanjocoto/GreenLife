@@ -125,14 +125,14 @@
     font-weight: 700;
     box-shadow:  0 1px 3px rgba(50,50,93,.11), 0 1px 3px rgba(0,0,0,.08);
     float: right;
-    margin: 15px 10px 15px 0;
+    margin: 15px 0px;
 
     .fa {
         padding: 0 10px 0 0;
     }
 }
 
-.btnVerLocales {
+.btnVerLocales, .btnAgregarResena {
     color: $config-dark-gray-color;
     background: #FFFFFF;
     border-color: $config-dark-gray-color;
