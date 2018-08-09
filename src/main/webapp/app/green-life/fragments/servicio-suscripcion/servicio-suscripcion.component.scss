@@ -41,7 +41,7 @@
     font-weight: 300;
 }
 
-.btn-servicio-suscripcion, .btn-cancel-servicio-suscripcion {
+.btn-servicio-suscripcion, .btn-pagar-servicio-suscripcion {
     color: #FFFFFF;
     background: $config-dark-gray-color;
     font-size: 16px;
@@ -54,3 +54,19 @@
     box-shadow: $box-shadow;
 }
 
+.btn-cancel-servicio-suscripcion {
+    color: $config-dark-gray-color;
+    background: #FFFFFF;
+    font-size: 16px;
+    font-weight: 700;
+    margin: 15px 0 15px 0;
+    border-color: $config-dark-gray-color;
+    border-radius: $border-radius;
+    -webkit-box-shadow: $box-shadow;
+    -moz-box-shadow: $box-shadow;
+    box-shadow: $box-shadow;
+}
+
+.btn-pagar-servicio-suscripcion, .btn-cancel-servicio-suscripcion {
+    margin: 10px 15px;
+}

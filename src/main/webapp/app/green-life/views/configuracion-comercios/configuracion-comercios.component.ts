@@ -137,14 +137,23 @@ export class ConfiguracionComerciosComponent implements OnInit {
             this.usuarioService.findByUserLogin(accountResponse.body['login']).subscribe((responseUser) => {
                 this.comercioService.findComerciosByDueno(responseUser.body.id).subscribe((responseComercio) => {
                     for (const comercio of responseComercio.body) {
-                        this.contratoService.findByTipo(TIPO_SERVICIO_SUSCRIPCION).subscribe((responseContrato) => {
-                            this.isContratoActivo = responseContrato.status === 200 && responseContrato.body.length > 0;
+                        this.contratoService.findAllByComercio(comercio.id).subscribe((responseContratos) => {
+                            if (responseContratos.body.length > 0) {
+                                for (const contrato of responseContratos.body) {
+                                    if (contrato.tipoId === TIPO_SERVICIO_SUSCRIPCION) {
+                                        this.isContratoActivo = true;
+                                    }
+                                }
+                            } else {
+                                this.isContratoActivo = false;
+                            }
                         });
                     }
                 });
             });
         });
     }
+
 }
 
 interface IComercio {

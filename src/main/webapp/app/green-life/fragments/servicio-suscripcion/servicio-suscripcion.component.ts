@@ -7,7 +7,6 @@ import {UsuarioService} from '../../../entities/usuario';
 import {AccountService} from '../../../shared';
 import {Comercio, ComercioService} from '../../../entities/comercio';
 import {Contrato, ContratoService} from '../../../entities/contrato';
-import {TipoContrato, TipoContratoService} from '../../../entities/tipo-contrato';
 
 @Component({
     selector: 'jhi-servicio-suscripcion',
@@ -20,7 +19,6 @@ export class ServicioSuscripcionComponent implements OnInit {
 
     comercios: Comercio[];
     newContrato: Contrato;
-    newTipoContrato: TipoContrato;
     isContratoActivo = false;
 
     constructor(
@@ -29,8 +27,7 @@ export class ServicioSuscripcionComponent implements OnInit {
         private usuarioService: UsuarioService,
         private comercioService: ComercioService,
         private contratoService: ContratoService,
-        private tipoContratoService: TipoContratoService,
-        private matDialog: MatDialog,
+        private matDialog: MatDialog
     ) {}
 
     ngOnInit() {
@@ -62,8 +59,26 @@ export class ServicioSuscripcionComponent implements OnInit {
         ref.componentInstance.texto = `¿Está seguro que desea cancelar el servicio de suscripciones?`;
         ref.afterClosed().subscribe((result) => {
             if (result && this.isContratoActivo === true) {
+                for (const comercio of this.comercios) {
+                    this.contratoService.findAllByComercio(comercio.id).subscribe((responseContratos) => {
+                        if (responseContratos.body.length > 0) {
+                            for (const contrato of responseContratos.body) {
+                                if (contrato.tipoId === TIPO_SERVICIO_SUSCRIPCION) {
+                                    this.contratoService.delete(contrato.id).subscribe((responseDelContrato) => {
+                                        if (responseDelContrato.status === 200) {
+                                            this.isContratoActivo = false;
+                                        }
+                                    });
+                                }
+                            }
+                        }
+                    });
+                }
             }
         });
+    }
+
+    pagarServicioSuscripcion() {
     }
 
     verificarServicioSuscripcion() {
@@ -71,8 +86,16 @@ export class ServicioSuscripcionComponent implements OnInit {
             this.usuarioService.findByUserLogin(accountResponse.body['login']).subscribe((responseUser) => {
                 this.comercioService.findComerciosByDueno(responseUser.body.id).subscribe((responseComercio) => {
                     for (const comercio of responseComercio.body) {
-                        this.contratoService.findByTipo(TIPO_SERVICIO_SUSCRIPCION).subscribe((responseContrato) => {
-                            this.isContratoActivo = responseContrato.status === 200 && responseContrato.body.length > 0;
+                        this.contratoService.findAllByComercio(comercio.id).subscribe((responseContratos) => {
+                            if (responseContratos.body.length > 0) {
+                                for (const contrato of responseContratos.body) {
+                                    if (contrato.tipoId === TIPO_SERVICIO_SUSCRIPCION) {
+                                        this.isContratoActivo = true;
+                                    }
+                                }
+                            } else {
+                                this.isContratoActivo = false;
+                            }
                         });
                     }
                 });
