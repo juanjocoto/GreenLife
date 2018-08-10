@@ -20,4 +20,6 @@ public interface EntregaRepository extends JpaRepository<Entrega, Long> {
 
     @Query("SELECT entrega FROM Entrega entrega where entrega.suscripcion.comercio.id =:id")
     List<Entrega> queryFindByComercioId(@Param("id") Long id);
+
+	Entrega findByCadena_id(Long id);
 }

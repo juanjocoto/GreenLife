@@ -98,10 +98,11 @@ export class EstadoEntregaDialogComponet implements OnInit {
   @Input() entrega: Entrega;
 
   private _estados: { text: string, value: string }[] = [
+    { text: 'Pendiente', value: 'PENDIENTE' },
     { text: 'Preparación', value: 'PREPARACION' },
     { text: 'En camino', value: 'EN_CAMINO' },
     { text: 'Entregado', value: 'ENTREGADO' },
-    { text: 'Pendiente', value: 'PENDIENTE' },
+    { text: 'Cancelado', value: 'CANCELADO' },
   ];
 
   public formGroup: FormGroup;
@@ -111,10 +112,11 @@ export class EstadoEntregaDialogComponet implements OnInit {
   }
 
   private values = [
+    'PENDIENTE',
     'PREPARACION',
     'EN_CAMINO',
     'ENTREGADO',
-    'PENDIENTE'
+    'CANCELADO'
   ];
 
   constructor(
