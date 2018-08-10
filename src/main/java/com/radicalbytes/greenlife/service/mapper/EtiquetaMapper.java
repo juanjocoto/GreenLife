@@ -11,8 +11,6 @@ import org.mapstruct.*;
 @Mapper(componentModel = "spring", uses = {})
 public interface EtiquetaMapper extends EntityMapper<EtiquetaDTO, Etiqueta> {
 
-
-
     default Etiqueta fromId(Long id) {
         if (id == null) {
             return null;
