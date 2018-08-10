@@ -1,0 +1,75 @@
+<div class="container-fluid title-bar" *ngIf="clienteDetail">
+  <div class="row">
+      <div class="col">
+          <h2 id="title-">{{clienteDetail.firstName + ' ' + clienteDetail.lastName}}</h2>
+          <hr class="divider">
+          <h1>Pago de la suscripción</h1>
+      </div>
+  </div>
+</div>
+<div class="container main-container">
+  <div class="row">
+    <div class="col-md-12">
+      <div class="bill-container">
+        <div class="bill">
+          <div class="container-fluid">
+            <div class="row">
+              <p><b>Cliente:</b> {{clienteDetail.firstName + ' ' + clienteDetail.lastName}}</p>
+            </div>
+            <div class="row">
+              <p><b>Comercio:</b> {{comercio.nombreComercial}}</p>
+            </div>
+            <div class="row">
+              <p><b>Estado:</b> {{suscripcion.estado}}</p>
+            </div>
+            <div class="row">
+              <p><b>Detalle:</b> {{suscripcion.detalle}}</p>
+            </div>
+            <hr class="divider">
+            <div class="row center">
+              <p><b>Lista productos</b></p>
+            </div>
+            <div class="row">
+              <div class="container-fluid">
+                <div class="row title">
+                  <div class="col-sm-2">Pedido</div>
+                  <div class="col-sm-4">Nombre</div>
+                  <div class="col-sm-2">Cantidad</div>
+                  <div class="col-sm-4">Precio unidad</div>
+                </div>
+              </div>
+            </div>
+            <div *ngFor="let linea of listaProductos; let i = index">
+              <div class="row" *ngFor="let prod of linea">
+                <div class="container-fluid">
+                  <div class="row">
+                    <div class="col-sm-2">{{ i + 1 }}</div>
+                    <div class="col-sm-4">{{ prod.producto.nombre }}</div>
+                    <div class="col-sm-2">{{ prod.cantidad }}</div>
+                    <div class="col-sm-4">₡ {{ prod.producto.precio }}</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <hr class="divider">
+            <div class="row">
+              <div class="container-fluid">
+                <div class="row title">
+                  <div class="col-sm-4"></div>
+                  <div class="col-sm-4">Total:</div>
+                  <div class="col-sm-4">₡ {{ precioTotal }}</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+      <div class="col-md-12">
+        <jhi-pago-servicios [amount]="precioTotal" [description]="descripcion"></jhi-pago-servicios>
+      </div>
+  </div>
+</div>
+

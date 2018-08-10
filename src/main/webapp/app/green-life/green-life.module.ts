@@ -94,6 +94,7 @@ import { ValidadorNumeroDirective } from './shared/directives/validador-numero.d
 import { ComerciosResenasComponent } from './dialogos/comercios-resenas/comercios-resenas.component';
 import { PagoServiciosComponent } from './views/pago-servicios/pago-servicios.component';
 import { NgxStripeModule } from 'ngx-stripe';
+import { PagoSuscripcionComponent } from './views/pago-suscripcion/pago-suscripcion.component';
 
 @NgModule({
   imports: [
@@ -187,7 +188,8 @@ import { NgxStripeModule } from 'ngx-stripe';
     MapaComponent,
     ComerciosLocalesClienteComponent,
     ComerciosResenasComponent,
-    PagoServiciosComponent
+    PagoServiciosComponent,
+    PagoSuscripcionComponent
   ],
   entryComponents: [
     LoginComponent,

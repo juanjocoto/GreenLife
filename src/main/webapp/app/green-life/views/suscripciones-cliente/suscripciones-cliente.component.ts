@@ -53,6 +53,10 @@ export class SuscripcionesClienteComponent implements OnInit {
         });
     }
 
+    pagarSuscripcion(suscripcionId) {
+        this.router.navigate(['app/suscripciones/' + suscripcionId + '/pago']);
+    }
+
     loadPedidos(suscripcionId) {
         this.router.navigate(['app/suscripciones/' + suscripcionId + '/pedido']);
     }
