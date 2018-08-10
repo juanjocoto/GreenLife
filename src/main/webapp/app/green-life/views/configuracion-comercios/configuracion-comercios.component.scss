@@ -1,5 +1,19 @@
 @import "../../../../content/scss/green-life-variables";
 
+.subtitle1, .subtitle2 {
+    text-align: center;
+    color: $config-dark-gray-color;
+    font-weight: 300;
+}
+
+.badge-vista-usuario{
+    margin: 0 0 0 12px;
+}
+
+.img-container img{
+    margin: 20px 0 10px 0;
+}
+
 .table-wrapper {
     background: #fff;
     padding: 20px 25px;

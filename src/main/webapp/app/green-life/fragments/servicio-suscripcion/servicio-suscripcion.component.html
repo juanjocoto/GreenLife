@@ -1,4 +1,4 @@
-<div class="col-md-6 mx-auto text-center">
+<div class="col-md-8 mx-auto text-center">
     <div class="card">
         <div class="card-header">
             Servicio de Suscripciones
@@ -10,15 +10,14 @@
         </div>
         <div class="card-body text-center mt-2 mb-3" *ngIf="isContratoActivo == true">
             <h5 class="card-title card-title-servicio-inactivo"><span><i class="fa fa-check-circle"></i></span>El servicio de suscripción se encuentra activo.</h5>
-            <p class="card-text card-text-servicio-inactivo">Si cancelas la suscripción no recibirás los pagos pendientes del mes actual.</p>
-            <button class="btn btn-pagar-servicio-suscripcion" (click)="pagarServicioSuscripcion()"><i class="fa fa-cc-stripe mr-2"></i> Pagar servicio</button>
+            <p class="card-text card-text-servicio-inactivo">Si cancelas el servicio de suscripciones, no recibirás los pagos pendientes del mes actual.</p>
+            <button class="btn btn-pagar-servicio-suscripcion" (click)="pagarServicioSuscripcion()" *ngIf="isPagando == false"><i class="fa fa-cc-stripe mr-2"></i> Pagar servicio</button>
+            <button class="btn btn-cancelar-pago" (click)="cancelarPago()" *ngIf="isPagando"><i class="fa fa-ban mr-2"></i> Cancelar pago</button>
             <button class="btn btn-cancel-servicio-suscripcion" (click)="cancelarContratoServicioSuscripcion()">Cancelar servicio</button>
         </div>
     </div>
 </div>
-<!--
 
-<div class="col-md-8 col-lg-6 mx-auto text-center">
-    <jhi-pago-servicios></jhi-pago-servicios>
+<div class="col-md-8 col-lg-6 mx-auto text-center mt-5" *ngIf="isPagando && paymentStatus == false">
+    <jhi-pago-servicios [amount]="amount" [description]="description" (verificarPago)="verifyPaymentStatus($event)"></jhi-pago-servicios>
 </div>
--->

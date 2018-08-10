@@ -7,6 +7,7 @@ import {UsuarioService} from '../../../entities/usuario';
 import {AccountService} from '../../../shared';
 import {Comercio, ComercioService} from '../../../entities/comercio';
 import {Contrato, ContratoService} from '../../../entities/contrato';
+import {TipoContratoService} from '../../../entities/tipo-contrato';
 
 @Component({
     selector: 'jhi-servicio-suscripcion',
@@ -20,6 +21,10 @@ export class ServicioSuscripcionComponent implements OnInit {
     comercios: Comercio[];
     newContrato: Contrato;
     isContratoActivo = false;
+    isPagando = false;
+    paymentStatus = false;
+    amount = 0;
+    description = '';
 
     constructor(
         private commonAdapterService: CommonAdapterService,
@@ -27,6 +32,7 @@ export class ServicioSuscripcionComponent implements OnInit {
         private usuarioService: UsuarioService,
         private comercioService: ComercioService,
         private contratoService: ContratoService,
+        private tipoContratoService: TipoContratoService,
         private matDialog: MatDialog
     ) {}
 
@@ -79,6 +85,18 @@ export class ServicioSuscripcionComponent implements OnInit {
     }
 
     pagarServicioSuscripcion() {
+        this.isPagando = true;
+    }
+
+    cancelarPago() {
+        this.isPagando = false;
+    }
+
+    verifyPaymentStatus($event) {
+        setTimeout(() => {
+            this.paymentStatus = $event;
+            this.isPagando = false;
+        }, 13000);
     }
 
     verificarServicioSuscripcion() {
@@ -91,6 +109,7 @@ export class ServicioSuscripcionComponent implements OnInit {
                                 for (const contrato of responseContratos.body) {
                                     if (contrato.tipoId === TIPO_SERVICIO_SUSCRIPCION) {
                                         this.isContratoActivo = true;
+                                        this.setPayment();
                                     }
                                 }
                             } else {
@@ -103,6 +122,13 @@ export class ServicioSuscripcionComponent implements OnInit {
         });
     }
 
+    setPayment() {
+        this.tipoContratoService.find(TIPO_SERVICIO_SUSCRIPCION).subscribe((responseTipoContrato) => {
+            this.amount = responseTipoContrato.body.costo;
+            this.description = responseTipoContrato.body.nombre;
+        });
+    }
+
     private loadComercios() {
         this.account.get().subscribe((accountResponse) => {
             this.usuarioService.findByUserLogin(accountResponse.body['login']).subscribe((responseUser) => {
@@ -112,32 +138,5 @@ export class ServicioSuscripcionComponent implements OnInit {
             });
         });
     }
-
-    // TODO AGREGAR TIPO DE CONTRATO POR DEFAULT EN LIQUIBASE
-    /*   solicitarContratoServicioSuscripcion() {
-           if (this.isContratoActivo === false) {
-               this.newTipoContrato = new TipoContrato();
-               this.newTipoContrato.nombre = 'Servicio Suscripción';
-               this.newTipoContrato.descripcion = 'Contrato por servicio de suscripción';
-               this.newTipoContrato.costo = COSTO_SERVICIO_SUSCRIPCION;
-
-               this.tipoContratoService.create(this.newTipoContrato).subscribe((responseTipoContrato) => {
-                   if (responseTipoContrato.status === 201) {
-                       for (const comercio of this.comercios) {
-                           this.newContrato = new Contrato();
-                           this.newContrato.tipoId = responseTipoContrato.body.id;
-                           this.newContrato.comercioId = comercio.id;
-                           this.newContrato.fechaCreacion = this.commonAdapterService.dateToJHILocalDate(new Date());
-
-                           this.contratoService.create(this.newContrato).subscribe((responseContrato) => {
-                               if (responseContrato.status === 201) {
-                                   this.isContratoActivo = true;
-                               }
-                           });
-                       }
-                   }
-               });
-           }
-       }*/
 
 }

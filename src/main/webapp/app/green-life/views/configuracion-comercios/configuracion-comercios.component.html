@@ -4,6 +4,15 @@
 <body>
 <div class="container">
     <div class="row">
+        <div class="col mb-5">
+            <h3 class="subtitle1">Administra los locales, clientes suscritos, productos y categorías de alimentación de todos tus comercios.</h3>
+            <div class="img-container text-center">
+                <img src="../../../../content/images/local.png" alt="Comercios suscrito" height="140px">
+            </div>
+            <h2 class="subtitle2">Comercios disponibles<span class="badge badge-vista-usuario">{{comercios.length}}</span></h2>
+        </div>
+    </div>
+    <div class="row" *ngIf="comercios.length > 0">
         <div class="col">
             <jhi-servicio-suscripcion></jhi-servicio-suscripcion>
         </div>
