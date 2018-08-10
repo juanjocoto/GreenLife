@@ -26,6 +26,10 @@
             <li class="nav-item" *ngIf="roles.includes('ROLE_ADMIN')">
                 <a class="nav-link" routerLink="configuracion/aplicacion">Mantenimiento</a>
             </li>
+            <!--Opcion Mantenimineto-->
+            <li class="nav-item" *ngIf="roles.includes('ROLE_ADMIN')">
+                <a class="nav-link" routerLink="configuracion/usuarios">Usuarios</a>
+            </li>
             <!--Opcion CMS-->
             <li class="nav-item" *ngIf="roles.includes('ROLE_ADMIN')">
                 <a class="nav-link" routerLink="../cms">CMS</a>

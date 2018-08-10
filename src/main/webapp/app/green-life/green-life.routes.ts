@@ -25,6 +25,7 @@ import { UsuarioModificarComponent } from './views/usuario-modificar/usuario-mod
 import { UsuarioPerfilComponent } from './views/usuario-perfil/usuario-perfil.component';
 import { UsuarioRegistroComponent } from './views/usuario-registro/usuario-registro.component';
 import { PagoSuscripcionComponent } from './views/pago-suscripcion/pago-suscripcion.component';
+import { ConfiguracionUsuariosComponent } from './views/configuracion-usuarios/configuracion-usuarios.component';
 
 export const greenLifeRoutes: Route[] = [
     { path: '', component: LandingComponent, data: { configuracion: false }, canActivate: [] },
@@ -32,6 +33,7 @@ export const greenLifeRoutes: Route[] = [
     { path: 'perfil', component: UsuarioPerfilComponent, data: { configuracion: true }, canActivate: [AuthGuard] },
     { path: 'perfil/editar', component: UsuarioModificarComponent, data: { configuracion: true }, canActivate: [AuthGuard] },
     { path: 'configuracion/aplicacion', component: ConfiguracionAplicacionComponent, data: { configuracion: true }, canActivate: [AuthAdminGuard] },
+    { path: 'configuracion/usuarios', component: ConfiguracionUsuariosComponent, data: { configuracion: true }, canActivate: [AuthAdminGuard] },
     { path: 'comercios', component: ComerciosClienteComponent, data: { configuracion: false }, canActivate: [AuthGuard] },
     { path: 'comercios/:comercioId/productos', component: ComerciosProductosComponent, data: { configuracion: true }, canActivate: [AuthGuard] },
     { path: 'comercios/:comercioId/editar', component: ComercioEditarComponent, data: { configuracion: true }, canActivate: [AuthGuard] },
