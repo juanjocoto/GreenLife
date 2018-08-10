@@ -92,6 +92,7 @@ import { UsuarioRegistroComponent } from './views/usuario-registro/usuario-regis
 import { UsuarioRolesComponent } from './views/usuario-roles/usuario-roles.component';
 import { ValidadorNumeroDirective } from './shared/directives/validador-numero.directive';
 import { ServicioSuscripcionComponent } from './fragments/servicio-suscripcion/servicio-suscripcion.component';
+import { ConfiguracionUsuariosComponent } from './views/configuracion-usuarios/configuracion-usuarios.component';
 import { ComerciosResenasComponent } from './dialogos/comercios-resenas/comercios-resenas.component';
 import { PagoServiciosComponent } from './views/pago-servicios/pago-servicios.component';
 import { NgxStripeModule } from 'ngx-stripe';
@@ -188,6 +189,7 @@ import { NgxStripeModule } from 'ngx-stripe';
     MapaComponent,
     ComerciosLocalesClienteComponent,
     ServicioSuscripcionComponent,
+    ConfiguracionUsuariosComponent,
     ComerciosResenasComponent,
     PagoServiciosComponent
   ],

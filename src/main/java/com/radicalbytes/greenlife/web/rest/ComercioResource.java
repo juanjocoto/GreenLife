@@ -8,11 +8,13 @@ import com.radicalbytes.greenlife.repository.ComercioRepository;
 import com.radicalbytes.greenlife.repository.search.ComercioSearchRepository;
 import com.radicalbytes.greenlife.web.rest.errors.BadRequestAlertException;
 import com.radicalbytes.greenlife.web.rest.util.HeaderUtil;
+import com.radicalbytes.greenlife.service.ComercioService;
 import com.radicalbytes.greenlife.service.dto.ComercioDTO;
 import com.radicalbytes.greenlife.service.mapper.ComercioMapper;
 import io.github.jhipster.web.util.ResponseUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -34,6 +36,9 @@ import static org.elasticsearch.index.query.QueryBuilders.*;
 @RestController
 @RequestMapping("/api")
 public class ComercioResource {
+
+    @Autowired
+    private ComercioService comercioService;
 
     private final Logger log = LoggerFactory.getLogger(ComercioResource.class);
 
@@ -129,6 +134,23 @@ public class ComercioResource {
         return ResponseUtil.wrapOrNotFound(Optional.ofNullable(comercioDTO));
     }
 
+    @GetMapping("/comercios/range/{range}")
+    @Timed
+    @Transactional
+    public List<ComercioDTO> getComerciosByRange(@PathVariable String range) {
+        log.debug("REST request to get Comercio : {}", range);
+        List<Comercio> comercios = comercioService.findByRange(range);
+        return comercioMapper.toDto(comercios);
+    }
+
+    @GetMapping("/comercios/score/{score}")
+    @Timed
+    @Transactional
+    public List<ComercioDTO> getComerciosByScore(@PathVariable Long score) {
+        log.debug("REST request to get Comercio : {}", score);
+        List<Comercio> comercios = comercioService.findByScore(score);
+        return comercioMapper.toDto(comercios);
+    }
     /**
      * DELETE  /comercios/:id : delete the "id" comercio.
      *

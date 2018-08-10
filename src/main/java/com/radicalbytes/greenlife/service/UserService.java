@@ -1,6 +1,5 @@
 package com.radicalbytes.greenlife.service;
 
-import com.radicalbytes.greenlife.config.CacheConfiguration;
 import com.radicalbytes.greenlife.domain.Authority;
 import com.radicalbytes.greenlife.domain.User;
 import com.radicalbytes.greenlife.repository.AuthorityRepository;
