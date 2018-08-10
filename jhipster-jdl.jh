@@ -158,11 +158,12 @@ entity CadenaEntrega {
     fecha LocalDate required
     estado EstadoCadena
 }
-enum EstadoCadena{
+enum EstadoCadena {
+    PENDIENTE,
 	PREPARACION,
     EN_CAMINO,
     ENTREGADO,
-    PENDIENTE
+    CANCELADO
 }
 entity CobroSuscripcion {
 	fecha LocalDate required
