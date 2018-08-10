@@ -94,6 +94,7 @@ import { ValidadorNumeroDirective } from './shared/directives/validador-numero.d
 import { ComerciosResenasComponent } from './dialogos/comercios-resenas/comercios-resenas.component';
 import { PagoServiciosComponent } from './views/pago-servicios/pago-servicios.component';
 import { NgxStripeModule } from 'ngx-stripe';
+import { UsuariosResenasComponent } from './dialogos/usuarios-resenas/usuarios-resenas.component';
 
 @NgModule({
   imports: [
@@ -187,7 +188,8 @@ import { NgxStripeModule } from 'ngx-stripe';
     MapaComponent,
     ComerciosLocalesClienteComponent,
     ComerciosResenasComponent,
-    PagoServiciosComponent
+    PagoServiciosComponent,
+    UsuariosResenasComponent
   ],
   entryComponents: [
     LoginComponent,
@@ -199,7 +201,8 @@ import { NgxStripeModule } from 'ngx-stripe';
     CargaImagenesComponent,
     EtiquetasConsultarComponent,
     ResenaComponent,
-    ComerciosResenasComponent
+    ComerciosResenasComponent,
+    UsuariosResenasComponent
   ],
   providers: [
     CommonAdapterService,

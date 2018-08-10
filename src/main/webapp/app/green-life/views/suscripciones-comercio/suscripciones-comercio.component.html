@@ -28,7 +28,7 @@
                             <strong>{{suscripcion.user.login}}</strong>
                         </mat-panel-title>
                     </mat-expansion-panel-header>
-                    <p>Nombre del cliente:&nbsp;&nbsp; {{suscripcion.user.firstName + ' ' + suscripcion.user.lastName}}</p>
+                    <p>Nombre del cliente:&nbsp;&nbsp; <a (click)="agregarResena(suscripcion.user.id)">{{suscripcion.user.firstName + ' ' + suscripcion.user.lastName}}</a></p>
                     <p>Estado:&nbsp;&nbsp; {{suscripcion.suscripcion.estado}}</p>
                     <p>Corte de pago:&nbsp;&nbsp; {{suscripcion.suscripcion.fechaCobro | date:'dd'}}</p>
                     <p>Suscrito desde:&nbsp;&nbsp; {{suscripcion.suscripcion.fechaCreacion| date}}</p>

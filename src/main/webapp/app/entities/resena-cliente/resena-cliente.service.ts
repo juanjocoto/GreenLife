@@ -51,6 +51,11 @@ export class ResenaClienteService {
             .map((res: HttpResponse<ResenaCliente[]>) => this.convertArrayResponse(res));
     }
 
+    findByUsuario(id: number): Observable<HttpResponse<ResenaCliente[]>> {
+        return this.http.get<ResenaCliente[]>(`${this.resourceUrl}/usuario/${id}`, { observe: 'response'})
+            .map((res: HttpResponse<ResenaCliente[]>) => this.convertArrayResponse(res));
+    }
+
     private convertResponse(res: EntityResponseType): EntityResponseType {
         const body: ResenaCliente = this.convertItemFromServer(res.body);
         return res.clone({body});
