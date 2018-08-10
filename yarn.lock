@@ -5684,6 +5684,10 @@ ng-jhipster@0.4.0:
     "@ngx-translate/core" "^8.0.0"
     "@ngx-translate/http-loader" "^2.0.0"
 
+ngx-bar-rating@^1.1.0:
+  version "1.1.0"
+  resolved "https://registry.yarnpkg.com/ngx-bar-rating/-/ngx-bar-rating-1.1.0.tgz#47a260812b47bc6df157e0aaecae5b29249407c4"
+
 ngx-cookie@2.0.1:
   version "2.0.1"
   resolved "https://registry.yarnpkg.com/ngx-cookie/-/ngx-cookie-2.0.1.tgz#031d8938bf9026954356b3b3ae668e2e1964e584"
@@ -5691,6 +5695,12 @@ ngx-cookie@2.0.1:
 ngx-infinite-scroll@0.5.1:
   version "0.5.1"
   resolved "https://registry.yarnpkg.com/ngx-infinite-scroll/-/ngx-infinite-scroll-0.5.1.tgz#dd9452c602ff7c3222f0ca168481aa14140286b7"
+
+ngx-stripe@^0.8.2:
+  version "0.8.2"
+  resolved "https://registry.yarnpkg.com/ngx-stripe/-/ngx-stripe-0.8.2.tgz#bd764c893891e494830f37839ac78e2726b815c3"
+  dependencies:
+    tslib "^1.7.1"
 
 ngx-webstorage@2.0.1:
   version "2.0.1"

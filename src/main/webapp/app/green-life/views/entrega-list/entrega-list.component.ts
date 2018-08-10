@@ -1,13 +1,14 @@
 import { CadenaEntrega, CadenaEntregaService, EstadoCadena } from '../../../entities/cadena-entrega';
 import { Comercio, ComercioService } from '../../../entities/comercio';
 import { Component, Input, OnInit } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { MatDialog, MatDialogRef } from '@angular/material';
 
 import { AccountService } from './../../../shared/auth/account.service';
 import { Entrega } from './../../../entities/entrega/entrega.model';
 import { EntregaService } from './../../../entities/entrega/entrega.service';
 import { JHILocalDate } from '../../shared/services/common-adapter.service';
 import { LineaEntrega } from '../../../entities/linea-entrega';
-import { MatDialog } from '@angular/material';
 import { UsuarioService } from './../../../entities/usuario/usuario.service';
 
 @Component({
@@ -55,25 +56,39 @@ export class EntregaListComponent implements OnInit {
   }
 
   public editEstado(entrega: Entrega) {
-    const ref = this.dialog.open(EstadoEntregaDialogComponet);
+    const ref = this.dialog.open(EstadoEntregaDialogComponet, { width: '300px' });
     ref.componentInstance.entrega = entrega;
+    ref.afterClosed().subscribe((cadena: CadenaEntrega) => {
+      entrega.cadena = cadena;
+      entrega.cadenaId = cadena.id;
+    });
   }
 }
 
 @Component({
   selector: 'jhi-estado-entrega-dialog',
+  styles: [`mat-form-field{width:100%}`],
   template: `
-  <h1>Hello</h1>
-  <mat-form-field>
-    <mat-select placeholder="Estado">
-      <mat-option *ngFor="let estado of estados" [value]="estado.value">
-        {{estado.text}}
-      </mat-option>
-    </mat-select>
-  </mat-form-field>
-  <mat-form-field>
-    <textarea matInput placeholder="Información"></textarea>
-  </mat-form-field>
+  <h1 mat-dialog-title>Hello</h1>
+  <mat-dialog-content>
+    <form [formGroup]="formGroup" class="green-life-form">
+      <mat-form-field>
+        <mat-select placeholder="Estado" formControlName="estado">
+          <mat-option *ngFor="let estado of estados" [value]="estado.value">
+            {{estado.text}}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+      <mat-form-field>
+        <textarea matInput placeholder="Información" formControlName="info"></textarea>
+      </mat-form-field>
+    </form>
+  </mat-dialog-content>
+  <mat-dialog-actions>
+    <button class="btn btn-danger" mat-dialog-close>Cerrar</button>
+    <div class="spacer"></div>
+    <button class="btn btn-success" [disabled]="!formGroup.valid" (click)="save()">Crear</button>
+  </mat-dialog-actions>
   `
   // templateUrl: './entrega-list.component.html',
   // styleUrls: ['entrega-list.component.scss']
@@ -89,6 +104,8 @@ export class EstadoEntregaDialogComponet implements OnInit {
     { text: 'Pendiente', value: 'PENDIENTE' },
   ];
 
+  public formGroup: FormGroup;
+
   public get estados() {
     return this._estados.filter((estado) => estado.value !== this.entrega.cadena['estado']);
   }
@@ -102,18 +119,31 @@ export class EstadoEntregaDialogComponet implements OnInit {
 
   constructor(
     private entregaService: EntregaService,
-    private cadenaEntregaService: CadenaEntregaService
+    private cadenaEntregaService: CadenaEntregaService,
+    private fb: FormBuilder,
+    public dialogRef: MatDialogRef<EstadoEntregaDialogComponet>
   ) { }
 
-  public valueChange(value: string) {
-    const cadena = new CadenaEntrega();
-    cadena.estado = this.values.indexOf(value);
-    cadena.fecha = new JHILocalDate();
-    cadena.info = '';
+  public save() {
+    const index = this.values.indexOf(this.formGroup.get('estado').value);
+    if (this.formGroup.valid && index > -1) {
+      const cadena = new CadenaEntrega();
+      cadena.estado = index;
+      cadena.fecha = new JHILocalDate();
+      cadena.info = this.formGroup.get('info').value;
+      cadena.previoId = this.entrega.cadenaId;
+      this.cadenaEntregaService.create(cadena).subscribe((response) => {
+        console.log(response.body);
+        this.dialogRef.close(response.body);
+      });
+    }
   }
 
   ngOnInit(): void {
-
+    this.formGroup = this.fb.group({
+      estado: ['', [Validators.required]],
+      info: ['', [Validators.required]]
+    });
   }
 
 }
