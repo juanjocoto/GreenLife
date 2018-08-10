@@ -20,4 +20,10 @@ public interface ProductoRepository extends JpaRepository<Producto, Long> {
     Producto findOneWithEagerRelationships(@Param("id") Long id);
 
     List<Producto> findAllByComercio_id(Long id);
+
+    @Query("SELECT MIN(p.precio) FROM Producto p")
+    float findLowestPrecio();
+
+    @Query("SELECT MAX(p.precio) FROM Producto p")
+    float findHighestPrecio();
 }

@@ -61,6 +61,7 @@ import { CommonAdapterService } from './shared/services/common-adapter.service';
 import { CommonModule } from '@angular/common';
 import { ConfiguracionAplicacionComponent } from './views/configuracion-aplicacion/configuracion-aplicacion.component';
 import { ConfiguracionComerciosComponent } from './views/configuracion-comercios/configuracion-comercios.component';
+import { ConfiguracionUsuariosComponent } from './views/configuracion-usuarios/configuracion-usuarios.component';
 import { ConfirmacionDialogComponent } from './dialogos/confirmacion-dialog/confirmacion-dialog.component';
 import { ConvertidorFechaPipe } from './shared/pipes/convertidor-fecha.pipe';
 import { DummyComponent } from './views/dummy/dummy.component';
@@ -189,6 +190,7 @@ import { ValidadorNumeroDirective } from './shared/directives/validador-numero.d
     ComerciosLocalesClienteComponent,
     EntregaListComponent,
     EstadoEntregaDialogComponet,
+    ConfiguracionUsuariosComponent,
     ComerciosResenasComponent,
     PagoServiciosComponent
   ],

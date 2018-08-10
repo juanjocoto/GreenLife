@@ -1,0 +1,28 @@
+.iconImg {
+    background: url("../../../../content/images/user-config.png") no-repeat center center;
+}
+.usuario-container {
+    display: flex;
+    flex-direction: column;
+    min-width: 300px;
+}
+.usuario-header {
+    min-height: 64px;
+    padding: 8px 24px 0;
+}
+.highlight {
+    background-color: #e6e9ea;
+    font-weight: bold;
+}
+.delete {
+    cursor: pointer;
+}
+.filter {
+    width: 100%;
+}
+.activar {
+    color: #6AABAD !important;
+}
+.desactivar {
+    color: red !important;
+}
