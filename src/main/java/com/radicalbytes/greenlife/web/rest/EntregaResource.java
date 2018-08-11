@@ -2,11 +2,12 @@ package com.radicalbytes.greenlife.web.rest;
 
 import com.codahale.metrics.annotation.Timed;
 import com.radicalbytes.greenlife.domain.Entrega;
-
+import com.radicalbytes.greenlife.domain.User;
 import com.radicalbytes.greenlife.repository.EntregaRepository;
 import com.radicalbytes.greenlife.repository.search.EntregaSearchRepository;
 import com.radicalbytes.greenlife.web.rest.errors.BadRequestAlertException;
 import com.radicalbytes.greenlife.web.rest.util.HeaderUtil;
+import com.radicalbytes.greenlife.service.MailContentGenerator;
 import com.radicalbytes.greenlife.service.MailService;
 import com.radicalbytes.greenlife.service.dto.EntregaDTO;
 import com.radicalbytes.greenlife.service.mapper.EntregaMapper;
@@ -42,6 +43,9 @@ public class EntregaResource {
 
     @Autowired
     private MailService mailService;
+
+    @Autowired
+    private MailContentGenerator mailContentGenerator;
 
     private final Logger log = LoggerFactory.getLogger(EntregaResource.class);
 
@@ -123,13 +127,9 @@ public class EntregaResource {
             Date now = new Date();
             String strDate = dateFormat.format(now);
             String strHour = hourFormat.format(now);
+            User client = entrega.getSuscripcion().getUsuario().getUserDetail();
 
-            String content = "<html><body> <article> <p> Su pedido ha cambiado de estado a {estado} <br>"
-                    + "Información: {info} <br>Fecha: {date} <br>Hora: {hour} <br></p></article> </body></html>";
-            content = content.replace("{estado}", entrega.getCadena().getEstado().toString());
-            content = content.replace("{info}", entrega.getCadena().getInfo());
-            content = content.replace("{date}", strDate);
-            content = content.replace("{hour}", strHour);
+            String content = mailContentGenerator.generateContent(entrega, strDate, strHour, client);
 
             mailService.sendEmail(reciver, "Estado de su pedido #" + entrega.getId(), content + strDate, false, true);
         }

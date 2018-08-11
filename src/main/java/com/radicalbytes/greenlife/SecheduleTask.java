@@ -1,5 +1,6 @@
 package com.radicalbytes.greenlife;
 
+import java.text.DecimalFormat;
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
@@ -13,11 +14,13 @@ import com.radicalbytes.greenlife.domain.Entrega;
 import com.radicalbytes.greenlife.domain.LineaEntrega;
 import com.radicalbytes.greenlife.domain.LineaProducto;
 import com.radicalbytes.greenlife.domain.Pedido;
+import com.radicalbytes.greenlife.domain.User;
 import com.radicalbytes.greenlife.domain.enumeration.EstadoCadena;
 import com.radicalbytes.greenlife.repository.CadenaEntregaRepository;
 import com.radicalbytes.greenlife.repository.EntregaRepository;
 import com.radicalbytes.greenlife.repository.LineaEntregaRepository;
 import com.radicalbytes.greenlife.repository.PedidoRepository;
+import com.radicalbytes.greenlife.service.MailContentGenerator;
 import com.radicalbytes.greenlife.service.MailService;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -38,6 +41,8 @@ public class SecheduleTask {
     private CadenaEntregaRepository cadenaEntregaRepository;
     @Autowired
     private MailService mailService;
+    @Autowired
+    private MailContentGenerator mailContentGenerator;
 
     @Scheduled(cron = "0 0 0 * * *")
     // @Scheduled(cron = "0/10 * * * * *")
@@ -90,17 +95,11 @@ public class SecheduleTask {
             Date date = new Date();
             String strDate = dateFormat.format(date);
             String strHour = hourFormat.format(date);
+            User client = entrega.getSuscripcion().getUsuario().getUserDetail();
 
-            String content = "<html><body> <article> <p> Rastreador <br>"
-                    + "Información: {info} <br>Fecha: {date} <br>Hora: {hour} <br></p></article> </body></html>";
-            content = content.replace("{estado}", entrega.getCadena().getEstado().toString());
-            content = content.replace("{info}", entrega.getCadena().getInfo());
-            content = content.replace("{date}", strDate);
-            content = content.replace("{hour}", strHour);
+            String content = mailContentGenerator.generateContent(entrega, strDate, strHour, client);
 
-            mailService.sendEmail(reciver, "Estado de su pedido #" + entrega.getId(), content + strDate, false, true);
-
-            // mailService.sendEmail(reciver, "Creación del pedido", "", false, true);
+            mailService.sendEmail(reciver, "Se crea el pedido #" + entrega.getId(), content + strDate, false, true);
         }
     }
 
