@@ -111,16 +111,6 @@ export class SuscripcionesComercioComponent implements OnInit {
         });
     }
 
-<<<<<<< HEAD
-    agregarResena(id) {
-        this.matDialog.open(UsuariosResenasComponent, {
-            width: '600px',
-            data: {usuarioId: id,
-            comercioId: this.comercio.id}
-        });
-    }
-
-=======
     verificarServicioSuscripcion() {
         this.account.get().subscribe((accountResponse) => {
             this.usuarioService.findByUserLogin(accountResponse.body['login']).subscribe((responseUser) => {
@@ -147,7 +137,13 @@ export class SuscripcionesComercioComponent implements OnInit {
         this.router.navigate(['app/miscomercios']);
     }
 
->>>>>>> 81013a8c756674277c771f30ebf35a8d8cfff510
+    agregarResena(id) {
+        this.matDialog.open(UsuariosResenasComponent, {
+            width: '600px',
+            data: {usuarioId: id,
+            comercioId: this.comercio.id}
+        });
+    }
 }
 
 interface ISuscripcion {
