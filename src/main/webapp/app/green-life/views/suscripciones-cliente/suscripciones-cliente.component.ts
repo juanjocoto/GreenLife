@@ -3,9 +3,9 @@ import {HttpResponse} from '@angular/common/http';
 import {Router, ActivatedRoute} from '@angular/router';
 import { Location } from '@angular/common';
 import {CommonAdapterService} from '../../shared/services/common-adapter.service';
-import {MatDialog} from '@angular/material';
+import {MatDialog, MatSnackBar} from '@angular/material';
 import {ConfirmacionDialogComponent} from '../../dialogos/confirmacion-dialog/confirmacion-dialog.component';
-import {Suscripcion, SuscripcionService} from '../../../entities/suscripcion';
+import {Suscripcion, SuscripcionService, EstadoSuscripcion} from '../../../entities/suscripcion';
 import {Comercio, ComercioService} from '../../../entities/comercio';
 import {Usuario, UsuarioService} from '../../../entities/usuario';
 import {User, UserService, AccountService} from '../../../shared';
@@ -32,6 +32,7 @@ export class SuscripcionesClienteComponent implements OnInit {
         private commonAdapterService: CommonAdapterService,
         private account: AccountService,
         private cancelarSuscripcionDialog: MatDialog,
+        private snackBar: MatSnackBar,
         private suscripcionService: SuscripcionService,
         private comercioService: ComercioService,
         private usuarioService: UsuarioService,
@@ -57,7 +58,13 @@ export class SuscripcionesClienteComponent implements OnInit {
     }
 
     pagarSuscripcion(suscripcionId) {
-        this.router.navigate(['app/suscripciones/' + suscripcionId + '/pago']);
+        this.suscripcionService.find(suscripcionId).subscribe((res) => {
+            if (res.body.estado === EstadoSuscripcion.VIGENTE) {
+                this.router.navigate(['app/suscripciones/' + suscripcionId + '/pago']);
+            } else {
+                this.snackBar.open('Para realizar el pago, la suscripción debe esta activa', undefined, { duration: 2000 });
+            }
+        });
     }
 
     loadPedidos(suscripcionId) {
