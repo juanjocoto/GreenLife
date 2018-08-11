@@ -30,10 +30,10 @@ public class MailContentGenerator {
         DecimalFormat formatter = new DecimalFormat("#,###.00");
 
         for (LineaEntrega linea : entrega.getLineas()) {
-            String temp = "";
-            temp += template.replace("{prod}", linea.getProducto().getNombre());
-            temp += template.replace("{cant}", linea.getCantidad().toString());
-            temp += template.replace("{price}", formatter.format(linea.getProducto().getPrecio()));
+            String temp = template;
+            temp = temp.replace("{prod}", linea.getProducto().getNombre());
+            temp = temp.replace("{cant}", linea.getCantidad().toString());
+            temp = temp.replace("{price}", formatter.format(linea.getProducto().getPrecio()));
             result += temp;
         }
 
