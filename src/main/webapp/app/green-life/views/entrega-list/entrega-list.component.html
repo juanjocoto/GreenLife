@@ -1,0 +1,40 @@
+<div class="title-bar-config">
+  <h1>Rastreo de entregas</h1>
+</div>
+<div class="container">
+  <mat-accordion>
+    <mat-expansion-panel class="sidescroll" *ngFor="let comercio of comercios">
+      <mat-expansion-panel-header>
+        <mat-panel-title>
+          {{comercio.nombreComercial}}
+          <div class="spacer"></div>
+        </mat-panel-title>
+        <mat-panel-description>
+          {{entregaMap.get(comercio.id).length}} entrega
+        </mat-panel-description>
+      </mat-expansion-panel-header>
+      <div class="card-container" [style.width]="(entregaMap.get(comercio.id).length * 322.333333333) + 'px'">
+        <div class="card card-green-life" *ngFor="let entrega of entregaMap.get(comercio.id)">
+          <div class="card-header card-header-green-life" style="display: flex">
+            <div>Entrega #{{entrega.id}}</div>
+            <div class="spacer"></div>
+            <!-- <button mat-icon-button (click)="editEstado(entrega)"> -->
+            <mat-icon class="icon-btn" (click)="editEstado(entrega)">edit</mat-icon>
+            <!-- </button> -->
+          </div>
+          <div class="card-body">
+            <div>Monto: {{calcMonto(entrega.lineas) | colon}}</div>
+            <div>Estado: {{entrega.cadena['estado']}}</div>
+            <div>Información: {{entrega.cadena['info']}}</div>
+          </div>
+        </div>
+
+      </div>
+
+    </mat-expansion-panel>
+  </mat-accordion>
+</div>
+
+<!-- green.life.cr.2018@gmail.com -->
+
+<!-- $abc123456 -->

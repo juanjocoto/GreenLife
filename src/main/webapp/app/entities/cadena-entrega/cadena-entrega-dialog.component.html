@@ -53,13 +53,6 @@
         </div>
 
         <div class="form-group">
-            <label class="form-control-label" for="field_entrega">Entrega</label>
-            <select class="form-control" id="field_entrega" name="entrega" [(ngModel)]="cadenaEntrega.entregaId" >
-                <option [ngValue]="null"></option>
-                <option [ngValue]="entregaOption.id" *ngFor="let entregaOption of entregas; trackBy: trackEntregaById">{{entregaOption.id}}</option>
-            </select>
-        </div>
-        <div class="form-group">
             <label class="form-control-label" for="field_previo">Previo</label>
             <select class="form-control" id="field_previo" name="previo" [(ngModel)]="cadenaEntrega.previoId">
                 <option [ngValue]="null"></option>

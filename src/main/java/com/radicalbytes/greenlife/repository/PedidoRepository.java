@@ -18,4 +18,8 @@ public interface PedidoRepository extends JpaRepository<Pedido, Long> {
 
 	List<Pedido> findAllBySuscripcion_id(Long id);
 
+	// List<Pedido> findAllByDiasEntrega(String dayWeek);
+
+	List<Pedido> findAllByDiasEntrega_nombre(String dayWeek);
+
 }

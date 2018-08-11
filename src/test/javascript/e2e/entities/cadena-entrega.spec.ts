@@ -38,7 +38,6 @@ describe('CadenaEntrega e2e test', () => {
         cadenaEntregaDialogPage.setFechaInput('2000-12-31');
         expect(cadenaEntregaDialogPage.getFechaInput()).toMatch('2000-12-31');
         cadenaEntregaDialogPage.estadoSelectLastOption();
-        cadenaEntregaDialogPage.entregaSelectLastOption();
         cadenaEntregaDialogPage.previoSelectLastOption();
         cadenaEntregaDialogPage.save();
         expect(cadenaEntregaDialogPage.getSaveButton().isPresent()).toBeFalsy();
@@ -69,7 +68,6 @@ export class CadenaEntregaDialogPage {
     infoInput = element(by.css('input#field_info'));
     fechaInput = element(by.css('input#field_fecha'));
     estadoSelect = element(by.css('select#field_estado'));
-    entregaSelect = element(by.css('select#field_entrega'));
     previoSelect = element(by.css('select#field_previo'));
 
     getModalTitle() {
@@ -103,22 +101,6 @@ export class CadenaEntregaDialogPage {
     estadoSelectLastOption = function() {
         this.estadoSelect.all(by.tagName('option')).last().click();
     };
-    entregaSelectLastOption = function() {
-        this.entregaSelect.all(by.tagName('option')).last().click();
-    };
-
-    entregaSelectOption = function(option) {
-        this.entregaSelect.sendKeys(option);
-    };
-
-    getEntregaSelect = function() {
-        return this.entregaSelect;
-    };
-
-    getEntregaSelectedOption = function() {
-        return this.entregaSelect.element(by.css('option:checked')).getText();
-    };
-
     previoSelectLastOption = function() {
         this.previoSelect.all(by.tagName('option')).last().click();
     };

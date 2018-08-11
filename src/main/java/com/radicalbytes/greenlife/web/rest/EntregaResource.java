@@ -2,24 +2,32 @@ package com.radicalbytes.greenlife.web.rest;
 
 import com.codahale.metrics.annotation.Timed;
 import com.radicalbytes.greenlife.domain.Entrega;
-
+import com.radicalbytes.greenlife.domain.User;
 import com.radicalbytes.greenlife.repository.EntregaRepository;
 import com.radicalbytes.greenlife.repository.search.EntregaSearchRepository;
 import com.radicalbytes.greenlife.web.rest.errors.BadRequestAlertException;
 import com.radicalbytes.greenlife.web.rest.util.HeaderUtil;
+import com.radicalbytes.greenlife.service.MailContentGenerator;
+import com.radicalbytes.greenlife.service.MailService;
 import com.radicalbytes.greenlife.service.dto.EntregaDTO;
 import com.radicalbytes.greenlife.service.mapper.EntregaMapper;
 import io.github.jhipster.web.util.ResponseUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 import java.net.URI;
 import java.net.URISyntaxException;
-
+import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.util.Date;
 import java.util.List;
+import java.util.Locale;
 import java.util.Optional;
 import java.util.stream.Collectors;
 import java.util.stream.StreamSupport;
@@ -33,6 +41,12 @@ import static org.elasticsearch.index.query.QueryBuilders.*;
 @RequestMapping("/api")
 public class EntregaResource {
 
+    @Autowired
+    private MailService mailService;
+
+    @Autowired
+    private MailContentGenerator mailContentGenerator;
+
     private final Logger log = LoggerFactory.getLogger(EntregaResource.class);
 
     private static final String ENTITY_NAME = "entrega";
@@ -43,22 +57,26 @@ public class EntregaResource {
 
     private final EntregaSearchRepository entregaSearchRepository;
 
-    public EntregaResource(EntregaRepository entregaRepository, EntregaMapper entregaMapper, EntregaSearchRepository entregaSearchRepository) {
+    public EntregaResource(EntregaRepository entregaRepository, EntregaMapper entregaMapper,
+            EntregaSearchRepository entregaSearchRepository) {
         this.entregaRepository = entregaRepository;
         this.entregaMapper = entregaMapper;
         this.entregaSearchRepository = entregaSearchRepository;
     }
 
     /**
-     * POST  /entregas : Create a new entrega.
+     * POST /entregas : Create a new entrega.
      *
      * @param entregaDTO the entregaDTO to create
-     * @return the ResponseEntity with status 201 (Created) and with body the new entregaDTO, or with status 400 (Bad Request) if the entrega has already an ID
+     * @return the ResponseEntity with status 201 (Created) and with body the new
+     *         entregaDTO, or with status 400 (Bad Request) if the entrega has
+     *         already an ID
      * @throws URISyntaxException if the Location URI syntax is incorrect
      */
     @PostMapping("/entregas")
     @Timed
-    public ResponseEntity<EntregaDTO> createEntrega(@Valid @RequestBody EntregaDTO entregaDTO) throws URISyntaxException {
+    public ResponseEntity<EntregaDTO> createEntrega(@Valid @RequestBody EntregaDTO entregaDTO)
+            throws URISyntaxException {
         log.debug("REST request to save Entrega : {}", entregaDTO);
         if (entregaDTO.getId() != null) {
             throw new BadRequestAlertException("A new entrega cannot already have an ID", ENTITY_NAME, "idexists");
@@ -68,39 +86,64 @@ public class EntregaResource {
         EntregaDTO result = entregaMapper.toDto(entrega);
         entregaSearchRepository.save(entrega);
         return ResponseEntity.created(new URI("/api/entregas/" + result.getId()))
-            .headers(HeaderUtil.createEntityCreationAlert(ENTITY_NAME, result.getId().toString()))
-            .body(result);
+                .headers(HeaderUtil.createEntityCreationAlert(ENTITY_NAME, result.getId().toString())).body(result);
     }
 
     /**
-     * PUT  /entregas : Updates an existing entrega.
+     * PUT /entregas : Updates an existing entrega.
      *
      * @param entregaDTO the entregaDTO to update
-     * @return the ResponseEntity with status 200 (OK) and with body the updated entregaDTO,
-     * or with status 400 (Bad Request) if the entregaDTO is not valid,
-     * or with status 500 (Internal Server Error) if the entregaDTO couldn't be updated
+     * @return the ResponseEntity with status 200 (OK) and with body the updated
+     *         entregaDTO, or with status 400 (Bad Request) if the entregaDTO is not
+     *         valid, or with status 500 (Internal Server Error) if the entregaDTO
+     *         couldn't be updated
      * @throws URISyntaxException if the Location URI syntax is incorrect
      */
     @PutMapping("/entregas")
     @Timed
-    public ResponseEntity<EntregaDTO> updateEntrega(@Valid @RequestBody EntregaDTO entregaDTO) throws URISyntaxException {
+    @Transactional
+    public ResponseEntity<EntregaDTO> updateEntrega(@Valid @RequestBody EntregaDTO entregaDTO)
+            throws URISyntaxException {
         log.debug("REST request to update Entrega : {}", entregaDTO);
         if (entregaDTO.getId() == null) {
             return createEntrega(entregaDTO);
         }
+
+        long originalCadenaId = entregaRepository.findOne(entregaDTO.getId()).getCadena().getId();
+
         Entrega entrega = entregaMapper.toEntity(entregaDTO);
         entrega = entregaRepository.save(entrega);
         EntregaDTO result = entregaMapper.toDto(entrega);
         entregaSearchRepository.save(entrega);
+
+        // System.out.println();
+
+        if (entrega.getCadena().getId() != originalCadenaId) {
+            String reciver = entrega.getSuscripcion().getUsuario().getUserDetail().getEmail();
+
+            SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");// dd/MM/yyyy
+            SimpleDateFormat hourFormat = new SimpleDateFormat("HH:mm");
+
+            Date now = new Date();
+            String strDate = dateFormat.format(now);
+            String strHour = hourFormat.format(now);
+            User client = entrega.getSuscripcion().getUsuario().getUserDetail();
+
+            String content = mailContentGenerator.generateContent(entrega, strDate, strHour, client);
+
+            mailService.sendEmail(reciver, "Estado de su pedido #" + entrega.getId(), content + strDate, false, true);
+        }
+
         return ResponseEntity.ok()
-            .headers(HeaderUtil.createEntityUpdateAlert(ENTITY_NAME, entregaDTO.getId().toString()))
-            .body(result);
+                .headers(HeaderUtil.createEntityUpdateAlert(ENTITY_NAME, entregaDTO.getId().toString())).body(result);
+
     }
 
     /**
-     * GET  /entregas : get all the entregas.
+     * GET /entregas : get all the entregas.
      *
-     * @return the ResponseEntity with status 200 (OK) and the list of entregas in body
+     * @return the ResponseEntity with status 200 (OK) and the list of entregas in
+     *         body
      */
     @GetMapping("/entregas")
     @Timed
@@ -108,13 +151,23 @@ public class EntregaResource {
         log.debug("REST request to get all Entregas");
         List<Entrega> entregas = entregaRepository.findAll();
         return entregaMapper.toDto(entregas);
-        }
+    }
+
+    @GetMapping("/entregas/comercio/{idComercio}")
+    @Timed
+    @Transactional
+    public List<EntregaDTO> getAllByComercio(@PathVariable long idComercio) {
+        log.debug("REST request to get all Entregas");
+        List<Entrega> entregas = entregaRepository.queryFindByComercioId(idComercio);
+        return entregaMapper.toDto(entregas);
+    }
 
     /**
-     * GET  /entregas/:id : get the "id" entrega.
+     * GET /entregas/:id : get the "id" entrega.
      *
      * @param id the id of the entregaDTO to retrieve
-     * @return the ResponseEntity with status 200 (OK) and with body the entregaDTO, or with status 404 (Not Found)
+     * @return the ResponseEntity with status 200 (OK) and with body the entregaDTO,
+     *         or with status 404 (Not Found)
      */
     @GetMapping("/entregas/{id}")
     @Timed
@@ -126,7 +179,7 @@ public class EntregaResource {
     }
 
     /**
-     * DELETE  /entregas/:id : delete the "id" entrega.
+     * DELETE /entregas/:id : delete the "id" entrega.
      *
      * @param id the id of the entregaDTO to delete
      * @return the ResponseEntity with status 200 (OK)
@@ -141,7 +194,7 @@ public class EntregaResource {
     }
 
     /**
-     * SEARCH  /_search/entregas?query=:query : search for the entrega corresponding
+     * SEARCH /_search/entregas?query=:query : search for the entrega corresponding
      * to the query.
      *
      * @param query the query of the entrega search
@@ -151,10 +204,8 @@ public class EntregaResource {
     @Timed
     public List<EntregaDTO> searchEntregas(@RequestParam String query) {
         log.debug("REST request to search Entregas for query {}", query);
-        return StreamSupport
-            .stream(entregaSearchRepository.search(queryStringQuery(query)).spliterator(), false)
-            .map(entregaMapper::toDto)
-            .collect(Collectors.toList());
+        return StreamSupport.stream(entregaSearchRepository.search(queryStringQuery(query)).spliterator(), false)
+                .map(entregaMapper::toDto).collect(Collectors.toList());
     }
 
 }

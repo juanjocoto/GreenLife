@@ -43,6 +43,13 @@
                 <option [ngValue]="pedidoOption.id" *ngFor="let pedidoOption of pedidos; trackBy: trackPedidoById">{{pedidoOption.id}}</option>
             </select>
         </div>
+        <div class="form-group">
+            <label class="form-control-label" for="field_cadena">Cadena</label>
+            <select class="form-control" id="field_cadena" name="cadena" [(ngModel)]="entrega.cadenaId">
+                <option [ngValue]="null"></option>
+                <option [ngValue]="cadenaEntregaOption.id" *ngFor="let cadenaEntregaOption of cadenas; trackBy: trackCadenaEntregaById">{{cadenaEntregaOption.id}}</option>
+            </select>
+        </div>
     </div>
     <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal" (click)="clear()">

@@ -37,6 +37,7 @@ describe('Entrega e2e test', () => {
         expect(entregaDialogPage.getFechaInicioInput()).toMatch('2000-12-31');
         entregaDialogPage.suscripcionSelectLastOption();
         entregaDialogPage.pedidoSelectLastOption();
+        entregaDialogPage.cadenaSelectLastOption();
         entregaDialogPage.save();
         expect(entregaDialogPage.getSaveButton().isPresent()).toBeFalsy();
     });
@@ -66,6 +67,7 @@ export class EntregaDialogPage {
     fechaInicioInput = element(by.css('input#field_fechaInicio'));
     suscripcionSelect = element(by.css('select#field_suscripcion'));
     pedidoSelect = element(by.css('select#field_pedido'));
+    cadenaSelect = element(by.css('select#field_cadena'));
 
     getModalTitle() {
         return this.modalTitle.getText();
@@ -109,6 +111,22 @@ export class EntregaDialogPage {
 
     getPedidoSelectedOption = function() {
         return this.pedidoSelect.element(by.css('option:checked')).getText();
+    };
+
+    cadenaSelectLastOption = function() {
+        this.cadenaSelect.all(by.tagName('option')).last().click();
+    };
+
+    cadenaSelectOption = function(option) {
+        this.cadenaSelect.sendKeys(option);
+    };
+
+    getCadenaSelect = function() {
+        return this.cadenaSelect;
+    };
+
+    getCadenaSelectedOption = function() {
+        return this.cadenaSelect.element(by.css('option:checked')).getText();
     };
 
     save() {

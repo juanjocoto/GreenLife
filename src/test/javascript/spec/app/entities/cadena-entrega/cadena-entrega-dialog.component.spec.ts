@@ -9,7 +9,6 @@ import { GreenlifeTestModule } from '../../../test.module';
 import { CadenaEntregaDialogComponent } from '../../../../../../main/webapp/app/entities/cadena-entrega/cadena-entrega-dialog.component';
 import { CadenaEntregaService } from '../../../../../../main/webapp/app/entities/cadena-entrega/cadena-entrega.service';
 import { CadenaEntrega } from '../../../../../../main/webapp/app/entities/cadena-entrega/cadena-entrega.model';
-import { EntregaService } from '../../../../../../main/webapp/app/entities/entrega';
 
 describe('Component Tests', () => {
 
@@ -25,7 +24,6 @@ describe('Component Tests', () => {
                 imports: [GreenlifeTestModule],
                 declarations: [CadenaEntregaDialogComponent],
                 providers: [
-                    EntregaService,
                     CadenaEntregaService
                 ]
             })

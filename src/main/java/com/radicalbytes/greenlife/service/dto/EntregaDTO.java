@@ -3,6 +3,7 @@ package com.radicalbytes.greenlife.service.dto;
 
 import java.io.Serializable;
 import java.time.LocalDate;
+import java.util.List;
 import java.util.Objects;
 
 import javax.validation.constraints.NotNull;
@@ -21,11 +22,59 @@ public class EntregaDTO implements Serializable {
 
     private Long pedidoId;
 
+    private Long cadenaId;
+
+    private CadenaEntregaDTO cadena;
+
+    private List<LineaEntregaDTO> lineas;
+
     public Long getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    /**
+	 * @return the cadenaId
+	 */
+	public Long getCadenaId() {
+		return cadenaId;
+	}
+
+	/**
+	 * @param cadenaId the cadenaId to set
+	 */
+	public void setCadenaId(Long cadenaId) {
+		this.cadenaId = cadenaId;
+	}
+
+	/**
+	 * @return the cadena
+	 */
+	public CadenaEntregaDTO getCadena() {
+		return cadena;
+	}
+
+	/**
+	 * @param cadena the cadena to set
+	 */
+	public void setCadena(CadenaEntregaDTO cadena) {
+		this.cadena = cadena;
+	}
+
+	/**
+	 * @return the lineas
+	 */
+	public List<LineaEntregaDTO> getLineas() {
+		return lineas;
+	}
+
+	/**
+	 * @param lineas the lineas to set
+	 */
+	public void setLineas(List<LineaEntregaDTO> lineas) {
+		this.lineas = lineas;
+	}
+
+	public void setId(Long id) {
         this.id = id;
     }
 

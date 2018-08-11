@@ -158,10 +158,12 @@ entity CadenaEntrega {
     fecha LocalDate required
     estado EstadoCadena
 }
-enum EstadoCadena{
+enum EstadoCadena {
+    PENDIENTE,
 	PREPARACION,
     EN_CAMINO,
-    ENTREGADO
+    ENTREGADO,
+    CANCELADO
 }
 entity CobroSuscripcion {
 	fecha LocalDate required
@@ -179,7 +181,8 @@ relationship OneToOne {
     CadenaEntrega{previo} to CadenaEntrega,
     CadenaOrdenRecoleccion{previo} to CadenaOrdenRecoleccion,
     CobroMensualidad{pago} to Pago,
-    CobroSuscripcion{pago} to Pago
+    CobroSuscripcion{pago} to Pago,
+    Entrega{cadena} to CadenaEntrega
 }
 relationship ManyToOne {
     ResenaCliente{cliente} to Usuario,
@@ -194,7 +197,6 @@ relationship ManyToOne {
     LineaEntrega{producto} to Producto
 }
 relationship OneToMany {
-    Entrega{cadena} to CadenaEntrega,
     Entrega{lineas} to LineaEntrega,
     Evento{fotos} to Fotografia,
     CentroAcopio{fotos} to Fotografia,

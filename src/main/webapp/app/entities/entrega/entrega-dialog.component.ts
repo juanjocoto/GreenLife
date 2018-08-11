@@ -11,6 +11,7 @@ import { EntregaPopupService } from './entrega-popup.service';
 import { EntregaService } from './entrega.service';
 import { Suscripcion, SuscripcionService } from '../suscripcion';
 import { Pedido, PedidoService } from '../pedido';
+import { CadenaEntrega, CadenaEntregaService } from '../cadena-entrega';
 
 @Component({
     selector: 'jhi-entrega-dialog',
@@ -24,6 +25,8 @@ export class EntregaDialogComponent implements OnInit {
     suscripcions: Suscripcion[];
 
     pedidos: Pedido[];
+
+    cadenas: CadenaEntrega[];
     fechaInicioDp: any;
 
     constructor(
@@ -32,6 +35,7 @@ export class EntregaDialogComponent implements OnInit {
         private entregaService: EntregaService,
         private suscripcionService: SuscripcionService,
         private pedidoService: PedidoService,
+        private cadenaEntregaService: CadenaEntregaService,
         private eventManager: JhiEventManager
     ) {
     }
@@ -42,6 +46,19 @@ export class EntregaDialogComponent implements OnInit {
             .subscribe((res: HttpResponse<Suscripcion[]>) => { this.suscripcions = res.body; }, (res: HttpErrorResponse) => this.onError(res.message));
         this.pedidoService.query()
             .subscribe((res: HttpResponse<Pedido[]>) => { this.pedidos = res.body; }, (res: HttpErrorResponse) => this.onError(res.message));
+        this.cadenaEntregaService
+            .query({filter: 'entrega-is-null'})
+            .subscribe((res: HttpResponse<CadenaEntrega[]>) => {
+                if (!this.entrega.cadenaId) {
+                    this.cadenas = res.body;
+                } else {
+                    this.cadenaEntregaService
+                        .find(this.entrega.cadenaId)
+                        .subscribe((subRes: HttpResponse<CadenaEntrega>) => {
+                            this.cadenas = [subRes.body].concat(res.body);
+                        }, (subRes: HttpErrorResponse) => this.onError(subRes.message));
+                }
+            }, (res: HttpErrorResponse) => this.onError(res.message));
     }
 
     clear() {
@@ -83,6 +100,10 @@ export class EntregaDialogComponent implements OnInit {
     }
 
     trackPedidoById(index: number, item: Pedido) {
+        return item.id;
+    }
+
+    trackCadenaEntregaById(index: number, item: CadenaEntrega) {
         return item.id;
     }
 }

@@ -1,9 +1,11 @@
 import { BaseEntity } from './../../shared';
 
 export const enum EstadoCadena {
+    'PENDIENTE',
     'PREPARACION',
     'EN_CAMINO',
-    'ENTREGADO'
+    'ENTREGADO',
+    'CANCELADO'
 }
 
 export class CadenaEntrega implements BaseEntity {
@@ -12,7 +14,6 @@ export class CadenaEntrega implements BaseEntity {
         public info?: string,
         public fecha?: any,
         public estado?: EstadoCadena,
-        public entregaId?: number,
         public previoId?: number,
     ) {
     }

@@ -8,12 +8,6 @@
     -->
     <changeSet id="20180622042409-2" author="jhipster">
         
-        <addForeignKeyConstraint baseColumnNames="entrega_id"
-                                 baseTableName="cadena_entrega"
-                                 constraintName="fk_cadena_entrega_entrega_id"
-                                 referencedColumnNames="id"
-                                 referencedTableName="entrega"/>
-
         <addForeignKeyConstraint baseColumnNames="previo_id"
                                  baseTableName="cadena_entrega"
                                  constraintName="fk_cadena_entrega_previo_id"

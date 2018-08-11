@@ -1,3 +1,4 @@
+import { EntregaListComponent, EstadoEntregaDialogComponet } from './views/entrega-list/entrega-list.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { LOCALE_ID, NgModule } from '@angular/core';
 import {
@@ -36,11 +37,11 @@ import {
   MatToolbarModule,
   MatTooltipModule
 } from '@angular/material';
-import { BarRatingModule } from 'ngx-bar-rating';
 
 import { AgmCoreModule } from '@agm/core';
 import { AuthAdminGuard } from './shared/guards/auth.admin.guard';
 import { AuthService } from './shared/services/auth.service';
+import { BarRatingModule } from 'ngx-bar-rating';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { BrowserModule } from '@angular/platform-browser';
 import { CargaImagenesComponent } from './dialogos/carga-imagenes/carga-imagenes.component';
@@ -51,14 +52,16 @@ import { CdkTableModule } from '@angular/cdk/table';
 import { ColonPipe } from './shared/pipes/colon.pipe';
 import { ComercioEditarComponent } from './views/comercio-editar/comercio-editar.component';
 import { ComerciosClienteComponent } from './views/comercios-cliente/comercios-cliente.component';
-import { ComerciosLocalesComponent } from './views/comercios-locales/comercios-locales.component';
 import { ComerciosLocalesClienteComponent } from './views/comercios-locales-cliente/comercios-locales-cliente.component';
+import { ComerciosLocalesComponent } from './views/comercios-locales/comercios-locales.component';
 import { ComerciosProductosComponent } from './views/comercios-productos/comercios-productos.component';
 import { ComerciosRegistroComponent } from './dialogos/comercios-registro/comercios-registro.component';
+import { ComerciosResenasComponent } from './dialogos/comercios-resenas/comercios-resenas.component';
 import { CommonAdapterService } from './shared/services/common-adapter.service';
 import { CommonModule } from '@angular/common';
 import { ConfiguracionAplicacionComponent } from './views/configuracion-aplicacion/configuracion-aplicacion.component';
 import { ConfiguracionComerciosComponent } from './views/configuracion-comercios/configuracion-comercios.component';
+import { ConfiguracionUsuariosComponent } from './views/configuracion-usuarios/configuracion-usuarios.component';
 import { ConfirmacionDialogComponent } from './dialogos/confirmacion-dialog/confirmacion-dialog.component';
 import { ConvertidorFechaPipe } from './shared/pipes/convertidor-fecha.pipe';
 import { DummyComponent } from './views/dummy/dummy.component';
@@ -75,6 +78,9 @@ import { LoginComponent } from './dialogos/login/login.component';
 import { MapaComponent } from './views/mapa/mapa.component';
 import { NavbarGreenlifeComponent } from './layout/navbar-greenlife/navbar-greenlife.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { NgxStripeModule } from 'ngx-stripe';
+import { PagoServiciosComponent } from './views/pago-servicios/pago-servicios.component';
+import { PagoSuscripcionComponent } from './views/pago-suscripcion/pago-suscripcion.component';
 import { PedidoCrearComponent } from './views/pedido-crear/pedido-crear.component';
 import { PedidoListarComponent } from './views/pedido-listar/pedido-listar.component';
 import { PedidoModificarComponent } from './views/pedido-modificar/pedido-modificar.component';
@@ -82,6 +88,7 @@ import { ResenaComponent } from './dialogos/resena/resena.component';
 import { RootComponent } from './root/root.component';
 import { RouterModule } from '@angular/router';
 import { SelectorEtiquetasComponent } from './fragments/selector-etiquetas/selector-etiquetas.component';
+import { ServicioSuscripcionComponent } from './fragments/servicio-suscripcion/servicio-suscripcion.component';
 import { SnackBarService } from './shared/services/snack-bar.service';
 import { SuscripcionCrearComponent } from './views/suscripcion-crear/suscripcion-crear.component';
 import { SuscripcionesClienteComponent } from './views/suscripciones-cliente/suscripciones-cliente.component';
@@ -90,14 +97,8 @@ import { UsuarioModificarComponent } from './views/usuario-modificar/usuario-mod
 import { UsuarioPerfilComponent } from './views/usuario-perfil/usuario-perfil.component';
 import { UsuarioRegistroComponent } from './views/usuario-registro/usuario-registro.component';
 import { UsuarioRolesComponent } from './views/usuario-roles/usuario-roles.component';
-import { ValidadorNumeroDirective } from './shared/directives/validador-numero.directive';
-import { ServicioSuscripcionComponent } from './fragments/servicio-suscripcion/servicio-suscripcion.component';
-import { ConfiguracionUsuariosComponent } from './views/configuracion-usuarios/configuracion-usuarios.component';
-import { ComerciosResenasComponent } from './dialogos/comercios-resenas/comercios-resenas.component';
-import { PagoServiciosComponent } from './views/pago-servicios/pago-servicios.component';
-import { NgxStripeModule } from 'ngx-stripe';
-import { PagoSuscripcionComponent } from './views/pago-suscripcion/pago-suscripcion.component';
 import { UsuariosResenasComponent } from './dialogos/usuarios-resenas/usuarios-resenas.component';
+import { ValidadorNumeroDirective } from './shared/directives/validador-numero.directive';
 
 @NgModule({
   imports: [
@@ -190,11 +191,13 @@ import { UsuariosResenasComponent } from './dialogos/usuarios-resenas/usuarios-r
     ResenaComponent,
     MapaComponent,
     ComerciosLocalesClienteComponent,
+    EntregaListComponent,
+    EstadoEntregaDialogComponet,
     ServicioSuscripcionComponent,
     ConfiguracionUsuariosComponent,
     ComerciosResenasComponent,
     PagoServiciosComponent,
-    PagoSuscripcionComponent
+    PagoSuscripcionComponent,
     UsuariosResenasComponent
   ],
   entryComponents: [
@@ -207,6 +210,7 @@ import { UsuariosResenasComponent } from './dialogos/usuarios-resenas/usuarios-r
     CargaImagenesComponent,
     EtiquetasConsultarComponent,
     ResenaComponent,
+    EstadoEntregaDialogComponet,
     ComerciosResenasComponent,
     UsuariosResenasComponent
   ],

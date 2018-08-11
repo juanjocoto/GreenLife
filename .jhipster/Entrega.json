@@ -14,9 +14,11 @@
             "otherEntityField": "id"
         },
         {
-            "relationshipType": "one-to-many",
+            "relationshipType": "one-to-one",
             "relationshipName": "cadena",
             "otherEntityName": "cadenaEntrega",
+            "otherEntityField": "id",
+            "ownerSide": true,
             "otherEntityRelationshipName": "entrega"
         },
         {

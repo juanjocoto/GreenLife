@@ -16,6 +16,7 @@ $custom-typography: mat-typography-config( $font-family: 'Lato, sans-serif');
     margin: 0px !important;
     position: inherit !important;
 }
+
 .title-bar,
 .title-bar-config {
     color: #FFFFFF;
@@ -222,4 +223,8 @@ $border-radius: 6px;
     -webkit-box-shadow: $box-shadow;
     -moz-box-shadow: $box-shadow;
     box-shadow: $box-shadow;
+}
+
+.sidescroll .mat-expansion-panel-body {
+    overflow: auto;
 }

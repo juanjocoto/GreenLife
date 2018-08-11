@@ -1,17 +1,27 @@
 package com.radicalbytes.greenlife.domain;
 
-import org.hibernate.annotations.Cache;
-import org.hibernate.annotations.CacheConcurrencyStrategy;
-
-import javax.persistence.*;
-import javax.validation.constraints.*;
-
-import org.springframework.data.elasticsearch.annotations.Document;
 import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.Objects;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToOne;
+import javax.persistence.Table;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
+
 import com.radicalbytes.greenlife.domain.enumeration.EstadoCadena;
+
+import org.hibernate.annotations.Cache;
+import org.hibernate.annotations.CacheConcurrencyStrategy;
+import org.springframework.data.elasticsearch.annotations.Document;
 
 /**
  * A CadenaEntrega.
@@ -40,9 +50,6 @@ public class CadenaEntrega implements Serializable {
     @Enumerated(EnumType.STRING)
     @Column(name = "estado")
     private EstadoCadena estado;
-
-    @ManyToOne
-    private Entrega entrega;
 
     @OneToOne
     @JoinColumn(unique = true)
@@ -94,19 +101,6 @@ public class CadenaEntrega implements Serializable {
 
     public void setEstado(EstadoCadena estado) {
         this.estado = estado;
-    }
-
-    public Entrega getEntrega() {
-        return entrega;
-    }
-
-    public CadenaEntrega entrega(Entrega entrega) {
-        this.entrega = entrega;
-        return this;
-    }
-
-    public void setEntrega(Entrega entrega) {
-        this.entrega = entrega;
     }
 
     public CadenaEntrega getPrevio() {

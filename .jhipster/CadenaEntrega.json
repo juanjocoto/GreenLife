@@ -2,12 +2,6 @@
     "fluentMethods": true,
     "relationships": [
         {
-            "relationshipName": "entrega",
-            "otherEntityName": "entrega",
-            "relationshipType": "many-to-one",
-            "otherEntityField": "id"
-        },
-        {
             "relationshipType": "one-to-one",
             "relationshipName": "previo",
             "otherEntityName": "cadenaEntrega",
@@ -36,7 +30,7 @@
         {
             "fieldName": "estado",
             "fieldType": "EstadoCadena",
-            "fieldValues": "PREPARACION,EN_CAMINO,ENTREGADO"
+            "fieldValues": "PENDIENTE,PREPARACION,EN_CAMINO,ENTREGADO,CANCELADO"
         }
     ],
     "changelogDate": "20180622042409",

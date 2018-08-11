@@ -20,5 +20,11 @@
                                  referencedColumnNames="id"
                                  referencedTableName="pedido"/>
 
+        <addForeignKeyConstraint baseColumnNames="cadena_id"
+                                 baseTableName="entrega"
+                                 constraintName="fk_entrega_cadena_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="cadena_entrega"/>
+
     </changeSet>
 </databaseChangeLog>
