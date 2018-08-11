@@ -1,3 +1,5 @@
+@import '../../../../content/scss/green-life.global';
+
 .form-container {
     margin: 0 auto;
     width: 800px;
@@ -5,4 +7,40 @@
 
 mat-form-field {
     width: 100%;
+}
+
+.title-bar {
+    text-align: center;
+}
+
+.btn-registrarse {
+    color: #FFFFFF;
+    background: $config-dark-gray-color;
+    font-size: 17px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    margin: 28px 0 15px 0;
+    border-color: $config-dark-gray-color;
+    border-radius: $border-radius;
+    -webkit-box-shadow: $box-shadow;
+    -moz-box-shadow: $box-shadow;
+    box-shadow: $box-shadow;
+}
+
+.subtitle1, .subtitle2 {
+    text-align: center;
+    color: $config-dark-gray-color;
+    font-weight: 300;
+}
+
+.subtitle1 {
+    margin: 25px 0 0 0;
+}
+
+.subtitle2 {
+    margin: 10px 0 0 0;
+}
+
+.img-container img{
+    margin: 25px 0 10px 0;
 }
