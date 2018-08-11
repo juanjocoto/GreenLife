@@ -125,6 +125,15 @@ public class ResenaClienteResource {
         return ResponseUtil.wrapOrNotFound(Optional.ofNullable(resenaClienteDTO));
     }
 
+    @GetMapping("/resena-clientes/usuario/{id}")
+    @Timed
+    public ResponseEntity<List<ResenaClienteDTO>> getResenaClienteByUsuario(@PathVariable Long id) {
+        log.debug("Rest request to get Resena Cliente : {} ", id);
+        List<ResenaCliente> resenasCliente = resenaClienteRepository.findAllByCliente_Id(id);
+        List<ResenaClienteDTO> resenasClienteDTO = resenaClienteMapper.toDto(resenasCliente);
+        return ResponseUtil.wrapOrNotFound(Optional.ofNullable(resenasClienteDTO));
+    }
+
     /**
      * DELETE  /resena-clientes/:id : delete the "id" resenaCliente.
      *

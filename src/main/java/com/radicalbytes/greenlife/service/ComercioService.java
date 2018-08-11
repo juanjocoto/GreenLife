@@ -88,7 +88,7 @@ public class ComercioService {
         for (int i = 0; i < listComercios.size(); i ++) {
             Comercio comercio = listComercios.get(i);
             double avg = resenaRepository.getCalificacion(comercio.getId()) - score;
-            if ( avg > 0 && avg < 1) {
+            if ( avg >= 0 && avg < 1) {
                 filterComercios.add(comercio);
             }
         }
