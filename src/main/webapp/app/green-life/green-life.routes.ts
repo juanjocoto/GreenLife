@@ -25,6 +25,7 @@ import { SuscripcionesComercioComponent } from './views/suscripciones-comercio/s
 import { UsuarioModificarComponent } from './views/usuario-modificar/usuario-modificar.component';
 import { UsuarioPerfilComponent } from './views/usuario-perfil/usuario-perfil.component';
 import { UsuarioRegistroComponent } from './views/usuario-registro/usuario-registro.component';
+import { PagoSuscripcionComponent } from './views/pago-suscripcion/pago-suscripcion.component';
 import { ConfiguracionUsuariosComponent } from './views/configuracion-usuarios/configuracion-usuarios.component';
 
 export const greenLifeRoutes: Route[] = [
@@ -46,6 +47,7 @@ export const greenLifeRoutes: Route[] = [
     { path: 'suscripciones/:suscripcionId/pedido/crear', component: PedidoCrearComponent, data: { configuracion: false }, canActivate: [AuthGuard] },
     { path: 'suscripciones/:suscripcionId/pedido', component: PedidoListarComponent, data: { configuracion: false }, canActivate: [AuthGuard] },
     { path: 'suscripciones/:suscripcionId/pedido/:pedidoId', component: PedidoModificarComponent, data: { configuracion: false }, canActivate: [AuthGuard] },
+    { path: 'suscripciones/:suscripcionId/pago', component: PagoSuscripcionComponent, data: { configuracion: false }, canActivate: [AuthGuard] },
     { path: 'dummy', component: DummyComponent, data: { configuracion: false }, canActivate: [] },
     { path: 'miscomercios', component: ConfiguracionComerciosComponent, data: { configuracion: true }, canActivate: [AuthGuard] },
     { path: 'suscripcion/comercio/:comercioId', component: SuscripcionCrearComponent, data: { configuracion: false }, canActivate: [AuthGuard] },

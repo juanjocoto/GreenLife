@@ -80,6 +80,7 @@ import { NavbarGreenlifeComponent } from './layout/navbar-greenlife/navbar-green
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { NgxStripeModule } from 'ngx-stripe';
 import { PagoServiciosComponent } from './views/pago-servicios/pago-servicios.component';
+import { PagoSuscripcionComponent } from './views/pago-suscripcion/pago-suscripcion.component';
 import { PedidoCrearComponent } from './views/pedido-crear/pedido-crear.component';
 import { PedidoListarComponent } from './views/pedido-listar/pedido-listar.component';
 import { PedidoModificarComponent } from './views/pedido-modificar/pedido-modificar.component';
@@ -96,6 +97,7 @@ import { UsuarioModificarComponent } from './views/usuario-modificar/usuario-mod
 import { UsuarioPerfilComponent } from './views/usuario-perfil/usuario-perfil.component';
 import { UsuarioRegistroComponent } from './views/usuario-registro/usuario-registro.component';
 import { UsuarioRolesComponent } from './views/usuario-roles/usuario-roles.component';
+import { UsuariosResenasComponent } from './dialogos/usuarios-resenas/usuarios-resenas.component';
 import { ValidadorNumeroDirective } from './shared/directives/validador-numero.directive';
 
 @NgModule({
@@ -194,7 +196,9 @@ import { ValidadorNumeroDirective } from './shared/directives/validador-numero.d
     ServicioSuscripcionComponent,
     ConfiguracionUsuariosComponent,
     ComerciosResenasComponent,
-    PagoServiciosComponent
+    PagoServiciosComponent,
+    PagoSuscripcionComponent,
+    UsuariosResenasComponent
   ],
   entryComponents: [
     LoginComponent,
@@ -207,7 +211,8 @@ import { ValidadorNumeroDirective } from './shared/directives/validador-numero.d
     EtiquetasConsultarComponent,
     ResenaComponent,
     EstadoEntregaDialogComponet,
-    ComerciosResenasComponent
+    ComerciosResenasComponent,
+    UsuariosResenasComponent
   ],
   providers: [
     CommonAdapterService,
