@@ -13,7 +13,7 @@ public class MailContentGenerator {
     public String generateContent(Entrega entrega, String strDate, String strHour, User client) {
         String content = "<html><body> <article> <p> Rastreador <br>"
                 + "Información: {info} <br>Fecha: {date} <br>Hora: {hour} <br>Cliente: {client}<br>"
-                + "</p></article><table><thead><tr><th>Producto</th><th>Cant.</th><th></th>Precio U.</tr>"
+                + "</p></article><table><thead><tr><th>Producto</th><th>Cant.</th><th>Precio U.</th></tr>"
                 + "</thead><tbody>{tableContent}</tbody></table></body></html>";
         content = content.replace("{estado}", entrega.getCadena().getEstado().toString());
         content = content.replace("{info}", entrega.getCadena().getInfo());

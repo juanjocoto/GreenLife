@@ -70,7 +70,7 @@ export class EntregaListComponent implements OnInit {
   selector: 'jhi-estado-entrega-dialog',
   styles: [`mat-form-field{width:100%}`],
   template: `
-  <h1 mat-dialog-title>Hello</h1>
+  <h1 mat-dialog-title>Cambio de estado</h1>
   <mat-dialog-content>
     <form [formGroup]="formGroup" class="green-life-form">
       <mat-form-field>
