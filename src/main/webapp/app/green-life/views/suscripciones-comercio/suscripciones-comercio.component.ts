@@ -13,6 +13,7 @@ import { EstadoSuscripcion, Suscripcion, SuscripcionService } from '../../../ent
 import { ConfirmacionDialogComponent } from '../../dialogos/confirmacion-dialog/confirmacion-dialog.component';
 import { JHILocalDate } from '../../shared/services/common-adapter.service';
 import { MatDialog } from '@angular/material';
+import {UsuariosResenasComponent} from '../../dialogos/usuarios-resenas/usuarios-resenas.component';
 
 @Component({
     selector: 'jhi-suscripciones-comercio',
@@ -136,6 +137,13 @@ export class SuscripcionesComercioComponent implements OnInit {
         this.router.navigate(['app/miscomercios']);
     }
 
+    agregarResena(id) {
+        this.matDialog.open(UsuariosResenasComponent, {
+            width: '600px',
+            data: {usuarioId: id,
+            comercioId: this.comercio.id}
+        });
+    }
 }
 
 interface ISuscripcion {

@@ -97,6 +97,7 @@ import { ComerciosResenasComponent } from './dialogos/comercios-resenas/comercio
 import { PagoServiciosComponent } from './views/pago-servicios/pago-servicios.component';
 import { NgxStripeModule } from 'ngx-stripe';
 import { PagoSuscripcionComponent } from './views/pago-suscripcion/pago-suscripcion.component';
+import { UsuariosResenasComponent } from './dialogos/usuarios-resenas/usuarios-resenas.component';
 
 @NgModule({
   imports: [
@@ -194,6 +195,7 @@ import { PagoSuscripcionComponent } from './views/pago-suscripcion/pago-suscripc
     ComerciosResenasComponent,
     PagoServiciosComponent,
     PagoSuscripcionComponent
+    UsuariosResenasComponent
   ],
   entryComponents: [
     LoginComponent,
@@ -205,7 +207,8 @@ import { PagoSuscripcionComponent } from './views/pago-suscripcion/pago-suscripc
     CargaImagenesComponent,
     EtiquetasConsultarComponent,
     ResenaComponent,
-    ComerciosResenasComponent
+    ComerciosResenasComponent,
+    UsuariosResenasComponent
   ],
   providers: [
     CommonAdapterService,
