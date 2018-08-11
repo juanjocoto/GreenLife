@@ -33,7 +33,7 @@ public class MailContentGenerator {
             String temp = template;
             temp = temp.replace("{prod}", linea.getProducto().getNombre());
             temp = temp.replace("{cant}", linea.getCantidad().toString());
-            temp = temp.replace("{price}", formatter.format(linea.getProducto().getPrecio()));
+            temp = temp.replace("{price}", "₡" + formatter.format(linea.getProducto().getPrecio()));
             result += temp;
         }
 
