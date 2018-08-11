@@ -35,6 +35,16 @@ export class ContratoService {
             .map((res: EntityResponseType) => this.convertResponse(res));
     }
 
+    findAllByComercio(id: number): Observable<HttpResponse<Contrato[]>> {
+        return this.http.get<Contrato[]>(`${this.resourceUrl}/comercio/${id}`, { observe: 'response'})
+            .map((res: HttpResponse<Contrato[]>) => this.convertArrayResponse(res));
+    }
+
+    findByTipo(id: number): Observable<HttpResponse<Contrato[]>> {
+        return this.http.get<Contrato[]>(`${this.resourceUrl}/tipo/${id}`, { observe: 'response'})
+            .map((res: HttpResponse<Contrato[]>) => this.convertArrayResponse(res));
+    }
+
     query(req?: any): Observable<HttpResponse<Contrato[]>> {
         const options = createRequestOption(req);
         return this.http.get<Contrato[]>(this.resourceUrl, { params: options, observe: 'response' })
@@ -43,6 +53,10 @@ export class ContratoService {
 
     delete(id: number): Observable<HttpResponse<any>> {
         return this.http.delete<any>(`${this.resourceUrl}/${id}`, { observe: 'response'});
+    }
+
+    deleteByComercio(id: number): Observable<HttpResponse<any>> {
+        return this.http.delete<any>(`${this.resourceUrl}/delete/comercio/${id}`, { observe: 'response'});
     }
 
     search(req?: any): Observable<HttpResponse<Contrato[]>> {

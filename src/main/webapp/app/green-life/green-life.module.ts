@@ -87,6 +87,7 @@ import { ResenaComponent } from './dialogos/resena/resena.component';
 import { RootComponent } from './root/root.component';
 import { RouterModule } from '@angular/router';
 import { SelectorEtiquetasComponent } from './fragments/selector-etiquetas/selector-etiquetas.component';
+import { ServicioSuscripcionComponent } from './fragments/servicio-suscripcion/servicio-suscripcion.component';
 import { SnackBarService } from './shared/services/snack-bar.service';
 import { SuscripcionCrearComponent } from './views/suscripcion-crear/suscripcion-crear.component';
 import { SuscripcionesClienteComponent } from './views/suscripciones-cliente/suscripciones-cliente.component';
@@ -190,6 +191,7 @@ import { ValidadorNumeroDirective } from './shared/directives/validador-numero.d
     ComerciosLocalesClienteComponent,
     EntregaListComponent,
     EstadoEntregaDialogComponet,
+    ServicioSuscripcionComponent,
     ConfiguracionUsuariosComponent,
     ComerciosResenasComponent,
     PagoServiciosComponent
