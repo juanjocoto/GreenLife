@@ -1,4 +1,4 @@
-import {Component, OnInit, ViewChild, Input} from '@angular/core';
+import {Component, OnInit, ViewChild, Input, Output, EventEmitter} from '@angular/core';
 import {HttpResponse} from '@angular/common/http';
 import {MatSnackBar} from '@angular/material';
 import {StripeService, StripeCardComponent, ElementOptions, ElementsOptions} from 'ngx-stripe';
@@ -19,6 +19,7 @@ export class PagoServiciosComponent implements OnInit {
     @ViewChild(StripeCardComponent) card: StripeCardComponent;
     @Input() amount: number;
     @Input() description: string;
+    @Output() verificarPago = new EventEmitter<boolean>();
     paymentStatus = false;
     cliente: Usuario;
     clienteDetail: User;
@@ -75,15 +76,17 @@ export class PagoServiciosComponent implements OnInit {
             });
     }
 
-    private chargeCard(token: string) {
+    chargeCard(token: string) {
         this.pagoService.chargeCard(token, this.amount, this.description, this.clienteDetail.email).subscribe((response) => {
             if (response.status === 200) {
                 // Payment successful
                 this.paymentStatus = true;
+                this.verificarPago.emit(this.paymentStatus);
                 this.showSnackBar('Pago realizo exitosamente');
             } else if (response.status !== 200) {
                 // Payment unsuccessful
                 this.paymentStatus = false;
+                this.verificarPago.emit(this.paymentStatus);
                 this.showSnackBar('No se ha podido realizar el pago');
             }
         });

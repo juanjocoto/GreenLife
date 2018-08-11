@@ -4,6 +4,8 @@ import { Router } from '@angular/router';
 import { Comercio, ComercioService } from '../../../entities/comercio';
 import { ComerciosResenasComponent } from '../../dialogos/comercios-resenas/comercios-resenas.component';
 import { MatDialog } from '@angular/material';
+import {TIPO_SERVICIO_SUSCRIPCION} from '../../../app.constants';
+import {ContratoService} from '../../../entities/contrato';
 
 @Component({
     selector: 'jhi-comercios-cliente',
@@ -14,13 +16,14 @@ import { MatDialog } from '@angular/material';
 })
 export class ComerciosClienteComponent implements OnInit {
 
-    comercios: Comercio[];
+    comercios: Comercio[] = [];
     currentComercio: Comercio;
 
     constructor(
         private router: Router,
         private dialog: MatDialog,
         private comercioService: ComercioService,
+        private contratoService: ContratoService
     ) { }
 
     ngOnInit() {
@@ -35,10 +38,9 @@ export class ComerciosClienteComponent implements OnInit {
         this.router.navigate(['app/suscripcion/comercio/' + comercioId]);
     }
 
-    displayCurrentComercio(id) {
-        this.comercioService.find(id).subscribe((comercioResponse: HttpResponse<Comercio>) => {
-            this.currentComercio = comercioResponse.body;
-        });
+    displayCurrentComercio(comercioId) {
+        this.currentComercio  = this.comercios.find((resulComercio) =>
+            resulComercio.id === comercioId);
     }
 
     agregarResena(id) {
@@ -48,9 +50,24 @@ export class ComerciosClienteComponent implements OnInit {
         });
     }
 
-    private loadComercios() {
+    loadComercios() {
         this.comercioService.findAll().subscribe((comercioResponse: HttpResponse<Comercio[]>) => {
-            this.comercios = comercioResponse.body;
+            for (const comercio of comercioResponse.body) {
+                this.contratoService.findAllByComercio(comercio.id).subscribe((contratosResponse) => {
+                    if (contratosResponse.body.length > 0) {
+                        for (const contrato of contratosResponse.body) {
+                            if (contrato.tipoId === TIPO_SERVICIO_SUSCRIPCION) {
+                                comercio.contratos = [];
+                                comercio.contratos.push(contrato);
+                                this.comercios.push(comercio);
+                            }
+                        }
+                    } else {
+                        this.comercios.push(comercio);
+                    }
+                });
+            }
         });
     }
+
 }

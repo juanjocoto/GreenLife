@@ -91,6 +91,7 @@ import { UsuarioPerfilComponent } from './views/usuario-perfil/usuario-perfil.co
 import { UsuarioRegistroComponent } from './views/usuario-registro/usuario-registro.component';
 import { UsuarioRolesComponent } from './views/usuario-roles/usuario-roles.component';
 import { ValidadorNumeroDirective } from './shared/directives/validador-numero.directive';
+import { ServicioSuscripcionComponent } from './fragments/servicio-suscripcion/servicio-suscripcion.component';
 import { ConfiguracionUsuariosComponent } from './views/configuracion-usuarios/configuracion-usuarios.component';
 import { ComerciosResenasComponent } from './dialogos/comercios-resenas/comercios-resenas.component';
 import { PagoServiciosComponent } from './views/pago-servicios/pago-servicios.component';
@@ -188,6 +189,7 @@ import { PagoSuscripcionComponent } from './views/pago-suscripcion/pago-suscripc
     ResenaComponent,
     MapaComponent,
     ComerciosLocalesClienteComponent,
+    ServicioSuscripcionComponent,
     ConfiguracionUsuariosComponent,
     ComerciosResenasComponent,
     PagoServiciosComponent,
