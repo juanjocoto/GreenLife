@@ -1,0 +1,72 @@
+@import '../../../../content/scss/green-life.global';
+
+.card {
+    border: none;
+    border-radius: $border-radius;
+    -webkit-box-shadow: $box-shadow;
+    -moz-box-shadow: $box-shadow;
+    box-shadow: $box-shadow;
+}
+
+.card-header {
+    color: #FFFFFF;
+    font-size: 18px;
+    background: $config-green-color;
+    padding: 8px 0 8px 0;
+    border-radius: $border-radius;
+}
+
+.card-body-servicio-suscripcion {
+    padding-bottom: 10px;
+}
+
+.card-footer {
+    background: #FFFFFF;
+    color: $config-dark-gray-color;
+}
+
+.card-title, .card-text-servicio-inactivo {
+    color: $config-dark-gray-color;
+}
+
+.card-title-servicio-activo, .card-title-servicio-inactivo {
+    .fa {
+        color: $green-color;
+        padding: 0 7px 0 0;
+    }
+}
+
+.card-text-servicio-activo, .card-text-servicio-inactivo {
+    font-size: 18.5px;
+    font-weight: 300;
+}
+
+.btn-servicio-suscripcion, .btn-pagar-servicio-suscripcion, .btn-cancelar-pago {
+    color: #FFFFFF;
+    background: $config-dark-gray-color;
+    font-size: 16px;
+    font-weight: 700;
+    margin: 15px 0 15px 0;
+    border-color: $config-dark-gray-color;
+    border-radius: $border-radius;
+    -webkit-box-shadow: $box-shadow;
+    -moz-box-shadow: $box-shadow;
+    box-shadow: $box-shadow;
+}
+
+.btn-cancel-servicio-suscripcion {
+    color: $config-dark-gray-color;
+    background: #FFFFFF;
+    font-size: 16px;
+    font-weight: 700;
+    margin: 15px 0 15px 0;
+    border-color: $config-dark-gray-color;
+    border-radius: $border-radius;
+    -webkit-box-shadow: $box-shadow;
+    -moz-box-shadow: $box-shadow;
+    box-shadow: $box-shadow;
+}
+
+.btn-pagar-servicio-suscripcion, .btn-cancel-servicio-suscripcion {
+    margin: 10px 15px;
+}

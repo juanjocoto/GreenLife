@@ -15,6 +15,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import javax.transaction.Transactional;
 import javax.validation.Valid;
 import java.net.URI;
 import java.net.URISyntaxException;
@@ -125,6 +126,32 @@ public class ContratoResource {
         return ResponseUtil.wrapOrNotFound(Optional.ofNullable(contratoDTO));
     }
 
+/*    @GetMapping("/contratoes/{id}")
+    @Timed
+    public List<ContratoDTO> getContratosByComercio(@PathVariable Long id) {
+        Contrato contrato = contratoRepository.findOne(id);
+        ContratoDTO contratoDTO = contratoMapper.toDto(contrato);
+        return ResponseUtil.wrapOrNotFound(Optional.ofNullable(contratoDTO));
+    }*/
+
+    @GetMapping("/contratoes/comercio/{id}")
+    @Timed
+    @Transactional
+    public ResponseEntity<List<ContratoDTO>> getContratosByComercio(@PathVariable Long id) {
+        List<Contrato> contratos = contratoRepository.findAllByComercio_id(id);
+        List<ContratoDTO> contratosDTO = contratoMapper.toDto(contratos);
+        return ResponseUtil.wrapOrNotFound(Optional.ofNullable(contratosDTO));
+    }
+
+    @GetMapping("/contratoes/tipo/{id}")
+    @Timed
+    @Transactional
+    public ResponseEntity<List<ContratoDTO>> getContratoByTipo(@PathVariable Long id) {
+        List<Contrato> contratos = contratoRepository.findByTipo_id(id);
+        List<ContratoDTO> contratosDTO = contratoMapper.toDto(contratos);
+        return ResponseUtil.wrapOrNotFound(Optional.ofNullable(contratosDTO));
+    }
+
     /**
      * DELETE  /contratoes/:id : delete the "id" contrato.
      *
@@ -137,6 +164,15 @@ public class ContratoResource {
         log.debug("REST request to delete Contrato : {}", id);
         contratoRepository.delete(id);
         contratoSearchRepository.delete(id);
+        return ResponseEntity.ok().headers(HeaderUtil.createEntityDeletionAlert(ENTITY_NAME, id.toString())).build();
+    }
+
+    @DeleteMapping("/contratoes/delete/comercio/{id}")
+    @Timed
+    @Transactional
+    public ResponseEntity<Void> deleteContratoByComercio(@PathVariable Long id) {
+        contratoRepository.deleteContratoByComercio_id(id);
+        contratoSearchRepository.deleteContratoByComercio_id(id);
         return ResponseEntity.ok().headers(HeaderUtil.createEntityDeletionAlert(ENTITY_NAME, id.toString())).build();
     }
 

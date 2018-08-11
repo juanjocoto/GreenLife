@@ -1,9 +1,23 @@
 @import "../../../../content/scss/green-life-variables";
 
+.subtitle1, .subtitle2 {
+    text-align: center;
+    color: $config-dark-gray-color;
+    font-weight: 300;
+}
+
+.badge-vista-usuario{
+    margin: 0 0 0 12px;
+}
+
+.img-container img{
+    margin: 20px 0 10px 0;
+}
+
 .table-wrapper {
     background: #fff;
     padding: 20px 25px;
-    margin: 80px 0;
+    margin: 65px 0;
     border-radius: 3px;
     box-shadow: 0 1px 1px rgba(0,0,0,.05);
 }
@@ -47,6 +61,11 @@ table.table tr th, table.table tr td {
     padding: 12px 15px;
     vertical-align: middle;
 }
+
+table.table td {
+    font-weight: 300;
+}
+
 table.table tr th {
     margin-left: 80px;
 }
@@ -131,7 +150,11 @@ table.table .avatar {
     font-size: 13px;
 }
 .btn-success {
-    background: $green-color;
+    color: $config-dark-gray-color !important;
+    background: #FFFFFF !important;
+    border-radius: 6px !important;
+    -moz-border-radius: 6px !important;
+    -webkit-border-radius: 6px !important;
     font-family: 'Lato', sans-serif;
 }
 
