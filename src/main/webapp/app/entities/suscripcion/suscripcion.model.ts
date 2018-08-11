@@ -1,10 +1,10 @@
 import { BaseEntity } from './../../shared';
 
 export const enum EstadoSuscripcion {
-    'VIGENTE',
-    'EXPIRADO',
-    'PENDIENTE',
-    'RECHAZADO'
+    VIGENTE = 'VIGENTE',
+    EXPIRADO = 'EXPIRADO',
+    PENDIENTE = 'PENDIENTE',
+    RECHAZADO = 'RECHAZADO'
 }
 
 export class Suscripcion implements BaseEntity {

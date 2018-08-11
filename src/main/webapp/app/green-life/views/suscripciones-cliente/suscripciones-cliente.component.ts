@@ -62,7 +62,7 @@ export class SuscripcionesClienteComponent implements OnInit {
             if (res.body.estado === EstadoSuscripcion.VIGENTE) {
                 this.router.navigate(['app/suscripciones/' + suscripcionId + '/pago']);
             } else {
-                this.snackBar.open('Para realizar el pago, la suscripción debe esta activa', undefined, { duration: 2000 });
+                this.snackBar.open('Para realizar el pago, la suscripción debe de estar activa', undefined, { duration: 2000 });
             }
         });
     }

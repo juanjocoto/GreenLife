@@ -34,7 +34,7 @@ public class FileSystemStorageService implements StorageService {
         String fileId = String.valueOf(uuid);
 
         // this.rootLocation = "C:\\green-life-images\\";
-        this.rootLocation = "/home/leo/Pictures/green-life-images";
+        this.rootLocation = "/home";
 
         try {
             if (file.isEmpty()) {
