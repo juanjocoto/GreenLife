@@ -1,33 +1,44 @@
 package com.radicalbytes.greenlife.web.rest;
 
+import static org.elasticsearch.index.query.QueryBuilders.queryStringQuery;
+
+import java.net.URI;
+import java.net.URISyntaxException;
+import java.util.List;
+import java.util.Optional;
+import java.util.stream.Collectors;
+import java.util.stream.StreamSupport;
+
+import javax.validation.Valid;
+
 import com.codahale.metrics.annotation.Timed;
 import com.radicalbytes.greenlife.domain.CadenaEntrega;
 import com.radicalbytes.greenlife.domain.Entrega;
 import com.radicalbytes.greenlife.repository.CadenaEntregaRepository;
 import com.radicalbytes.greenlife.repository.EntregaRepository;
 import com.radicalbytes.greenlife.repository.search.CadenaEntregaSearchRepository;
-import com.radicalbytes.greenlife.web.rest.errors.BadRequestAlertException;
-import com.radicalbytes.greenlife.web.rest.util.HeaderUtil;
 import com.radicalbytes.greenlife.service.MailService;
 import com.radicalbytes.greenlife.service.dto.CadenaEntregaDTO;
 import com.radicalbytes.greenlife.service.mapper.CadenaEntregaMapper;
-import io.github.jhipster.web.util.ResponseUtil;
+import com.radicalbytes.greenlife.web.rest.errors.BadRequestAlertException;
+import com.radicalbytes.greenlife.web.rest.util.HeaderUtil;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RestController;
 
-import javax.validation.Valid;
-import java.net.URI;
-import java.net.URISyntaxException;
-
-import java.util.List;
-import java.util.Optional;
-import java.util.stream.Collectors;
-import java.util.stream.StreamSupport;
-
-import static org.elasticsearch.index.query.QueryBuilders.*;
+import io.github.jhipster.web.util.ResponseUtil;
 
 /**
  * REST controller for managing CadenaEntrega.
@@ -35,12 +46,6 @@ import static org.elasticsearch.index.query.QueryBuilders.*;
 @RestController
 @RequestMapping("/api")
 public class CadenaEntregaResource {
-
-    @Autowired
-    private MailService mailService;
-
-    @Autowired
-    private EntregaRepository entregaRepository;
 
     private final Logger log = LoggerFactory.getLogger(CadenaEntregaResource.class);
 
@@ -70,6 +75,7 @@ public class CadenaEntregaResource {
      */
     @PostMapping("/cadena-entregas")
     @Timed
+    @Transactional
     public ResponseEntity<CadenaEntregaDTO> createCadenaEntrega(@Valid @RequestBody CadenaEntregaDTO cadenaEntregaDTO)
             throws URISyntaxException {
         log.debug("REST request to save CadenaEntrega : {}", cadenaEntregaDTO);
@@ -81,6 +87,7 @@ public class CadenaEntregaResource {
         cadenaEntrega = cadenaEntregaRepository.save(cadenaEntrega);
         CadenaEntregaDTO result = cadenaEntregaMapper.toDto(cadenaEntrega);
         cadenaEntregaSearchRepository.save(cadenaEntrega);
+
         return ResponseEntity.created(new URI("/api/cadena-entregas/" + result.getId()))
                 .headers(HeaderUtil.createEntityCreationAlert(ENTITY_NAME, result.getId().toString())).body(result);
     }
@@ -107,12 +114,6 @@ public class CadenaEntregaResource {
         cadenaEntrega = cadenaEntregaRepository.save(cadenaEntrega);
         CadenaEntregaDTO result = cadenaEntregaMapper.toDto(cadenaEntrega);
         cadenaEntregaSearchRepository.save(cadenaEntrega);
-
-        Entrega entrega = entregaRepository.findByCadena_id(cadenaEntrega.getId());
-
-        String reciver = entrega.getSuscripcion().getUsuario().getUserDetail().getEmail();
-
-        mailService.sendEmail(reciver, "Creacion del pedido", "", false, true);
 
         return ResponseEntity.ok()
                 .headers(HeaderUtil.createEntityUpdateAlert(ENTITY_NAME, cadenaEntregaDTO.getId().toString()))

@@ -36,6 +36,7 @@ export class EntregaListComponent implements OnInit {
         this.comercioService.findComerciosByDueno(usuarioResult.body.id).subscribe((comerciosResult) => {
           for (const comercio of comerciosResult.body) {
             this.entregaService.findByComercio(comercio).subscribe((entregasResult) => {
+              console.log(entregasResult.body);
               this.entregaMap.set(comercio.id, entregasResult.body);
               this.comercios = comerciosResult.body;
             });
@@ -136,7 +137,13 @@ export class EstadoEntregaDialogComponet implements OnInit {
       cadena.previoId = this.entrega.cadenaId;
       this.cadenaEntregaService.create(cadena).subscribe((response) => {
         console.log(response.body);
-        this.dialogRef.close(response.body);
+        const copy = Object.assign(new Entrega(), this.entrega);
+        copy.cadena = response.body;
+        copy.cadenaId = response.body.id;
+        copy.fechaInicio = new JHILocalDate(copy.fechaInicio);
+        this.entregaService.update(copy).subscribe((entregaResponse) => {
+          this.dialogRef.close(entregaResponse.body.cadena);
+        });
       });
     }
   }

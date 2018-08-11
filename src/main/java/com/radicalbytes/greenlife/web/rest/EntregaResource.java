@@ -7,11 +7,13 @@ import com.radicalbytes.greenlife.repository.EntregaRepository;
 import com.radicalbytes.greenlife.repository.search.EntregaSearchRepository;
 import com.radicalbytes.greenlife.web.rest.errors.BadRequestAlertException;
 import com.radicalbytes.greenlife.web.rest.util.HeaderUtil;
+import com.radicalbytes.greenlife.service.MailService;
 import com.radicalbytes.greenlife.service.dto.EntregaDTO;
 import com.radicalbytes.greenlife.service.mapper.EntregaMapper;
 import io.github.jhipster.web.util.ResponseUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
@@ -19,8 +21,12 @@ import org.springframework.web.bind.annotation.*;
 import javax.validation.Valid;
 import java.net.URI;
 import java.net.URISyntaxException;
-
+import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.util.Date;
 import java.util.List;
+import java.util.Locale;
 import java.util.Optional;
 import java.util.stream.Collectors;
 import java.util.stream.StreamSupport;
@@ -33,6 +39,9 @@ import static org.elasticsearch.index.query.QueryBuilders.*;
 @RestController
 @RequestMapping("/api")
 public class EntregaResource {
+
+    @Autowired
+    private MailService mailService;
 
     private final Logger log = LoggerFactory.getLogger(EntregaResource.class);
 
@@ -88,18 +97,46 @@ public class EntregaResource {
      */
     @PutMapping("/entregas")
     @Timed
+    @Transactional
     public ResponseEntity<EntregaDTO> updateEntrega(@Valid @RequestBody EntregaDTO entregaDTO)
             throws URISyntaxException {
         log.debug("REST request to update Entrega : {}", entregaDTO);
         if (entregaDTO.getId() == null) {
             return createEntrega(entregaDTO);
         }
+
+        long originalCadenaId = entregaRepository.findOne(entregaDTO.getId()).getCadena().getId();
+
         Entrega entrega = entregaMapper.toEntity(entregaDTO);
         entrega = entregaRepository.save(entrega);
         EntregaDTO result = entregaMapper.toDto(entrega);
         entregaSearchRepository.save(entrega);
+
+        // System.out.println();
+
+        if (entrega.getCadena().getId() != originalCadenaId) {
+            String reciver = entrega.getSuscripcion().getUsuario().getUserDetail().getEmail();
+
+            SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");// dd/MM/yyyy
+            SimpleDateFormat hourFormat = new SimpleDateFormat("HH:mm");
+
+            Date now = new Date();
+            String strDate = dateFormat.format(now);
+            String strHour = hourFormat.format(now);
+
+            String content = "<html><body> <article> <p> Su pedido ha cambiado de estado a {estado} <br>"
+                    + "Información: {info} <br>Fecha: {date} <br>Hora: {hour} <br></p></article> </body></html>";
+            content = content.replace("{estado}", entrega.getCadena().getEstado().toString());
+            content = content.replace("{info}", entrega.getCadena().getInfo());
+            content = content.replace("{date}", strDate);
+            content = content.replace("{hour}", strHour);
+
+            mailService.sendEmail(reciver, "Estado de su pedido #" + entrega.getId(), content + strDate, false, true);
+        }
+
         return ResponseEntity.ok()
                 .headers(HeaderUtil.createEntityUpdateAlert(ENTITY_NAME, entregaDTO.getId().toString())).body(result);
+
     }
 
     /**

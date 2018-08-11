@@ -1,7 +1,9 @@
 package com.radicalbytes.greenlife;
 
+import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+import java.util.Date;
 import java.util.List;
 import java.util.Locale;
 import java.util.Set;
@@ -37,7 +39,8 @@ public class SecheduleTask {
     @Autowired
     private MailService mailService;
 
-    // @Scheduled(cron = "0/60 * * * * *")
+    @Scheduled(cron = "0 0 0 * * *")
+    // @Scheduled(cron = "0/10 * * * * *")
     @Transactional
     public void test() {
 
@@ -72,16 +75,32 @@ public class SecheduleTask {
             CadenaEntrega cadenaEntrega = new CadenaEntrega();
             cadenaEntrega.setFecha(now);
             cadenaEntrega.setEstado(EstadoCadena.PENDIENTE);
-            cadenaEntrega.setInfo("");
+            cadenaEntrega.setInfo("Se inicia el pedido");
             cadenaEntregaRepository.save(cadenaEntrega);
 
             entrega.setCadena(cadenaEntrega);
 
             entregaRepo.save(entrega);
 
-            String reciver = entrega.getSuscripcion().getUsuario().getUserDetail().getEmail();
+            String reciver = entrega.getSuscripcion().getComercio().getDueno().getUserDetail().getEmail();
 
-            mailService.sendEmail(reciver, "Creacion del pedido", "", false, true);
+            SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");// dd/MM/yyyy
+            SimpleDateFormat hourFormat = new SimpleDateFormat("HH:mm");
+
+            Date date = new Date();
+            String strDate = dateFormat.format(date);
+            String strHour = hourFormat.format(date);
+
+            String content = "<html><body> <article> <p> Rastreador <br>"
+                    + "Información: {info} <br>Fecha: {date} <br>Hora: {hour} <br></p></article> </body></html>";
+            content = content.replace("{estado}", entrega.getCadena().getEstado().toString());
+            content = content.replace("{info}", entrega.getCadena().getInfo());
+            content = content.replace("{date}", strDate);
+            content = content.replace("{hour}", strHour);
+
+            mailService.sendEmail(reciver, "Estado de su pedido #" + entrega.getId(), content + strDate, false, true);
+
+            // mailService.sendEmail(reciver, "Creación del pedido", "", false, true);
         }
     }
 
