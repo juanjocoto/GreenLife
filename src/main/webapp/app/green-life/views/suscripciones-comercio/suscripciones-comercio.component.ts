@@ -1,12 +1,16 @@
-import { Comercio, ComercioService } from '../../../entities/comercio';
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
+import {HttpResponse} from '@angular/common/http';
+import {Router, ActivatedRoute} from '@angular/router';
+import {CommonAdapterService} from '../../shared/services/common-adapter.service';
+import {Comercio, ComercioService} from '../../../entities/comercio';
+import {Usuario, UsuarioService} from '../../../entities/usuario';
+import {AccountService, User, UserService} from '../../../shared';
+import {Observable} from '../../../../../../../node_modules/rxjs';
+import {MatExpansionModule} from '@angular/material/expansion';
+import {TIPO_SERVICIO_SUSCRIPCION} from '../../../app.constants';
+import {ContratoService} from '../../../entities/contrato';
 import { EstadoSuscripcion, Suscripcion, SuscripcionService } from '../../../entities/suscripcion';
-import { User, UserService } from '../../../shared';
-import { Usuario, UsuarioService } from '../../../entities/usuario';
-
-import { ActivatedRoute } from '@angular/router';
 import { ConfirmacionDialogComponent } from '../../dialogos/confirmacion-dialog/confirmacion-dialog.component';
-import { HttpResponse } from '@angular/common/http';
 import { JHILocalDate } from '../../shared/services/common-adapter.service';
 import { MatDialog } from '@angular/material';
 
@@ -18,6 +22,7 @@ import { MatDialog } from '@angular/material';
 export class SuscripcionesComercioComponent implements OnInit {
 
     panelOpenState = false;
+    isContratoActivo = false;
     private _suscripciones: ISuscripcion[] = [];
     cliente: Usuario;
     user: User;
@@ -29,10 +34,14 @@ export class SuscripcionesComercioComponent implements OnInit {
     }
     constructor(
         private route: ActivatedRoute,
+        private router: Router,
+        private commonAdapterService: CommonAdapterService,
         private suscripcionService: SuscripcionService,
         private comercioService: ComercioService,
         private usuarioService: UsuarioService,
         private userService: UserService,
+        private account: AccountService,
+        private contratoService: ContratoService,
         private matDialog: MatDialog
     ) { }
 
@@ -41,8 +50,9 @@ export class SuscripcionesComercioComponent implements OnInit {
             this.loadComercio(params['comercioId']);
             this.loadSuscripcionesComercio(params['comercioId']);
         });
-    }
 
+        this.verificarServicioSuscripcion();
+    }
     aprobarSuscripcion(suscripcion) {
         const ref = this.matDialog.open(ConfirmacionDialogComponent);
         const nombreUsuario = `${suscripcion.user.firstName} ${suscripcion.user.lastName}`;
@@ -98,6 +108,32 @@ export class SuscripcionesComercioComponent implements OnInit {
                 });
             }
         });
+    }
+
+    verificarServicioSuscripcion() {
+        this.account.get().subscribe((accountResponse) => {
+            this.usuarioService.findByUserLogin(accountResponse.body['login']).subscribe((responseUser) => {
+                this.comercioService.findComerciosByDueno(responseUser.body.id).subscribe((responseComercio) => {
+                    for (const comercio of responseComercio.body) {
+                        this.contratoService.findAllByComercio(comercio.id).subscribe((responseContratos) => {
+                            if (responseContratos.body.length > 0) {
+                                for (const contrato of responseContratos.body) {
+                                    if (contrato.tipoId === TIPO_SERVICIO_SUSCRIPCION) {
+                                        this.isContratoActivo = true;
+                                    }
+                                }
+                            } else {
+                                this.isContratoActivo = false;
+                            }
+                        });
+                    }
+                });
+            });
+        });
+    }
+
+    activarServicioSuscripcion() {
+        this.router.navigate(['app/miscomercios']);
     }
 
 }
