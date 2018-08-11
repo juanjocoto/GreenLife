@@ -96,6 +96,7 @@ import { ConfiguracionUsuariosComponent } from './views/configuracion-usuarios/c
 import { ComerciosResenasComponent } from './dialogos/comercios-resenas/comercios-resenas.component';
 import { PagoServiciosComponent } from './views/pago-servicios/pago-servicios.component';
 import { NgxStripeModule } from 'ngx-stripe';
+import { PagoSuscripcionComponent } from './views/pago-suscripcion/pago-suscripcion.component';
 
 @NgModule({
   imports: [
@@ -191,7 +192,8 @@ import { NgxStripeModule } from 'ngx-stripe';
     ServicioSuscripcionComponent,
     ConfiguracionUsuariosComponent,
     ComerciosResenasComponent,
-    PagoServiciosComponent
+    PagoServiciosComponent,
+    PagoSuscripcionComponent
   ],
   entryComponents: [
     LoginComponent,

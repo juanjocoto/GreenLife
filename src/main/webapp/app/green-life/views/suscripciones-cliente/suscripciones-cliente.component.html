@@ -33,7 +33,7 @@
                     <button class="btn btn-sm btn-secondary-card-green-life" (click)="cancelarSuscripcion(suscripcion.suscripcion.id, suscripcion.comercio.nombreComercial)">
                         <i class="fa fa-ban"></i>Cancelar
                     </button>
-                    <button class="btn btn-sm btn-primary-card-green-life"><i class="fa fa-cc-stripe"></i>Pagar</button>
+                    <button class="btn btn-sm btn-primary-card-green-life" (click)="pagarSuscripcion(suscripcion.suscripcion.id)"><i class="fa fa-cc-stripe"></i>Pagar</button>
                 </div>
             </div>
         </div>

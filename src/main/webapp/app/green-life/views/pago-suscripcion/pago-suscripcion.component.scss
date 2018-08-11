@@ -1,0 +1,37 @@
+@import '../../../../content/scss/green-life-variables';
+
+.title-bar {
+    text-align: center;
+}
+.main-container {
+    padding: 15px 0 75px 0;
+}
+.bill-container {
+    text-align: center;
+    margin-bottom: 20px;
+}
+.bill {
+    width: 600px;
+    padding: 20px;
+    display: inline-block;
+    background-color: #eae8e8;
+}
+.bill .divider {
+    background: black;
+    max-width: 400px;
+    -webkit-box-shadow: 0 1px 3px rgba(50,50,93,.11), 0 1px 3px rgba(0,0,0,.08);
+    -moz-box-shadow: 0 1px 3px rgba(50,50,93,.11), 0 1px 3px rgba(0,0,0,.08);
+    box-shadow: 0 1px 3px rgba(50,50,93,.11), 0 1px 3px rgba(0,0,0,.08);
+}
+.bill p {
+    margin: 3px 0px;
+}
+.bill .center {
+    text-align: center;
+}
+.bill .center p {
+    width: 100%;
+}
+.bill .title {
+    margin-bottom: 10px;
+}
