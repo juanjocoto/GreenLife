@@ -194,7 +194,7 @@ import { UsuariosResenasComponent } from './dialogos/usuarios-resenas/usuarios-r
     ConfiguracionUsuariosComponent,
     ComerciosResenasComponent,
     PagoServiciosComponent,
-    PagoSuscripcionComponent
+    PagoSuscripcionComponent,
     UsuariosResenasComponent
   ],
   entryComponents: [
