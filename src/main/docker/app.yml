@@ -11,6 +11,8 @@ services:
             - SPRING_DATA_ELASTICSEARCH_CLUSTER_NODES=greenlife-elasticsearch:9300
             - SPRING_CLOUD_STREAM_KAFKA_BINDER_BROKERS=kafka
             - SPRING_CLOUD_STREAM_KAFKA_BINDER_ZK_NODES=zookeeper
+            - VIRTUAL_HOST=www.greenlife.com,greenlife.com
+            - VIRTUAL_PORT=80
         ports:
             - 8080:8080
     greenlife-mysql:
