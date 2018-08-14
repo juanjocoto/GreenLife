@@ -19,7 +19,8 @@
         "mobile": false,
         "styles": [
             "content/scss/vendor.scss",
-            "content/scss/global.scss"
+            "content/scss/global.scss",
+            "~ngx-bar-rating/themes/br-default-theme.css"
         ],
         "scripts": []
     }],

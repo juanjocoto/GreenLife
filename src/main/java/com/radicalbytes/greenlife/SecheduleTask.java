@@ -1,6 +1,5 @@
 package com.radicalbytes.greenlife;
 
-import java.text.DecimalFormat;
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
@@ -54,11 +53,8 @@ public class SecheduleTask {
         LocalDate now = LocalDate.now();
         String dayWeek = now.format(DateTimeFormatter.ofPattern("EEEE", spanishLocale));
         dayWeek = dayWeek.substring(0, 1).toUpperCase() + dayWeek.substring(1);
-        System.out.println();
-        System.out.println(dayWeek);
-        System.out.println();
-
-        List<Pedido> pedidoList = pedidoRepo.findAllByDiasEntrega_nombre(dayWeek);
+       
+        List<Pedido> pedidoList = pedidoRepo.query(dayWeek);
         for (Pedido pedido : pedidoList) {
             Entrega entrega = new Entrega();
             entrega.setFechaInicio(now);

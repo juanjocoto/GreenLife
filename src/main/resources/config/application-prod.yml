@@ -71,18 +71,16 @@ spring:
             cluster-name:
             cluster-nodes: localhost:9300
     mail:
-        host: email-smtp.us-east-1.amazonaws.com
-        port: 465
-        username: AKIAJPI4CN5W4MUGS25A
-        password: AnZ9J6EJzHYqNNTbx2Fhwwa0sG1qAi7oz094CHh3zC20
-        protocol: smtps
-        debug: true
+        host: smtp.gmail.com
+        port: 587
+        username: green.life.cr.2018@gmail.com  #Replace this field with your Gmail username.
+        password: z8xn5PjHyCOIVJzg           #Replace this field with your Gmail password.
+        protocol: smtp
+        tls: true
         properties.mail.smtp:
-            starttls.enable: true
-            starttls.required: true
-            ssl.enable: true
-        properties.mail.smtps:
             auth: true
+            starttls.enable: true
+            ssl.trust: smtp.gmail.com
     thymeleaf:
         cache: true
     zipkin: # Use the "zipkin" Maven profile to have the Spring Cloud Zipkin dependencies
