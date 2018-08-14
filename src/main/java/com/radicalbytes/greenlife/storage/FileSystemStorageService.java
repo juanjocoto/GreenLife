@@ -8,6 +8,7 @@ import java.nio.file.Paths;
 import java.util.UUID;
 import java.util.stream.Stream;
 
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.core.io.Resource;
 import org.springframework.core.io.UrlResource;
@@ -18,6 +19,7 @@ import org.springframework.web.multipart.MultipartFile;
 @Service
 @ConfigurationProperties(value = "storage")
 public class FileSystemStorageService implements StorageService {
+    @Value("${variable.files-path}")
     private String rootLocation;
 
     public String getRootLocation() {
@@ -32,10 +34,7 @@ public class FileSystemStorageService implements StorageService {
     public String store(MultipartFile file) {
         UUID uuid = UUID.randomUUID();
         String fileId = String.valueOf(uuid);
-
-        // this.rootLocation = "C:\\green-life-images\\";
-        this.rootLocation = "/home";
-
+        
         try {
             if (file.isEmpty()) {
                 throw new StorageException("Failed to store empty file " + file.getOriginalFilename());

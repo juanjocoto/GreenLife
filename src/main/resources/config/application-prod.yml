@@ -13,6 +13,9 @@
 # http://docs.spring.io/spring-boot/docs/current/reference/html/common-application-properties.html
 # ===================================================================
 
+variable:
+    files-path: /home/green-life/images
+
 logging:
     level:
         ROOT: INFO

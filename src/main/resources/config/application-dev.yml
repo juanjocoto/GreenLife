@@ -13,6 +13,10 @@
 # http://docs.spring.io/spring-boot/docs/current/reference/html/common-application-properties.html
 # ===================================================================
 
+variable:
+    # files-path: /home/green-life/images
+    files-path: C:\\green-life-images\\
+
 logging:
     level:
         ROOT: DEBUG
@@ -49,7 +53,7 @@ spring:
                     destination: topic-jhipster
     datasource:
         type: com.zaxxer.hikari.HikariDataSource
-        url: jdbc:mysql://192.168.99.100:3306/greenlife?useUnicode=true&characterEncoding=utf8&useSSL=false
+        url: jdbc:mysql://localhost:3306/greenlife?useUnicode=true&characterEncoding=utf8&useSSL=false
         username: root
         password:
         hikari:
