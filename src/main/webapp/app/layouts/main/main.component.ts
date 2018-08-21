@@ -12,7 +12,7 @@ import { Title } from '@angular/platform-browser';
     ]
 })
 export class JhiMainComponent implements OnInit {
-
+e
     showCms: boolean;
 
     constructor(
